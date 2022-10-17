@@ -1,5 +1,12 @@
 [
   {
+    "objectID": "report.html",
+    "href": "report.html",
+    "title": "Project title",
+    "section": "",
+    "text": "Add project writeup here."
+  },
+  {
     "objectID": "presentation.html#quarto",
     "href": "presentation.html#quarto",
     "title": "index.qmd",
@@ -19,20 +26,6 @@
     "title": "TEAM NAME",
     "section": "",
     "text": "Add project abstract here."
-  },
-  {
-    "objectID": "about.html",
-    "href": "about.html",
-    "title": "About",
-    "section": "",
-    "text": "Team member 1: One sentence description of Team member 1 (e.g., year, major, etc.).\nTeam member 2: One sentence description of Team member 2 (e.g., year, major, etc.).\nTeam member 3: One sentence description of Team member 3 (e.g., year, major, etc.).\nTeam member 4: One sentence description of Team member 4 (e.g., year, major, etc.).\n…"
-  },
-  {
-    "objectID": "report.html",
-    "href": "report.html",
-    "title": "Project title",
-    "section": "",
-    "text": "Add project writeup here."
   },
   {
     "objectID": "proposal.html",
@@ -103,5 +96,12 @@
     "title": "Project title",
     "section": "Glimpse of data",
     "text": "Glimpse of data\n\n# add code here"
+  },
+  {
+    "objectID": "about.html",
+    "href": "about.html",
+    "title": "About",
+    "section": "",
+    "text": "Team member 1: Ryan\nOne sentence description of Team member 1 (e.g., year, major, etc.).\nTeam member 2: One sentence description of Team member 2 (e.g., year, major, etc.).\nTeam member 3: One sentence description of Team member 3 (e.g., year, major, etc.).\nTeam member 4: One sentence description of Team member 4 (e.g., year, major, etc.).\n…"
   }
 ]
