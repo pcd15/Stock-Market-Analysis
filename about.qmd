@@ -16,4 +16,4 @@ This project was developed by **\[team name\]** For [STA 199: Introduction to Da
 
 -   Ryan: Freshman in CS
 
--   Zaid: Freshman in CS
+-   Zaid: Sophomore in CS
