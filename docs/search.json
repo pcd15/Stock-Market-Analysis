@@ -14,27 +14,6 @@
     "text": "Running Code\nWhen you click the Render button a document will be generated that includes both content and the output of embedded code. You can embed code like this:\n\n\n[1] 2\n\n\nYou can add options to executable code like this\n\n\n[1] 4\n\n\nThe echo: false option disables the printing of code (only output is displayed)."
   },
   {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "TEAM NAME",
-    "section": "",
-    "text": "Add project abstract here."
-  },
-  {
-    "objectID": "about.html",
-    "href": "about.html",
-    "title": "About",
-    "section": "",
-    "text": "Team member 1: One sentence description of Team member 1 (e.g., year, major, etc.).\nTeam member 2: One sentence description of Team member 2 (e.g., year, major, etc.).\nTeam member 3: One sentence description of Team member 3 (e.g., year, major, etc.).\nTeam member 4: One sentence description of Team member 4 (e.g., year, major, etc.).\n…"
-  },
-  {
-    "objectID": "report.html",
-    "href": "report.html",
-    "title": "Project title",
-    "section": "",
-    "text": "Add project writeup here."
-  },
-  {
     "objectID": "proposal.html",
     "href": "proposal.html",
     "title": "Project title",
@@ -103,5 +82,26 @@
     "title": "Project title",
     "section": "Glimpse of data",
     "text": "Glimpse of data\n\n# add code here"
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "TEAM NAME",
+    "section": "",
+    "text": "Add project abstract here."
+  },
+  {
+    "objectID": "report.html",
+    "href": "report.html",
+    "title": "Project title",
+    "section": "",
+    "text": "Add project writeup here."
+  },
+  {
+    "objectID": "about.html",
+    "href": "about.html",
+    "title": "Git Real",
+    "section": "",
+    "text": "Team member 1: One sentence description of Team member 1 (e.g., year, major, etc.).\nTeam member 2: One sentence description of Team member 2 (e.g., year, major, etc.).\nTeam member 3: One sentence description of Team member 3 (e.g., year, major, etc.).\nTeam member 4: One sentence description of Team member 4 (e.g., year, major, etc.).\n…"
   }
 ]
