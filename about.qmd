@@ -1,14 +1,12 @@
 ---
-title: "Git Real"
+title: "About"
 format: html
 editor: visual
 ---
 
-This project was developed by **\[team name\]** For [STA 199: Introduction to Data Science](https://sta199-f22-1.github.io/) at Duke University. The team is comprised of the following team members.
+This project was developed by **Git Real** For [STA 199: Introduction to Data Science](https://sta199-f22-1.github.io/) at Duke University. The team is comprised of the following team members.
 
 -   Uma: Undeclared Sophomore
-
-    One sentence description of Team member 1 (e.g., year, major, etc.).
 
 -   Paul: Freshman in CS
 
