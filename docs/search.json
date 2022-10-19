@@ -102,6 +102,10 @@
     "href": "about.html",
     "title": "Git Real",
     "section": "",
+<<<<<<< HEAD
     "text": "Hannah Choi: One sentence description of Team member 1 (e.g., year, major, etc.).\nTeam member 2: One sentence description of Team member 2 (e.g., year, major, etc.).\nTeam member 3: One sentence description of Team member 3 (e.g., year, major, etc.).\nTeam member 4: One sentence description of Team member 4 (e.g., year, major, etc.).\n…"
+=======
+    "text": "Uma: Undeclared Sophomore\nOne sentence description of Team member 1 (e.g., year, major, etc.).\nPaul: Freshman in CS\nHannah: Freshman in CS\nRyan: Freshman in CS\nZaid: Freshman in CS"
+>>>>>>> a4e6a5f0b1e8c12c7f217b7588965ce465166ea0
   }
 ]

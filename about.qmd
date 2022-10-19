@@ -4,12 +4,16 @@ format: html
 editor: visual
 ---
 
-
 This project was developed by **\[team name\]** For [STA 199: Introduction to Data Science](https://sta199-f22-1.github.io/) at Duke University. The team is comprised of the following team members.
 
+-   Uma: Undeclared Sophomore
 
--   Hannah Choi: One sentence description of Team member 1 (e.g., year, major, etc.).
--   Team member 2: One sentence description of Team member 2 (e.g., year, major, etc.).
--   Team member 3: One sentence description of Team member 3 (e.g., year, major, etc.).
--   Team member 4: One sentence description of Team member 4 (e.g., year, major, etc.).
--   ...
+    One sentence description of Team member 1 (e.g., year, major, etc.).
+
+-   Paul: Freshman in CS
+
+-   Hannah: Freshman in CS
+
+-   Ryan: Freshman in CS
+
+-   Zaid: Sophomore in CS
