@@ -10,6 +10,7 @@ editor: visual
 #| message: false
 
 library(tidyverse)
+library(lubridate)
 ```
 
 # Data 1
@@ -30,10 +31,30 @@ library(tidyverse)
 
 ## Glimpse of data
 
-```{r}
+```{r warning = FALSE, message = FALSE}
 #| label: load-data-1
 
-# add code here
+fed_funds_rate <- read_csv("data/fed-funds-rate-historical-chart.csv")
+inflation_rate <- read_csv("data/united-states-inflation-rate-cpi.csv")
+sp500_year <- read_csv("data/history.csv")
+```
+
+```{r}
+#|: fixing-data-sets
+
+names(fed_funds_rate)[1] <- "day"
+names(inflation_rate)[1] <- "year"
+
+fed_funds_rate <- fed_funds_rate |>
+  slice(9:nrow(fed_funds_rate)) |>
+  separate(day, into = c("day", "fed_funds_rate"), sep = ",")
+inflation_rate <- inflation_rate |>
+  slice(11:nrow(inflation_rate)) |>
+  separate(year, into = c("year", "inflation_rate", "annual_change"), sep = ",")
+
+view(fed_funds_rate)
+view(inflation_rate)
+view(sp500_year)
 ```
 
 # Data 2
@@ -54,10 +75,11 @@ library(tidyverse)
 
 ## Glimpse of data
 
-```{r}
+```{r message = FALSE}
 #| label: load-data-2
 
-# add code here
+sp500_current <- read_csv("data/HistoricalPrices.csv")
+view(sp500_current)
 ```
 
 # Data 3
@@ -78,8 +100,9 @@ library(tidyverse)
 
 ## Glimpse of data
 
-```{r}
+```{r message = FALSE}
 #| label: load-data-3
 
-# add code here
+sp500_by_company <- read_csv("data/sp500_by_company.csv")
+view(sp500_by_company)
 ```
