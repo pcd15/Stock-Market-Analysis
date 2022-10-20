@@ -6,7 +6,7 @@ library(robotstxt)
 paths_allowed("https://www.slickcharts.com/")
 
 page <- read_html("https://www.slickcharts.com/sp500")
-page2 <- read_html("https://www.slickcharts.com/sp500/performance")
+page_2 <- read_html("https://www.slickcharts.com/sp500/performance")
 
 companies <- page |>
   html_elements(".mmt-sticky-close , .mb-5 td:nth-child(2)") |>
@@ -24,19 +24,29 @@ prices <- page |>
   html_elements(".text-nowrap:nth-child(5)") |>
   html_text()
 
-ytd_returns <- page2 |>
+ytd_returns <- page_2 |>
   html_elements("td:nth-child(4)") |>
   html_text2()
 
-sp500_by_company <- tibble(
+symbols_2 <- page_2 |>
+  html_elements(".grippy-host , td~ td+ td a") |>
+  html_text2()
+
+sp500_by_company_1 <- tibble(
   company = companies,
   symbol = symbols,
   weight = weights,
-  price = prices,
-  ytd_return = ytd_returns
+  price = prices
 )
 
-sp500_by_company <- sp500_by_company |>
+sp500_by_company_2 <- tibble(
+  ytd_return = ytd_returns,
+  symbol = symbols_2
+)
+
+
+sp500_by_company <- sp500_by_company_1 |>
+  left_join(sp500_by_company_2, by = "symbol") |>
   mutate(
     weight = as.numeric(weight)
   )
