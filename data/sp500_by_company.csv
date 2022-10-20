@@ -1,4 +1,4 @@
-company,symbol,weight,price,ytd_return
+company,symbol,weight,current_price,ytd_return
 Apple Inc.,AAPL,6.940598,   144.00, -19.05%
 Microsoft Corporation,MSFT,5.685,   236.16, -29.09%
 Amazon.com Inc.,AMZN,3.296234,   115.13, -30.21%

@@ -23,10 +23,13 @@ library(lubridate)
 
 -   Write a brief description of the observations.
 
+-   Address ethical concerns, if any.
+
 ## Research question
 
 -   A well formulated research question. (You may include more than one research question if you want to receive feedback on different ideas for your project. However, one per data set is required.)
 -   A description of the research topic along with a concise statement of your hypotheses on this topic.
+-   Statement on why this question is important.
 -   Identify the types of variables in your research question. Categorical? Quantitative?
 
 ## Glimpse of data
@@ -40,7 +43,7 @@ sp500_year <- read_csv("data/history.csv")
 ```
 
 ```{r warning = FALSE}
-#|: fixing-data-sets
+#|: fixing-and-combining-data-sets
 
 names(fed_funds_rate)[1] <- "day"
 names(inflation_rate)[1] <- "year"
@@ -59,7 +62,7 @@ fed_funds_rate<- fed_funds_rate|>
   
 inflation_rate <- inflation_rate |>
   slice(11:nrow(inflation_rate)) |>
-  separate(year, into = c("year", "inflation_rate", "annual_change"), sep = ",")
+  separate(year, into = c("year", "inflation_rate", "inflation_annual_change"), sep = ",")
 
 inflation_rate <- na.omit(inflation_rate)
 
@@ -89,10 +92,13 @@ glimpse(sp500_year)
 
 -   Write a brief description of the observations.
 
+-   Address ethical concerns, if any.
+
 ## Research question
 
 -   A well formulated research question. (You may include more than one research question if you want to receive feedback on different ideas for your project. However, one per data set is required.)
 -   A description of the research topic along with a concise statement of your hypotheses on this topic.
+-   Statement on why this question is important.
 -   Identify the types of variables in your research question. Categorical? Quantitative?
 
 ## Glimpse of data
@@ -114,10 +120,13 @@ glimpse(sp500_current)
 
 -   Write a brief description of the observations.
 
+-   Address ethical concerns, if any.
+
 ## Research question
 
 -   A well formulated research question. (You may include more than one research question if you want to receive feedback on different ideas for your project. However, one per data set is required.)
 -   A description of the research topic along with a concise statement of your hypotheses on this topic.
+-   Statement on why this question is important.
 -   Identify the types of variables in your research question. Categorical? Quantitative?
 
 ## Glimpse of data
@@ -127,6 +136,13 @@ glimpse(sp500_current)
 
 sp500_by_company <- read_csv("data/sp500_by_company.csv")
 sp500_by_sector <- read_csv("data/constituents_csv.csv")
+glimpse(sp500_by_company)
+glimpse(sp500_by_sector)
+```
+
+```{r}
+#|: combining-data-set
+# sp500_by_company was created by joining two scraped data frames
 
 sp500_by_sector <- sp500_by_sector |>
   mutate(
@@ -139,13 +155,75 @@ sp500_by_sector <- sp500_by_sector |>
 sp500_by_company_and_sector <- sp500_by_company |>
   left_join(sectors, by = "symbol") |>
   relocate(name) |>
-  select(name, symbol, weight, price, ytd_return, sector)
+  select(name, symbol, weight, current_price, ytd_return, sector)
+```
+
+```{r warning = FALSE}
+#|: fixing-NAs-and-adding-vars
 
 sp500_by_company_and_sector <- sp500_by_company_and_sector |>
   mutate(
     ytd_return_num = str_remove(ytd_return, "%"),
     ytd_return_num = as.numeric(ytd_return_num),
-    return_category = if_else(ytd_return_num > 0, "positive", "negative")
+    current_price = str_trim(current_price),
+    current_price = as.numeric(current_price),
+    return_category = if_else(ytd_return_num > 0, "positive", "negative"),
+    ytd_factor =  (ytd_return_num + 100) / 100,
+    original_price = current_price / ytd_factor, 
+    name = case_when(
+      symbol == "MOH" ~ "Molina Healthcare",
+      symbol == "EPAM" ~ "EPAM Systems",
+      symbol == "ELV" ~ "Elevance Health",
+      symbol == "KDP" ~ "Keurig Dr Pepper",
+      symbol == "VICI" ~ "Vici Properties",
+      symbol == "META" ~ "Meta Platforms",
+      symbol == "CSGP" ~ "CoStar Group",
+      symbol == "WBD" ~ "Warner Bros Discovery",
+      symbol == "CEG" ~ "Constellation Energy",
+      symbol == "ON" ~ "ON Semiconductor",
+      symbol == "WTW" ~ "Willis Towers Watson",
+      symbol == "PCG" ~ "PG&E",
+      symbol == "INVH" ~ "Invitation Homes",
+      symbol == "BALL" ~ "Ball",
+      symbol == "FDS" ~ "FactSet Research Systems",
+      symbol == "EQT" ~ "EQT",
+      symbol == "TRGP" ~ "Targa Resources",
+      symbol == "CPT" ~ "Camden Property Trust",
+      symbol == "NDSN" ~ "Nordson",
+      symbol == "SEDG" ~ "Solaredge Technologies",
+      symbol == "PARA" ~ "Paramount Global Class B",
+      symbol == "SBNY" ~ "Signature Bank",
+      TRUE ~ name
+    ),
+    sector = case_when(
+      symbol == "MOH" ~ "Health Care",
+      symbol == "EPAM" ~ "Information Technology",
+      symbol == "ELV" ~ "Health Care",
+      symbol == "KDP" ~ "Consumer Staples",
+      symbol == "VICI" ~ "Real Estate",
+      symbol == "META" ~ "Communication Services",
+      symbol == "CSGP" ~ "Real Estate",
+      symbol == "WBD" ~ "Communication Services",
+      symbol == "CEG" ~ "Utilities",
+      symbol == "ON" ~ "Materials",
+      symbol == "WTW" ~ "Communication Services",
+      symbol == "PCG" ~ "Energy",
+      symbol == "INVH" ~ "Real Estate",
+      symbol == "BALL" ~ "Materials",
+      symbol == "FDS" ~ "Information Technology",
+      symbol == "EQT" ~ "Utilities",
+      symbol == "TRGP" ~ "Utilities",
+      symbol == "CPT" ~ "Real Estate",
+      symbol == "NDSN" ~ "Industrials",
+      symbol == "SEDG" ~ "Materials",
+      symbol == "PARA" ~ "Communication Services",
+      symbol == "SBNY" ~ "Financials",
+      TRUE ~ sector
+    )
+  ) |>
+  select(
+    name, symbol, weight, original_price, 
+    current_price, ytd_return, sector, return_category
   )
 
 glimpse(sp500_by_company_and_sector)
