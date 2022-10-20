@@ -111,7 +111,7 @@ glimpse(sp500_by_sector)
 
 ```{r}
 #|: combining-data-set
-# sp500_by_company was created using two scraped data frames
+# sp500_by_company was created by joining two scraped data frames
 
 sp500_by_sector <- sp500_by_sector |>
   mutate(
