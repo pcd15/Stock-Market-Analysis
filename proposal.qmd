@@ -23,10 +23,13 @@ library(lubridate)
 
 -   Write a brief description of the observations.
 
+-   Address ethical concerns, if any.
+
 ## Research question
 
 -   A well formulated research question. (You may include more than one research question if you want to receive feedback on different ideas for your project. However, one per data set is required.)
 -   A description of the research topic along with a concise statement of your hypotheses on this topic.
+-   Statement on why this question is important.
 -   Identify the types of variables in your research question. Categorical? Quantitative?
 
 ## Glimpse of data
@@ -67,10 +70,13 @@ glimpse(sp500_year)
 
 -   Write a brief description of the observations.
 
+-   Address ethical concerns, if any.
+
 ## Research question
 
 -   A well formulated research question. (You may include more than one research question if you want to receive feedback on different ideas for your project. However, one per data set is required.)
 -   A description of the research topic along with a concise statement of your hypotheses on this topic.
+-   Statement on why this question is important.
 -   Identify the types of variables in your research question. Categorical? Quantitative?
 
 ## Glimpse of data
@@ -92,10 +98,13 @@ glimpse(sp500_current)
 
 -   Write a brief description of the observations.
 
+-   Address ethical concerns, if any.
+
 ## Research question
 
 -   A well formulated research question. (You may include more than one research question if you want to receive feedback on different ideas for your project. However, one per data set is required.)
 -   A description of the research topic along with a concise statement of your hypotheses on this topic.
+-   Statement on why this question is important.
 -   Identify the types of variables in your research question. Categorical? Quantitative?
 
 ## Glimpse of data
