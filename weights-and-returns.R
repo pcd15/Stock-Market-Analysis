@@ -36,7 +36,7 @@ sp500_by_company_1 <- tibble(
   company = companies,
   symbol = symbols,
   weight = weights,
-  price = prices
+  current_price = prices
 )
 
 sp500_by_company_2 <- tibble(
