@@ -53,7 +53,7 @@ fed_funds_rate <- fed_funds_rate |>
   separate(day, into = c("day", "fed_funds_rate"), sep = ",")
 inflation_rate <- inflation_rate |>
   slice(11:nrow(inflation_rate)) |>
-  separate(year, into = c("year", "inflation_rate", "annual_change"), sep = ",")
+  separate(year, into = c("year", "inflation_rate", "inflation_annual_change"), sep = ",")
 
 glimpse(fed_funds_rate)
 glimpse(inflation_rate)
