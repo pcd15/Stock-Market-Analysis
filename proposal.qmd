@@ -11,7 +11,6 @@ editor: visual
 
 library(tidyverse)
 library(lubridate)
-library(dplyr)
 ```
 
 # Data 1
@@ -49,6 +48,8 @@ names(inflation_rate)[1] <- "year"
 fed_funds_rate <- fed_funds_rate |>
   slice(9:nrow(fed_funds_rate)) |>
   separate(day, into = c("day", "fed_funds_rate"), sep = ",")
+
+fed_funds_rate
 
 fed_funds_rate<- fed_funds_rate|>
   mutate(day = substring(day, 1, 4))|>
