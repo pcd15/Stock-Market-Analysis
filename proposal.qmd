@@ -39,7 +39,7 @@ inflation_rate <- read_csv("data/united-states-inflation-rate-cpi.csv")
 sp500_year <- read_csv("data/history.csv")
 ```
 
-```{r}
+```{r warning = FALSE}
 #|: fixing-data-sets
 
 names(fed_funds_rate)[1] <- "day"
@@ -54,6 +54,7 @@ inflation_rate <- inflation_rate |>
   slice(11:nrow(inflation_rate)) |>
   separate(year, into = c("year", "inflation_rate", "annual_change"), sep = ",")
 
+<<<<<<< HEAD
 inflation_rate <- na.omit(inflation_rate)
 
 inflation_rate <- inflation_rate |>
@@ -62,6 +63,11 @@ inflation_rate <- inflation_rate |>
 view(fed_funds_rate)
 view(inflation_rate)
 view(sp500_year)
+=======
+glimpse(fed_funds_rate)
+glimpse(inflation_rate)
+glimpse(sp500_year)
+>>>>>>> db0f109fe1bce9658e812aea0a930839714a046e
 ```
 
 # Data 2
@@ -86,7 +92,7 @@ view(sp500_year)
 #| label: load-data-2
 
 sp500_current <- read_csv("data/HistoricalPrices.csv")
-view(sp500_current)
+glimpse(sp500_current)
 ```
 
 # Data 3
@@ -111,5 +117,27 @@ view(sp500_current)
 #| label: load-data-3
 
 sp500_by_company <- read_csv("data/sp500_by_company.csv")
-view(sp500_by_company)
+sp500_by_sector <- read_csv("data/constituents_csv.csv")
+
+sp500_by_sector <- sp500_by_sector |>
+  mutate(
+    symbol = Symbol,
+    name = Name,
+    sector = Sector
+  ) |>
+  select(symbol, name, sector)
+
+sp500_by_company_and_sector <- sp500_by_company |>
+  left_join(sectors, by = "symbol") |>
+  relocate(name) |>
+  select(name, symbol, weight, price, ytd_return, sector)
+
+sp500_by_company_and_sector <- sp500_by_company_and_sector |>
+  mutate(
+    ytd_return_num = str_remove(ytd_return, "%"),
+    ytd_return_num = as.numeric(ytd_return_num),
+    return_category = if_else(ytd_return_num > 0, "positive", "negative")
+  )
+
+glimpse(sp500_by_company_and_sector)
 ```
