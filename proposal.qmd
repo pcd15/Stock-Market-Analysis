@@ -21,10 +21,7 @@ Data set 1 comes from 3 sources. Data on federal funds rate was scraped from Mac
 
 ## Research question
 
--   A well formulated research question. (You may include more than one research question if you want to receive feedback on different ideas for your project. However, one per data set is required.)
--   A description of the research topic along with a concise statement of your hypotheses on this topic.
--   Statement on why this question is important.
--   Identify the types of variables in your research question. Categorical? Quantitative?
+With data set 1, we would like to answer the following question : How have interest rates and inflation rates historically impacted the stock market? Tracking historical trends can be useful in maximizing profit from the bullish or bearish market, making it significant for investors or fintech workers. Our data assess the impact of quantitative variables such as interest rate and inflation rate. It also assesses categorical variables such as time and whether or not interest rate and inflation rate rose or fell (TRUE if they rose, FALSE if they fell). Our hypothesis is that the stock market, measured by the S&P 500 index, would be hurt by high inflation and corresponding high inflation rates, because consumer spending drops.
 
 ## Glimpse of data
 
