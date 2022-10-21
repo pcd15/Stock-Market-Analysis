@@ -69,9 +69,11 @@ inflation_rate <- na.omit(inflation_rate)
 inflation_rate<- inflation_rate|>
   mutate(year = substring(year, 1, 4))
 
-historicaldata <- inner_join(inflation_rate, fed_funds_rate)
-historicaldata <- inner_join(historicaldata, sp500_year)
+colnames(sp500_year) <- c("year","year_to_date_return")
+sp500_year <- sp500_year|> mutate(year = as.character(year))
 
+historicaldata <- inner_join(inflation_rate, fed_funds_rate)
+historicaldata <- inner_join(historicaldata, sp500_year, by = "year")
 
 view(fed_funds_rate)
 view(inflation_rate)
@@ -144,7 +146,7 @@ sp500_by_sector <- sp500_by_sector |>
   select(symbol, name, sector)
 
 sp500_by_company_and_sector <- sp500_by_company |>
-  left_join(sectors, by = "symbol") |>
+  left_join(sector, by = "symbol") |>
   relocate(name) |>
   select(name, symbol, weight, current_price, ytd_return, sector)
 ```
