@@ -17,13 +17,7 @@ library(lubridate)
 
 ## Introduction and data
 
--   Identify the source of the data.
-
--   State when and how it was originally collected (by the original data curator, not necessarily how you found the data).
-
--   Write a brief description of the observations.
-
--   Address ethical concerns, if any.
+Data set 1 comes from 3 sources. Data on federal funds rate was scraped from Macrotrends, which collected the data from the World Bank's "country management units and data obtained from official sources." Data on inflation rate was also scraped from Macrotrends, which collected the data from World Bank's "country management units and data obtained from official sources." Data on S&P 500 total returns was scraped from Slickcharts. The data was collected by calculating the total returns of the S&P 500 index, which is equal to the change in stock prices from the beginning to the end of the year and dividends, and dividing that return by the initial amount paid for the stock. The data for dividends was collected from stock-market exchange records or organizations like Yahoo Finance that process such data. While the data shows heavy fluctuations, we see that federal funds and inflation rate both peaked around 1980.
 
 ## Research question
 
@@ -90,7 +84,7 @@ glimpse(sp500_year)
 
 ## Research question
 
--   With the highest inflation rates ever seen, traders and those who work in the financial industry are even more unsure about how to go about trading in the stock market. Of course it is difficult to ever predict the market, but even more so in times like this. With this dataset, we would like to address the following question: how have high inflation rates and interest rates impacted the S&P 500 this year? And how does this compare to the amount of stock rises/falls when inflation rates were previously high? This question is important as people want to know that when they invest in something, generally their money is safe. In times like these, it\'s hard to say when it is actually safe to invest in something, and so we want to delve deeper into when you might actually want to be bullish or bearish in times like these. Our hypothesis is the following: While the stock market will fall as inflation rates rise (which are followed by interest rates as well), there are good times to invest even with the problematic circumstances. Our variables are mostly quantitative, analyzing interest rates, inflation rates, stock price rise and falls, while the categorical variable is whether or not there was a net gain or loss (categorized by TRUE if gain and FALSE if not) on the day.
+-   With the highest inflation rates ever seen, traders and those who work in the financial industry are even more unsure about how to go about trading in the stock market. Of course it is difficult to ever predict the market, but even more so in times like this. With this dataset, we would like to address the following question: how have high inflation rates and interest rates impacted the S&P 500 this year? And how does this compare to the amount of stock rises/falls when inflation rates were previously high? This question is important as people want to know that when they invest in something, generally their money is safe. In times like these, it's hard to say when it is actually safe to invest in something, and so we want to delve deeper into when you might actually want to be bullish or bearish in times like these. Our hypothesis is the following: While the stock market will fall as inflation rates rise (which are followed by interest rates as well), there are good times to invest even with the problematic circumstances. Our variables are mostly quantitative, analyzing interest rates, inflation rates, stock price rise and falls, while the categorical variable is whether or not there was a net gain or loss (categorized by TRUE if gain and FALSE if not) on the day.
 
 ## Glimpse of data
 
