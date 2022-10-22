@@ -17,11 +17,11 @@ library(lubridate)
 
 ## Introduction and data
 
-Data set 1 comes from 3 sources. Data on federal funds rate was scraped from Macrotrends, which collected the data from the World Bank's "country management units and data obtained from official sources." Data on inflation rate was also scraped from Macrotrends, which collected the data from World Bank's "country management units and data obtained from official sources." Data on S&P 500 total returns was scraped from Slickcharts. The data was collected by calculating the total returns of the S&P 500 index, which is equal to the change in stock prices from the beginning to the end of the year and dividends, and dividing that return by the initial amount paid for the stock. The data for dividends was collected from stock-market exchange records or organizations like Yahoo Finance that process such data. While the data shows heavy fluctuations, we see that federal funds and inflation rate both peaked around 1980.
+Data set 1 comes from 3 sources. The data on the federal-funds rate and inflation rate were obtained from Macrotrends (<https://www.macrotrends.net/2015/fed-funds-rate-historical-chart>). The data on S&P 500 yearly total returns was obtained from Slickcharts (https://www.slickcharts.com/sp500/returns). The data was collected by retrieving the data publicly published on the stock-market exchange. Each obsevrvation represents a different year; for each year, we've compiled the mean federal-funds rate, inflation rate, YTD returns, and annual change in inflation, all of which are included in historical_data. While the data shows heavy fluctuations, we see that federal funds and inflation rate both peaked around 1980. No ethical concerns.
 
 ## Research question
 
-With data set 1, we would like to answer the following question : How have interest rates and inflation rates historically impacted the stock market? Tracking historical trends can be useful in maximizing profit from the bullish or bearish market, making it significant for investors or fintech workers. Our data assess the impact of quantitative variables such as interest rate and inflation rate. It also assesses categorical variables such as time and whether or not interest rate and inflation rate rose or fell (TRUE if they rose, FALSE if they fell). Our hypothesis is that the stock market, measured by the S&P 500 index, would be hurt by high inflation and corresponding high inflation rates, because consumer spending drops.
+With data set 1, we would like to answer the following question: How have interest rates and inflation rates historically impacted the stock market? Tracking historical trends can be useful in maximizing profit from the bullish or bearish market, making it significant for investors or fin-tech workers. Our data assess the impact of quantitative variables such as interest rate and inflation rate. It also assesses categorical variables such as time and whether or not interest rate and inflation rate rose or fell (TRUE if they rose, FALSE if they fell). Our hypothesis is that the stock market (generalized by the S&P 500 index) would be hurt by high inflation and corresponding high interest rates (generalized by the federal-funds rate) because consumers' discretionary incomes drop and companies are disincentivized from borrowing due to the higher costs associated with taking out a loan.
 
 ## Glimpse of data
 
@@ -31,6 +31,10 @@ With data set 1, we would like to answer the following question : How have inter
 fed_funds_rate <- read_csv("data/fed-funds-rate-historical-chart.csv")
 inflation_rate <- read_csv("data/united-states-inflation-rate-cpi.csv")
 sp500_year <- read_csv("data/history.csv")
+
+glimpse(fed_funds_rate)
+glimpse(inflation_rate)
+glimpse(sp500_year)
 ```
 
 ```{r warning = FALSE}
@@ -57,33 +61,36 @@ inflation_rate <- inflation_rate |>
 
 inflation_rate <- na.omit(inflation_rate)
 
-inflation_rate<- inflation_rate|>
+inflation_rate<- inflation_rate |>
   mutate(year = substring(year, 1, 4))
 
 colnames(sp500_year) <- c("year","year_to_date_return")
 sp500_year <- sp500_year|> mutate(year = as.character(year))
 
-historicaldata <- inner_join(inflation_rate, fed_funds_rate)
-historicaldata <- inner_join(historicaldata, sp500_year, by = "year")
+historical_data <- inner_join(inflation_rate, fed_funds_rate, by = "year")
+historical_data <- inner_join(historical_data, sp500_year, by = "year")
 
-view(fed_funds_rate)
-view(inflation_rate)
-view(sp500_year)
+historical_data <- historical_data |>
+  mutate(
+    mean_fed_funds_rate = round(mean_fed_funds_rate * 100) / 100
+  ) |>
+  select(
+    year, inflation_rate, inflation_annual_change, 
+    mean_fed_funds_rate, year_to_date_return
+  )
 
-glimpse(fed_funds_rate)
-glimpse(inflation_rate)
-glimpse(sp500_year)
+glimpse(historical_data)
 ```
 
 # Data 2
 
 ## Introduction and data
 
--   The source of the data is the Wall Street Journal, who gets their live data from FactSet. The data is collected daily (well really, every second) and it is collected by monitoring various operations done in the stock market, which lead to increases and decreases in prices (which are then ultimately collected). The observations show heavy fluctuation of course as expected with something as volatile as the stock market, but this year, a general decline in share prices (which could partially be attributed to inflation and interest rates).
+-   The source of the data is the Wall Street Journal (https://www.wsj.com/market-data/quotes/index/SPX/historical-prices), who gets their live data from FactSet. The data is collected daily (well really, every second), and it is collected by monitoring various operations (selling, buying, etc.) done in the stock market, which lead to increases and decreases in prices (which are then ultimately collected). Each observation represents a different day this year, with each day having data on the high/low/opening/closing prices, differences in high/low and opening/closing prices, daily percentage change, and whether the change in price for the day was a gain. The observations show heavy fluctuation as expected with something as volatile as the stock market, but this year a general decline in share prices is evident, which could partially be attributed to inflation and interest rates. No ethical concerns.
 
 ## Research question
 
--   With the highest inflation rates ever seen, traders and those who work in the financial industry are even more unsure about how to go about trading in the stock market. Of course it is difficult to ever predict the market, but even more so in times like this. With this dataset, we would like to address the following question: how have high inflation rates and interest rates impacted the S&P 500 this year? And how does this compare to the amount of stock rises/falls when inflation rates were previously high? This question is important as people want to know that when they invest in something, generally their money is safe. In times like these, it's hard to say when it is actually safe to invest in something, and so we want to delve deeper into when you might actually want to be bullish or bearish in times like these. Our hypothesis is the following: While the stock market will fall as inflation rates rise (which are followed by interest rates as well), there are good times to invest even with the problematic circumstances. Our variables are mostly quantitative, analyzing interest rates, inflation rates, stock price rise and falls, while the categorical variable is whether or not there was a net gain or loss (categorized by TRUE if gain and FALSE if not) on the day.
+-   With the highest inflation rates ever seen, traders and those who work in the financial industry are even more unsure about how to go about trading in the stock market. Of course it is difficult to ever predict the market, but even more so in times like this. With this dataset, we would like to address the following question: how have high inflation rates and interest rates impacted the S&P 500 this year? And how does this compare to the stock market's historical performance in similar economic times? This question is important as people want to know that when they invest in something, generally their money is safe. In times like these, it's hard to say when it is actually safe to invest in something, and so we want to delve deeper into when you might actually want to be bullish or bearish in times like these. Our hypothesis is the following: while the stock market will fall as inflation rates rise (which are followed by interest rates as well), there are good times to invest even with the problematic circumstances. Our variables are mostly quantitative, analyzing interest rates, inflation rates, stock price rise and falls, while the categorical variables are the date and whether or not there was a net gain or loss (categorized by TRUE if gain and FALSE if not) on the day.
 
 ## Glimpse of data
 
@@ -91,7 +98,12 @@ glimpse(sp500_year)
 #| label: load-data-2
 
 sp500_current <- read_csv("data/HistoricalPrices.csv")
+
 glimpse(sp500_current)
+```
+
+```{r}
+#| label: updating-sp500_current
 
 sp500_curr_updated <- sp500_current |>
 mutate(
@@ -100,17 +112,20 @@ mutate(
   daily_percent_change = ((Close - Open) / Open) * 100,
 	gain = daily_diff > 0
 )
+
+glimpse(sp500_curr_updated)
+view(sp500_curr_updated)
 ```
 
 # Data 3
 
 ## Introduction and data
 
-The source of the data is DATA HUB. This data was collected from S&P Dow Jones Indices which is collected daily. The observation shows that over the course of the year the share price has gone down, with the exception of October where it went up 2.24% and then down again. The year to date return was -23.09%, and month to date return was 2.24%.
+The source of the data is DATA HUB (https://datahub.io/core/s-and-p-500-companies-financials#resource-constituents). This data was collected from S&P Dow Jones Indices which is collected daily. Each observation represents a different company; for each company, their name, ticker symbol, weighting percentage in the S&P 500 index, price at the beginning of the year, current price, YTD return, sector, and return category (positive if YTD return \> 0, else positive) are compiled. The observation shows that over the course of the year the share price has gone down, with the exception of October, where it went up 2.24% (and then fell down again). The year-to-date return was -23.09%, and month-to-date return was 2.24%. No ethical concerns.
 
 ## Research question
 
-Today, the Information Technology sector is leading the way. Gathering data on how different businesses are performing, and whether this correlates with the industry they are in is useful to indicate whether performance patterns are caused by individual businesses or specific sectors and strategies can be derived from each. Our hypothesis is the following: Non-essential industries will go down more than essential industries. The type of variables in our research question are mainly quantitative, analyzing inflation rate, interest rate and comparing these across sectors.
+Gathering data on how different businesses are performing, and whether this correlates with the industry they are in, is useful to indicate whether performance patterns are caused by individual businesses or specific sectors, and strategies can be derived from each. Our hypothesis is the following: Non-essential industries will decrease more in price (have lower YTD returns) than essential industries, as consumers must purchase essential goods no matter how high the inflation rate is. The type of variables in our research question are mainly quantitative, analyzing inflation rate, interest rate and comparing these across sectors and specific businesses (these are our categorical variables).
 
 ## Glimpse of data
 
@@ -119,6 +134,7 @@ Today, the Information Technology sector is leading the way. Gathering data on h
 
 sp500_by_company <- read_csv("data/sp500_by_company.csv")
 sp500_by_sector <- read_csv("data/constituents_csv.csv")
+
 glimpse(sp500_by_company)
 glimpse(sp500_by_sector)
 ```
@@ -126,6 +142,9 @@ glimpse(sp500_by_sector)
 ```{r}
 #|: combining-data-set
 # sp500_by_company was created by joining two scraped data frames
+# scraped from:
+# https://www.slickcharts.com/sp500
+# https://www.slickcharts.com/sp500/performance
 
 sp500_by_sector <- sp500_by_sector |>
   mutate(
@@ -136,7 +155,7 @@ sp500_by_sector <- sp500_by_sector |>
   select(symbol, name, sector)
 
 sp500_by_company_and_sector <- sp500_by_company |>
-  left_join(sector, by = "symbol") |>
+  left_join(sp500_by_sector, by = "symbol") |>
   relocate(name) |>
   select(name, symbol, weight, current_price, ytd_return, sector)
 ```

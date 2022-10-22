@@ -1,0 +1,107 @@
+[
+  {
+    "objectID": "presentation.html#quarto",
+    "href": "presentation.html#quarto",
+    "title": "index.qmd",
+    "section": "Quarto",
+    "text": "Quarto\nQuarto enables you to weave together content and executable code into a finished document. To learn more about Quarto see https://quarto.org."
+  },
+  {
+    "objectID": "presentation.html#running-code",
+    "href": "presentation.html#running-code",
+    "title": "index.qmd",
+    "section": "Running Code",
+    "text": "Running Code\nWhen you click the Render button a document will be generated that includes both content and the output of embedded code. You can embed code like this:\n\n\n[1] 2\n\n\nYou can add options to executable code like this\n\n\n[1] 4\n\n\nThe echo: false option disables the printing of code (only output is displayed)."
+  },
+  {
+    "objectID": "proposal.html",
+    "href": "proposal.html",
+    "title": "The Impacts of Inflation and Interest Rates on the Stock Market",
+    "section": "",
+    "text": "library(tidyverse)\nlibrary(lubridate)"
+  },
+  {
+    "objectID": "proposal.html#introduction-and-data",
+    "href": "proposal.html#introduction-and-data",
+    "title": "The Impacts of Inflation and Interest Rates on the Stock Market",
+    "section": "Introduction and data",
+    "text": "Introduction and data\nData set 1 comes from 3 sources. The data on the federal-funds rate and inflation rate were obtained from Macrotrends (https://www.macrotrends.net/2015/fed-funds-rate-historical-chart). The data on S&P 500 yearly total returns was obtained from Slickcharts (https://www.slickcharts.com/sp500/returns). The data was collected by retrieving the data publicly published on the stock-market exchange. Each obsevrvation represents a different year; for each year, we’ve compiled the mean federal-funds rate, inflation rate, YTD returns, and annual change in inflation, all of which are included in historical_data. While the data shows heavy fluctuations, we see that federal funds and inflation rate both peaked around 1980. No ethical concerns."
+  },
+  {
+    "objectID": "proposal.html#research-question",
+    "href": "proposal.html#research-question",
+    "title": "The Impacts of Inflation and Interest Rates on the Stock Market",
+    "section": "Research question",
+    "text": "Research question\nWith data set 1, we would like to answer the following question: How have interest rates and inflation rates historically impacted the stock market? Tracking historical trends can be useful in maximizing profit from the bullish or bearish market, making it significant for investors or fin-tech workers. Our data assess the impact of quantitative variables such as interest rate and inflation rate. It also assesses categorical variables such as time and whether or not interest rate and inflation rate rose or fell (TRUE if they rose, FALSE if they fell). Our hypothesis is that the stock market (generalized by the S&P 500 index) would be hurt by high inflation and corresponding high interest rates (generalized by the federal-funds rate) because consumers’ discretionary incomes drop and companies are disincentivized from borrowing due to the higher costs associated with taking out a loan."
+  },
+  {
+    "objectID": "proposal.html#glimpse-of-data",
+    "href": "proposal.html#glimpse-of-data",
+    "title": "The Impacts of Inflation and Interest Rates on the Stock Market",
+    "section": "Glimpse of data",
+    "text": "Glimpse of data\n\nfed_funds_rate <- read_csv(\"data/fed-funds-rate-historical-chart.csv\")\ninflation_rate <- read_csv(\"data/united-states-inflation-rate-cpi.csv\")\nsp500_year <- read_csv(\"data/history.csv\")\n\nglimpse(fed_funds_rate)\n\nRows: 24,473\nColumns: 1\n$ `Macrotrends Data Download` <chr> \"Federal Funds Rate - 62 Year Historical C…\n\nglimpse(inflation_rate)\n\nRows: 71\nColumns: 1\n$ `Macrotrends Data Download` <chr> \"U.S. Inflation Rate 1960-2022\", \"DISCLAIM…\n\nglimpse(sp500_year)\n\nRows: 95\nColumns: 2\n$ `2021`  <dbl> 2020, 2019, 2018, 2017, 2016, 2015, 2014, 2013, 2012, 2011, 20…\n$ `28.71` <dbl> 18.40, 31.49, -4.38, 21.83, 11.96, 1.38, 13.69, 32.39, 16.00, …\n\n\n\n#|: fixing-and-combining-data-sets\n\nnames(fed_funds_rate)[1] <- \"day\"\nnames(inflation_rate)[1] <- \"year\"\n\nfed_funds_rate <- fed_funds_rate |>\n  slice(9:nrow(fed_funds_rate)) |>\n  separate(day, into = c(\"day\", \"fed_funds_rate\"), sep = \",\")\n\nfed_funds_rate\n\n# A tibble: 24,465 × 2\n   day        fed_funds_rate\n   <chr>      <chr>         \n 1 1954-07-01 1.1300        \n 2 1954-07-02 1.2500        \n 3 1954-07-03 1.2500        \n 4 1954-07-04 1.2500        \n 5 1954-07-05 0.8800        \n 6 1954-07-06 0.2500        \n 7 1954-07-07 1.0000        \n 8 1954-07-08 1.2500        \n 9 1954-07-09 1.2500        \n10 1954-07-10 1.2500        \n# … with 24,455 more rows\n\nfed_funds_rate<- fed_funds_rate|>\n  mutate(day = substring(day, 1, 4))|>\n  rename(year = day) |>\n  group_by(year) |>\n  summarize(mean_fed_funds_rate = mean(as.numeric(fed_funds_rate)))\n  \ninflation_rate <- inflation_rate |>\n  slice(11:nrow(inflation_rate)) |>\n  separate(year, into = c(\"year\", \"inflation_rate\", \"inflation_annual_change\"), sep = \",\")\n\ninflation_rate <- na.omit(inflation_rate)\n\ninflation_rate<- inflation_rate |>\n  mutate(year = substring(year, 1, 4))\n\ncolnames(sp500_year) <- c(\"year\",\"year_to_date_return\")\nsp500_year <- sp500_year|> mutate(year = as.character(year))\n\nhistorical_data <- inner_join(inflation_rate, fed_funds_rate, by = \"year\")\nhistorical_data <- inner_join(historical_data, sp500_year, by = \"year\")\n\nhistorical_data <- historical_data |>\n  mutate(\n    mean_fed_funds_rate = round(mean_fed_funds_rate * 100) / 100\n  ) |>\n  select(\n    year, inflation_rate, inflation_annual_change, \n    mean_fed_funds_rate, year_to_date_return\n  )\n\nglimpse(historical_data)\n\nRows: 60\nColumns: 5\n$ year                    <chr> \"1961\", \"1962\", \"1963\", \"1964\", \"1965\", \"1966\"…\n$ inflation_rate          <chr> \"1.0707\", \"1.1988\", \"1.2397\", \"1.2789\", \"1.585…\n$ inflation_annual_change <chr> \"-0.39\", \"0.13\", \"0.04\", \"0.04\", \"0.31\", \"1.43…\n$ mean_fed_funds_rate     <dbl> 1.95, 2.71, 3.18, 3.50, 4.08, 5.11, 4.22, 5.66…\n$ year_to_date_return     <dbl> 26.89, -8.73, 22.80, 16.48, 12.45, -10.06, 23.…"
+  },
+  {
+    "objectID": "proposal.html#introduction-and-data-1",
+    "href": "proposal.html#introduction-and-data-1",
+    "title": "The Impacts of Inflation and Interest Rates on the Stock Market",
+    "section": "Introduction and data",
+    "text": "Introduction and data\n\nThe source of the data is the Wall Street Journal (https://www.wsj.com/market-data/quotes/index/SPX/historical-prices), who gets their live data from FactSet. The data is collected daily (well really, every second), and it is collected by monitoring various operations (selling, buying, etc.) done in the stock market, which lead to increases and decreases in prices (which are then ultimately collected). Each observation represents a different day this year, with each day having data on the high/low/opening/closing prices, differences in high/low and opening/closing prices, daily percentage change, and whether the change in price for the day was a gain. The observations show heavy fluctuation as expected with something as volatile as the stock market, but this year a general decline in share prices is evident, which could partially be attributed to inflation and interest rates. No ethical concerns."
+  },
+  {
+    "objectID": "proposal.html#research-question-1",
+    "href": "proposal.html#research-question-1",
+    "title": "The Impacts of Inflation and Interest Rates on the Stock Market",
+    "section": "Research question",
+    "text": "Research question\n\nWith the highest inflation rates ever seen, traders and those who work in the financial industry are even more unsure about how to go about trading in the stock market. Of course it is difficult to ever predict the market, but even more so in times like this. With this dataset, we would like to address the following question: how have high inflation rates and interest rates impacted the S&P 500 this year? And how does this compare to the stock market’s historical performance in similar economic times? This question is important as people want to know that when they invest in something, generally their money is safe. In times like these, it’s hard to say when it is actually safe to invest in something, and so we want to delve deeper into when you might actually want to be bullish or bearish in times like these. Our hypothesis is the following: while the stock market will fall as inflation rates rise (which are followed by interest rates as well), there are good times to invest even with the problematic circumstances. Our variables are mostly quantitative, analyzing interest rates, inflation rates, stock price rise and falls, while the categorical variables are the date and whether or not there was a net gain or loss (categorized by TRUE if gain and FALSE if not) on the day."
+  },
+  {
+    "objectID": "proposal.html#glimpse-of-data-1",
+    "href": "proposal.html#glimpse-of-data-1",
+    "title": "The Impacts of Inflation and Interest Rates on the Stock Market",
+    "section": "Glimpse of data",
+    "text": "Glimpse of data\n\nsp500_current <- read_csv(\"data/HistoricalPrices.csv\")\n\nglimpse(sp500_current)\n\nRows: 199\nColumns: 5\n$ Date  <chr> \"10/17/22\", \"10/14/22\", \"10/13/22\", \"10/12/22\", \"10/11/22\", \"10/…\n$ Open  <dbl> 3677.95, 3690.41, 3520.37, 3590.83, 3595.86, 3647.51, 3706.74, 3…\n$ High  <dbl> 3689.73, 3712.00, 3685.41, 3608.34, 3640.66, 3652.17, 3706.74, 3…\n$ Low   <dbl> 3677.95, 3579.68, 3491.58, 3573.86, 3568.45, 3588.10, 3620.73, 3…\n$ Close <dbl> 3677.95, 3583.07, 3669.91, 3577.03, 3588.84, 3612.39, 3639.66, 3…\n\n\n\nsp500_curr_updated <- sp500_current |>\nmutate(\n    daily_diff = Close - Open,\n    high_minus_low = High - Low,\n  daily_percent_change = ((Close - Open) / Open) * 100,\n    gain = daily_diff > 0\n)\n\nglimpse(sp500_curr_updated)\n\nRows: 199\nColumns: 9\n$ Date                 <chr> \"10/17/22\", \"10/14/22\", \"10/13/22\", \"10/12/22\", \"…\n$ Open                 <dbl> 3677.95, 3690.41, 3520.37, 3590.83, 3595.86, 3647…\n$ High                 <dbl> 3689.73, 3712.00, 3685.41, 3608.34, 3640.66, 3652…\n$ Low                  <dbl> 3677.95, 3579.68, 3491.58, 3573.86, 3568.45, 3588…\n$ Close                <dbl> 3677.95, 3583.07, 3669.91, 3577.03, 3588.84, 3612…\n$ daily_diff           <dbl> 0.00, -107.34, 149.54, -13.80, -7.02, -35.12, -67…\n$ high_minus_low       <dbl> 11.78, 132.32, 193.83, 34.48, 72.21, 64.07, 86.01…\n$ daily_percent_change <dbl> 0.0000000, -2.9086199, 4.2478489, -0.3843123, -0.…\n$ gain                 <lgl> FALSE, FALSE, TRUE, FALSE, FALSE, FALSE, FALSE, F…\n\nview(sp500_curr_updated)"
+  },
+  {
+    "objectID": "proposal.html#introduction-and-data-2",
+    "href": "proposal.html#introduction-and-data-2",
+    "title": "The Impacts of Inflation and Interest Rates on the Stock Market",
+    "section": "Introduction and data",
+    "text": "Introduction and data\nThe source of the data is DATA HUB (https://datahub.io/core/s-and-p-500-companies-financials#resource-constituents). This data was collected from S&P Dow Jones Indices which is collected daily. Each observation represents a different company; for each company, their name, ticker symbol, weighting percentage in the S&P 500 index, price at the beginning of the year, current price, YTD return, sector, and return category (positive if YTD return > 0, else positive) are compiled. The observation shows that over the course of the year the share price has gone down, with the exception of October, where it went up 2.24% (and then fell down again). The year-to-date return was -23.09%, and month-to-date return was 2.24%. No ethical concerns."
+  },
+  {
+    "objectID": "proposal.html#research-question-2",
+    "href": "proposal.html#research-question-2",
+    "title": "The Impacts of Inflation and Interest Rates on the Stock Market",
+    "section": "Research question",
+    "text": "Research question\nGathering data on how different businesses are performing, and whether this correlates with the industry they are in, is useful to indicate whether performance patterns are caused by individual businesses or specific sectors, and strategies can be derived from each. Our hypothesis is the following: Non-essential industries will decrease more in price (have lower YTD returns) than essential industries, as consumers must purchase essential goods no matter how high the inflation rate is. The type of variables in our research question are mainly quantitative, analyzing inflation rate, interest rate and comparing these across sectors and specific businesses (these are our categorical variables)."
+  },
+  {
+    "objectID": "proposal.html#glimpse-of-data-2",
+    "href": "proposal.html#glimpse-of-data-2",
+    "title": "The Impacts of Inflation and Interest Rates on the Stock Market",
+    "section": "Glimpse of data",
+    "text": "Glimpse of data\n\nsp500_by_company <- read_csv(\"data/sp500_by_company.csv\")\nsp500_by_sector <- read_csv(\"data/constituents_csv.csv\")\n\nglimpse(sp500_by_company)\n\nRows: 503\nColumns: 5\n$ company       <chr> \"Apple Inc.\", \"Microsoft Corporation\", \"Amazon.com Inc.\"…\n$ symbol        <chr> \"AAPL\", \"MSFT\", \"AMZN\", \"GOOGL\", \"TSLA\", \"GOOG\", \"BRK.B\"…\n$ weight        <dbl> 6.940598, 5.685000, 3.296234, 1.931161, 1.874430, 1.7375…\n$ current_price <chr> \"  144.00\", \"  236.16\", \"  115.13\", \"  99.91\", \"  214.29…\n$ ytd_return    <chr> \"-19.05%\", \"-29.09%\", \"-30.21%\", \"-30.43%\", \"-37.49%\", \"…\n\nglimpse(sp500_by_sector)\n\nRows: 505\nColumns: 3\n$ Symbol <chr> \"MMM\", \"AOS\", \"ABT\", \"ABBV\", \"ABMD\", \"ACN\", \"ATVI\", \"ADM\", \"ADB…\n$ Name   <chr> \"3M\", \"A. O. Smith\", \"Abbott Laboratories\", \"AbbVie\", \"Abiomed\"…\n$ Sector <chr> \"Industrials\", \"Industrials\", \"Health Care\", \"Health Care\", \"He…\n\n\n\n#|: combining-data-set\n# sp500_by_company was created by joining two scraped data frames\n# scraped from:\n# https://www.slickcharts.com/sp500\n# https://www.slickcharts.com/sp500/performance\n\nsp500_by_sector <- sp500_by_sector |>\n  mutate(\n    symbol = Symbol,\n    name = Name,\n    sector = Sector\n  ) |>\n  select(symbol, name, sector)\n\nsp500_by_company_and_sector <- sp500_by_company |>\n  left_join(sp500_by_sector, by = \"symbol\") |>\n  relocate(name) |>\n  select(name, symbol, weight, current_price, ytd_return, sector)\n\n\n#|: fixing-NAs-and-adding-vars\n\nsp500_by_company_and_sector <- sp500_by_company_and_sector |>\n  mutate(\n    ytd_return_num = str_remove(ytd_return, \"%\"),\n    ytd_return_num = as.numeric(ytd_return_num),\n    current_price = str_trim(current_price),\n    current_price = as.numeric(current_price),\n    return_category = if_else(ytd_return_num > 0, \"positive\", \"negative\"),\n    ytd_factor =  (ytd_return_num + 100) / 100,\n    original_price = current_price / ytd_factor, \n    name = case_when(\n      symbol == \"MOH\" ~ \"Molina Healthcare\",\n      symbol == \"EPAM\" ~ \"EPAM Systems\",\n      symbol == \"ELV\" ~ \"Elevance Health\",\n      symbol == \"KDP\" ~ \"Keurig Dr Pepper\",\n      symbol == \"VICI\" ~ \"Vici Properties\",\n      symbol == \"META\" ~ \"Meta Platforms\",\n      symbol == \"CSGP\" ~ \"CoStar Group\",\n      symbol == \"WBD\" ~ \"Warner Bros Discovery\",\n      symbol == \"CEG\" ~ \"Constellation Energy\",\n      symbol == \"ON\" ~ \"ON Semiconductor\",\n      symbol == \"WTW\" ~ \"Willis Towers Watson\",\n      symbol == \"PCG\" ~ \"PG&E\",\n      symbol == \"INVH\" ~ \"Invitation Homes\",\n      symbol == \"BALL\" ~ \"Ball\",\n      symbol == \"FDS\" ~ \"FactSet Research Systems\",\n      symbol == \"EQT\" ~ \"EQT\",\n      symbol == \"TRGP\" ~ \"Targa Resources\",\n      symbol == \"CPT\" ~ \"Camden Property Trust\",\n      symbol == \"NDSN\" ~ \"Nordson\",\n      symbol == \"SEDG\" ~ \"Solaredge Technologies\",\n      symbol == \"PARA\" ~ \"Paramount Global Class B\",\n      symbol == \"SBNY\" ~ \"Signature Bank\",\n      TRUE ~ name\n    ),\n    sector = case_when(\n      symbol == \"MOH\" ~ \"Health Care\",\n      symbol == \"EPAM\" ~ \"Information Technology\",\n      symbol == \"ELV\" ~ \"Health Care\",\n      symbol == \"KDP\" ~ \"Consumer Staples\",\n      symbol == \"VICI\" ~ \"Real Estate\",\n      symbol == \"META\" ~ \"Communication Services\",\n      symbol == \"CSGP\" ~ \"Real Estate\",\n      symbol == \"WBD\" ~ \"Communication Services\",\n      symbol == \"CEG\" ~ \"Utilities\",\n      symbol == \"ON\" ~ \"Materials\",\n      symbol == \"WTW\" ~ \"Communication Services\",\n      symbol == \"PCG\" ~ \"Energy\",\n      symbol == \"INVH\" ~ \"Real Estate\",\n      symbol == \"BALL\" ~ \"Materials\",\n      symbol == \"FDS\" ~ \"Information Technology\",\n      symbol == \"EQT\" ~ \"Utilities\",\n      symbol == \"TRGP\" ~ \"Utilities\",\n      symbol == \"CPT\" ~ \"Real Estate\",\n      symbol == \"NDSN\" ~ \"Industrials\",\n      symbol == \"SEDG\" ~ \"Materials\",\n      symbol == \"PARA\" ~ \"Communication Services\",\n      symbol == \"SBNY\" ~ \"Financials\",\n      TRUE ~ sector\n    )\n  ) |>\n  select(\n    name, symbol, weight, original_price, \n    current_price, ytd_return, sector, return_category\n  )\n\nglimpse(sp500_by_company_and_sector)\n\nRows: 503\nColumns: 8\n$ name            <chr> \"Apple\", \"Microsoft\", \"Amazon\", \"Alphabet (Class A)\", …\n$ symbol          <chr> \"AAPL\", \"MSFT\", \"AMZN\", \"GOOGL\", \"TSLA\", \"GOOG\", \"BRK.…\n$ weight          <dbl> 6.940598, 5.685000, 3.296234, 1.931161, 1.874430, 1.73…\n$ original_price  <dbl> 177.88758, 333.04188, 164.96633, 143.61075, 342.80915,…\n$ current_price   <dbl> 144.00, 236.16, 115.13, 99.91, 214.29, 100.60, 278.50,…\n$ ytd_return      <chr> \"-19.05%\", \"-29.09%\", \"-30.21%\", \"-30.43%\", \"-37.49%\",…\n$ sector          <chr> \"Information Technology\", \"Information Technology\", \"C…\n$ return_category <chr> \"negative\", \"negative\", \"negative\", \"negative\", \"negat…"
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "TEAM NAME",
+    "section": "",
+    "text": "Add project abstract here."
+  },
+  {
+    "objectID": "report.html",
+    "href": "report.html",
+    "title": "Project title",
+    "section": "",
+    "text": "Add project writeup here."
+  },
+  {
+    "objectID": "about.html",
+    "href": "about.html",
+    "title": "About",
+    "section": "",
+    "text": "Uma: Undeclared Sophomore\nPaul: Freshman in CS\nHannah: Freshman in CS\nRyan: Freshman in CS\nZaid: Sophomore in CS"
+  }
+]
