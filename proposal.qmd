@@ -17,20 +17,11 @@ library(lubridate)
 
 ## Introduction and data
 
--   Identify the source of the data.
-
--   State when and how it was originally collected (by the original data curator, not necessarily how you found the data).
-
--   Write a brief description of the observations.
-
--   Address ethical concerns, if any.
+Data set 1 comes from 3 sources. Data on federal funds rate was scraped from Macrotrends, which collected the data from the World Bank's "country management units and data obtained from official sources." Data on inflation rate was also scraped from Macrotrends, which collected the data from World Bank's "country management units and data obtained from official sources." Data on S&P 500 total returns was scraped from Slickcharts. The data was collected by calculating the total returns of the S&P 500 index, which is equal to the change in stock prices from the beginning to the end of the year and dividends, and dividing that return by the initial amount paid for the stock. The data for dividends was collected from stock-market exchange records or organizations like Yahoo Finance that process such data. While the data shows heavy fluctuations, we see that federal funds and inflation rate both peaked around 1980.
 
 ## Research question
 
--   A well formulated research question. (You may include more than one research question if you want to receive feedback on different ideas for your project. However, one per data set is required.)
--   A description of the research topic along with a concise statement of your hypotheses on this topic.
--   Statement on why this question is important.
--   Identify the types of variables in your research question. Categorical? Quantitative?
+With data set 1, we would like to answer the following question : How have interest rates and inflation rates historically impacted the stock market? Tracking historical trends can be useful in maximizing profit from the bullish or bearish market, making it significant for investors or fintech workers. Our data assess the impact of quantitative variables such as interest rate and inflation rate. It also assesses categorical variables such as time and whether or not interest rate and inflation rate rose or fell (TRUE if they rose, FALSE if they fell). Our hypothesis is that the stock market, measured by the S&P 500 index, would be hurt by high inflation and corresponding high inflation rates, because consumer spending drops.
 
 ## Glimpse of data
 
@@ -69,9 +60,11 @@ inflation_rate <- na.omit(inflation_rate)
 inflation_rate<- inflation_rate|>
   mutate(year = substring(year, 1, 4))
 
-historicaldata <- inner_join(inflation_rate, fed_funds_rate)
-# historicaldata <- inner_join(historicaldata, sp500_year)
+colnames(sp500_year) <- c("year","year_to_date_return")
+sp500_year <- sp500_year|> mutate(year = as.character(year))
 
+historicaldata <- inner_join(inflation_rate, fed_funds_rate)
+historicaldata <- inner_join(historicaldata, sp500_year, by = "year")
 
 view(fed_funds_rate)
 view(inflation_rate)
@@ -113,20 +106,11 @@ mutate(
 
 ## Introduction and data
 
--   Identify the source of the data.
-
--   State when and how it was originally collected (by the original data curator, not necessarily how you found the data).
-
--   Write a brief description of the observations.
-
--   Address ethical concerns, if any.
+The source of the data is DATA HUB. This data was collected from S&P Dow Jones Indices which is collected daily. The observation shows that over the course of the year the share price has gone down, with the exception of October where it went up 2.24% and then down again. The year to date return was -23.09%, and month to date return was 2.24%.
 
 ## Research question
 
--   A well formulated research question. (You may include more than one research question if you want to receive feedback on different ideas for your project. However, one per data set is required.)
--   A description of the research topic along with a concise statement of your hypotheses on this topic.
--   Statement on why this question is important.
--   Identify the types of variables in your research question. Categorical? Quantitative?
+Today, the Information Technology sector is leading the way. Gathering data on how different businesses are performing, and whether this correlates with the industry they are in is useful to indicate whether performance patterns are caused by individual businesses or specific sectors and strategies can be derived from each. Our hypothesis is the following: Non-essential industries will go down more than essential industries. The type of variables in our research question are mainly quantitative, analyzing inflation rate, interest rate and comparing these across sectors.
 
 ## Glimpse of data
 
@@ -152,7 +136,7 @@ sp500_by_sector <- sp500_by_sector |>
   select(symbol, name, sector)
 
 sp500_by_company_and_sector <- sp500_by_company |>
-  left_join(sectors, by = "symbol") |>
+  left_join(sector, by = "symbol") |>
   relocate(name) |>
   select(name, symbol, weight, current_price, ytd_return, sector)
 ```
