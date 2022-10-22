@@ -47,9 +47,7 @@ fed_funds_rate <- fed_funds_rate |>
   slice(9:nrow(fed_funds_rate)) |>
   separate(day, into = c("day", "fed_funds_rate"), sep = ",")
 
-fed_funds_rate
-
-fed_funds_rate<- fed_funds_rate|>
+fed_funds_rate <- fed_funds_rate |>
   mutate(day = substring(day, 1, 4))|>
   rename(year = day) |>
   group_by(year) |>
