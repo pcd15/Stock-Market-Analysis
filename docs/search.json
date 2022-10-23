@@ -1,17 +1,24 @@
 [
   {
-    "objectID": "presentation.html#quarto",
-    "href": "presentation.html#quarto",
-    "title": "index.qmd",
-    "section": "Quarto",
-    "text": "Quarto\nQuarto enables you to weave together content and executable code into a finished document. To learn more about Quarto see https://quarto.org."
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "TEAM NAME",
+    "section": "",
+    "text": "Add project abstract here."
   },
   {
-    "objectID": "presentation.html#running-code",
-    "href": "presentation.html#running-code",
-    "title": "index.qmd",
-    "section": "Running Code",
-    "text": "Running Code\nWhen you click the Render button a document will be generated that includes both content and the output of embedded code. You can embed code like this:\n\n\n[1] 2\n\n\nYou can add options to executable code like this\n\n\n[1] 4\n\n\nThe echo: false option disables the printing of code (only output is displayed)."
+    "objectID": "about.html",
+    "href": "about.html",
+    "title": "About",
+    "section": "",
+    "text": "Uma: Undeclared Sophomore\nPaul: Freshman in CS\nHannah: Freshman in CS\nRyan: Freshman in CS\nZaid: Sophomore in CS"
+  },
+  {
+    "objectID": "report.html",
+    "href": "report.html",
+    "title": "Project title",
+    "section": "",
+    "text": "Add project writeup here."
   },
   {
     "objectID": "proposal.html",
@@ -82,26 +89,5 @@
     "title": "The Impacts of Inflation and Interest Rates on the Stock Market",
     "section": "Glimpse of data",
     "text": "Glimpse of data\n\nsp500_by_company <- read_csv(\"data/sp500_by_company.csv\")\nsp500_by_sector <- read_csv(\"data/constituents_csv.csv\")\n\nglimpse(sp500_by_company)\n\nRows: 503\nColumns: 5\n$ company       <chr> \"Apple Inc.\", \"Microsoft Corporation\", \"Amazon.com Inc.\"…\n$ symbol        <chr> \"AAPL\", \"MSFT\", \"AMZN\", \"GOOGL\", \"TSLA\", \"GOOG\", \"BRK.B\"…\n$ weight        <dbl> 6.940598, 5.685000, 3.296234, 1.931161, 1.874430, 1.7375…\n$ current_price <chr> \"  144.00\", \"  236.16\", \"  115.13\", \"  99.91\", \"  214.29…\n$ ytd_return    <chr> \"-19.05%\", \"-29.09%\", \"-30.21%\", \"-30.43%\", \"-37.49%\", \"…\n\nglimpse(sp500_by_sector)\n\nRows: 505\nColumns: 3\n$ Symbol <chr> \"MMM\", \"AOS\", \"ABT\", \"ABBV\", \"ABMD\", \"ACN\", \"ATVI\", \"ADM\", \"ADB…\n$ Name   <chr> \"3M\", \"A. O. Smith\", \"Abbott Laboratories\", \"AbbVie\", \"Abiomed\"…\n$ Sector <chr> \"Industrials\", \"Industrials\", \"Health Care\", \"Health Care\", \"He…\n\n\n\n#|: combining-data-set\n# sp500_by_company was created by joining two scraped data frames\n# scraped from:\n# https://www.slickcharts.com/sp500\n# https://www.slickcharts.com/sp500/performance\n\nsp500_by_sector <- sp500_by_sector |>\n  mutate(\n    symbol = Symbol,\n    name = Name,\n    sector = Sector\n  ) |>\n  select(symbol, name, sector)\n\nsp500_by_company_and_sector <- sp500_by_company |>\n  left_join(sp500_by_sector, by = \"symbol\") |>\n  relocate(name) |>\n  select(name, symbol, weight, current_price, ytd_return, sector)\n\n\n#|: fixing-NAs-and-adding-vars\n\nsp500_by_company_and_sector <- sp500_by_company_and_sector |>\n  mutate(\n    ytd_return_num = str_remove(ytd_return, \"%\"),\n    ytd_return_num = as.numeric(ytd_return_num),\n    current_price = str_trim(current_price),\n    current_price = as.numeric(current_price),\n    return_category = if_else(ytd_return_num > 0, \"positive\", \"negative\"),\n    ytd_factor =  (ytd_return_num + 100) / 100,\n    original_price = current_price / ytd_factor, \n    name = case_when(\n      symbol == \"MOH\" ~ \"Molina Healthcare\",\n      symbol == \"EPAM\" ~ \"EPAM Systems\",\n      symbol == \"ELV\" ~ \"Elevance Health\",\n      symbol == \"KDP\" ~ \"Keurig Dr Pepper\",\n      symbol == \"VICI\" ~ \"Vici Properties\",\n      symbol == \"META\" ~ \"Meta Platforms\",\n      symbol == \"CSGP\" ~ \"CoStar Group\",\n      symbol == \"WBD\" ~ \"Warner Bros Discovery\",\n      symbol == \"CEG\" ~ \"Constellation Energy\",\n      symbol == \"ON\" ~ \"ON Semiconductor\",\n      symbol == \"WTW\" ~ \"Willis Towers Watson\",\n      symbol == \"PCG\" ~ \"PG&E\",\n      symbol == \"INVH\" ~ \"Invitation Homes\",\n      symbol == \"BALL\" ~ \"Ball\",\n      symbol == \"FDS\" ~ \"FactSet Research Systems\",\n      symbol == \"EQT\" ~ \"EQT\",\n      symbol == \"TRGP\" ~ \"Targa Resources\",\n      symbol == \"CPT\" ~ \"Camden Property Trust\",\n      symbol == \"NDSN\" ~ \"Nordson\",\n      symbol == \"SEDG\" ~ \"Solaredge Technologies\",\n      symbol == \"PARA\" ~ \"Paramount Global Class B\",\n      symbol == \"SBNY\" ~ \"Signature Bank\",\n      TRUE ~ name\n    ),\n    sector = case_when(\n      symbol == \"MOH\" ~ \"Health Care\",\n      symbol == \"EPAM\" ~ \"Information Technology\",\n      symbol == \"ELV\" ~ \"Health Care\",\n      symbol == \"KDP\" ~ \"Consumer Staples\",\n      symbol == \"VICI\" ~ \"Real Estate\",\n      symbol == \"META\" ~ \"Communication Services\",\n      symbol == \"CSGP\" ~ \"Real Estate\",\n      symbol == \"WBD\" ~ \"Communication Services\",\n      symbol == \"CEG\" ~ \"Utilities\",\n      symbol == \"ON\" ~ \"Materials\",\n      symbol == \"WTW\" ~ \"Communication Services\",\n      symbol == \"PCG\" ~ \"Energy\",\n      symbol == \"INVH\" ~ \"Real Estate\",\n      symbol == \"BALL\" ~ \"Materials\",\n      symbol == \"FDS\" ~ \"Information Technology\",\n      symbol == \"EQT\" ~ \"Utilities\",\n      symbol == \"TRGP\" ~ \"Utilities\",\n      symbol == \"CPT\" ~ \"Real Estate\",\n      symbol == \"NDSN\" ~ \"Industrials\",\n      symbol == \"SEDG\" ~ \"Materials\",\n      symbol == \"PARA\" ~ \"Communication Services\",\n      symbol == \"SBNY\" ~ \"Financials\",\n      TRUE ~ sector\n    )\n  ) |>\n  select(\n    name, symbol, weight, original_price, \n    current_price, ytd_return, sector, return_category\n  )\n\nglimpse(sp500_by_company_and_sector)\n\nRows: 503\nColumns: 8\n$ name            <chr> \"Apple\", \"Microsoft\", \"Amazon\", \"Alphabet (Class A)\", …\n$ symbol          <chr> \"AAPL\", \"MSFT\", \"AMZN\", \"GOOGL\", \"TSLA\", \"GOOG\", \"BRK.…\n$ weight          <dbl> 6.940598, 5.685000, 3.296234, 1.931161, 1.874430, 1.73…\n$ original_price  <dbl> 177.88758, 333.04188, 164.96633, 143.61075, 342.80915,…\n$ current_price   <dbl> 144.00, 236.16, 115.13, 99.91, 214.29, 100.60, 278.50,…\n$ ytd_return      <chr> \"-19.05%\", \"-29.09%\", \"-30.21%\", \"-30.43%\", \"-37.49%\",…\n$ sector          <chr> \"Information Technology\", \"Information Technology\", \"C…\n$ return_category <chr> \"negative\", \"negative\", \"negative\", \"negative\", \"negat…"
-  },
-  {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "TEAM NAME",
-    "section": "",
-    "text": "Add project abstract here."
-  },
-  {
-    "objectID": "report.html",
-    "href": "report.html",
-    "title": "Project title",
-    "section": "",
-    "text": "Add project writeup here."
-  },
-  {
-    "objectID": "about.html",
-    "href": "about.html",
-    "title": "About",
-    "section": "",
-    "text": "Uma: Undeclared Sophomore\nPaul: Freshman in CS\nHannah: Freshman in CS\nRyan: Freshman in CS\nZaid: Sophomore in CS"
   }
 ]
