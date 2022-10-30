@@ -17,7 +17,7 @@ library(lubridate)
 
 ## Introduction and data
 
-Data set 1 comes from 3 sources. The data on the federal-funds rate and inflation rate were obtained from Macrotrends (<https://www.macrotrends.net/2015/fed-funds-rate-historical-chart>). The data on S&P 500 yearly total returns was obtained from Slickcharts (https://www.slickcharts.com/sp500/returns). The data was collected by retrieving the data publicly published on the stock-market exchange. Each obsevrvation represents a different year; for each year, we've compiled the mean federal-funds rate, inflation rate, YTD returns, and annual change in inflation, all of which are included in historical_data. While the data shows heavy fluctuations, we see that federal funds and inflation rate both peaked around 1980. No ethical concerns.
+Data set 1 comes from 4 sources. The data on the federal-funds rate and inflation rate were obtained from Macrotrends (<https://www.macrotrends.net/2015/fed-funds-rate-historical-chart>), the data on S&P 500 yearly total returns was obtained from Slickcharts (https://www.slickcharts.com/sp500/returns) and the data for monthly statistics is from Official Data (https://www.officialdata.org/us/stocks/s-p-500/1900). The data was collected by retrieving the data publicly published on the stock-market exchange. Each observation represents a different month in a given year. For each month, we've compiled the return on investment, as well as the the cumulative value of \$100 invested in January of 1900; for each year, we've compiled the mean federal-funds rate, inflation rate, YTD returns, and annual change in inflation, all of which are included in historical_data. While the data shows heavy fluctuations, we see that federal funds and inflation rate both peaked around 1980. No ethical concerns.
 
 ## Research question
 
@@ -27,18 +27,21 @@ With data set 1, we would like to answer the following question: How have intere
 
 ```{r warning = FALSE, message = FALSE}
 #| label: load-data-1
+# market_by_month was scraped from https://www.officialdata.org/us/stocks/s-p-500/1900
 
 fed_funds_rate <- read_csv("data/fed-funds-rate-historical-chart.csv")
 inflation_rate <- read_csv("data/united-states-inflation-rate-cpi.csv")
 sp500_year <- read_csv("data/history.csv")
+market_by_month <- read_csv("data/market_by_month.csv")
 
 glimpse(fed_funds_rate)
 glimpse(inflation_rate)
 glimpse(sp500_year)
+glimpse(market_by_month)
 ```
 
 ```{r warning = FALSE}
-#|: fixing-and-combining-data-sets
+#|: fixing-and-combining-data-sets-for-year
 
 names(fed_funds_rate)[1] <- "day"
 names(inflation_rate)[1] <- "year"
@@ -70,7 +73,7 @@ historical_data <- inner_join(historical_data, sp500_year, by = "year")
 
 historical_data <- historical_data |>
   mutate(
-    mean_fed_funds_rate = round(mean_fed_funds_rate * 100) / 100
+    mean_fed_funds_rate = round(mean_fed_funds_rate * 100) / 100,
   ) |>
   select(
     year, inflation_rate, inflation_annual_change, 
@@ -78,6 +81,12 @@ historical_data <- historical_data |>
   )
 
 glimpse(historical_data)
+```
+
+```{r}
+#|: combining-data-sets-for-month
+
+historical_data <- left_join(historical_data, market_by_month, by = "year")
 ```
 
 # Data 2

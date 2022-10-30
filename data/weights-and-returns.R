@@ -4,6 +4,7 @@ library(lubridate)
 library(robotstxt)
 
 paths_allowed("https://www.slickcharts.com/")
+paths_allowed("https://www.officialdata.org/")
 
 page <- read_html("https://www.slickcharts.com/sp500")
 page_2 <- read_html("https://www.slickcharts.com/sp500/performance")
@@ -52,3 +53,37 @@ sp500_by_company <- sp500_by_company_1 |>
   )
 
 write_csv(sp500_by_company, file = "data/sp500_by_company.csv")
+
+page_3 <- read_html("https://www.officialdata.org/us/stocks/s-p-500/1900")
+
+options(max.print = 1000000000)
+
+years_2 <- page_3 |>
+  html_elements(".expand-table-parent:nth-child(4) td:nth-child(1)") |>
+  html_text()
+
+months <- page_3 |>
+  html_elements(".expand-table-parent:nth-child(4) td:nth-child(2)") |>
+  html_text()
+
+returns <- page_3 |>
+  html_elements(".expand-table-parent:nth-child(4) td:nth-child(3)") |>
+  html_text()
+
+monthly_avg_prices <- page_3 |>
+  html_elements(".expand-table-parent:nth-child(4) td:nth-child(4)") |>
+  html_text()
+
+market_by_month <- tibble(
+  year = years_2,
+  month = months,
+  monthly_return = returns,
+  monthly_avg_price = monthly_avg_prices
+)
+
+market_by_month <- market_by_month |>
+  mutate(
+    year = as.character(year)
+  )
+
+write_csv(market_by_month, file = "data/market_by_month.csv")
