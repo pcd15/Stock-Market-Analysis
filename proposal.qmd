@@ -1,5 +1,5 @@
 ---
-title: "The Impacts of Inflation and Interest Rates on the Stock Market"
+title: "Analyzing the Impacts of Inflation and Interest Rates on the Stock Market"
 subtitle: "Project Proposal"
 format: html
 editor: visual
