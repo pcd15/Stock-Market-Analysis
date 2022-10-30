@@ -298,7 +298,6 @@ $ inflation_annual_change &lt;chr&gt; "-0.39", "0.13", "0.04", "0.04", "0.31", "
 $ mean_fed_funds_rate     &lt;dbl&gt; 1.95, 2.71, 3.18, 3.50, 4.08, 5.11, 4.22, 5.66…
 $ year_to_date_return     &lt;dbl&gt; 26.89, -8.73, 22.80, 16.48, 12.45, -10.06, 23.…</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">view</span>(historical_data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 </section>
@@ -307,7 +306,7 @@ $ year_to_date_return     &lt;dbl&gt; 26.89, -8.73, 22.80, 16.48, 12.45, -10.06,
 <section id="introduction-and-data-1" class="level2">
 <h2 class="anchored" data-anchor-id="introduction-and-data-1">Introduction and data</h2>
 <ul>
-<li>The source of the data is the Wall Street Journal (https://www.wsj.com/market-data/quotes/index/SPX/historical-prices), who gets their live data from FactSet. The data is collected daily (well really, every second), and it is collected by monitoring various operations (selling, buying, etc.) done in the stock market, which lead to increases and decreases in prices (which are then ultimately collected). Each observation represents a different day this year, with each day having data on the high/low/opening/closing prices, differences in high/low and opening/closing prices, daily percentage change, and whether the change in price for the day was a gain. The observations show heavy fluctuation as expected with something as volatile as the stock market, but this year a general decline in share prices is evident, which could partially be attributed to inflation and interest rates. No ethical concerns.</li>
+<li>The source of the data is Investing.com (https://www.investing.com/indices/us-spx-500-historical-data), who gets their live data from financial-data providers, including the stock market exchange and directly from market makers (who set stock prices to match supply and demand). The data is collected daily (well really, every second), and it is collected by monitoring various operations (selling, buying, etc.) done in the stock market, which lead to increases and decreases in prices (which are then ultimately collected). Each observation represents a different day this year, with each day having data on the high/low/opening/closing prices, differences in high/low and opening/closing prices, daily percentage change, and whether the change in price for the day was a gain. The observations show heavy fluctuation as expected with something as volatile as the stock market, but this year a general decline in share prices is evident, which could partially be attributed to inflation and interest rates. No ethical concerns.</li>
 </ul>
 </section>
 <section id="research-question-1" class="level2">
@@ -319,43 +318,45 @@ $ year_to_date_return     &lt;dbl&gt; 26.89, -8.73, 22.80, 16.48, 12.45, -10.06,
 <section id="glimpse-of-data-1" class="level2">
 <h2 class="anchored" data-anchor-id="glimpse-of-data-1">Glimpse of data</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>sp500_current <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"data/HistoricalPrices.csv"</span>)</span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(sp500_current)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>sp500_current <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"data/S&amp;amp;P 500 Historical Data (5).csv"</span>)</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(sp500_current)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Rows: 199
-Columns: 5
-$ Date  &lt;chr&gt; "10/17/22", "10/14/22", "10/13/22", "10/12/22", "10/11/22", "10/…
-$ Open  &lt;dbl&gt; 3677.95, 3690.41, 3520.37, 3590.83, 3595.86, 3647.51, 3706.74, 3…
-$ High  &lt;dbl&gt; 3689.73, 3712.00, 3685.41, 3608.34, 3640.66, 3652.17, 3706.74, 3…
-$ Low   &lt;dbl&gt; 3677.95, 3579.68, 3491.58, 3573.86, 3568.45, 3588.10, 3620.73, 3…
-$ Close &lt;dbl&gt; 3677.95, 3583.07, 3669.91, 3577.03, 3588.84, 3612.39, 3639.66, 3…</code></pre>
+<pre><code>Rows: 524
+Columns: 7
+$ Date       &lt;chr&gt; "10/28/2022", "10/27/2022", "10/26/2022", "10/25/2022", "10…
+$ Price      &lt;dbl&gt; 3901.06, 3807.30, 3830.60, 3859.11, 3797.34, 3752.75, 3665.…
+$ Open       &lt;dbl&gt; 3808.26, 3834.69, 3825.97, 3799.44, 3762.01, 3657.10, 3689.…
+$ High       &lt;dbl&gt; 3905.42, 3859.95, 3886.15, 3862.85, 3810.74, 3757.89, 3736.…
+$ Low        &lt;dbl&gt; 3808.26, 3803.79, 3824.07, 3799.44, 3741.65, 3647.42, 3656.…
+$ Vol.       &lt;lgl&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA,…
+$ `Change %` &lt;chr&gt; "2.46%", "-0.61%", "-0.74%", "1.63%", "1.19%", "2.37%", "-0…</code></pre>
 </div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>sp500_curr_updated <span class="ot">&lt;-</span> sp500_current <span class="sc">|&gt;</span></span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="fu">mutate</span>(</span>
-<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">daily_diff =</span> Close <span class="sc">-</span> Open,</span>
-<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">high_minus_low =</span> High <span class="sc">-</span> Low,</span>
-<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">daily_percent_change =</span> ((Close <span class="sc">-</span> Open) <span class="sc">/</span> Open) <span class="sc">*</span> <span class="dv">100</span>,</span>
-<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">gain =</span> daily_diff <span class="sc">&gt;</span> <span class="dv">0</span></span>
-<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(sp500_curr_updated)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>sp500_curr_updated <span class="ot">&lt;-</span> sp500_current <span class="sc">|&gt;</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="fu">mutate</span>(</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">daily_diff =</span> Price <span class="sc">-</span> Open,</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">high_minus_low =</span> High <span class="sc">-</span> Low,</span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">daily_percent_change =</span> ((Price <span class="sc">-</span> Open) <span class="sc">/</span> Open) <span class="sc">*</span> <span class="dv">100</span>,</span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">gain =</span> daily_diff <span class="sc">&gt;</span> <span class="dv">0</span></span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>) <span class="sc">|&gt;</span></span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(Date, Price, Open, High, Low, daily_percent_change, daily_diff, high_minus_low, gain)</span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(sp500_curr_updated)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Rows: 199
+<pre><code>Rows: 524
 Columns: 9
-$ Date                 &lt;chr&gt; "10/17/22", "10/14/22", "10/13/22", "10/12/22", "…
-$ Open                 &lt;dbl&gt; 3677.95, 3690.41, 3520.37, 3590.83, 3595.86, 3647…
-$ High                 &lt;dbl&gt; 3689.73, 3712.00, 3685.41, 3608.34, 3640.66, 3652…
-$ Low                  &lt;dbl&gt; 3677.95, 3579.68, 3491.58, 3573.86, 3568.45, 3588…
-$ Close                &lt;dbl&gt; 3677.95, 3583.07, 3669.91, 3577.03, 3588.84, 3612…
-$ daily_diff           &lt;dbl&gt; 0.00, -107.34, 149.54, -13.80, -7.02, -35.12, -67…
-$ high_minus_low       &lt;dbl&gt; 11.78, 132.32, 193.83, 34.48, 72.21, 64.07, 86.01…
-$ daily_percent_change &lt;dbl&gt; 0.0000000, -2.9086199, 4.2478489, -0.3843123, -0.…
-$ gain                 &lt;lgl&gt; FALSE, FALSE, TRUE, FALSE, FALSE, FALSE, FALSE, F…</code></pre>
+$ Date                 &lt;chr&gt; "10/28/2022", "10/27/2022", "10/26/2022", "10/25/…
+$ Price                &lt;dbl&gt; 3901.06, 3807.30, 3830.60, 3859.11, 3797.34, 3752…
+$ Open                 &lt;dbl&gt; 3808.26, 3834.69, 3825.97, 3799.44, 3762.01, 3657…
+$ High                 &lt;dbl&gt; 3905.42, 3859.95, 3886.15, 3862.85, 3810.74, 3757…
+$ Low                  &lt;dbl&gt; 3808.26, 3803.79, 3824.07, 3799.44, 3741.65, 3647…
+$ daily_percent_change &lt;dbl&gt; 2.4368084, -0.7142690, 0.1210151, 1.5704946, 0.93…
+$ daily_diff           &lt;dbl&gt; 92.80, -27.39, 4.63, 59.67, 35.33, 95.65, -23.27,…
+$ high_minus_low       &lt;dbl&gt; 97.16, 56.16, 62.08, 63.41, 69.09, 110.47, 79.56,…
+$ gain                 &lt;lgl&gt; TRUE, FALSE, TRUE, TRUE, TRUE, TRUE, FALSE, FALSE…</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">view</span>(sp500_curr_updated)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 </section>
@@ -372,10 +373,10 @@ $ gain                 &lt;lgl&gt; FALSE, FALSE, TRUE, FALSE, FALSE, FALSE, FALS
 <section id="glimpse-of-data-2" class="level2">
 <h2 class="anchored" data-anchor-id="glimpse-of-data-2">Glimpse of data</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>sp500_by_company <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"data/sp500_by_company.csv"</span>)</span>
-<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>sp500_by_sector <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"data/constituents_csv.csv"</span>)</span>
-<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(sp500_by_company)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>sp500_by_company <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"data/sp500_by_company.csv"</span>)</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>sp500_by_sector <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"data/constituents_csv.csv"</span>)</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(sp500_by_company)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Rows: 503
 Columns: 5
@@ -385,7 +386,7 @@ $ weight        &lt;dbl&gt; 6.940598, 5.685000, 3.296234, 1.931161, 1.874430, 1.
 $ current_price &lt;chr&gt; "&nbsp;&nbsp;144.00", "&nbsp;&nbsp;236.16", "&nbsp;&nbsp;115.13", "&nbsp;&nbsp;99.91", "&nbsp;&nbsp;214.29…
 $ ytd_return    &lt;chr&gt; "-19.05%", "-29.09%", "-30.21%", "-30.43%", "-37.49%", "…</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(sp500_by_sector)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(sp500_by_sector)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Rows: 505
 Columns: 3
@@ -395,94 +396,94 @@ $ Sector &lt;chr&gt; "Industrials", "Industrials", "Health Care", "Health Care",
 </div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co">#|: combining-data-set</span></span>
-<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="co"># sp500_by_company was created by joining two scraped data frames</span></span>
-<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a><span class="co"># scraped from:</span></span>
-<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a><span class="co"># https://www.slickcharts.com/sp500</span></span>
-<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a><span class="co"># https://www.slickcharts.com/sp500/performance</span></span>
-<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a>sp500_by_sector <span class="ot">&lt;-</span> sp500_by_sector <span class="sc">|&gt;</span></span>
-<span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
-<span id="cb20-9"><a href="#cb20-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">symbol =</span> Symbol,</span>
-<span id="cb20-10"><a href="#cb20-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">name =</span> Name,</span>
-<span id="cb20-11"><a href="#cb20-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">sector =</span> Sector</span>
-<span id="cb20-12"><a href="#cb20-12" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
-<span id="cb20-13"><a href="#cb20-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(symbol, name, sector)</span>
-<span id="cb20-14"><a href="#cb20-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-15"><a href="#cb20-15" aria-hidden="true" tabindex="-1"></a>sp500_by_company_and_sector <span class="ot">&lt;-</span> sp500_by_company <span class="sc">|&gt;</span></span>
-<span id="cb20-16"><a href="#cb20-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(sp500_by_sector, <span class="at">by =</span> <span class="st">"symbol"</span>) <span class="sc">|&gt;</span></span>
-<span id="cb20-17"><a href="#cb20-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">relocate</span>(name) <span class="sc">|&gt;</span></span>
-<span id="cb20-18"><a href="#cb20-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(name, symbol, weight, current_price, ytd_return, sector)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co">#|: combining-data-set</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="co"># sp500_by_company was created by joining two scraped data frames</span></span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a><span class="co"># scraped from:</span></span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a><span class="co"># https://www.slickcharts.com/sp500</span></span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a><span class="co"># https://www.slickcharts.com/sp500/performance</span></span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a>sp500_by_sector <span class="ot">&lt;-</span> sp500_by_sector <span class="sc">|&gt;</span></span>
+<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">symbol =</span> Symbol,</span>
+<span id="cb18-10"><a href="#cb18-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">name =</span> Name,</span>
+<span id="cb18-11"><a href="#cb18-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">sector =</span> Sector</span>
+<span id="cb18-12"><a href="#cb18-12" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb18-13"><a href="#cb18-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(symbol, name, sector)</span>
+<span id="cb18-14"><a href="#cb18-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-15"><a href="#cb18-15" aria-hidden="true" tabindex="-1"></a>sp500_by_company_and_sector <span class="ot">&lt;-</span> sp500_by_company <span class="sc">|&gt;</span></span>
+<span id="cb18-16"><a href="#cb18-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(sp500_by_sector, <span class="at">by =</span> <span class="st">"symbol"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb18-17"><a href="#cb18-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">relocate</span>(name) <span class="sc">|&gt;</span></span>
+<span id="cb18-18"><a href="#cb18-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(name, symbol, weight, current_price, ytd_return, sector)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co">#|: fixing-NAs-and-adding-vars</span></span>
-<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>sp500_by_company_and_sector <span class="ot">&lt;-</span> sp500_by_company_and_sector <span class="sc">|&gt;</span></span>
-<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
-<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">ytd_return_num =</span> <span class="fu">str_remove</span>(ytd_return, <span class="st">"%"</span>),</span>
-<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">ytd_return_num =</span> <span class="fu">as.numeric</span>(ytd_return_num),</span>
-<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">current_price =</span> <span class="fu">str_trim</span>(current_price),</span>
-<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">current_price =</span> <span class="fu">as.numeric</span>(current_price),</span>
-<span id="cb21-9"><a href="#cb21-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">return_category =</span> <span class="fu">if_else</span>(ytd_return_num <span class="sc">&gt;</span> <span class="dv">0</span>, <span class="st">"positive"</span>, <span class="st">"negative"</span>),</span>
-<span id="cb21-10"><a href="#cb21-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">ytd_factor =</span>  (ytd_return_num <span class="sc">+</span> <span class="dv">100</span>) <span class="sc">/</span> <span class="dv">100</span>,</span>
-<span id="cb21-11"><a href="#cb21-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">original_price =</span> current_price <span class="sc">/</span> ytd_factor, </span>
-<span id="cb21-12"><a href="#cb21-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">name =</span> <span class="fu">case_when</span>(</span>
-<span id="cb21-13"><a href="#cb21-13" aria-hidden="true" tabindex="-1"></a>      symbol <span class="sc">==</span> <span class="st">"MOH"</span> <span class="sc">~</span> <span class="st">"Molina Healthcare"</span>,</span>
-<span id="cb21-14"><a href="#cb21-14" aria-hidden="true" tabindex="-1"></a>      symbol <span class="sc">==</span> <span class="st">"EPAM"</span> <span class="sc">~</span> <span class="st">"EPAM Systems"</span>,</span>
-<span id="cb21-15"><a href="#cb21-15" aria-hidden="true" tabindex="-1"></a>      symbol <span class="sc">==</span> <span class="st">"ELV"</span> <span class="sc">~</span> <span class="st">"Elevance Health"</span>,</span>
-<span id="cb21-16"><a href="#cb21-16" aria-hidden="true" tabindex="-1"></a>      symbol <span class="sc">==</span> <span class="st">"KDP"</span> <span class="sc">~</span> <span class="st">"Keurig Dr Pepper"</span>,</span>
-<span id="cb21-17"><a href="#cb21-17" aria-hidden="true" tabindex="-1"></a>      symbol <span class="sc">==</span> <span class="st">"VICI"</span> <span class="sc">~</span> <span class="st">"Vici Properties"</span>,</span>
-<span id="cb21-18"><a href="#cb21-18" aria-hidden="true" tabindex="-1"></a>      symbol <span class="sc">==</span> <span class="st">"META"</span> <span class="sc">~</span> <span class="st">"Meta Platforms"</span>,</span>
-<span id="cb21-19"><a href="#cb21-19" aria-hidden="true" tabindex="-1"></a>      symbol <span class="sc">==</span> <span class="st">"CSGP"</span> <span class="sc">~</span> <span class="st">"CoStar Group"</span>,</span>
-<span id="cb21-20"><a href="#cb21-20" aria-hidden="true" tabindex="-1"></a>      symbol <span class="sc">==</span> <span class="st">"WBD"</span> <span class="sc">~</span> <span class="st">"Warner Bros Discovery"</span>,</span>
-<span id="cb21-21"><a href="#cb21-21" aria-hidden="true" tabindex="-1"></a>      symbol <span class="sc">==</span> <span class="st">"CEG"</span> <span class="sc">~</span> <span class="st">"Constellation Energy"</span>,</span>
-<span id="cb21-22"><a href="#cb21-22" aria-hidden="true" tabindex="-1"></a>      symbol <span class="sc">==</span> <span class="st">"ON"</span> <span class="sc">~</span> <span class="st">"ON Semiconductor"</span>,</span>
-<span id="cb21-23"><a href="#cb21-23" aria-hidden="true" tabindex="-1"></a>      symbol <span class="sc">==</span> <span class="st">"WTW"</span> <span class="sc">~</span> <span class="st">"Willis Towers Watson"</span>,</span>
-<span id="cb21-24"><a href="#cb21-24" aria-hidden="true" tabindex="-1"></a>      symbol <span class="sc">==</span> <span class="st">"PCG"</span> <span class="sc">~</span> <span class="st">"PG&amp;E"</span>,</span>
-<span id="cb21-25"><a href="#cb21-25" aria-hidden="true" tabindex="-1"></a>      symbol <span class="sc">==</span> <span class="st">"INVH"</span> <span class="sc">~</span> <span class="st">"Invitation Homes"</span>,</span>
-<span id="cb21-26"><a href="#cb21-26" aria-hidden="true" tabindex="-1"></a>      symbol <span class="sc">==</span> <span class="st">"BALL"</span> <span class="sc">~</span> <span class="st">"Ball"</span>,</span>
-<span id="cb21-27"><a href="#cb21-27" aria-hidden="true" tabindex="-1"></a>      symbol <span class="sc">==</span> <span class="st">"FDS"</span> <span class="sc">~</span> <span class="st">"FactSet Research Systems"</span>,</span>
-<span id="cb21-28"><a href="#cb21-28" aria-hidden="true" tabindex="-1"></a>      symbol <span class="sc">==</span> <span class="st">"EQT"</span> <span class="sc">~</span> <span class="st">"EQT"</span>,</span>
-<span id="cb21-29"><a href="#cb21-29" aria-hidden="true" tabindex="-1"></a>      symbol <span class="sc">==</span> <span class="st">"TRGP"</span> <span class="sc">~</span> <span class="st">"Targa Resources"</span>,</span>
-<span id="cb21-30"><a href="#cb21-30" aria-hidden="true" tabindex="-1"></a>      symbol <span class="sc">==</span> <span class="st">"CPT"</span> <span class="sc">~</span> <span class="st">"Camden Property Trust"</span>,</span>
-<span id="cb21-31"><a href="#cb21-31" aria-hidden="true" tabindex="-1"></a>      symbol <span class="sc">==</span> <span class="st">"NDSN"</span> <span class="sc">~</span> <span class="st">"Nordson"</span>,</span>
-<span id="cb21-32"><a href="#cb21-32" aria-hidden="true" tabindex="-1"></a>      symbol <span class="sc">==</span> <span class="st">"SEDG"</span> <span class="sc">~</span> <span class="st">"Solaredge Technologies"</span>,</span>
-<span id="cb21-33"><a href="#cb21-33" aria-hidden="true" tabindex="-1"></a>      symbol <span class="sc">==</span> <span class="st">"PARA"</span> <span class="sc">~</span> <span class="st">"Paramount Global Class B"</span>,</span>
-<span id="cb21-34"><a href="#cb21-34" aria-hidden="true" tabindex="-1"></a>      symbol <span class="sc">==</span> <span class="st">"SBNY"</span> <span class="sc">~</span> <span class="st">"Signature Bank"</span>,</span>
-<span id="cb21-35"><a href="#cb21-35" aria-hidden="true" tabindex="-1"></a>      <span class="cn">TRUE</span> <span class="sc">~</span> name</span>
-<span id="cb21-36"><a href="#cb21-36" aria-hidden="true" tabindex="-1"></a>    ),</span>
-<span id="cb21-37"><a href="#cb21-37" aria-hidden="true" tabindex="-1"></a>    <span class="at">sector =</span> <span class="fu">case_when</span>(</span>
-<span id="cb21-38"><a href="#cb21-38" aria-hidden="true" tabindex="-1"></a>      symbol <span class="sc">==</span> <span class="st">"MOH"</span> <span class="sc">~</span> <span class="st">"Health Care"</span>,</span>
-<span id="cb21-39"><a href="#cb21-39" aria-hidden="true" tabindex="-1"></a>      symbol <span class="sc">==</span> <span class="st">"EPAM"</span> <span class="sc">~</span> <span class="st">"Information Technology"</span>,</span>
-<span id="cb21-40"><a href="#cb21-40" aria-hidden="true" tabindex="-1"></a>      symbol <span class="sc">==</span> <span class="st">"ELV"</span> <span class="sc">~</span> <span class="st">"Health Care"</span>,</span>
-<span id="cb21-41"><a href="#cb21-41" aria-hidden="true" tabindex="-1"></a>      symbol <span class="sc">==</span> <span class="st">"KDP"</span> <span class="sc">~</span> <span class="st">"Consumer Staples"</span>,</span>
-<span id="cb21-42"><a href="#cb21-42" aria-hidden="true" tabindex="-1"></a>      symbol <span class="sc">==</span> <span class="st">"VICI"</span> <span class="sc">~</span> <span class="st">"Real Estate"</span>,</span>
-<span id="cb21-43"><a href="#cb21-43" aria-hidden="true" tabindex="-1"></a>      symbol <span class="sc">==</span> <span class="st">"META"</span> <span class="sc">~</span> <span class="st">"Communication Services"</span>,</span>
-<span id="cb21-44"><a href="#cb21-44" aria-hidden="true" tabindex="-1"></a>      symbol <span class="sc">==</span> <span class="st">"CSGP"</span> <span class="sc">~</span> <span class="st">"Real Estate"</span>,</span>
-<span id="cb21-45"><a href="#cb21-45" aria-hidden="true" tabindex="-1"></a>      symbol <span class="sc">==</span> <span class="st">"WBD"</span> <span class="sc">~</span> <span class="st">"Communication Services"</span>,</span>
-<span id="cb21-46"><a href="#cb21-46" aria-hidden="true" tabindex="-1"></a>      symbol <span class="sc">==</span> <span class="st">"CEG"</span> <span class="sc">~</span> <span class="st">"Utilities"</span>,</span>
-<span id="cb21-47"><a href="#cb21-47" aria-hidden="true" tabindex="-1"></a>      symbol <span class="sc">==</span> <span class="st">"ON"</span> <span class="sc">~</span> <span class="st">"Materials"</span>,</span>
-<span id="cb21-48"><a href="#cb21-48" aria-hidden="true" tabindex="-1"></a>      symbol <span class="sc">==</span> <span class="st">"WTW"</span> <span class="sc">~</span> <span class="st">"Communication Services"</span>,</span>
-<span id="cb21-49"><a href="#cb21-49" aria-hidden="true" tabindex="-1"></a>      symbol <span class="sc">==</span> <span class="st">"PCG"</span> <span class="sc">~</span> <span class="st">"Energy"</span>,</span>
-<span id="cb21-50"><a href="#cb21-50" aria-hidden="true" tabindex="-1"></a>      symbol <span class="sc">==</span> <span class="st">"INVH"</span> <span class="sc">~</span> <span class="st">"Real Estate"</span>,</span>
-<span id="cb21-51"><a href="#cb21-51" aria-hidden="true" tabindex="-1"></a>      symbol <span class="sc">==</span> <span class="st">"BALL"</span> <span class="sc">~</span> <span class="st">"Materials"</span>,</span>
-<span id="cb21-52"><a href="#cb21-52" aria-hidden="true" tabindex="-1"></a>      symbol <span class="sc">==</span> <span class="st">"FDS"</span> <span class="sc">~</span> <span class="st">"Information Technology"</span>,</span>
-<span id="cb21-53"><a href="#cb21-53" aria-hidden="true" tabindex="-1"></a>      symbol <span class="sc">==</span> <span class="st">"EQT"</span> <span class="sc">~</span> <span class="st">"Utilities"</span>,</span>
-<span id="cb21-54"><a href="#cb21-54" aria-hidden="true" tabindex="-1"></a>      symbol <span class="sc">==</span> <span class="st">"TRGP"</span> <span class="sc">~</span> <span class="st">"Utilities"</span>,</span>
-<span id="cb21-55"><a href="#cb21-55" aria-hidden="true" tabindex="-1"></a>      symbol <span class="sc">==</span> <span class="st">"CPT"</span> <span class="sc">~</span> <span class="st">"Real Estate"</span>,</span>
-<span id="cb21-56"><a href="#cb21-56" aria-hidden="true" tabindex="-1"></a>      symbol <span class="sc">==</span> <span class="st">"NDSN"</span> <span class="sc">~</span> <span class="st">"Industrials"</span>,</span>
-<span id="cb21-57"><a href="#cb21-57" aria-hidden="true" tabindex="-1"></a>      symbol <span class="sc">==</span> <span class="st">"SEDG"</span> <span class="sc">~</span> <span class="st">"Materials"</span>,</span>
-<span id="cb21-58"><a href="#cb21-58" aria-hidden="true" tabindex="-1"></a>      symbol <span class="sc">==</span> <span class="st">"PARA"</span> <span class="sc">~</span> <span class="st">"Communication Services"</span>,</span>
-<span id="cb21-59"><a href="#cb21-59" aria-hidden="true" tabindex="-1"></a>      symbol <span class="sc">==</span> <span class="st">"SBNY"</span> <span class="sc">~</span> <span class="st">"Financials"</span>,</span>
-<span id="cb21-60"><a href="#cb21-60" aria-hidden="true" tabindex="-1"></a>      <span class="cn">TRUE</span> <span class="sc">~</span> sector</span>
-<span id="cb21-61"><a href="#cb21-61" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb21-62"><a href="#cb21-62" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
-<span id="cb21-63"><a href="#cb21-63" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(</span>
-<span id="cb21-64"><a href="#cb21-64" aria-hidden="true" tabindex="-1"></a>    name, symbol, weight, original_price, </span>
-<span id="cb21-65"><a href="#cb21-65" aria-hidden="true" tabindex="-1"></a>    current_price, ytd_return_num, sector, return_category</span>
-<span id="cb21-66"><a href="#cb21-66" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb21-67"><a href="#cb21-67" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-68"><a href="#cb21-68" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(sp500_by_company_and_sector)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co">#|: fixing-NAs-and-adding-vars</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>sp500_by_company_and_sector <span class="ot">&lt;-</span> sp500_by_company_and_sector <span class="sc">|&gt;</span></span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">ytd_return_num =</span> <span class="fu">str_remove</span>(ytd_return, <span class="st">"%"</span>),</span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">ytd_return_num =</span> <span class="fu">as.numeric</span>(ytd_return_num),</span>
+<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">current_price =</span> <span class="fu">str_trim</span>(current_price),</span>
+<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">current_price =</span> <span class="fu">as.numeric</span>(current_price),</span>
+<span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">return_category =</span> <span class="fu">if_else</span>(ytd_return_num <span class="sc">&gt;</span> <span class="dv">0</span>, <span class="st">"positive"</span>, <span class="st">"negative"</span>),</span>
+<span id="cb19-10"><a href="#cb19-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">ytd_factor =</span>  (ytd_return_num <span class="sc">+</span> <span class="dv">100</span>) <span class="sc">/</span> <span class="dv">100</span>,</span>
+<span id="cb19-11"><a href="#cb19-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">original_price =</span> current_price <span class="sc">/</span> ytd_factor, </span>
+<span id="cb19-12"><a href="#cb19-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">name =</span> <span class="fu">case_when</span>(</span>
+<span id="cb19-13"><a href="#cb19-13" aria-hidden="true" tabindex="-1"></a>      symbol <span class="sc">==</span> <span class="st">"MOH"</span> <span class="sc">~</span> <span class="st">"Molina Healthcare"</span>,</span>
+<span id="cb19-14"><a href="#cb19-14" aria-hidden="true" tabindex="-1"></a>      symbol <span class="sc">==</span> <span class="st">"EPAM"</span> <span class="sc">~</span> <span class="st">"EPAM Systems"</span>,</span>
+<span id="cb19-15"><a href="#cb19-15" aria-hidden="true" tabindex="-1"></a>      symbol <span class="sc">==</span> <span class="st">"ELV"</span> <span class="sc">~</span> <span class="st">"Elevance Health"</span>,</span>
+<span id="cb19-16"><a href="#cb19-16" aria-hidden="true" tabindex="-1"></a>      symbol <span class="sc">==</span> <span class="st">"KDP"</span> <span class="sc">~</span> <span class="st">"Keurig Dr Pepper"</span>,</span>
+<span id="cb19-17"><a href="#cb19-17" aria-hidden="true" tabindex="-1"></a>      symbol <span class="sc">==</span> <span class="st">"VICI"</span> <span class="sc">~</span> <span class="st">"Vici Properties"</span>,</span>
+<span id="cb19-18"><a href="#cb19-18" aria-hidden="true" tabindex="-1"></a>      symbol <span class="sc">==</span> <span class="st">"META"</span> <span class="sc">~</span> <span class="st">"Meta Platforms"</span>,</span>
+<span id="cb19-19"><a href="#cb19-19" aria-hidden="true" tabindex="-1"></a>      symbol <span class="sc">==</span> <span class="st">"CSGP"</span> <span class="sc">~</span> <span class="st">"CoStar Group"</span>,</span>
+<span id="cb19-20"><a href="#cb19-20" aria-hidden="true" tabindex="-1"></a>      symbol <span class="sc">==</span> <span class="st">"WBD"</span> <span class="sc">~</span> <span class="st">"Warner Bros Discovery"</span>,</span>
+<span id="cb19-21"><a href="#cb19-21" aria-hidden="true" tabindex="-1"></a>      symbol <span class="sc">==</span> <span class="st">"CEG"</span> <span class="sc">~</span> <span class="st">"Constellation Energy"</span>,</span>
+<span id="cb19-22"><a href="#cb19-22" aria-hidden="true" tabindex="-1"></a>      symbol <span class="sc">==</span> <span class="st">"ON"</span> <span class="sc">~</span> <span class="st">"ON Semiconductor"</span>,</span>
+<span id="cb19-23"><a href="#cb19-23" aria-hidden="true" tabindex="-1"></a>      symbol <span class="sc">==</span> <span class="st">"WTW"</span> <span class="sc">~</span> <span class="st">"Willis Towers Watson"</span>,</span>
+<span id="cb19-24"><a href="#cb19-24" aria-hidden="true" tabindex="-1"></a>      symbol <span class="sc">==</span> <span class="st">"PCG"</span> <span class="sc">~</span> <span class="st">"PG&amp;E"</span>,</span>
+<span id="cb19-25"><a href="#cb19-25" aria-hidden="true" tabindex="-1"></a>      symbol <span class="sc">==</span> <span class="st">"INVH"</span> <span class="sc">~</span> <span class="st">"Invitation Homes"</span>,</span>
+<span id="cb19-26"><a href="#cb19-26" aria-hidden="true" tabindex="-1"></a>      symbol <span class="sc">==</span> <span class="st">"BALL"</span> <span class="sc">~</span> <span class="st">"Ball"</span>,</span>
+<span id="cb19-27"><a href="#cb19-27" aria-hidden="true" tabindex="-1"></a>      symbol <span class="sc">==</span> <span class="st">"FDS"</span> <span class="sc">~</span> <span class="st">"FactSet Research Systems"</span>,</span>
+<span id="cb19-28"><a href="#cb19-28" aria-hidden="true" tabindex="-1"></a>      symbol <span class="sc">==</span> <span class="st">"EQT"</span> <span class="sc">~</span> <span class="st">"EQT"</span>,</span>
+<span id="cb19-29"><a href="#cb19-29" aria-hidden="true" tabindex="-1"></a>      symbol <span class="sc">==</span> <span class="st">"TRGP"</span> <span class="sc">~</span> <span class="st">"Targa Resources"</span>,</span>
+<span id="cb19-30"><a href="#cb19-30" aria-hidden="true" tabindex="-1"></a>      symbol <span class="sc">==</span> <span class="st">"CPT"</span> <span class="sc">~</span> <span class="st">"Camden Property Trust"</span>,</span>
+<span id="cb19-31"><a href="#cb19-31" aria-hidden="true" tabindex="-1"></a>      symbol <span class="sc">==</span> <span class="st">"NDSN"</span> <span class="sc">~</span> <span class="st">"Nordson"</span>,</span>
+<span id="cb19-32"><a href="#cb19-32" aria-hidden="true" tabindex="-1"></a>      symbol <span class="sc">==</span> <span class="st">"SEDG"</span> <span class="sc">~</span> <span class="st">"Solaredge Technologies"</span>,</span>
+<span id="cb19-33"><a href="#cb19-33" aria-hidden="true" tabindex="-1"></a>      symbol <span class="sc">==</span> <span class="st">"PARA"</span> <span class="sc">~</span> <span class="st">"Paramount Global Class B"</span>,</span>
+<span id="cb19-34"><a href="#cb19-34" aria-hidden="true" tabindex="-1"></a>      symbol <span class="sc">==</span> <span class="st">"SBNY"</span> <span class="sc">~</span> <span class="st">"Signature Bank"</span>,</span>
+<span id="cb19-35"><a href="#cb19-35" aria-hidden="true" tabindex="-1"></a>      <span class="cn">TRUE</span> <span class="sc">~</span> name</span>
+<span id="cb19-36"><a href="#cb19-36" aria-hidden="true" tabindex="-1"></a>    ),</span>
+<span id="cb19-37"><a href="#cb19-37" aria-hidden="true" tabindex="-1"></a>    <span class="at">sector =</span> <span class="fu">case_when</span>(</span>
+<span id="cb19-38"><a href="#cb19-38" aria-hidden="true" tabindex="-1"></a>      symbol <span class="sc">==</span> <span class="st">"MOH"</span> <span class="sc">~</span> <span class="st">"Health Care"</span>,</span>
+<span id="cb19-39"><a href="#cb19-39" aria-hidden="true" tabindex="-1"></a>      symbol <span class="sc">==</span> <span class="st">"EPAM"</span> <span class="sc">~</span> <span class="st">"Information Technology"</span>,</span>
+<span id="cb19-40"><a href="#cb19-40" aria-hidden="true" tabindex="-1"></a>      symbol <span class="sc">==</span> <span class="st">"ELV"</span> <span class="sc">~</span> <span class="st">"Health Care"</span>,</span>
+<span id="cb19-41"><a href="#cb19-41" aria-hidden="true" tabindex="-1"></a>      symbol <span class="sc">==</span> <span class="st">"KDP"</span> <span class="sc">~</span> <span class="st">"Consumer Staples"</span>,</span>
+<span id="cb19-42"><a href="#cb19-42" aria-hidden="true" tabindex="-1"></a>      symbol <span class="sc">==</span> <span class="st">"VICI"</span> <span class="sc">~</span> <span class="st">"Real Estate"</span>,</span>
+<span id="cb19-43"><a href="#cb19-43" aria-hidden="true" tabindex="-1"></a>      symbol <span class="sc">==</span> <span class="st">"META"</span> <span class="sc">~</span> <span class="st">"Communication Services"</span>,</span>
+<span id="cb19-44"><a href="#cb19-44" aria-hidden="true" tabindex="-1"></a>      symbol <span class="sc">==</span> <span class="st">"CSGP"</span> <span class="sc">~</span> <span class="st">"Real Estate"</span>,</span>
+<span id="cb19-45"><a href="#cb19-45" aria-hidden="true" tabindex="-1"></a>      symbol <span class="sc">==</span> <span class="st">"WBD"</span> <span class="sc">~</span> <span class="st">"Communication Services"</span>,</span>
+<span id="cb19-46"><a href="#cb19-46" aria-hidden="true" tabindex="-1"></a>      symbol <span class="sc">==</span> <span class="st">"CEG"</span> <span class="sc">~</span> <span class="st">"Utilities"</span>,</span>
+<span id="cb19-47"><a href="#cb19-47" aria-hidden="true" tabindex="-1"></a>      symbol <span class="sc">==</span> <span class="st">"ON"</span> <span class="sc">~</span> <span class="st">"Materials"</span>,</span>
+<span id="cb19-48"><a href="#cb19-48" aria-hidden="true" tabindex="-1"></a>      symbol <span class="sc">==</span> <span class="st">"WTW"</span> <span class="sc">~</span> <span class="st">"Communication Services"</span>,</span>
+<span id="cb19-49"><a href="#cb19-49" aria-hidden="true" tabindex="-1"></a>      symbol <span class="sc">==</span> <span class="st">"PCG"</span> <span class="sc">~</span> <span class="st">"Energy"</span>,</span>
+<span id="cb19-50"><a href="#cb19-50" aria-hidden="true" tabindex="-1"></a>      symbol <span class="sc">==</span> <span class="st">"INVH"</span> <span class="sc">~</span> <span class="st">"Real Estate"</span>,</span>
+<span id="cb19-51"><a href="#cb19-51" aria-hidden="true" tabindex="-1"></a>      symbol <span class="sc">==</span> <span class="st">"BALL"</span> <span class="sc">~</span> <span class="st">"Materials"</span>,</span>
+<span id="cb19-52"><a href="#cb19-52" aria-hidden="true" tabindex="-1"></a>      symbol <span class="sc">==</span> <span class="st">"FDS"</span> <span class="sc">~</span> <span class="st">"Information Technology"</span>,</span>
+<span id="cb19-53"><a href="#cb19-53" aria-hidden="true" tabindex="-1"></a>      symbol <span class="sc">==</span> <span class="st">"EQT"</span> <span class="sc">~</span> <span class="st">"Utilities"</span>,</span>
+<span id="cb19-54"><a href="#cb19-54" aria-hidden="true" tabindex="-1"></a>      symbol <span class="sc">==</span> <span class="st">"TRGP"</span> <span class="sc">~</span> <span class="st">"Utilities"</span>,</span>
+<span id="cb19-55"><a href="#cb19-55" aria-hidden="true" tabindex="-1"></a>      symbol <span class="sc">==</span> <span class="st">"CPT"</span> <span class="sc">~</span> <span class="st">"Real Estate"</span>,</span>
+<span id="cb19-56"><a href="#cb19-56" aria-hidden="true" tabindex="-1"></a>      symbol <span class="sc">==</span> <span class="st">"NDSN"</span> <span class="sc">~</span> <span class="st">"Industrials"</span>,</span>
+<span id="cb19-57"><a href="#cb19-57" aria-hidden="true" tabindex="-1"></a>      symbol <span class="sc">==</span> <span class="st">"SEDG"</span> <span class="sc">~</span> <span class="st">"Materials"</span>,</span>
+<span id="cb19-58"><a href="#cb19-58" aria-hidden="true" tabindex="-1"></a>      symbol <span class="sc">==</span> <span class="st">"PARA"</span> <span class="sc">~</span> <span class="st">"Communication Services"</span>,</span>
+<span id="cb19-59"><a href="#cb19-59" aria-hidden="true" tabindex="-1"></a>      symbol <span class="sc">==</span> <span class="st">"SBNY"</span> <span class="sc">~</span> <span class="st">"Financials"</span>,</span>
+<span id="cb19-60"><a href="#cb19-60" aria-hidden="true" tabindex="-1"></a>      <span class="cn">TRUE</span> <span class="sc">~</span> sector</span>
+<span id="cb19-61"><a href="#cb19-61" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb19-62"><a href="#cb19-62" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb19-63"><a href="#cb19-63" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(</span>
+<span id="cb19-64"><a href="#cb19-64" aria-hidden="true" tabindex="-1"></a>    name, symbol, weight, original_price, </span>
+<span id="cb19-65"><a href="#cb19-65" aria-hidden="true" tabindex="-1"></a>    current_price, ytd_return_num, sector, return_category</span>
+<span id="cb19-66"><a href="#cb19-66" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb19-67"><a href="#cb19-67" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-68"><a href="#cb19-68" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(sp500_by_company_and_sector)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Rows: 503
 Columns: 8
@@ -495,7 +496,6 @@ $ ytd_return_num  &lt;dbl&gt; -19.05, -29.09, -30.21, -30.43, -37.49, -29.92, -5
 $ sector          &lt;chr&gt; "Information Technology", "Information Technology", "C…
 $ return_category &lt;chr&gt; "negative", "negative", "negative", "negative", "negat…</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="fu">view</span>(sp500_by_company_and_sector)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 
 
