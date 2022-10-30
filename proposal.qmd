@@ -78,7 +78,6 @@ historical_data <- historical_data |>
   )
 
 glimpse(historical_data)
-view(historical_data)
 ```
 
 # Data 2
@@ -96,7 +95,7 @@ view(historical_data)
 ```{r message = FALSE}
 #| label: load-data-2
 
-sp500_current <- read_csv("data/HistoricalPrices.csv")
+sp500_current <- read_csv("data/S&amp;P 500 Historical Data (5).csv")
 
 glimpse(sp500_current)
 ```
@@ -106,14 +105,14 @@ glimpse(sp500_current)
 
 sp500_curr_updated <- sp500_current |>
 mutate(
-	daily_diff = Close - Open,
+	daily_diff = Price - Open,
 	high_minus_low = High - Low,
-  daily_percent_change = ((Close - Open) / Open) * 100,
+  daily_percent_change = ((Price - Open) / Open) * 100,
 	gain = daily_diff > 0
-)
+) |>
+  select(Date, Price, Open, High, Low, daily_percent_change, daily_diff, high_minus_low, gain)
 
 glimpse(sp500_curr_updated)
-view(sp500_curr_updated)
 ```
 
 # Data 3
@@ -228,5 +227,4 @@ sp500_by_company_and_sector <- sp500_by_company_and_sector |>
   )
 
 glimpse(sp500_by_company_and_sector)
-view(sp500_by_company_and_sector)
 ```
