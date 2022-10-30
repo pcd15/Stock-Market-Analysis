@@ -1,6 +1,6 @@
 ---
 title: "The Impacts of Inflation and Interest Rates on the Stock Market"
-subtitle: "Proposal"
+subtitle: "Project Proposal"
 format: html
 editor: visual
 ---
@@ -78,6 +78,7 @@ historical_data <- historical_data |>
   )
 
 glimpse(historical_data)
+view(historical_data)
 ```
 
 # Data 2
@@ -223,8 +224,9 @@ sp500_by_company_and_sector <- sp500_by_company_and_sector |>
   ) |>
   select(
     name, symbol, weight, original_price, 
-    current_price, ytd_return, sector, return_category
+    current_price, ytd_return_num, sector, return_category
   )
 
 glimpse(sp500_by_company_and_sector)
+view(sp500_by_company_and_sector)
 ```
