@@ -10,7 +10,6 @@ editor: visual
 #| message: false
 
 library(tidyverse)
-library(lubridate)
 ```
 
 # Data 1
@@ -135,6 +134,7 @@ mutate(
   select(Date, Price, Open, High, Low, daily_percent_change, daily_diff, high_minus_low, gain)
 
 glimpse(sp500_curr_updated)
+view(sp500_curr_updated)
 ```
 
 # Data 3
