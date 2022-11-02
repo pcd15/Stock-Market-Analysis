@@ -58,6 +58,31 @@ historical_data <- read_csv("data/historical_data.csv")
 view(historical_data)
 ```
 
+```{r}
+#|: inflation-vs-interest-plot
+# Completed with assistance from: https://community.rstudio.com/t/adding-manual-legend-to-ggplot2/41651/5
+
+colors <- c("Inflation" = "blue", "Interest" = "red")
+
+ggplot(historical_data) +
+  geom_line(aes(x = year, y = mean_fed_funds_rate, color = "Interest")) +
+  geom_line(aes(x = year, y = inflation_rate, color = "Inflation")) +
+  theme_minimal() +
+  labs(
+    title = "Interest Rates vs. Inflation Rates",
+    subtitle = "1961 - 2020",
+    x = "Year",
+    y = "Rate (%)",
+    color = "Type"
+  ) +
+  theme(
+    plot.title = element_text(hjust = 0.5),
+    plot.subtitle = element_text(hjust = 0.5),
+    legend.title = element_text(hjust = 0.5)
+  ) +
+  scale_color_manual(values = colors)
+```
+
 Results:
 
 \newpage
