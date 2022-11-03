@@ -1,5 +1,5 @@
 ---
-title: "An Analysis of the Impacts of Inflation and Interest Rates on the Stock Market"
+title: "The Impacts of Inflation and Interest Rates on the Stock Market"
 subtitle: "Report"
 format: html
 editor: visual
@@ -42,20 +42,22 @@ Sources:
 
 All of these sites collected these data by retrieving the data published publicly on stock exchanges, except for the federal-funds rate--this data was collected from the World Bank. In addition, each of these sites updates their data monthly/yearly (although they could update it daily, as they are collecting live data). Each observation represents a month in a year (between 1961 and 2020) and includes the following variables:
 
-| Variable            |  Definition                                          |
-|---------------------|------------------------------------------------------|
-| year                | year in which observation was recorded               |
-| month               | month in which observation was recorded              |
-| monthly_return      | total stock market's monthly return                  |
-| year_to_date_return | S&P 500's yearly return                              |
-| mean_fed_funds_rate | mean annual interest rate set by the Federal Reserve |
-| inflation rate      | mean annual inflation rate                           |
+| Variable            | Definition                                                                                         |
+|---------------------|---------------------------------------------------|
+| year                | year in which observation was recorded                                                             |
+| month               | month in which observation was recorded                                                            |
+| monthly_return      | total stock market's monthly return                                                                |
+| year_to_date_return | S&P 500's yearly return                                                                            |
+| mean_fed_funds_rate | mean annual interest rate set by the Federal Reserve                                               |
+| inflation rate      | mean annual inflation rate                                                                         |
+| decade              | represents decade in which observation was made                                                    |
+| time_period         | categorizes observation as "recent" or "not so recent," with years after 1990 classified as recent |
 
 ```{r message = FALSE}
 #|: loading-historical-data
 
 historical_data <- read_csv("data/historical_data.csv")
-view(historical_data)
+glimpse(historical_data)
 ```
 
 ```{r}
@@ -72,7 +74,7 @@ ggplot(historical_data) +
     title = "Interest Rates vs. Inflation Rates",
     subtitle = "1961 - 2020",
     x = "Year",
-    y = "Rate (%)",
+    y = "Average Annual Rate (%)",
     color = "Type"
   ) +
   theme(
@@ -81,6 +83,131 @@ ggplot(historical_data) +
     legend.title = element_text(hjust = 0.5)
   ) +
   scale_color_manual(values = colors)
+```
+
+```{r}
+#|: interest-inflation-and-market-returns-graph
+
+colors_redux <- c("Inflation" = "blue", "Interest" = "red", "Market Returns" = "dark green")
+
+historical_data |>
+  ggplot() +
+  geom_line(aes(x = year, y = mean_fed_funds_rate, color = "Interest")) +
+  geom_line(aes(x = year, y = inflation_rate, color = "Inflation")) +
+  geom_line(aes(x = year, y = year_to_date_return, color = "Market Returns")) +
+  theme_minimal() +
+  labs(
+    title = "Impacts of Interest Rates and Inflation Rates on Market Returns",
+    subtitle = "1961 - 2020",
+    x = "Year",
+    y = "Average Annual Rate (%)",
+    color = "Type"
+  ) +
+  theme(
+    plot.title = element_text(hjust = 0.5),
+    plot.subtitle = element_text(hjust = 0.5),
+    legend.title = element_text(hjust = 0.5)
+  ) +
+  scale_color_manual(values = colors_redux)
+```
+
+```{r}
+#|: functions-for-finding-min-and-max-years-of-criteria-by-time-period
+
+findMax <- function(sort_by_criteria, num_years, time_period_category) {
+  filter(time_period == time_period_category) |>
+  distinct(year, mean_fed_funds_rate, inflation_rate, year_to_date_return) |>
+  arrange(desc(sort_by_criteria)) |>
+  slice_head(n = num_years) |> 
+  relocate(year, sort_by_criteria)
+}
+
+findMin <- function(df, sort_by_criteria, num_years, time_period_category) {
+  df |>
+
+  distinct(df$year, df$mean_fed_funds_rate, df$inflation_rate, df$year_to_date_return) |>
+  arrange(df$sort_by_criteria) |>
+  slice_head(n = as.numeric(num_years)) |> 
+  relocate(df$year, sort_by_criteria)
+}
+```
+
+```{r}
+#|: top-ten-years-of-highest-interest-by-time-period
+
+historical_data |> 
+  filter(time_period == "not so recent") |>
+  distinct(year, mean_fed_funds_rate, inflation_rate, year_to_date_return) |>
+  arrange(desc(mean_fed_funds_rate)) |>
+  slice_head(n = 10) |> 
+  relocate(year, mean_fed_funds_rate)
+
+historical_data |> 
+  filter(time_period == "recent") |>
+  distinct(year, mean_fed_funds_rate, inflation_rate, year_to_date_return) |>
+  arrange(desc(mean_fed_funds_rate)) |>
+  slice_head(n = 10) |> 
+  relocate(year, mean_fed_funds_rate)
+```
+
+```{r}
+#|: top-ten-years-of-highest-inflation-by-time-period
+
+historical_data |>
+  filter(time_period == "not so recent") |>
+  distinct(year, mean_fed_funds_rate, inflation_rate, year_to_date_return) |>
+  arrange(desc(inflation_rate)) |>
+  slice_head(n = 10)
+
+historical_data |>
+  filter(time_period == "recent") |>
+  distinct(year, mean_fed_funds_rate, inflation_rate, year_to_date_return) |>
+  arrange(desc(inflation_rate)) |>
+  slice_head(n = 10)
+```
+
+```{r}
+#|: top-ten-years-of-highest-returns-by-time-period
+
+historical_data |>
+  filter(time_period == "not so recent") |>
+  distinct(year, mean_fed_funds_rate, inflation_rate, year_to_date_return) |>
+  arrange(desc(year_to_date_return)) |>
+  slice_head(n = 10) |>
+  relocate(year, year_to_date_return)
+
+historical_data |>
+  filter(time_period == "recent") |>
+  distinct(year, mean_fed_funds_rate, inflation_rate, year_to_date_return) |>
+  arrange(desc(year_to_date_return)) |>
+  slice_head(n = 10) |>
+  relocate(year, year_to_date_return)
+```
+
+```{r}
+#|: worst-ten-years-of-highest-interest-by-time-period
+
+historical_data |> 
+  filter(time_period == "not so recent") |>
+  distinct(year, mean_fed_funds_rate, inflation_rate, year_to_date_return) |>
+  arrange(mean_fed_funds_rate) |>
+  slice_head(n = 10) |> 
+  relocate(year, mean_fed_funds_rate)
+
+historical_data |> 
+  filter(time_period == "recent") |>
+  distinct(year, mean_fed_funds_rate, inflation_rate, year_to_date_return) |>
+  arrange(mean_fed_funds_rate) |>
+  slice_head(n = 10) |> 
+  relocate(year, mean_fed_funds_rate)
+
+historical_data |> 
+  filter(time_period == "recent") |>
+  distinct(year, mean_fed_funds_rate, inflation_rate, year_to_date_return) |>
+  arrange(mean_fed_funds_rate) |>
+  slice_head(n = 10) |> 
+  relocate(year, mean_fed_funds_rate) |>
+  summarize(mean_return = mean(year_to_date_return))
 ```
 
 Results:
@@ -96,7 +223,7 @@ Source:
 Investing.com gets their data from financial-data providers, including stock exchanges and/or directly from market makers (who set stock prices to match supply and demand). The data is collected in real time by monitoring transactions (selling, buying, etc.) executed in the stock market, which correspond to increases/decreases in prices. Each observation represents a different day (between 1 October 2020 and 28 October 2022) and includes the following variables:
 
 | Variable             | Definition                                                        |
-|----------------------|-------------------------------------------------------------------|
+|-------------------|-----------------------------------------------------|
 | date                 | day on which observation was recorded                             |
 | price                | closing daily price for the S&P 500                               |
 | open                 | opening daily price for the S&P 500                               |
@@ -108,7 +235,7 @@ Investing.com gets their data from financial-data providers, including stock exc
 #|: loading-current-day-market-data
 
 sp500_curr <- read_csv("data/sp500_curr_updated.csv")
-view(sp500_curr)
+glimpse(sp500_curr)
 ```
 
 Results:
@@ -128,7 +255,7 @@ Sources:
 DATA HUB collected their data from S&P Dow Jones Indices (which, in turn, is collected daily from stock exchanges), and Slickcharts their data directly from the stock exchange. Each observation represents a different company and includes the following variables:
 
 | Variable        | Definition                                                                    |
-|-----------------|-------------------------------------------------------------------------------|
+|----------------|--------------------------------------------------------|
 | name            | name of company in S&P 500                                                    |
 | symbol          | ticker symbol used to identify companies on stock exchange                    |
 | weight          | percentage weighting of company in S&P 500                                    |
@@ -142,7 +269,7 @@ DATA HUB collected their data from S&P Dow Jones Indices (which, in turn, is col
 #|: loading-current-day-company-and-sector-data
 
 sp500_curr_company_and_sector <- read_csv("data/sp500_by_company_and_sector.csv")
-view(sp500_curr_company_and_sector)
+glimpse(sp500_curr_company_and_sector)
 ```
 
 Results:

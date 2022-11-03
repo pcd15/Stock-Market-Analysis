@@ -73,13 +73,28 @@ historical_data <- inner_join(historical_data, sp500_year, by = "year")
 historical_data <- historical_data |>
   mutate(
     mean_fed_funds_rate = round(mean_fed_funds_rate * 100) / 100,
+    time_period = if_else(year > 1990, "recent", "not so recent"),
+    year_character = as.character(year),
+    decade = case_when(
+      str_detect(year_character, "196") ~ "'60s",
+      str_detect(year_character, "197") ~ "'70s",
+      str_detect(year_character, "198") ~ "'80s",
+      str_detect(year_character, "199") ~ "'90s",
+      str_detect(year_character, "197") ~ "'70s",
+      str_detect(year_character, "198") ~ "'80s",
+      str_detect(year_character, "199") ~ "'90s",
+      str_detect(year_character, "200") ~ "2000s",
+      str_detect(year_character, "201") ~ "2010s",
+      str_detect(year_character, "202") ~ "2020",
+    )
   ) |>
   select(
     year, inflation_rate, inflation_annual_change, 
-    mean_fed_funds_rate, year_to_date_return
+    mean_fed_funds_rate, year_to_date_return, time_period, decade
   )
 
 glimpse(historical_data)
+view(historical_data)
 ```
 
 ```{r}
@@ -134,7 +149,6 @@ mutate(
   select(Date, Price, Open, High, Low, daily_percent_change, daily_diff, high_minus_low, gain)
 
 glimpse(sp500_curr_updated)
-view(sp500_curr_updated)
 ```
 
 # Data 3

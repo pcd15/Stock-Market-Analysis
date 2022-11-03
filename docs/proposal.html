@@ -293,43 +293,60 @@ $ monthly_avg_price &lt;dbl&gt; 102.10, 103.23, 104.87, 100.24, 97.59, 97.95, 99
 <span id="cb10-31"><a href="#cb10-31" aria-hidden="true" tabindex="-1"></a>historical_data <span class="ot">&lt;-</span> historical_data <span class="sc">|&gt;</span></span>
 <span id="cb10-32"><a href="#cb10-32" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
 <span id="cb10-33"><a href="#cb10-33" aria-hidden="true" tabindex="-1"></a>    <span class="at">mean_fed_funds_rate =</span> <span class="fu">round</span>(mean_fed_funds_rate <span class="sc">*</span> <span class="dv">100</span>) <span class="sc">/</span> <span class="dv">100</span>,</span>
-<span id="cb10-34"><a href="#cb10-34" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
-<span id="cb10-35"><a href="#cb10-35" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(</span>
-<span id="cb10-36"><a href="#cb10-36" aria-hidden="true" tabindex="-1"></a>    year, inflation_rate, inflation_annual_change, </span>
-<span id="cb10-37"><a href="#cb10-37" aria-hidden="true" tabindex="-1"></a>    mean_fed_funds_rate, year_to_date_return</span>
-<span id="cb10-38"><a href="#cb10-38" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb10-39"><a href="#cb10-39" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-40"><a href="#cb10-40" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(historical_data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb10-34"><a href="#cb10-34" aria-hidden="true" tabindex="-1"></a>    <span class="at">time_period =</span> <span class="fu">if_else</span>(year <span class="sc">&gt;</span> <span class="dv">1990</span>, <span class="st">"recent"</span>, <span class="st">"not so recent"</span>),</span>
+<span id="cb10-35"><a href="#cb10-35" aria-hidden="true" tabindex="-1"></a>    <span class="at">year_character =</span> <span class="fu">as.character</span>(year),</span>
+<span id="cb10-36"><a href="#cb10-36" aria-hidden="true" tabindex="-1"></a>    <span class="at">decade =</span> <span class="fu">case_when</span>(</span>
+<span id="cb10-37"><a href="#cb10-37" aria-hidden="true" tabindex="-1"></a>      <span class="fu">str_detect</span>(year_character, <span class="st">"196"</span>) <span class="sc">~</span> <span class="st">"'60s"</span>,</span>
+<span id="cb10-38"><a href="#cb10-38" aria-hidden="true" tabindex="-1"></a>      <span class="fu">str_detect</span>(year_character, <span class="st">"197"</span>) <span class="sc">~</span> <span class="st">"'70s"</span>,</span>
+<span id="cb10-39"><a href="#cb10-39" aria-hidden="true" tabindex="-1"></a>      <span class="fu">str_detect</span>(year_character, <span class="st">"198"</span>) <span class="sc">~</span> <span class="st">"'80s"</span>,</span>
+<span id="cb10-40"><a href="#cb10-40" aria-hidden="true" tabindex="-1"></a>      <span class="fu">str_detect</span>(year_character, <span class="st">"199"</span>) <span class="sc">~</span> <span class="st">"'90s"</span>,</span>
+<span id="cb10-41"><a href="#cb10-41" aria-hidden="true" tabindex="-1"></a>      <span class="fu">str_detect</span>(year_character, <span class="st">"197"</span>) <span class="sc">~</span> <span class="st">"'70s"</span>,</span>
+<span id="cb10-42"><a href="#cb10-42" aria-hidden="true" tabindex="-1"></a>      <span class="fu">str_detect</span>(year_character, <span class="st">"198"</span>) <span class="sc">~</span> <span class="st">"'80s"</span>,</span>
+<span id="cb10-43"><a href="#cb10-43" aria-hidden="true" tabindex="-1"></a>      <span class="fu">str_detect</span>(year_character, <span class="st">"199"</span>) <span class="sc">~</span> <span class="st">"'90s"</span>,</span>
+<span id="cb10-44"><a href="#cb10-44" aria-hidden="true" tabindex="-1"></a>      <span class="fu">str_detect</span>(year_character, <span class="st">"200"</span>) <span class="sc">~</span> <span class="st">"2000s"</span>,</span>
+<span id="cb10-45"><a href="#cb10-45" aria-hidden="true" tabindex="-1"></a>      <span class="fu">str_detect</span>(year_character, <span class="st">"201"</span>) <span class="sc">~</span> <span class="st">"2010s"</span>,</span>
+<span id="cb10-46"><a href="#cb10-46" aria-hidden="true" tabindex="-1"></a>      <span class="fu">str_detect</span>(year_character, <span class="st">"202"</span>) <span class="sc">~</span> <span class="st">"2020"</span>,</span>
+<span id="cb10-47"><a href="#cb10-47" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb10-48"><a href="#cb10-48" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb10-49"><a href="#cb10-49" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(</span>
+<span id="cb10-50"><a href="#cb10-50" aria-hidden="true" tabindex="-1"></a>    year, inflation_rate, inflation_annual_change, </span>
+<span id="cb10-51"><a href="#cb10-51" aria-hidden="true" tabindex="-1"></a>    mean_fed_funds_rate, year_to_date_return, time_period, decade</span>
+<span id="cb10-52"><a href="#cb10-52" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb10-53"><a href="#cb10-53" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-54"><a href="#cb10-54" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(historical_data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Rows: 60
-Columns: 5
+Columns: 7
 $ year                    &lt;chr&gt; "1961", "1962", "1963", "1964", "1965", "1966"…
 $ inflation_rate          &lt;chr&gt; "1.0707", "1.1988", "1.2397", "1.2789", "1.585…
 $ inflation_annual_change &lt;chr&gt; "-0.39", "0.13", "0.04", "0.04", "0.31", "1.43…
 $ mean_fed_funds_rate     &lt;dbl&gt; 1.95, 2.71, 3.18, 3.50, 4.08, 5.11, 4.22, 5.66…
-$ year_to_date_return     &lt;dbl&gt; 26.89, -8.73, 22.80, 16.48, 12.45, -10.06, 23.…</code></pre>
+$ year_to_date_return     &lt;dbl&gt; 26.89, -8.73, 22.80, 16.48, 12.45, -10.06, 23.…
+$ time_period             &lt;chr&gt; "not so recent", "not so recent", "not so rece…
+$ decade                  &lt;chr&gt; "'60s", "'60s", "'60s", "'60s", "'60s", "'60s"…</code></pre>
 </div>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">view</span>(historical_data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co">#|: combining-data-sets-for-month</span></span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>market_by_month <span class="ot">&lt;-</span> market_by_month <span class="sc">|&gt;</span></span>
-<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
-<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">year =</span> <span class="fu">as.character</span>(year)</span>
-<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>historical_data <span class="ot">&lt;-</span> historical_data <span class="sc">|&gt;</span></span>
-<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(market_by_month, <span class="at">by =</span> <span class="st">"year"</span>)</span>
-<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a>historical_data <span class="ot">&lt;-</span> historical_data <span class="sc">|&gt;</span></span>
-<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">relocate</span>(</span>
-<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a>    year, month, monthly_return, monthly_avg_price</span>
-<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb12-15"><a href="#cb12-15" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb12-16"><a href="#cb12-16" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(historical_data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co">#|: combining-data-sets-for-month</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>market_by_month <span class="ot">&lt;-</span> market_by_month <span class="sc">|&gt;</span></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">year =</span> <span class="fu">as.character</span>(year)</span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>historical_data <span class="ot">&lt;-</span> historical_data <span class="sc">|&gt;</span></span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(market_by_month, <span class="at">by =</span> <span class="st">"year"</span>)</span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a>historical_data <span class="ot">&lt;-</span> historical_data <span class="sc">|&gt;</span></span>
+<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">relocate</span>(</span>
+<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a>    year, month, monthly_return, monthly_avg_price</span>
+<span id="cb13-14"><a href="#cb13-14" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb13-15"><a href="#cb13-15" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb13-16"><a href="#cb13-16" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(historical_data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Rows: 720
-Columns: 8
+Columns: 10
 $ year                    &lt;chr&gt; "1961", "1961", "1961", "1961", "1961", "1961"…
 $ month                   &lt;dbl&gt; 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 1, 2, 3…
 $ monthly_return          &lt;chr&gt; "4.37%", "3.40%", "2.92%", "1.26%", "-1.08%", …
@@ -337,7 +354,9 @@ $ monthly_avg_price       &lt;dbl&gt; 25134.18, 25988.00, 26746.59, 27084.50, 26
 $ inflation_rate          &lt;chr&gt; "1.0707", "1.0707", "1.0707", "1.0707", "1.070…
 $ inflation_annual_change &lt;chr&gt; "-0.39", "-0.39", "-0.39", "-0.39", "-0.39", "…
 $ mean_fed_funds_rate     &lt;dbl&gt; 1.95, 1.95, 1.95, 1.95, 1.95, 1.95, 1.95, 1.95…
-$ year_to_date_return     &lt;dbl&gt; 26.89, 26.89, 26.89, 26.89, 26.89, 26.89, 26.8…</code></pre>
+$ year_to_date_return     &lt;dbl&gt; 26.89, 26.89, 26.89, 26.89, 26.89, 26.89, 26.8…
+$ time_period             &lt;chr&gt; "not so recent", "not so recent", "not so rece…
+$ decade                  &lt;chr&gt; "'60s", "'60s", "'60s", "'60s", "'60s", "'60s"…</code></pre>
 </div>
 </div>
 </section>
@@ -359,9 +378,9 @@ $ year_to_date_return     &lt;dbl&gt; 26.89, 26.89, 26.89, 26.89, 26.89, 26.89, 
 <section id="glimpse-of-data-1" class="level2">
 <h2 class="anchored" data-anchor-id="glimpse-of-data-1">Glimpse of data</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>sp500_current <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"data/S&amp;amp;P 500 Historical Data (5).csv"</span>)</span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(sp500_current)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>sp500_current <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"data/S&amp;amp;P 500 Historical Data (5).csv"</span>)</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(sp500_current)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Rows: 524
 Columns: 7
@@ -375,16 +394,16 @@ $ `Change %` &lt;chr&gt; "2.46%", "-0.61%", "-0.74%", "1.63%", "1.19%", "2.37%",
 </div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>sp500_curr_updated <span class="ot">&lt;-</span> sp500_current <span class="sc">|&gt;</span></span>
-<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="fu">mutate</span>(</span>
-<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">daily_diff =</span> Price <span class="sc">-</span> Open,</span>
-<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">high_minus_low =</span> High <span class="sc">-</span> Low,</span>
-<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">daily_percent_change =</span> ((Price <span class="sc">-</span> Open) <span class="sc">/</span> Open) <span class="sc">*</span> <span class="dv">100</span>,</span>
-<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">gain =</span> daily_diff <span class="sc">&gt;</span> <span class="dv">0</span></span>
-<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>) <span class="sc">|&gt;</span></span>
-<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(Date, Price, Open, High, Low, daily_percent_change, daily_diff, high_minus_low, gain)</span>
-<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(sp500_curr_updated)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>sp500_curr_updated <span class="ot">&lt;-</span> sp500_current <span class="sc">|&gt;</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="fu">mutate</span>(</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">daily_diff =</span> Price <span class="sc">-</span> Open,</span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">high_minus_low =</span> High <span class="sc">-</span> Low,</span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">daily_percent_change =</span> ((Price <span class="sc">-</span> Open) <span class="sc">/</span> Open) <span class="sc">*</span> <span class="dv">100</span>,</span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">gain =</span> daily_diff <span class="sc">&gt;</span> <span class="dv">0</span></span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>) <span class="sc">|&gt;</span></span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(Date, Price, Open, High, Low, daily_percent_change, daily_diff, high_minus_low, gain)</span>
+<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(sp500_curr_updated)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Rows: 524
 Columns: 9
@@ -398,7 +417,6 @@ $ daily_diff           &lt;dbl&gt; 92.80, -27.39, 4.63, 59.67, 35.33, 95.65, -23
 $ high_minus_low       &lt;dbl&gt; 97.16, 56.16, 62.08, 63.41, 69.09, 110.47, 79.56,…
 $ gain                 &lt;lgl&gt; TRUE, FALSE, TRUE, TRUE, TRUE, TRUE, FALSE, FALSE…</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">view</span>(sp500_curr_updated)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 </section>
