@@ -26,7 +26,7 @@ We want to explore the relationship between interest and inflation rates and the
 
 We believe the overall stock market would be hurt by high inflation and corresponding high interest rates, both because consumers' discretionary incomes drop and because companies are disincentivized from borrowing, due to the higher costs associated with taking out a loan. We expect to see this relationship in both our historical analysis and our current-day analysis. Conversely, in times of lower rates, we expect market returns to be higher, on average. Though we expect the stock market as a whole to suffer from high rates, we believe certain sectors of the economy could serve as silver linings for investors' pockets; these industries include: financials, health care, utilities, and consumer staples. We believe these sectors could perform better than the aggregate market because they sell essential goods that consumers must purchase no matter the state of the economy (health care, utilities, and consumer staples). Also, we believe the financials sector will do well because banks are able to charge higher interest rates on their loans (and thus earn greater profits) when interest rates are high.
 
-Note: We are using the S&P 500 as a model of the performance of the entire market, and we are using the federal-funds rate, the interest rate set by the Federal Reserve, to model the general trend of all interest rates. We believed these are logical assumptions, as the S&P 500 includes the 500 largest US-based companies (and thus covers a large portion of the total market) and the federal-funds rate generally serves as a benchmark for all other interest rates. Also, all of our observations feature the performance of the market (S&P 500) or an individual company in the S&P 500 on a specific day/month/year.
+Note: We are using the S&P 500 as a model of the performance of the entire market, and we are using the federal-funds rate, the interest rate at which banks loan to other banks, to model the general trend of all interest rates. We believed these are logical assumptions, as the S&P 500 includes the 500 largest US-based companies (and thus covers a large portion of the total market) and the federal-funds rate generally serves as a benchmark for all other interest rates (because it is indirectly influenced by the Federal Reserve's policies). Also, all of our observations feature the performance of the market (S&P 500) or an individual company in the S&P 500 on a specific day/month/year.
 
 \newpage
 
@@ -43,7 +43,7 @@ Sources:
 All of these sites collected these data by retrieving the data published publicly on stock exchanges, except for the federal-funds rate--this data was collected from the World Bank. In addition, each of these sites updates their data monthly/yearly (although they could update it daily, as they are collecting live data). Each observation represents a month in a year (between 1961 and 2020) and includes the following variables:
 
 | Variable            | Definition                                           |
-|----------------|--------------------------------------------------------|
+|------------------|------------------------------------------------------|
 | year                | year in which observation was recorded               |
 | month               | month in which observation was recorded              |
 | monthly_return      | total stock market's monthly return                  |
@@ -205,7 +205,7 @@ Source:
 Investing.com gets their data from financial-data providers, including stock exchanges and/or directly from market makers (who set stock prices to match supply and demand). The data is collected in real time by monitoring transactions (selling, buying, etc.) executed in the stock market, which correspond to increases/decreases in prices. Each observation represents a different day (between 1 October 2020 and 28 October 2022) and includes the following variables:
 
 | Variable                | Definition                                                        |
-|-------------------------|-------------------------------------------------------------------|
+|--------------------|----------------------------------------------------|
 | date                    | day on which observation was recorded                             |
 | price                   | closing daily price for the S&P 500                               |
 | open                    | opening daily price for the S&P 500                               |
@@ -239,7 +239,7 @@ Sources:
 DATA HUB collected their data from S&P Dow Jones Indices (which, in turn, is collected daily from stock exchanges), and Slickcharts their data directly from the stock exchange. Each observation represents a different company and includes the following variables:
 
 | Variable        | Definition                                                                    |
-|----------------|--------------------------------------------------------|
+|-----------------|-------------------------------------------------------------------------------|
 | name            | name of company in S&P 500                                                    |
 | symbol          | ticker symbol used to identify companies on stock exchange                    |
 | weight          | percentage weighting of company in S&P 500                                    |
@@ -247,7 +247,7 @@ DATA HUB collected their data from S&P Dow Jones Indices (which, in turn, is col
 | current_price   | price of company's stock as of October 2022                                   |
 | ytd_return_num  | company's year-to-date return percentage                                      |
 | sector          | company's industry                                                            |
-| return_category | positive if ytd_return_num \> 0 (positive return for the year), else negative |
+| return category | positive if ytd_return_num \> 0 (positive return for the year), else negative |
 
 ```{r message = FALSE}
 #|: loading-current-day-company-and-sector-data
