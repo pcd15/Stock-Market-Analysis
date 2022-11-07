@@ -20,7 +20,7 @@ Data set 1 comes from 4 sources. The data on the federal-funds rate and inflatio
 
 ## Research question
 
-With data set 1, we would like to answer the following question: How have interest rates and inflation rates historically impacted the stock market? Tracking historical trends can be useful in maximizing profit from the bullish or bearish market, making it significant for investors or fin-tech workers. Our data assess the impact of quantitative variables such as interest rate and inflation rate. It also assesses categorical variables such as time and whether or not interest rate and inflation rate rose or fell (TRUE if they rose, FALSE if they fell). Our hypothesis is that the stock market (generalized by the S&P 500 index) would be hurt by high inflation and corresponding high interest rates (generalized by the federal-funds rate) because consumers' discretionary incomes drop and companies are disincentivized from borrowing due to the higher costs associated with taking out a loan.
+With data set 1, we would like to answer the following question: How have interest rates and inflation rates historically impacted the stock market? Tracking historical trends can be useful in maximizing profit from the bullish or bearish market, making it significant for investors or fin-tech workers. Our data assesses the impact of quantitative variables such as interest rate and inflation rate. It also assesses categorical variables such as time and whether or not interest rate and inflation rate rose or fell (TRUE if they rose, FALSE if they fell). Our hypothesis is that the stock market (generalized by the S&P 500 index) would be hurt by high inflation and corresponding high interest rates (generalized by the federal-funds rate) because consumers' discretionary incomes drop and companies are disincentivized from borrowing due to the higher costs associated with taking out a loan.
 
 ## Glimpse of data
 
@@ -94,7 +94,6 @@ historical_data <- historical_data |>
   )
 
 glimpse(historical_data)
-view(historical_data)
 ```
 
 ```{r}
@@ -124,7 +123,7 @@ glimpse(historical_data)
 
 ## Research question
 
--   With the highest inflation rates ever seen, traders and those who work in the financial industry are even more unsure about how to go about trading in the stock market. Of course it is difficult to ever predict the market, but even more so in times like this. With this dataset, we would like to address the following question: how have high inflation rates and interest rates impacted the S&P 500 this year? And how does this compare to the stock market's historical performance in similar economic times? This question is important as people want to know that when they invest in something, generally their money is safe. In times like these, it's hard to say when it is actually safe to invest in something, and so we want to delve deeper into when you might actually want to be bullish or bearish in times like these. Our hypothesis is the following: while the stock market will fall as inflation rates rise (which are followed by interest rates as well), there are good times to invest even with the problematic circumstances. Our variables are mostly quantitative, analyzing interest rates, inflation rates, stock price rise and falls, while the categorical variables are the date and whether or not there was a net gain or loss (categorized by TRUE if gain and FALSE if not) on the day.
+-   With the highest inflation rates ever seen, traders and those who work in the financial industry are even more unsure about how to go about trading in the stock market. Of course it is difficult to ever predict the market, but even more so in times like this. With this dataset, we would like to address the following question: how have high inflation rates and interest rates impacted the S&P 500 this year? And how does this compare to the stock market's historical performance in similar economic times? This question is important as people want to know that when they invest in something, generally their money is safe. In times like these, it's hard to say when it is actually safe to invest in something, and so we want to dive deeper into when you might actually want to be bullish or bearish in times like these. Our hypothesis is the following: while the stock market will fall as inflation rates rise (which are followed by interest rates as well), there are good times to invest even with the problematic circumstances. Our variables are mostly quantitative, analyzing interest rates, inflation rates, stock price rise and falls, while the categorical variables are the date and whether or not there was a net gain or loss (categorized by TRUE if gain and FALSE if not) on the day.
 
 ## Glimpse of data
 
