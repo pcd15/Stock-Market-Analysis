@@ -231,7 +231,12 @@ sp500_curr|>
 ```{r}
 #| l label: gains-and-losses-per-month
 sp500_curr|>
-  mutate(Date = paste(substr(Date, 1, 2), substr(Date, 9, 10),  sep = "/"))
+  mutate(Date = paste(substr(Date, 1, 2), substr(Date, 9, 10),  sep = "/"))|>
+  group_by(Date)|>
+  count(gain) |>
+  ggplot(aes(x = Date, y = n, color = gain)) +
+  geom_point() +
+  labs( Title = "Number of Days with Gains and Losses by Month")
 
 ```
 
