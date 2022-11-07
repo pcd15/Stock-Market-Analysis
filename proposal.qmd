@@ -94,8 +94,6 @@ historical_data <- historical_data |>
   )
 
 glimpse(historical_data)
-
-
 ```
 
 ```{r}
@@ -115,7 +113,6 @@ historical_data <- historical_data |>
   )
   
 glimpse(historical_data)
-
 ```
 
 # Data 2
