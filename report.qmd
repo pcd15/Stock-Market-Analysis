@@ -231,7 +231,7 @@ sp500_curr|>
 ```{r}
 #| l label: gains-and-losses-per-month
 sp500_curr|>
-  mutate(Date = substring(Date, 1:2, 8:10))
+  mutate(Date = paste(substr(Date, 1, 2), substr(Date, 9, 10),  sep = "/"))
 
 ```
 
