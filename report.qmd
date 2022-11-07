@@ -44,7 +44,9 @@ All of these sites collected these data by retrieving the data published publicl
 
 | Variable \| Definition \|
 
-\|---------------------\|------------------------------------------------------\| \>\>\>\>\>\>\> 4507798e1add3dfaa1fe6d99bae10a84ce7d3f2c \| year \| year in which observation was recorded \| \| month \| month in which observation was recorded \| \| monthly_return \| total stock market's monthly return \| \| year_to_date_return \| S&P 500's yearly return \| \| mean_fed_funds_rate \| mean annual interest rate set by the Federal Reserve \| \| inflation rate \| mean annual inflation rate \| \| decade \| represents decade in which observation was made \|
+\|---------------------\|------------------------------------------------------\|
+
+year \| year in which observation was recorded \| \| month \| month in which observation was recorded \| \| monthly_return \| total stock market's monthly return \| \| year_to_date_return \| S&P 500's yearly return \| \| mean_fed_funds_rate \| mean annual interest rate set by the Federal Reserve \| \| inflation rate \| mean annual inflation rate \| \| decade \| represents decade in which observation was made \|
 
 ```{r message = FALSE}
 #|: loading-historical-data
@@ -266,7 +268,7 @@ Sources:
 DATA HUB collected their data from S&P Dow Jones Indices (which, in turn, is collected daily from stock exchanges), and Slickcharts their data directly from the stock exchange. Each observation represents a different company and includes the following variables:
 
 | Variable        | Definition                                                                    |
-|-----------------|-------------------------------------------------------------------------------|
+|----------------|--------------------------------------------------------|
 | name            | name of company in S&P 500                                                    |
 | symbol          | ticker symbol used to identify companies on stock exchange                    |
 | weight          | percentage weighting of company in S&P 500                                    |
