@@ -43,7 +43,7 @@ Sources:
 All of these sites collected these data by retrieving the data published publicly on stock exchanges, except for the federal-funds rate--this data was collected from the World Bank. In addition, each of these sites updates their data monthly/yearly (although they could update it daily, as they are collecting live data). Each observation represents a month in a year (between 1961 and 2020) and includes the following variables:
 
 | Variable            | Definition                                           |
-|------------------|------------------------------------------------------|
+|---------------------|---------------------------------------------------|
 | year                | year in which observation was recorded               |
 | month               | month in which observation was recorded              |
 | monthly_return      | total stock market's monthly return                  |
@@ -205,7 +205,7 @@ Source:
 Investing.com gets their data from financial-data providers, including stock exchanges and/or directly from market makers (who set stock prices to match supply and demand). The data is collected in real time by monitoring transactions (selling, buying, etc.) executed in the stock market, which correspond to increases/decreases in prices. Each observation represents a different day (between 1 October 2020 and 28 October 2022) and includes the following variables:
 
 | Variable                | Definition                                                        |
-|--------------------|----------------------------------------------------|
+|----------------------|-------------------------------------------------|
 | date                    | day on which observation was recorded                             |
 | price                   | closing daily price for the S&P 500                               |
 | open                    | opening daily price for the S&P 500                               |
@@ -239,7 +239,7 @@ Sources:
 DATA HUB collected their data from S&P Dow Jones Indices (which, in turn, is collected daily from stock exchanges), and Slickcharts their data directly from the stock exchange. Each observation represents a different company and includes the following variables:
 
 | Variable        | Definition                                                                    |
-|-----------------|-------------------------------------------------------------------------------|
+|-------------------|-----------------------------------------------------|
 | name            | name of company in S&P 500                                                    |
 | symbol          | ticker symbol used to identify companies on stock exchange                    |
 | weight          | percentage weighting of company in S&P 500                                    |
@@ -254,6 +254,90 @@ DATA HUB collected their data from S&P Dow Jones Indices (which, in turn, is col
 
 sp500_curr_company_and_sector <- read_csv("data/sp500_by_company_and_sector.csv")
 glimpse(sp500_curr_company_and_sector)
+```
+
+-   How many stocks rose or fell?
+
+```{r}
+sp500_by_company_and_sector <- read_csv("data/sp500_by_company_and_sector.csv")
+```
+
+```{r}
+#|: overall-stocks_performance-barchart
+sp500_by_company_and_sector |>
+  ggplot(aes(x = return_category)) +
+  geom_bar() +
+  labs(
+    title = "Rising and Decreasing Stock Prices",
+    x = "Change in Price (%)",
+    y = "Number of Companies",
+    fill = "cc"
+       )
+```
+
+-   How many of stocks rose or decreased in each sector?
+
+```{r}
+#|: stocks-by_sector_barchart
+sp500_by_company_and_sector |>
+  ggplot(aes(x = return_category)) +
+  geom_bar() +
+  facet_wrap(~sector) +
+  labs(
+    title = "Rising and Decreasing Stock Prices",
+    x = "Change in Price (%)",
+    y = "Number of Companies",
+    fill = "cc"
+       )
+```
+
+-   What is the variation in percentage returns for each sector?
+
+```{r}
+#|: sectors-performance-barchart
+sp500_by_company_and_sector |>
+  #group_by(sector) |>
+  #summarize(sector_perf = mean(ytd_return_num, na.rm = TRUE)) |>
+  #mutate(sector_ret = case_when(
+  #     sector_perf > 0 ~ "Increased",
+  #     sector_perf <= 0 ~ "Decreased")) |>
+  ggplot(aes(y = sector, x = ytd_return_num)) +
+  geom_boxplot() +
+  labs(
+  title = "Rising and Decreasing Stock Prices by Sector",
+     x = "% Returns",
+     y = "Sector",
+     fill = "cc"
+        )
+```
+
+-   What are the top performing sectors?
+
+```{r}
+sp500_by_company_and_sector |>
+  group_by(sector) |>
+  summarize(sector_perf = mean(ytd_return_num, na.rm = TRUE)) |>
+  arrange(desc(sector_perf))
+```
+
+-   What are the top 10 companies with the best returns and what sector are they in?
+
+```{r}
+#|: 10_best_returns
+sp500_by_company_and_sector |>
+  arrange(desc(ytd_return_num)) |>
+  slice_head(n = 10) |>
+  select(name, symbol, ytd_return_num, sector)
+```
+
+-   What are the top 10 companies with the worst returns and what sector are they in?
+
+```{r}
+#|: 10_worst_returns
+sp500_by_company_and_sector |>
+  arrange(ytd_return_num) |>
+  slice_head(n = 10) |>
+  select(name, symbol, ytd_return_num, sector)
 ```
 
 Conclusion:
