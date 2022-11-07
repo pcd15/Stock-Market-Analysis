@@ -1,0 +1,504 @@
+name,symbol,weight,original_price,current_price,ytd_return_num,sector,return_category
+Apple,AAPL,6.940598,177.8875849289685,144,-19.05,Information Technology,negative
+Microsoft,MSFT,5.685,333.0418840784093,236.16,-29.09,Information Technology,negative
+Amazon,AMZN,3.296234,164.96632755409084,115.13,-30.21,Consumer Discretionary,negative
+Alphabet (Class A),GOOGL,1.931161,143.61075176081644,99.91,-30.43,Communication Services,negative
+Tesla,TSLA,1.87443,342.8091505359142,214.29,-37.49,Consumer Discretionary,negative
+Alphabet (Class C),GOOG,1.737528,143.5502283105023,100.6,-29.92,Communication Services,negative
+Berkshire Hathaway,BRK.B,1.625324,295.64755838641184,278.5,-5.8,Financials,negative
+UnitedHealth Group,UNH,1.561198,500.33653846153845,520.35,4,Health Care,positive
+Johnson & Johnson,JNJ,1.395012,169.71352019785655,164.69,-2.96,Health Care,negative
+ExxonMobil,XOM,1.342694,63.07290718144843,103.9,64.73,Energy,positive
+JPMorgan Chase,JPM,1.113873,155.24317121918722,116.51,-24.95,Financials,negative
+Procter & Gamble,PG,0.980973,165.49439347604485,129.88,-21.52,Consumer Staples,negative
+Visa,V,0.978093,215.85041102234572,186.43,-13.63,Information Technology,negative
+Meta Platforms,META,0.968024,337.4366767983789,133.22,-60.52,Communication Services,negative
+Nvidia,NVDA,0.957737,294.91275497665276,120,-59.31,Information Technology,negative
+Chevron Corporation,CVX,0.936579,121.41208711957304,168.35,38.66,Energy,positive
+Home Depot,HD,0.936381,400.7715824719756,275.29,-31.31,Consumer Discretionary,negative
+Eli Lilly & Co,LLY,0.844479,272.24833044768735,330.21,21.29,Health Care,positive
+Mastercard,MA,0.819133,356.17224880382776,297.76,-16.4,Information Technology,negative
+AbbVie,ABBV,0.817142,134.123045228954,143.23,6.79,Health Care,positive
+Pfizer,PFE,0.791707,57.74742199008972,43.12,-25.33,Health Care,negative
+Bank of America,BAC,0.780144,43.29081632653061,33.94,-21.6,Financials,negative
+PepsiCo,PEP,0.772021,172.3357809089105,173.68,0.78,Consumer Staples,positive
+Merck & Co.,MRK,0.766838,75.3422438234103,93.01,23.45,Health Care,positive
+Coca-Cola Company,KO,0.702325,58.73898447335292,55.99,-4.68,Consumer Staples,negative
+Costco,COST,0.67076,565.1913158210388,471.2,-16.63,Consumer Staples,negative
+Thermo Fisher Scientific,TMO,0.657331,643.2370530601858,505.52,-21.41,Health Care,negative
+Walmart,WMT,0.611749,144.26706935605654,133.75,-7.29,Consumer Staples,negative
+Abbott Laboratories,ABT,0.588201,131.47875050274834,98.07,-25.41,Health Care,negative
+McDonald's,MCD,0.58645099999999994,269.2340791738382,250.28,-7.04,Consumer Discretionary,negative
+The Walt Disney Company,DIS,0.574424,155.59924504561184,98.93,-36.42,Communication Services,negative
+Broadcom,AVGO,0.561773,666.3504208110176,435.46,-34.65,Information Technology,negative
+Danaher Corporation,DHR,0.556291,319.62338949454903,258,-19.28,Health Care,negative
+Cisco Systems,CSCO,0.553686,63.71493555724034,42.02,-34.05,Information Technology,negative
+Wells Fargo,WFC,0.54211,46.96025778732546,43.72,-6.9,Financials,negative
+Accenture,ACN,0.533468,415.2276295133438,264.5,-36.3,Information Technology,negative
+Verizon Communications,VZ,0.49811,51.3036164844407,36.6,-28.66,Communication Services,negative
+Bristol Myers Squibb,BMY,0.490111,62.002433512949764,71.34,15.06,Health Care,positive
+Salesforce,CRM,0.488762,256.066876344976,154.69,-39.59,Information Technology,negative
+ConocoPhillips,COP,0.480177,72.20479431784553,121.99,68.95,Energy,positive
+NextEra Energy,NEE,0.471853,91.86567164179104,73.86,-19.6,Utilities,negative
+Linde,LIN,0.453872,345.5032250212973,283.9,-17.83,Materials,negative
+Texas Instruments,TXN,0.44293,191.13073765393705,153.65,-19.61,Information Technology,negative
+Adobe,ADBE,0.438677,579.8335591252177,299.6,-48.33,Information Technology,negative
+Comcast,CMCSA,0.433265,49.721767594108016,30.38,-38.9,Communication Services,negative
+Amgen,AMGN,0.431506,223.074863924333,250,12.07,Health Care,positive
+Philip Morris International,PM,0.428074,95.57512383048982,86.83,-9.15,Consumer Staples,negative
+Raytheon Technologies,RTX,0.412695,87.0653137621909,88.38,1.51,Industrials,positive
+Union Pacific,UNP,0.402692,253.73563218390808,203.09,-19.96,Industrials,negative
+Qualcomm,QCOM,0.399584,185.841144548594,113.01,-39.19,Information Technology,negative
+Lowe's,LOW,0.395081,246.85576665774687,184.5,-25.26,Consumer Discretionary,negative
+United Parcel Service,UPS,0.391146,214.22153767167245,166.9,-22.09,Industrials,negative
+Honeywell,HON,0.387715,207.81268111742207,179.28,-13.73,Industrials,negative
+CVS Health,CVS,0.38618,103.00718132854578,91.8,-10.88,Health Care,negative
+Intuit,INTU,0.368108,632.45710687864,401.8,-36.47,Information Technology,negative
+Elevance Health,ELV,0.367322,470.0523357239775,485,3.18,Health Care,positive
+Nike,NKE,0.362574,164.93216874186953,88.75,-46.19,Consumer Discretionary,negative
+Medtronic,MDT,0.357528,103.50553505535056,84.15,-18.7,Health Care,negative
+AT&T,T,0.3553,18.54454502143878,15.57,-16.04,Communication Services,negative
+IBM,IBM,0.355256,139.47597303761685,128.29,-8.02,Information Technology,negative
+Netflix,NFLX,0.34271,680.6653326663331,272.13,-60.02,Communication Services,negative
+Goldman Sachs,GS,0.342611,380.0097513408094,311.76,-17.96,Financials,negative
+Morgan Stanley,MS,0.340362,96.18188558013098,77.84,-19.07,Financials,negative
+Intel,INTC,0.339856,51.90125423053952,26.07,-49.77,Information Technology,negative
+Charles Schwab Corporation,SCHW,0.335186,84.05246383917627,68.57,-18.42,Financials,negative
+Deere & Co.,DE,0.330081,343.06030104349435,371.5,8.29,Industrials,positive
+S&P Global,SPGI,0.327904,465.7514904298714,296.87,-36.26,Financials,negative
+Lockheed Martin,LMT,0.3262,362.1069958847736,439.96,21.5,Industrials,positive
+Oracle,ORCL,0.325774,86.6120218579235,66.57,-23.14,Information Technology,negative
+Starbucks,SBUX,0.325545,114.76660092044709,87.28,-23.95,Consumer Discretionary,negative
+PayPal,PYPL,0.316084,188.56953349546762,85.29,-54.77,Information Technology,negative
+Automatic Data Processing,ADP,0.31237,243.91984052040706,232.48,-4.69,Information Technology,negative
+Prologis,PLD,0.310896,163.11436297121045,102.55,-37.13,Real Estate,negative
+Caterpillar,CAT,0.310026,208.04235188105426,184.7,-11.22,Industrials,negative
+Advanced Micro Devices,AMD,0.29934500000000003,141.96273291925465,57.14,-59.75,Information Technology,negative
+American Tower,AMT,0.29379,281.9219931781106,190.1,-32.57,Real Estate,negative
+Cigna,CI,0.286764,227.79862414008753,291.4,27.92,Health Care,positive
+BlackRock,BLK,0.280261,907.6583674755751,576,-36.54,Financials,negative
+American Express,AXP,0.280168,160.97041685342896,143.65,-10.76,Financials,negative
+Citigroup,C,0.273447,59.30789221720695,43.36,-26.89,Financials,negative
+Gilead Sciences,GILD,0.268155,71.87533934194809,66.19,-7.91,Health Care,negative
+T-Mobile US,TMUS,0.262238,115.62180579216354,135.74,17.4,Communication Services,positive
+Chubb,CB,0.260107,195.15344125533818,196.5,0.69,Financials,positive
+Altria Group,MO,0.257956,47.32719381814333,44.71,-5.53,Consumer Staples,negative
+Mondelez International,MDLZ,0.255876,65.56818181818183,57.7,-12,Consumer Staples,negative
+Marsh & McLennan,MMC,0.251404,173.23694956406578,156.97,-9.39,Financials,negative
+TJX Companies,TJX,0.250336,75.71282517323641,66.65,-11.97,Consumer Discretionary,negative
+Regeneron Pharmaceuticals,REGN,0.247848,619.8619363858791,709.37,14.44,Health Care,positive
+General Electric,GE,0.247247,94.34794227685728,70.61,-25.16,Industrials,negative
+Vertex Pharmaceuticals,VRTX,0.2463,213.62206452556882,292,36.69,Health Care,positive
+Boeing,BA,0.245281,202.9610085019056,138.46,-31.78,Industrials,negative
+Northrop Grumman,NOC,0.235556,389.44474146490484,509.9,30.93,Industrials,positive
+Analog Devices,ADI,0.234712,172.52117588440458,138.5,-19.72,Information Technology,negative
+Target Corporation,TGT,0.233269,229.61436561672065,156,-32.06,Consumer Discretionary,negative
+EOG Resources,EOG,0.232481,88.68284701390783,130.08,46.68,Energy,positive
+Stryker Corporation,SYK,0.231535,269.6155281821575,216.69,-19.63,Health Care,negative
+ServiceNow,NOW,0.230608,646.7163907585956,355.5,-45.03,Information Technology,negative
+Booking Holdings,BKNG,0.225525,NA,NA,-26.06,Consumer Discretionary,negative
+Zoetis,ZTS,0.225059,240.3147306943543,148.13,-38.36,Health Care,negative
+Progressive Corporation,PGR,0.224351,104.98463639467396,123,17.16,Financials,positive
+Duke Energy,DUK,0.223002,103.14196603904357,89.29,-13.43,Utilities,negative
+Southern Company,SO,0.222396,67.84478238070268,64.69,-4.65,Utilities,negative
+Intuitive Surgical,ISRG,0.22179,392.896884272997,211.85,-46.08,Health Care,negative
+Becton Dickinson,BDX,0.210444,246.1563624468433,225.75,-8.29,Health Care,negative
+Applied Materials,AMAT,0.209396,162.58104998954192,77.73,-52.19,Information Technology,negative
+PNC Financial Services,PNC,0.204818,194.78685156651258,151.7,-22.12,Financials,negative
+3M,MMM,0.20472,173.60600490196077,113.33,-34.72,Industrials,negative
+Humana,HUM,0.202401,458.62228386500226,496,8.15,Health Care,positive
+CME Group,CME,0.199261,226.53382275825905,172.8,-23.72,Financials,negative
+Fiserv,FISV,0.198843,102.40333262123478,95.87,-6.38,Information Technology,negative
+Schlumberger,SLB,0.1955,31.470608551495474,45.56,44.77,Energy,positive
+Colgate-Palmolive,CL,0.194933,83.9672322995904,71.75,-14.55,Consumer Staples,negative
+CSX,CSX,0.194632,36.76548438327157,27.78,-24.44,Industrials,negative
+Waste Management,WM,0.1939,166.85311787859956,161.08,-3.46,Industrials,negative
+Aon,AON,0.188989,301.2008148386405,280.93,-6.73,Financials,negative
+Boston Scientific,BSX,0.187332,42.275077559462254,40.88,-3.3,Health Care,negative
+Pioneer Natural Resources,PXD,0.186712,186.69393826701378,251.01,34.45,Energy,positive
+Micron Technology,MU,0.185507,93.79542634284702,52.91,-43.59,Information Technology,negative
+U.S. Bancorp,USB,0.185153,54.199475065616795,41.3,-23.8,Financials,negative
+Crown Castle,CCI,0.18423900000000001,203.44287949921753,130,-36.1,Real Estate,negative
+Truist Financial,TFC,0.183483,57.24314837316053,42.4,-25.93,Financials,negative
+Eaton Corporation,ETN,0.179224,171.72523961661344,139.75,-18.62,Industrials,negative
+Dominion Energy,D,0.17724,76.74144037780401,65,-15.3,Utilities,negative
+Illinois Tool Works,ITW,0.174281,276.45181876196557,216.6,-21.65,Industrials,negative
+Marathon Petroleum,MPC,0.172558,64.42643317754245,108.9,69.03,Energy,positive
+Dollar General,DG,0.172366,234.44168734491313,236.2,0.75,Consumer Discretionary,positive
+Air Products & Chemicals,APD,0.171435,303.1006778809942,241.45,-20.34,Materials,negative
+Edwards Lifesciences,EW,0.17132,129.09282066686694,85.95,-33.42,Health Care,negative
+General Dynamics,GD,0.170854,211.88553370786516,241.38,13.92,Industrials,positive
+Norfolk Southern,NSC,0.167074,346.27745045527587,258.6,-25.32,Industrials,negative
+McKesson Corporation,MCK,0.165983,248.42264774762367,360.66,45.18,Health Care,positive
+Intercontinental Exchange,ICE,0.165477,135.04941731818852,91.55,-32.21,Financials,negative
+Activision Blizzard,ATVI,0.164588,66.49479790074578,72.22,8.61,Communication Services,positive
+Occidental Petroleum,OXY,0.161605,29.341317365269457,68.6,133.8,Energy,positive
+Sherwin-Williams,SHW,0.160464,343.226233852269,207.24,-39.62,Materials,negative
+General Motors,GM,0.159284,57.68572406710031,33.7,-41.58,Consumer Discretionary,negative
+Estée Lauder Companies,EL,0.159137,366.1678706570347,212.89,-41.86,Consumer Staples,negative
+ADM,ADM,0.157511,67.99630371168949,88.3,29.86,Consumer Staples,positive
+Equinix,EQIX,0.156839,822.7963049945201,525.52,-36.13,Real Estate,negative
+Emerson Electric Company,EMR,0.154589,92.51452660362311,81.2,-12.23,Industrials,negative
+Fidelity National Information Services,FIS,0.152106,107.25468269499582,76.73,-28.46,Information Technology,negative
+Ford,F,0.15201,20.873618784530386,12.09,-42.08,Consumer Discretionary,negative
+O'Reilly Automotive,ORLY,0.151397,702.0555767034641,737.72,5.08,Consumer Discretionary,positive
+Public Storage,PSA,0.150249,353.7638331509181,290.9,-17.77,Real Estate,negative
+General Mills,GIS,0.149209,67.34676308539946,78.23,16.16,Consumer Staples,positive
+Valero Energy,VLO,0.148365,79.10657306955967,123.96,56.7,Energy,positive
+Phillips 66,PSX,0.147489,73.84650180940893,97.95,32.64,Energy,positive
+Devon Energy,DVN,0.146169,45.488982890333986,72.05,58.39,Energy,positive
+Sempra Energy,SRE,0.145768,130.75593559537887,143.74,9.93,Utilities,positive
+L3Harris Technologies,LHX,0.145491,214.15953132041463,237.61,10.95,Industrials,positive
+HCA Healthcare,HCA,0.144668,255.88990825688072,209.19,-18.25,Health Care,negative
+MetLife,MET,0.144438,62.45015301864046,67.34,7.83,Financials,positive
+Moderna,MRNA,0.144328,234.5643939393939,123.85,-47.2,Health Care,negative
+AutoZone,AZO,0.144057,NA,NA,10.04,Consumer Discretionary,positive
+Synopsys,SNPS,0.142696,364.342453662842,288.96,-20.69,Information Technology,negative
+American Electric Power,AEP,0.141832,88.37735073476517,86,-2.69,Utilities,negative
+Corteva,CTVA,0.141528,47.088160822527435,61.37,30.33,Materials,positive
+Lam Research,LRCX,0.141128,752.5681107637338,337,-55.22,Information Technology,negative
+Autodesk,ADSK,0.139954,276.3239002521715,197.24,-28.62,Information Technology,negative
+Centene Corporation,CNC,0.137746,82.83557597637021,75.72,-8.59,Health Care,negative
+Chipotle Mexican Grill,CMG,0.137045,NA,NA,-11.68,Consumer Discretionary,negative
+Cadence Design Systems,CDNS,0.136409,184.13991375179683,153.72,-16.52,Information Technology,negative
+Amphenol,APH,0.132856,90.5516724912631,72.55,-19.88,Information Technology,negative
+Marriott International,MAR,0.131562,165.1426682824722,149.9,-9.23,Consumer Discretionary,negative
+Freeport-McMoRan,FCX,0.130351,41.74600849567892,28.5,-31.73,Materials,negative
+American International Group,AIG,0.127974,57.020862609447626,52.75,-7.49,Financials,negative
+Agilent Technologies,A,0.126893,155.61723180885727,128.96,-17.13,Health Care,negative
+Roper Technologies,ROP,0.126817,486.6745283018869,371.43,-23.68,Industrials,negative
+The Travelers Companies,TRV,0.126651,162.79898696182346,173.56,6.61,Financials,positive
+Biogen,BIIB,0.125962,235.2507767421216,265.01,12.65,Health Care,positive
+Sysco,SYY,0.125516,78.0373355095379,76.5,-1.97,Consumer Staples,negative
+Kimberly-Clark,KMB,0.124741,142.25247524752476,114.94,-19.2,Consumer Staples,negative
+Moody's Corporation,MCO,0.124183,384.1194219469588,241.88,-37.03,Financials,negative
+Capital One Financial,COF,0.122304,139.43764568764567,95.71,-31.36,Financials,negative
+KLA Corporation,KLAC,0.121933,438.4541526644263,273.99,-37.51,Information Technology,negative
+DexCom,DXCM,0.121361,134.33042514887134,97,-27.79,Health Care,negative
+Motorola Solutions,MSI,0.120901,267.90882778581766,222.15,-17.08,Information Technology,negative
+Exelon,EXC,0.11918,40.41899747724032,36.85,-8.83,Utilities,negative
+FedEx,FDX,0.118897,253.102763528049,152.95,-39.57,Industrials,negative
+Allstate Corp,ALL,0.118803,115.74034426650682,135.15,16.77,Financials,positive
+Williams Companies,WMB,0.118675,26.41573994867408,30.88,16.9,Energy,positive
+Arthur J. Gallagher & Co.,AJG,0.11855,171.5152682785859,178.05,3.81,Financials,positive
+NXP,NXPI,0.118305,228.37750484809305,141.32,-38.12,Information Technology,negative
+Johnson Controls,JCI,0.117285,80.07639419404124,52.41,-34.55,Industrials,negative
+Ecolab,ECL,0.11681,232.31939163498097,146.64,-36.88,Materials,negative
+Charter Communications,CHTR,0.116658,641.3560666137986,323.5,-49.56,Communication Services,negative
+Realty Income Corporation,O,0.115849,70.83028083028083,58.01,-18.1,Real Estate,negative
+Prudential Financial,PRU,0.11573,106.81641276548426,96.06,-10.07,Financials,negative
+TE Connectivity,TEL,0.115547,160.08859674192624,112.03,-30.02,Information Technology,negative
+Constellation Brands,STZ,0.115439,251.81163434903047,227.26,-9.75,Consumer Staples,negative
+Paychex,PAYX,0.11509,167.54153623886347,139.16,-16.94,Information Technology,negative
+Hilton Worldwide,HLT,0.113562,155.99223677826296,128.6,-17.56,Consumer Discretionary,negative
+Kinder Morgan,KMI,0.112721,15.84255622991789,17.75,12.04,Energy,positive
+Twitter,TWTR,0.111393,43.34362741006594,51.93,19.81,Communication Services,positive
+Monster Beverage,MNST,0.111347,93.66309308990553,88.24,-5.79,Consumer Staples,negative
+Trane Technologies,TT,0.111341,195.5801104972375,145.14,-25.79,Industrials,negative
+Hess Corporation,HES,0.111231,76.51902829245338,130.09,70.01,Energy,positive
+Aflac,AFL,0.110742,58.3430345362825,60.14,3.08,Financials,positive
+Cintas Corporation,CTAS,0.110647,441.14405378595836,400.25,-9.27,Industrials,negative
+IQVIA,IQV,0.110002,273.05984999234653,178.39,-34.67,Health Care,negative
+Parker-Hannifin,PH,0.109151,316.61897949451594,265.58,-16.12,Industrials,negative
+Enphase Energy,ENPH,0.108954,177.53037910208832,243.98,37.43,Information Technology,positive
+Fortinet,FTNT,0.107967,71.81095775826013,51.51,-28.27,Information Technology,negative
+Xcel Energy,XEL,0.107065,67.12810371346957,61.1,-8.98,Utilities,negative
+The Hershey Company,HSY,0.106813,195.50600051068173,229.7,17.49,Consumer Staples,positive
+Dow,DOW,0.106572,55.03240797358445,45,-18.23,Materials,negative
+M&T Bank,MTB,0.106417,132.27899432278994,163.1,23.3,Financials,positive
+Newmont,NEM,0.105632,60.11302795954788,40.42,-32.76,Materials,negative
+MSCI,MSCI,0.105603,598.0653869226154,398.79,-33.32,Financials,negative
+Microchip Technology,MCHP,0.104423,89.60047003525266,61,-31.92,Information Technology,negative
+Keurig Dr Pepper,KDP,0.104306,36.29202689721422,37.78,4.1,Consumer Staples,positive
+Electronic Arts,EA,0.104267,134.71613386079332,126,-6.47,Communication Services,negative
+Nucor,NUE,0.104263,113.25323305512244,123.48,9.03,Materials,positive
+Illumina,ILMN,0.1036,372.85323609845034,204.51,-45.15,Health Care,negative
+Simon Property Group,SPG,0.102771,158.75303643724695,98.03,-38.25,Real Estate,negative
+ResMed,RMD,0.101861,256.18752974773923,215.3,-15.96,Health Care,negative
+Yum! Brands,YUM,0.101447,137.58096661684107,110.45,-19.72,Consumer Discretionary,negative
+Cognizant Technology Solutions,CTSH,0.101131,87.5073056691993,59.89,-31.56,Information Technology,negative
+Cummins,CMI,0.100924,218.9362945645821,224.76,2.66,Industrials,positive
+Global Payments,GPN,0.100795,133.98739445831848,112.67,-15.91,Information Technology,negative
+Paccar,PCAR,0.099832,88.30284157259634,90.74,2.76,Industrials,positive
+Carrier Global,CARR,0.097813,52.10573476702508,34.89,-33.04,Industrials,negative
+Consolidated Edison,ED,0.095487,84.86247741417385,84.54,-0.38,Utilities,negative
+Ross Stores,ROST,0.094682,112.93196544276458,83.66,-25.92,Consumer Discretionary,negative
+Dollar Tree,DLTR,0.094397,142.35447873730772,141.6,-0.53,Consumer Discretionary,negative
+BNY Mellon,BK,0.094031,56.715116279069775,39.02,-31.2,Financials,negative
+Vici Properties,VICI,0.094024,29.077316545347237,29.56,1.66,Real Estate,positive
+Albemarle Corporation,ALB,0.093293,238.25004644250419,256.5,7.66,Materials,positive
+CoStar Group,CSGP,0.092927,77.89031354379917,72.29,-7.19,Real Estate,negative
+Ameriprise Financial,AMP,0.09292,296.93292888439504,264.3,-10.99,Financials,negative
+Keysight Technologies,KEYS,0.092796,206.25160133230847,161,-21.94,Information Technology,negative
+Kraft Heinz,KHC,0.091924,35.76191898079029,35.93,0.47,Consumer Staples,positive
+Idexx Laboratories,IDXX,0.091154,645.6697459584295,335.49,-48.04,Health Care,negative
+Warner Bros Discovery,WBD,0.090424,23.06286549707602,12.62,-45.28,Communication Services,negative
+Kroger,KR,0.090295,44.966442953020135,42.88,-4.64,Consumer Staples,negative
+Otis Worldwide,OTIS,0.090218,86.50482902636388,66.28,-23.38,Industrials,negative
+Welltower,WELL,0.089946,83.87051173310716,59.33,-29.26,Real Estate,negative
+SBA Communications,SBAC,0.089667,380.3133001958126,252.49,-33.61,Real Estate,negative
+Constellation Energy,CEG,0.089396,36.876533115290265,85.69,132.37,Utilities,positive
+Baxter International,BAX,0.089301,85.40991199629457,55.32,-35.23,Health Care,negative
+Public Service Enterprise Group,PEG,0.089238,65.66019650131798,54.8,-16.54,Utilities,negative
+TransDigm Group,TDG,0.089103,619.2817932296432,541.5,-12.56,Industrials,negative
+Digital Realty Trust,DLR,0.089044,175.34246575342465,96,-45.25,Real Estate,negative
+DuPont,DD,0.088418,78.41874084919473,53.56,-31.7,Materials,negative
+Republic Services,RSG,0.087831,139.79549248747912,133.98,-4.16,Industrials,negative
+PPG Industries,PPG,0.087794,168.02067946824224,113.75,-32.3,Materials,negative
+WEC Energy Group,WEC,0.087779,118.75276426360018,107.4,-9.56,Utilities,negative
+Verisk Analytics,VRSK,0.087313,222.81278779108013,169.36,-23.99,Industrials,negative
+Ametek,AME,0.087287,145.64868534748794,117.99,-18.99,Industrials,negative
+Halliburton,HAL,0.087103,24.115924618965384,32.12,33.19,Energy,positive
+Rockwell Automation,ROK,0.087043,344.6228638774308,233.93,-32.12,Industrials,negative
+Fastenal,FAST,0.086504,61.11710739341607,45.3,-25.88,Industrials,negative
+Mettler Toledo,MTD,0.086347,NA,NA,-29.3,Health Care,negative
+ON Semiconductor,ON,0.084162,67.96778883793759,60.77,-10.59,Materials,negative
+Discover Financial Services,DFS,0.084159,112.9140662506001,94.08,-16.68,Financials,negative
+Eversource Energy,ES,0.084082,112.68889421923723,93.96,-16.62,Utilities,negative
+Arista Networks,ANET,0.083806,142.1750304341945,105.11,-26.07,Information Technology,negative
+Diamondback Energy,FANG,0.080664,111.03930662206342,146.05,31.53,Energy,positive
+Old Dominion Freight Line,ODFL,0.078729,346.86499466382065,260.01,-25.04,Industrials,negative
+AvalonBay Communities,AVB,0.078678,246.34077021458006,173.35,-29.63,Real Estate,negative
+Oneok,OKE,0.078662,58.78192949123918,55.69,-5.26,Energy,negative
+Baker Hughes,BKR,0.078273,25.522388059701495,25.65,0.5,Energy,positive
+American Water Works,AWK,0.077562,187.78026905829597,134,-28.64,Utilities,negative
+W. W. Grainger,GWW,0.077019,503.0220315851043,516,2.58,Industrials,positive
+Corning,GLW,0.076381,37.13509041484458,31.42,-15.39,Information Technology,negative
+Copart,CPRT,0.076258,149.46787013336925,110.95,-25.77,Industrials,negative
+T. Rowe Price,TROW,0.075903,192.1813031161473,101.76,-47.05,Financials,negative
+Fifth Third Bancorp,FITB,0.075662,41.54903185509057,33.26,-19.95,Financials,negative
+Aptiv,APTV,0.075601,160.80449017773623,85.95,-46.55,Consumer Discretionary,negative
+Walgreens Boots Alliance,WBA,0.075318,52.757642609517795,33.48,-36.54,Consumer Staples,negative
+International Flavors & Fragrances,IFF,0.074919,150.41443198439785,92.55,-38.47,Materials,negative
+Coterra,CTRA,0.07486,19.457889641819943,30.15,54.95,Energy,positive
+Willis Towers Watson,WTW,0.074753,235.50135501355012,208.56,-11.44,Communication Services,negative
+State Street Corporation,STT,0.074682,90.9484625378952,63,-30.73,Financials,negative
+HP,HPQ,0.074395,38.13946631284092,25.87,-32.17,Information Technology,negative
+Gartner,IT,0.07341,329.9562010142923,286.27,-13.24,Information Technology,negative
+D. R. Horton,DHI,0.073188,101.6037170263789,67.79,-33.28,Consumer Discretionary,negative
+Genuine Parts,GPC,0.072912,138.75360041895786,158.97,14.57,Consumer Discretionary,positive
+Extra Space Storage,EXR,0.072485,220.14063951174205,165.92,-24.63,Real Estate,negative
+CBRE,CBRE,0.072172,104.74058060531192,67.83,-35.24,Real Estate,negative
+Zimmer Biomet,ZBH,0.072161,125.98461896993709,108.12,-14.18,Health Care,negative
+Tractor Supply Company,TSCO,0.07203,230.9375367603811,196.32,-14.99,Consumer Discretionary,negative
+PG&E,PCG,0.071911,12.053877831159918,14.05,16.56,Energy,positive
+AmerisourceBergen,ABC,0.071607,131.05676049838488,142,8.35,Health Care,positive
+Weyerhaeuser,WY,0.070914,38.666311726341014,29.05,-24.87,Real Estate,negative
+Equity Residential,EQR,0.070202,88.58415703744954,63.63,-28.17,Real Estate,negative
+Fortive,FTV,0.070029,75.06805246226183,60.67,-19.18,Industrials,negative
+CDW,CDW,0.069425,202.6044975225511,159.47,-21.29,Information Technology,negative
+Edison International,EIX,0.069119,66.50421966004993,55.95,-15.87,Utilities,negative
+The Hartford,HIG,0.069067,70.27697395618024,68,-3.24,Financials,negative
+First Republic Bank,FRC,0.068514,196.95207892882314,111.79,-43.24,Financials,negative
+eBay,EBAY,0.067683,65.20988080842979,37.75,-42.11,Consumer Discretionary,negative
+DTE Energy,DTE,0.067507,118.16599586642008,108.63,-8.07,Utilities,negative
+Ulta Beauty,ULTA,0.067468,393.2600285074323,386.26,-1.78,Consumer Discretionary,negative
+Entergy,ETR,0.067102,109.31169679808322,100.37,-8.18,Utilities,negative
+Molina Healthcare,MOH,0.066937,312.43697478991595,353.21,13.05,Health Care,positive
+Vulcan Materials,VMC,0.06679,202.3401751862989,154.77,-23.51,Materials,negative
+United Rentals,URI,0.06611,322.70221622229724,286.85,-11.11,Industrials,negative
+LyondellBasell,LYB,0.065308,90.82547712117729,79,-13.02,Materials,negative
+Delta Air Lines,DAL,0.065257,39.46793002915452,32.49,-17.68,Industrials,negative
+Regions Financial Corporation,RF,0.065243,21.034621578099838,20.9,-0.64,Financials,negative
+Ameren Corp,AEE,0.064801,88.11126065500225,78.56,-10.84,Utilities,negative
+FirstEnergy,FE,0.064801,41.15483223720878,36.92,-10.29,Utilities,negative
+Huntington Bancshares,HBAN,0.064794,14.885245901639342,13.62,-8.5,Financials,negative
+Equifax,EFX,0.064092,283.6803105151729,160.79,-43.32,Industrials,negative
+CF Industries,CF,0.063904,71.4447111989832,101.18,41.62,Materials,positive
+Raymond James Financial,RJF,0.063713,97.70395701025893,100,2.35,Financials,positive
+Alexandria Real Estate Equities,ARE,0.063366,217.68628104684115,130.59,-40.01,Real Estate,negative
+Martin Marietta Materials,MLM,0.063344,431.00412654745526,313.34,-27.3,Materials,negative
+Lennar,LEN,0.062724,109.44394076760351,72.43,-33.82,Consumer Discretionary,negative
+Southwest Airlines,LUV,0.062477,42.57234726688103,33.1,-22.25,Industrials,negative
+EPAM Systems,EPAM,0.062398,651.78922532442,331.5,-49.14,Information Technology,negative
+Nasdaq,NDAQ,0.062054,70.97405775819873,58,-18.28,Financials,negative
+Invitation Homes,INVH,0.061759,44.26586761100518,32.5,-26.58,Real Estate,negative
+LabCorp,LH,0.061623,308.0395338545508,208.82,-32.21,Health Care,negative
+Cardinal Health,CAH,0.061599,51.417328572469586,70.56,37.23,Health Care,positive
+Tyson Foods,TSN,0.061382,86.08384186786947,64.89,-24.62,Consumer Staples,negative
+SVB Financial,SIVB,0.061326,659.6794081381012,321,-51.34,Financials,negative
+West Pharmaceutical Services,WST,0.061321,439.2255288633919,245,-44.22,Health Care,negative
+Take-Two Interactive,TTWO,0.060944,179.44322344322345,122.47,-31.75,Communication Services,negative
+Quanta Services,PWR,0.060491,113.93090409075283,132.57,16.36,Industrials,positive
+Ingersoll Rand,IR,0.060372,60.934210526315795,46.31,-24,Industrials,negative
+Ansys,ANSS,0.05992,395.9881678683675,214.19,-45.91,Information Technology,negative
+Principal Financial Group,PFG,0.059842,71.32379572618616,78.77,10.44,Financials,positive
+Marathon Oil,MRO,0.059748,16.891086749285034,28.35,67.84,Energy,positive
+PPL,PPL,0.059741,29.990528060620406,25.33,-15.54,Utilities,negative
+Kellogg's,K,0.05918,64.85799438990182,73.99,14.08,Consumer Staples,positive
+McCormick & Company,MKC,0.058921,96.71112262074324,74.69,-22.77,Consumer Staples,negative
+Citizens Financial Group,CFG,0.058135,46.968534151957016,36.72,-21.82,Financials,negative
+Northern Trust,NTRS,0.057878,108.54607508532423,79.51,-26.75,Financials,negative
+Church & Dwight,CHD,0.057218,102.19322598556359,73.62,-27.96,Consumer Staples,negative
+Dover Corporation,DOV,0.0563,178.5756327251324,121.36,-32.04,Industrials,negative
+The Mosaic Company,MOS,0.056132,38.895762449737084,50.3,29.32,Materials,positive
+Waters Corporation,WAT,0.055169,363.9417399291431,277.36,-23.79,Health Care,negative
+Mid-America Apartments,MAA,0.055034,224.74116930572472,147.61,-34.32,Real Estate,negative
+Verisign,VRSN,0.054604,252.7411519777932,182.1,-27.95,Information Technology,negative
+Steris,STE,0.0544,238.17870884993587,167.13,-29.83,Health Care,negative
+Amcor,AMCR,0.053891,11.752090928586746,10.96,-6.74,Materials,negative
+CenterPoint Energy,CNP,0.053852,27.950310559006212,27,-3.4,Utilities,negative
+Broadridge Financial Solutions,BR,0.053568,180.23109771414218,143.5,-20.38,Information Technology,negative
+Xylem,XYL,0.053457,119.04151717068173,92.9,-21.96,Industrials,negative
+Hewlett Packard Enterprise,HPE,0.053285,15.439284401421393,12.6,-18.39,Information Technology,negative
+Conagra Brands,CAG,0.053181,34.151349237387564,34.93,2.28,Consumer Staples,positive
+Clorox,CLX,0.052617,173.96464972261643,134.84,-22.49,Consumer Staples,negative
+Darden Restaurants,DRI,0.052341,150.1467599909686,133,-11.42,Consumer Discretionary,negative
+PerkinElmer,PKI,0.052272,196.88463911165942,127.66,-35.16,Health Care,negative
+CMS Energy,CMS,0.052103,63.979298447383556,55.63,-13.05,Utilities,negative
+Cincinnati Financial,CINF,0.051738,113.31165190086352,101.04,-10.83,Financials,negative
+AES Corp,AES,0.051543,23.005676725425754,23.1,0.41,Utilities,positive
+Teledyne Technologies,TDY,0.05129,439.871260886028,348.51,-20.77,Industrials,negative
+Hologic,HOLX,0.051186,74.57118867698213,62.17,-16.63,Health Care,negative
+Wabtec,WAB,0.050815,91.87763713080169,87.1,-5.2,Industrials,negative
+Ball,BALL,0.050409,94.98751680430189,49.46,-47.93,Materials,negative
+Synchrony Financial,SYF,0.050235,44.96797153024911,31.59,-29.75,Financials,negative
+Paycom,PAYC,0.050185,404.31436861359913,320.5,-20.73,Information Technology,negative
+KeyCorp,KEY,0.050179,22.476501838986515,16.5,-26.59,Financials,negative
+IDEX Corporation,IEX,0.049643,233.96010089429032,204.06,-12.78,Industrials,negative
+FactSet Research Systems,FDS,0.049188,482.24676404227523,406.1,-15.79,Information Technology,negative
+Quest Diagnostics,DGX,0.049032,169.10547396528702,126.66,-25.1,Health Care,negative
+Align Technology,ALGN,0.048894,640.0625978090767,204.5,-68.05,Health Care,negative
+JM Smucker,SJM,0.04883,137.35319392724145,143.85,4.73,Consumer Staples,positive
+EQT,EQT,0.048824,22.039645279081903,42.25,91.7,Utilities,positive
+Expeditors,EXPD,0.048543,131.764876212538,91.01,-30.93,Industrials,negative
+Targa Resources,TRGP,0.048528,52.57547463429815,67.57,28.52,Utilities,positive
+Ventas,VTR,0.048312,49.79208584842388,37.12,-25.45,Real Estate,negative
+Essex Property Trust,ESS,0.048095,342.9261663898536,227.12,-33.77,Real Estate,negative
+Jacobs Engineering Group,J,0.047783,137.26551226551229,114.15,-16.84,Industrials,negative
+FMC Corporation,FMC,0.047434,108.93557422969188,116.67,7.1,Materials,positive
+Expedia Group,EXPE,0.046898,177.38073310001843,96.3,-45.71,Consumer Discretionary,negative
+W. R. Berkley Corporation,WRB,0.046875,54.66646266829865,71.46,30.72,Financials,positive
+Brown & Brown,BRO,0.046057,72.06331260599208,63.74,-11.55,Financials,negative
+Omnicom Group,OMC,0.046034,72.3532522474881,68.41,-5.45,Communication Services,negative
+Avery Dennison,AVY,0.045488,214.1678129298487,171.27,-20.03,Materials,negative
+Atmos Energy,ATO,0.04513,105.0658978583196,102.04,-2.88,Utilities,negative
+Monolithic Power Systems,MPWR,0.044865,492.15257151789905,314.83,-36.03,Information Technology,negative
+J. B. Hunt,JBHT,0.044734,204.48015583150718,167.96,-17.86,Industrials,negative
+NetApp,NTAP,0.044566,92.52199413489735,63.1,-31.8,Information Technology,negative
+Trimble,TRMB,0.044446,85.73885848318999,54.83,-36.05,Information Technology,negative
+Jack Henry & Associates,JKHY,0.044195,165.36456031816175,187.11,13.15,Information Technology,positive
+Tyler Technologies,TYL,0.044018,533.158979236012,336.37,-36.91,Information Technology,negative
+Zebra Technologies,ZBRA,0.043714,587.4154262516914,260.46,-55.66,Information Technology,negative
+Akamai Technologies,AKAM,0.043535,114.88210818307905,82.83,-27.9,Information Technology,negative
+Iron Mountain,IRM,0.043404,51.41017099711303,46.3,-9.94,Real Estate,negative
+Best Buy,BBY,0.042973,97.48130056479928,63.86,-34.49,Consumer Discretionary,negative
+LKQ Corporation,LKQ,0.042894,59.69191270860077,51.15,-14.31,Consumer Discretionary,negative
+Catalent,CTLT,0.04269,121.44199555783358,71.08,-41.47,Health Care,negative
+Evergy,EVRG,0.042684,67.99580272822666,58.32,-14.23,Utilities,negative
+Incyte,INCY,0.042396,71.83113129644921,69.59,-3.12,Health Care,negative
+Hormel,HRL,0.042383,49.18417404287085,46.12,-6.23,Consumer Staples,negative
+Textron,TXT,0.042321,76.3268328807702,61.84,-18.98,Industrials,negative
+Skyworks Solutions,SWKS,0.041993,154.50928381962862,81.55,-47.22,Information Technology,negative
+APA Corporation,APA,0.041593,28.342787682333874,41.97,48.08,Energy,positive
+Match Group,MTCH,0.041327,128.6453839516825,44.73,-65.23,Communication Services,negative
+Fleetcor,FLT,0.041274,217.90268019776215,167.48,-23.14,Information Technology,negative
+Cboe Global Markets,CBOE,0.041231,128.00641368252272,119.75,-6.45,Financials,negative
+NVR,NVR,0.041104,NA,NA,-29.58,Consumer Discretionary,negative
+Garmin,GRMN,0.040926,133.27311545409756,81.15,-39.11,Consumer Discretionary,negative
+Leidos,LDOS,0.040905,88.39040121407568,93.19,5.43,Industrials,positive
+Howmet Aerospace,HWM,0.040518,32.0769012217066,33.87,5.59,Industrials,positive
+Pool Corporation,POOL,0.040496,529.144479943202,298.12,-43.66,Consumer Discretionary,negative
+Etsy,ETSY,0.040446,206.36304205709305,94.7,-54.11,Consumer Discretionary,negative
+Alliant Energy,LNT,0.040391,60.77981651376147,50.35,-17.16,Utilities,negative
+The Cooper Companies,COO,0.040334,415.68881685575366,256.48,-38.3,Health Care,negative
+Host Hotels & Resorts,HST,0.039761,17.270935960591135,17.53,1.5,Real Estate,positive
+International Paper,IP,0.039621,45.608628659476125,32.56,-28.61,Materials,negative
+NortonLifeLock,NLOK,0.039569,26.028557599225557,21.51,-17.36,Information Technology,negative
+Healthpeak Properties,PEAK,0.039565,34.65793984728066,22.24,-35.83,Real Estate,negative
+Camden Property Trust,CPT,0.039227,174.45063447848963,112.73,-35.38,Real Estate,negative
+Lamb Weston,LW,0.039206,62.20735785953177,83.7,34.55,Consumer Staples,positive
+Kimco Realty,KIM,0.038593,23.0952380952381,18.43,-20.2,Real Estate,negative
+Domino's Pizza,DPZ,0.038431,555.5936856554564,323.8,-41.72,Consumer Discretionary,negative
+C. H. Robinson,CHRW,0.038122,104.55359140747372,93.45,-10.62,Industrials,negative
+UDR,UDR,0.038075,58.2958295829583,38.86,-33.34,Real Estate,negative
+Brown–Forman,BF.B,0.038065,71.21799844840963,64.26,-9.77,Consumer Staples,negative
+United Airlines,UAL,0.037939,45.82745651151858,38.99,-14.92,Industrials,negative
+Nordson,NDSN,0.037743,253.0469297221574,216.76,-14.34,Industrials,negative
+Las Vegas Sands,LVS,0.037691,37.27425451490971,35.5,-4.76,Consumer Discretionary,negative
+PTC,PTC,0.037352,118.29666739272491,108.62,-8.18,Information Technology,negative
+Bio-Techne,TECH,0.037314,494.01709401709405,289,-41.5,Health Care,negative
+Abiomed,ABMD,0.037281,350.94235033259423,253.24,-27.84,Health Care,negative
+Stanley Black & Decker,SWK,0.037217,181.70731707317074,74.5,-59,Industrials,negative
+Snap-on,SNA,0.037051,206.06422109553634,207.28,0.59,Industrials,positive
+Viatris,VTRS,0.036831,13.205687737575673,9.38,-28.97,Health Care,negative
+Solaredge Technologies,SEDG,0.036645,270.52617340727716,200,-26.07,Materials,negative
+Interpublic Group,IPG,0.036551,36.41359918200409,28.49,-21.76,Communication Services,negative
+Teradyne,TER,0.036515,165.80543698045383,73.8,-55.49,Information Technology,negative
+Live Nation Entertainment,LYV,0.036183,119.71132160577359,79.62,-33.49,Communication Services,negative
+Everest Re,RE,0.035139,274.6603662138216,279,1.58,Financials,positive
+Packaging Corporation of America,PKG,0.035139,133.47334033368335,114.4,-14.29,Materials,negative
+Masco,MAS,0.035113,66.88311688311688,46.35,-30.7,Industrials,negative
+Advance Auto Parts,AAP,0.034639,235.03569467325642,171.2,-27.16,Consumer Discretionary,negative
+Royal Caribbean Group,RCL,0.034587,74.02123949912823,46.7,-36.91,Consumer Discretionary,negative
+Loews Corporation,L,0.034087,57.68376520359598,54.54,-5.45,Financials,negative
+MGM Resorts International,MGM,0.033998,44.21937439713381,32.09,-27.43,Consumer Discretionary,negative
+Seagate Technology,STX,0.033713,112.73464163822524,52.85,-53.12,Information Technology,negative
+Globe Life,GL,0.033612,93.06324927656057,112.56,20.95,Financials,positive
+Boston Properties,BXP,0.033505,111.19368323269855,71.82,-35.41,Real Estate,negative
+Western Digital,WDC,0.033459,64.0279394644936,33,-48.46,Information Technology,negative
+Charles River Laboratories,CRL,0.032785,366.03221083455344,200,-45.36,Health Care,negative
+Campbell Soup,CPB,0.032742,43.74516378643281,50.88,16.31,Consumer Staples,positive
+NiSource,NI,0.032709,27.185314685314683,24.88,-8.48,Utilities,negative
+NRG Energy,NRG,0.032327,42.07781789009226,41.96,-0.28,Utilities,negative
+Paramount Global Class B,PARA,0.031649,29.44076413495609,19.11,-35.09,Communication Services,negative
+Signature Bank,SBNY,0.031387,313.1606004523956,152.29,-51.37,Financials,negative
+CarMax,KMX,0.031325,123.39055793991416,57.5,-53.4,Consumer Discretionary,negative
+Comerica,CMA,0.03132,79.16910473961381,67.65,-14.55,Financials,negative
+VF Corporation,VFC,0.030436,70.74796346581091,28.66,-59.49,Consumer Discretionary,negative
+Huntington Ingalls Industries,HII,0.030354,190.30995616781462,243.14,27.76,Industrials,positive
+Henry Schein,HSIC,0.03029,76.66515632079746,67.68,-11.72,Health Care,negative
+Celanese,CE,0.030267,163.96316628298212,92.59,-43.53,Materials,negative
+PulteGroup,PHM,0.030012,54.233376604644455,37.6,-30.67,Consumer Discretionary,negative
+Teleflex,TFX,0.029979,321.3183958434811,197.9,-38.41,Health Care,negative
+Eastman Chemical,EMN,0.029596,117.39967897271268,73.14,-37.7,Materials,negative
+Molson Coors Beverage Company,TAP,0.029586,46.36971466239759,49.24,6.19,Consumer Staples,positive
+Generac Holdings,GNRC,0.029561,262.2201048118152,110.08,-58.02,Industrials,negative
+Robert Half International,RHI,0.029117,109.09704413551086,80.83,-25.91,Industrials,negative
+MarketAxess,MKTX,0.029027,398.1412005457026,233.47,-41.36,Financials,negative
+Fox Corporation (Class A),FOXA,0.028639,37.444711234677115,29.63,-20.87,Communication Services,negative
+Ceridian,CDAY,0.028563,102.9912233566183,57.5,-44.17,Information Technology,negative
+Juniper Networks,JNPR,0.028276,35.61946902654867,27.37,-23.16,Information Technology,negative
+American Airlines Group,AAL,0.028084,18.353434714210803,14,-23.72,Industrials,negative
+Bio-Rad Laboratories,BIO,0.027719,715.6418354077653,385.23,-46.17,Health Care,negative
+F5 Networks,FFIV,0.027494,241.2741443578448,142.4,-40.98,Information Technology,negative
+Allegion,ALLE,0.027053,128.16195909280646,92.11,-28.13,Industrials,negative
+WestRock,WRK,0.027002,42.99639471224463,32.2,-25.11,Materials,negative
+Regency Centers,REG,0.026924,73.65423728813559,54.32,-26.25,Real Estate,negative
+Qorvo,QRVO,0.026846,157.32974220854177,81.78,-48.02,Information Technology,negative
+Hasbro,HAS,0.026824,101.76443275034825,65.75,-35.39,Consumer Discretionary,negative
+Caesars Entertainment,CZR,0.02643,89.53068592057762,37.2,-58.45,Consumer Discretionary,negative
+Assurant,AIZ,0.026303,153.4012918853452,151.99,-0.92,Financials,negative
+BorgWarner,BWA,0.026016,45.018498942917546,34.07,-24.32,Consumer Discretionary,negative
+Rollins,ROL,0.025952,34.40619460770594,36.88,7.19,Industrials,positive
+Whirlpool Corporation,WHR,0.025801,226.34750040709983,139,-38.59,Consumer Discretionary,negative
+Tapestry,TPR,0.025196,39.71714026209939,30.61,-22.93,Consumer Discretionary,negative
+Carnival Corporation,CCL,0.025147,19.07370517928287,7.66,-59.84,Consumer Discretionary,negative
+Zions Bancorp,ZION,0.025068,62.162818955042525,51.16,-17.7,Financials,negative
+Bath & Body Works Inc.,BBWI,0.024596,67.34989648033127,32.53,-51.7,Consumer Discretionary,negative
+Lincoln National,LNC,0.02456,66.77228268356522,48.47,-27.41,Financials,negative
+Fortune Brands Home & Security,FBHS,0.023879,101.88923874791627,55.01,-46.01,Industrials,negative
+Pinnacle West Capital,PNW,0.023166,70.1917808219178,64.05,-8.75,Utilities,negative
+Sealed Air,SEE,0.02263,67.4550346976349,47.63,-29.39,Materials,negative
+Pentair,PNR,0.022026,70.74912891986064,40.61,-42.6,Industrials,negative
+A. O. Smith,AOS,0.021834,84.20965334217948,50.77,-39.71,Industrials,negative
+Invesco,IVZ,0.02173,22.5254394079556,14.61,-35.14,Financials,negative
+Lumen Technologies,LUMN,0.020732,12.143237014713703,6.85,-43.59,Communication Services,negative
+Federal Realty Investment Trust,FRT,0.020701,133.6115992970123,91.23,-31.72,Real Estate,negative
+DXC Technology,DXC,0.020618,32.303983469176906,28.14,-12.89,Information Technology,negative
+Universal Health Services,UHS,0.020455,128.89883374016816,95.05,-26.26,Health Care,negative
+Dentsply Sirona,XRAY,0.020359,54.686907020872866,28.82,-47.3,Health Care,negative
+News Corp (Class A),NWSA,0.020282,22.775947281713343,16.59,-27.16,Communication Services,negative
+Franklin Resources,BEN,0.019638,33.090422367638304,22.25,-32.76,Financials,negative
+Organon & Co.,OGN,0.019521,29.692617787855884,23.57,-20.62,Health Care,negative
+Wynn Resorts,WYNN,0.018999,81.81818181818183,54.45,-33.45,Consumer Discretionary,negative
+Norwegian Cruise Line Holdings,NCLH,0.018986,20.159420289855074,13.91,-31,Consumer Discretionary,negative
+Newell Brands,NWL,0.01837,21.566939302625915,15.03,-30.31,Consumer Discretionary,negative
+Alaska Air Group,ALK,0.01679,51.80263319798204,42.1,-18.73,Industrials,negative
+Mohawk Industries,MHK,0.016242,174.99078510873574,94.95,-45.74,Consumer Discretionary,negative
+DaVita,DVA,0.016038,114.61256478321324,90.67,-20.89,Health Care,negative
+Ralph Lauren Corporation,RL,0.012961,115.51919446192575,91.78,-20.55,Consumer Discretionary,negative
+Fox Corporation (Class B),FOX,0.012947,34.36878727634195,27.66,-19.52,Communication Services,negative
+Vornado Realty Trust,VNO,0.011427,40.53607490361667,22.08,-45.53,Real Estate,negative
+Dish Network,DISH,0.011181,31.040806969280148,13.54,-56.38,Communication Services,negative
+News Corp (Class B),NWS,0.006445,22.267759562841533,16.3,-26.8,Communication Services,negative
