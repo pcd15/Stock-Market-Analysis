@@ -271,3 +271,89 @@ write_csv(historical_data, file = "data/historical_data.csv")
 write_csv(sp500_curr_updated, file = "data/sp500_curr_updated.csv")
 write_csv(sp500_by_company_and_sector, file = "data/sp500_by_company_and_sector.csv")
 ```
+
+-   Graph how many stocks rose or fell; bar chart? Etc
+
+-   Analysis
+
+    **Justify graphs + stats used**
+
+```{r}
+#|: overall-stocks_performance-barchart
+sp500_by_company_and_sector |>
+  ggplot(aes(x = return_category)) +
+  geom_bar() +
+  labs(
+    title = "Rising and Decreasing Stock Prices",
+    x = "Change in Price (%)",
+    y = "Number of Companies",
+    fill = "cc"
+       )
+```
+
+-   Graph How many of each sectors stocks rose, decreased; bar chart?
+
+Analysis
+
+**Justify graphs + stats used**
+
+```{r}
+#|: stocks-by_sector_barchart
+sp500_by_company_and_sector |>
+  ggplot(aes(x = return_category)) +
+  geom_bar() +
+  facet_wrap(~sector) +
+  labs(
+    title = "Rising and Decreasing Stock Prices",
+    x = "Change in Price (%)",
+    y = "Number of Companies",
+    fill = "cc"
+       )
+```
+
+-   Then Facet by sector, each has own graph
+
+    Analysis
+
+    **Justify graphs + stats used**
+
+```{r}
+#|: sectors-performance-barchart
+sp500_by_company_and_sector |>
+  #group_by(sector) |>
+  #summarize(sector_perf = mean(ytd_return_num, na.rm = TRUE)) |>
+  #mutate(sector_ret = case_when(
+  #     sector_perf > 0 ~ "Increased",
+  #     sector_perf <= 0 ~ "Decreased")) |>
+  ggplot(aes(y = sector, x = ytd_return_num)) +
+  geom_boxplot() +
+  labs(
+  title = "Rising and Decreasing Stock Prices by Sector",
+     x = "% Returns",
+     y = "Sector",
+     fill = "cc"
+        )
+```
+
+-   10? Companies with the best/worst returns
+
+Analysis
+
+**Justify graphs + stats used**
+
+```{r}
+#|: 10_best_returns
+sp500_by_company_and_sector |>
+  arrange(desc(ytd_return_num)) |>
+  slice_head(n = 10) |>
+  select(name, symbol, ytd_return_num, sector)
+
+```
+
+```{r}
+#|: 10_worst_returns
+sp500_by_company_and_sector |>
+  arrange(ytd_return_num) |>
+  slice_head(n = 10) |>
+  select(name, symbol, ytd_return_num, sector)
+```
