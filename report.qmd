@@ -225,18 +225,23 @@ sp500_curr
 sp500_curr|>
  # mutate(Date = substr(Date, start = 1, stop = 2))|>
   ggplot(aes(x = Date, y = Price)) +
-  geom_point()
+  geom_point() +
+  title(main="main title", sub="sub-title",
+   xlab="x-axis label", ylab="y-axis label")
+
+
+
 ```
 
 ```{r}
 #| l label: gains-and-losses-per-month
 sp500_curr|>
-  mutate(Date = paste(substr(Date, 1, 2), substr(Date, 9, 10),  sep = "/"))|>
+  mutate(Date = paste(substr(Date, 9, 10), substr(Date, 1, 2),  sep = "/"))|>
   group_by(Date)|>
   count(gain) |>
   ggplot(aes(x = Date, y = n, color = gain)) +
   geom_point() +
-  labs( Title = "Number of Days with Gains and Losses by Month") +
+  labs(title = "Number of Days with Gains and Losses by Month", y = "# days", x = "Month (year/month)") +
   theme_minimal() +
   scale_color_viridis_d()
 
