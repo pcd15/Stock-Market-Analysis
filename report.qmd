@@ -42,20 +42,9 @@ Sources:
 
 All of these sites collected these data by retrieving the data published publicly on stock exchanges, except for the federal-funds rate--this data was collected from the World Bank. In addition, each of these sites updates their data monthly/yearly (although they could update it daily, as they are collecting live data). Each observation represents a month in a year (between 1961 and 2020) and includes the following variables:
 
-| Variable            | Definition                                           |
-<<<<<<< HEAD
-|----------------------|--------------------------------------------------|
-=======
+| Variable \| Definition \|
 
-|---------------------|------------------------------------------------------|
->>>>>>> 4507798e1add3dfaa1fe6d99bae10a84ce7d3f2c
-| year                | year in which observation was recorded               |
-| month               | month in which observation was recorded              |
-| monthly_return      | total stock market's monthly return                  |
-| year_to_date_return | S&P 500's yearly return                              |
-| mean_fed_funds_rate | mean annual interest rate set by the Federal Reserve |
-| inflation rate      | mean annual inflation rate                           |
-| decade              | represents decade in which observation was made      |
+\|---------------------\|------------------------------------------------------\| \>\>\>\>\>\>\> 4507798e1add3dfaa1fe6d99bae10a84ce7d3f2c \| year \| year in which observation was recorded \| \| month \| month in which observation was recorded \| \| monthly_return \| total stock market's monthly return \| \| year_to_date_return \| S&P 500's yearly return \| \| mean_fed_funds_rate \| mean annual interest rate set by the Federal Reserve \| \| inflation rate \| mean annual inflation rate \| \| decade \| represents decade in which observation was made \|
 
 ```{r message = FALSE}
 #|: loading-historical-data
@@ -209,18 +198,16 @@ Source:
 
 Investing.com gets their data from financial-data providers, including stock exchanges and/or directly from market makers (who set stock prices to match supply and demand). The data is collected in real time by monitoring transactions (selling, buying, etc.) executed in the stock market, which correspond to increases/decreases in prices. Each observation represents a different day (between 1 October 2020 and 28 October 2022) and includes the following variables:
 
-| Variable                | Definition                                                        |
-<<<<<<< HEAD
-|---------------------|---------------------------------------------------|
-=======
-|-------------------------|-------------------------------------------------------------------|
->>>>>>> 4507798e1add3dfaa1fe6d99bae10a84ce7d3f2c
-| date                    | day on which observation was recorded                             |
-| price                   | closing daily price for the S&P 500                               |
-| open                    | opening daily price for the S&P 500                               |
-| daily_percentage_change | daily percentage difference between opening and closing prices    |
-| daily_diff              | daily numerical difference between opening and closing prices     |
-| gain                    | TRUE if daily_diff \> 0 (positive return for the day), else FALSE |
+| Variable \| Definition \|
+
+\|-------------------------\|-------------------------------------------------------------------\|
+
+| date \| day on which observation was recorded \|
+| price \| closing daily price for the S&P 500 \|
+| open \| opening daily price for the S&P 500 \|
+| daily_percentage_change \| daily percentage difference between opening and closing prices \|
+| daily_diff \| daily numerical difference between opening and closing prices \|
+| gain \| TRUE if daily_diff \> 0 (positive return for the day), else FALSE \|
 
 Contextualization:
 
@@ -279,7 +266,7 @@ Sources:
 DATA HUB collected their data from S&P Dow Jones Indices (which, in turn, is collected daily from stock exchanges), and Slickcharts their data directly from the stock exchange. Each observation represents a different company and includes the following variables:
 
 | Variable        | Definition                                                                    |
-|------------------|------------------------------------------------------|
+|-----------------|-------------------------------------------------------------------------------|
 | name            | name of company in S&P 500                                                    |
 | symbol          | ticker symbol used to identify companies on stock exchange                    |
 | weight          | percentage weighting of company in S&P 500                                    |
