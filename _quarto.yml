@@ -19,5 +19,5 @@ website:
 
 format:
   html:
-    theme: default
+    theme: cosmo
     toc: true
