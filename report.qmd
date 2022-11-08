@@ -12,6 +12,7 @@ execute:
 
 library(tidyverse)
 library(tidymodels)
+library(scales)
 ```
 
 # **Introduction**
@@ -214,30 +215,30 @@ Investing.com gets their data from financial-data providers, including stock exc
 Contextualization:
 
 ```{r message = FALSE}
-#|: loading-current-day-market-data
+#|: each-day-closing-price
 
 sp500_curr <- read_csv("data/sp500_curr_updated.csv")
 glimpse(sp500_curr)
+
 sp500_curr
 
 sp500_curr|>
 #  mutate(Date = paste(substr(Date, 9, 10), substr(Date, 1, 2),  sep = "/"))|>
   ggplot(aes(x = Date, y = Price)) +
-  geom_point() 
-#  title(main="main title", sub="sub-title",
-#   xlab="x-axis label", ylab="y-axis label")
+  geom_point()
+
 
 
 ```
 
 ```{r}
-#| l label: gains-and-losses-per-month
+#| label: gains-and-losses-per-month
 sp500_curr|>
   mutate(Date = paste(substr(Date, 9, 10), substr(Date, 1, 2),  sep = "/"))|>
   group_by(Date)|>
   count(gain) |>
-  ggplot(aes(x = Date, y = n, color = gain)) +
-  geom_point() +
+  ggplot(aes(x = Date, y = n, fill = gain)) +
+  geom_col(position = "fill") +
   labs(title = "Number of Days with Gains and Losses by Month", y = "# days", x = "Month (year/month)") +
   theme_minimal() +
   scale_color_viridis_d()
@@ -247,8 +248,8 @@ sp500_curr|>
 ```{r}
 #| l label: last-first-day-price-difference
 sp500_curr
-sp500_curr|>
-  mutate(price_diff = )
+
+  
 ```
 
 Conclusion:
@@ -268,7 +269,7 @@ Sources:
 DATA HUB collected their data from S&P Dow Jones Indices (which, in turn, is collected daily from stock exchanges), and Slickcharts their data directly from the stock exchange. Each observation represents a different company and includes the following variables:
 
 | Variable        | Definition                                                                    |
-|----------------|--------------------------------------------------------|
+|------------------|------------------------------------------------------|
 | name            | name of company in S&P 500                                                    |
 | symbol          | ticker symbol used to identify companies on stock exchange                    |
 | weight          | percentage weighting of company in S&P 500                                    |
