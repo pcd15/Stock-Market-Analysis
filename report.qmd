@@ -13,13 +13,9 @@ execute:
 library(tidyverse)
 library(tidymodels)
 library(scales)
-<<<<<<< HEAD
 library(ggplot2)
 library(lubridate)
-=======
-library(lubridate)
 library(dplyr)
->>>>>>> 557825c5e82095891135b1d866301c7cf2d69dce
 ```
 
 # **Introduction**
@@ -292,10 +288,6 @@ sp500_curr|>
     title = "Average Closing Prices by Month"
   )
 
-<<<<<<< HEAD
-=======
-  
->>>>>>> 557825c5e82095891135b1d866301c7cf2d69dce
 ```
 
 Conclusion:
