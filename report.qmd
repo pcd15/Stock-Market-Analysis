@@ -292,7 +292,7 @@ sp500_curr|>
 
 ```
 
-Conclusion:
+Conclusion: Our initial hypothesis of "the stock market will fall as inflation rates rise, but even then there are good times to invest even with problematic circumstances" is partially backed up by the data. For example, in our third visual, when the Average Daily Difference is below 0 near the 2022-01 to 2022-07 timeframe, the Average closing prices are still relatively high compared to earlier ones. Also, in our second visual, we can see that 2022-07 month has one of the highest gain/loss proportions, yet still has a negative average daily difference from our third visual. Our data also answers the original question of "when to be bearish and when to be bullish" as our second visual shows the months in which daily gains or losses are more prevalent.
 
 \newpage
 
@@ -309,7 +309,7 @@ Sources:
 DATA HUB collected their data from S&P Dow Jones Indices (which, in turn, is collected daily from stock exchanges), and Slickcharts their data directly from the stock exchange. Each observation represents a different company and includes the following variables:
 
 | Variable        | Definition                                                                    |
-|----------------------|--------------------------------------------------|
+|-----------------------|-------------------------------------------------|
 | name            | name of company in S&P 500                                                    |
 | symbol          | ticker symbol used to identify companies on stock exchange                    |
 | weight          | percentage weighting of company in S&P 500                                    |
