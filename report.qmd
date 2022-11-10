@@ -13,8 +13,13 @@ execute:
 library(tidyverse)
 library(tidymodels)
 library(scales)
+<<<<<<< HEAD
 library(ggplot2)
 library(lubridate)
+=======
+library(lubridate)
+library(dplyr)
+>>>>>>> 557825c5e82095891135b1d866301c7cf2d69dce
 ```
 
 # **Introduction**
@@ -233,6 +238,8 @@ sp500_curr|>
 
 ```
 
+We first graphed each day's closing price to determine the trend in closing price over time. We utilized a scatterplot graph to visualize the data for closing price from 10/01/2020 to 10/28/2022. In the graph above, we can see that the closing prices follow a generally positive trend from October 2022 to December 2021 and then a negative trend from January 2022 to October 2022. Each month had a wide range of closing prices that we can observe from the range of the heights of closing price data points each month. Some months have a range of approximately \$250 (i.e. August 2022) and some have a range of approximately \$750 (i.e. February 2021).
+
 ```{r}
 #| label: gains-and-losses-per-month
 sp500_curr|>
@@ -285,6 +292,10 @@ sp500_curr|>
     title = "Average Closing Prices by Month"
   )
 
+<<<<<<< HEAD
+=======
+  
+>>>>>>> 557825c5e82095891135b1d866301c7cf2d69dce
 ```
 
 Conclusion:
@@ -304,7 +315,7 @@ Sources:
 DATA HUB collected their data from S&P Dow Jones Indices (which, in turn, is collected daily from stock exchanges), and Slickcharts their data directly from the stock exchange. Each observation represents a different company and includes the following variables:
 
 | Variable        | Definition                                                                    |
-|------------------|------------------------------------------------------|
+|--------------------|----------------------------------------------------|
 | name            | name of company in S&P 500                                                    |
 | symbol          | ticker symbol used to identify companies on stock exchange                    |
 | weight          | percentage weighting of company in S&P 500                                    |
