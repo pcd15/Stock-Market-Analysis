@@ -13,6 +13,8 @@ execute:
 library(tidyverse)
 library(tidymodels)
 library(scales)
+library(lubridate)
+library(dplyr)
 ```
 
 # **Introduction**
@@ -223,7 +225,7 @@ glimpse(sp500_curr)
 sp500_curr
 
 sp500_curr|>
-#  mutate(Date = paste(substr(Date, 9, 10), substr(Date, 1, 2),  sep = "/"))|>
+ mutate(Date = paste(substr(Date, 9, 10), substr(Date, 1, 2),  sep = "/"))|>
   ggplot(aes(x = Date, y = Price)) +
   geom_point()
 
@@ -231,23 +233,59 @@ sp500_curr|>
 
 ```
 
+We first graphed each day's closing price to determine the trend in closing price over time. We utilized a scatterplot graph to visualize the data for closing price from 10/01/2020 to 10/28/2022. In the graph above, we can see that the closing prices follow a generally positive trend from October 2022 to December 2021 and then a negative trend from January 2022 to October 2022. Each month had a wide range of closing prices that we can observe from the range of the heights of closing price data points each month. Some months have a range of approximately \$250 (i.e. August 2022) and some have a range of approximately \$750 (i.e. February 2021).
+
 ```{r}
 #| label: gains-and-losses-per-month
 sp500_curr|>
-  mutate(Date = paste(substr(Date, 9, 10), substr(Date, 1, 2),  sep = "/"))|>
+  mutate(
+    Date = paste(substr(Date, 7, 10), substr(Date, 1, 2),  sep = "/")
+  )|>
   group_by(Date)|>
   count(gain) |>
   ggplot(aes(x = Date, y = n, fill = gain)) +
   geom_col(position = "fill") +
-  labs(title = "Number of Days with Gains and Losses by Month", y = "# days", x = "Month (year/month)") +
+  labs(title = "Proportion of Days with Gains and Losses by Month", 
+       y = "Proportion of days in month", x = "Month (year/month)") +
   theme_minimal() +
   scale_color_viridis_d()
 
 ```
 
+Then we plotted the proportion of daily gains and losses by each month in the SP500. To do this, we first grouped by dates and added a count of the total days in each month recorded. Then we plotted with ggplot and geom_col(), making our x-axis the date/month, our y-axis the proportion of days that gained and lost from its open price to closing price, and filled the bars with said proportion of days that gained and lost from open to closing price. We notice that 7 of the 26 months in our dataset have losses or false gains according to our plot. This means that the other 19 months either had even or higher proportions of days whose closing price was higher than the opening price.
+
 ```{r}
 #| l label: last-first-day-price-difference
 sp500_curr
+
+sp500_curr|>
+  mutate(
+    new_date = mdy(Date),
+    Date = paste(substr(Date, 9, 10), substr(Date, 1, 2),  sep = "/"))|>
+  group_by(new_date)|>
+  summarise(mean_dailydiff = mean(daily_diff), mean_price = mean(Price), .groups = "drop") |>
+  ggplot(aes(x = new_date, y = mean_dailydiff)) +
+  geom_smooth(aes(y = mean_dailydiff), se = FALSE,  colour = "red") +
+  labs(
+    x = "Date",
+    y = "Average Daily Difference",
+    title = "Average Daily Difference by Month"
+  )
+
+
+sp500_curr|>
+  mutate(
+    new_date = mdy(Date),
+    Date = paste(substr(Date, 9, 10), substr(Date, 1, 2),  sep = "/"))|>
+  group_by(new_date)|>
+  summarise(mean_dailydiff = mean(daily_diff), mean_price = mean(Price), .groups = "drop") |>
+  ggplot(aes(x = new_date, y = mean_dailydiff)) +
+  geom_smooth(aes(y = mean_price), se= FALSE, colour = "blue") +
+  labs(
+    x = "Date",
+    y = "Average Closing Price",
+    title = "Average Closing Prices by Month"
+  )
 
   
 ```
@@ -269,7 +307,7 @@ Sources:
 DATA HUB collected their data from S&P Dow Jones Indices (which, in turn, is collected daily from stock exchanges), and Slickcharts their data directly from the stock exchange. Each observation represents a different company and includes the following variables:
 
 | Variable        | Definition                                                                    |
-|------------------|------------------------------------------------------|
+|--------------------|----------------------------------------------------|
 | name            | name of company in S&P 500                                                    |
 | symbol          | ticker symbol used to identify companies on stock exchange                    |
 | weight          | percentage weighting of company in S&P 500                                    |
