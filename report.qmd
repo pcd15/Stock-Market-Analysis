@@ -249,7 +249,8 @@ sp500_curr|>
   labs(title = "Proportion of Days with Gains and Losses by Month", 
        y = "Proportion of days in month", x = "Month (year/month)") +
   theme_minimal() +
-  scale_color_viridis_d()
+  scale_color_viridis_d() +
+  scale_x_discrete(breaks=c("2020/10","2021/10", "2022/10"))
 
 ```
 
@@ -307,7 +308,7 @@ Sources:
 DATA HUB collected their data from S&P Dow Jones Indices (which, in turn, is collected daily from stock exchanges), and Slickcharts their data directly from the stock exchange. Each observation represents a different company and includes the following variables:
 
 | Variable        | Definition                                                                    |
-|--------------------|----------------------------------------------------|
+|---------------------|---------------------------------------------------|
 | name            | name of company in S&P 500                                                    |
 | symbol          | ticker symbol used to identify companies on stock exchange                    |
 | weight          | percentage weighting of company in S&P 500                                    |
