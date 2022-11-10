@@ -228,7 +228,8 @@ sp500_curr
 sp500_curr|>
  mutate(Date = paste(substr(Date, 9, 10), substr(Date, 1, 2),  sep = "/"))|>
   ggplot(aes(x = Date, y = Price)) +
-  geom_point()
+  geom_point()+
+  scale_x_discrete(breaks=c("20/10","21/10", "22/10"))
 
 
 
@@ -308,7 +309,7 @@ Sources:
 DATA HUB collected their data from S&P Dow Jones Indices (which, in turn, is collected daily from stock exchanges), and Slickcharts their data directly from the stock exchange. Each observation represents a different company and includes the following variables:
 
 | Variable        | Definition                                                                    |
-|---------------------|---------------------------------------------------|
+|----------------------|--------------------------------------------------|
 | name            | name of company in S&P 500                                                    |
 | symbol          | ticker symbol used to identify companies on stock exchange                    |
 | weight          | percentage weighting of company in S&P 500                                    |
