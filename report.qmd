@@ -46,11 +46,15 @@ Sources:
 
 All of these sites collected these data by retrieving the data published publicly on stock exchanges, except for the federal-funds rate--this data was collected from the World Bank. In addition, each of these sites updates their data monthly/yearly (although they could update it daily, as they are collecting live data). Each observation represents a month in a year (between 1961 and 2020) and includes the following variables:
 
-| Variable \| Definition \|
-
-\|---------------------\|------------------------------------------------------\|
-
-year \| year in which observation was recorded \| \| month \| month in which observation was recorded \| \| monthly_return \| total stock market's monthly return \| \| year_to_date_return \| S&P 500's yearly return \| \| mean_fed_funds_rate \| mean annual interest rate set by the Federal Reserve \| \| inflation rate \| mean annual inflation rate \| \| decade \| represents decade in which observation was made \|
+| Variable            | Definition                                           |
+|---------------------|------------------------------------------------------|
+| year                | year in which observation was recorded               |
+| month               | month in which observation was recorded              |
+| monthly_return      | total stock market's monthly return                  |
+| year_to_date_return | S&P 500's yearly return                              |
+| mean_fed_funds_rate | mean annual interest rate set by the Federal Reserve |
+| inflation rate      | mean annual inflation rate                           |
+| decade              | represents decade in which observation was made      |
 
 ```{r message = FALSE}
 #|: loading-historical-data
@@ -81,8 +85,7 @@ ggplot(historical_data) +
     plot.subtitle = element_text(hjust = 0.5),
     legend.title = element_text(hjust = 0.5)
   ) +
-  scale_color_manual(values = colors) +
-  scale_color_viridis_d()
+  scale_color_manual(values = colors)
 ```
 
 We first isolated interest and inflation rates to determine the relationship between them. To do so, we utilized a line graph to see their trends across time--more specifically, from 1961 to 2020. As you can see in the graph above, these rates are very closely related (especially prior to 2000), with interest and inflation peaking and dipping at similar times. This trend makes sense, as the Federal Reserve tends to raise the federal-funds (interest) rate when inflation rises, in an attempt to slow the economy down. (This is why the Federal Reserve is raising interest rates now--more on that later.)
@@ -90,7 +93,7 @@ We first isolated interest and inflation rates to determine the relationship bet
 ```{r}
 #|: interest-inflation-and-market-returns-graph
 
-colors_redux <- c("Inflation" = "blue", "Interest" = "red", "Market Returns" = "green")
+colors_redux <- c("Inflation" = "blue", "Interest" = "red", "Market Returns" = "darkgreen")
 
 historical_data |>
   ggplot() +
@@ -110,8 +113,7 @@ historical_data |>
     plot.subtitle = element_text(hjust = 0.5),
     legend.title = element_text(hjust = 0.5)
   ) +
-  scale_color_manual(values = colors_redux) +
-  scale_color_viridis_d()
+  scale_color_manual(values = colors_redux)
 ```
 
 Then, we analyzed the relationship between rates and average yearly returns of the stock market for the same period using another line graph. As depicted in the graph, market returns are extremely volatile and (at least according to this graph) doesn't seem to depend on either interest or inflation, contrary to our hypothesis.
@@ -190,9 +192,9 @@ historical_data_decade |>
   )
 ```
 
-For the last part of our historical analysis, we wanted to examine the averages of returns, interest, and inflation by decade. To do so, we created a bar chart for each decade (using geom_col() and facet_wrap()). This graph supports what we concluded after examining the best and worst 10 years of returns: higher returns seem to be common in times of low rates, but it's difficult to determine a relationship between returns and rates when returns are lower. For example, the '60s, '90s, and 2010s all featured high returns (\~10+%) and rates at or below 5%; an outlier decade is the 2000s, whose average return was an abysmal \~1% despite low rates. On the other hand, in decades when rates were high (the '70s and '80s), returns were much more volatile--decent in the '70s (7.5%) yet great in the '80s (15+%).
+For the last part of our historical analysis, we wanted to examine the averages of returns, interest, and inflation by decade. To do so, we created a bar chart for each decade (using geom_col() and facet_wrap()). This graph supports what we concluded after examining the best and worst 10 years of returns: higher returns seem to be common in times of low rates, but it's difficult to determine a relationship between returns and rates when returns are lower. For example, the '60s, '90s, and 2010s all featured high returns (\~10+%) and rates at or below 5%; an outlier decade is the 2000s, whose average return was an abysmal \~1% despite low rates. On the other hand, in decades when rates were high (the '70s and '80s), returns were much more volatile--about average in the '70s (7.5%) yet outstanding in the '80s (15+%).
 
-Conclusion: Our initial hypothesis was partially correct. It seems that high returns in the stock market generally correlate with lower interest and inflation rates, but years with lower returns can't be explained as neatly, at least with the data we're using. A potential confounding variable could be whether our economy was experiencing a recession during that year, as recessions sometimes create environments where returns in the stock market are poor even in times of low rates.
+Conclusion: Our initial hypothesis was partially correct. It seems that higher returns in the stock market generally correlate with lower interest and inflation rates, but years with lower returns can't be explained as neatly, at least with the data we're using. A potential confounding variable could be whether our economy was experiencing a recession during that year, as recessions sometimes create environments where returns in the stock market are poor even in times of low rates.
 
 \newpage
 
@@ -204,92 +206,131 @@ Source:
 
 Investing.com gets their data from financial-data providers, including stock exchanges and/or directly from market makers (who set stock prices to match supply and demand). The data is collected in real time by monitoring transactions (selling, buying, etc.) executed in the stock market, which correspond to increases/decreases in prices. Each observation represents a different day (between 1 October 2020 and 28 October 2022) and includes the following variables:
 
-| Variable \| Definition \|
+| Variable                | Definition                                                        |
+|-------------------------|-------------------------------------------------------------------|
+| date                    | day on which observation was recorded                             |
+| price                   | closing daily price for the S&P 500                               |
+| open                    | opening daily price for the S&P 500                               |
+| daily_percentage_change | daily percentage difference between opening and closing prices    |
+| daily_diff              | daily numerical difference between opening and closing prices     |
+| gain                    | TRUE if daily_diff \> 0 (positive return for the day), else FALSE |
 
-\|-------------------------\|-------------------------------------------------------------------\|
+Contextualization: This year, inflation has risen to \~8%, up from \<2% in 2020 and \<5% in 2020. Interest rates have steadily risen in tandem with this increase in inflation. In an attempt to slow down inflation, Federal Reserve has increased the discount rate (the rate at which banks are charged to borrow from the Federal Reserve) from 0.5% in March 2022 to a current rate of 4%, which is the highest it's been since the 2008 recession.
 
-| date \| day on which observation was recorded \|
-| price \| closing daily price for the S&P 500 \|
-| open \| opening daily price for the S&P 500 \|
-| daily_percentage_change \| daily percentage difference between opening and closing prices \|
-| daily_diff \| daily numerical difference between opening and closing prices \|
-| gain \| TRUE if daily_diff \> 0 (positive return for the day), else FALSE \|
+```{r message = FALSE}
+#|: loading-current-day-sp500-data
 
-Contextualization:
+sp500_curr <- read_csv("data/sp500_curr_updated.csv")
+glimpse(sp500_curr)
+```
 
 ```{r message = FALSE}
 #|: each-day-closing-price
 
-sp500_curr <- read_csv("data/sp500_curr_updated.csv")
-glimpse(sp500_curr)
-
-sp500_curr
-
-sp500_curr|>
- mutate(Date = paste(substr(Date, 9, 10), substr(Date, 1, 2),  sep = "/"))|>
+sp500_curr |>
+ mutate(
+   Date = paste(
+     substr(Date, 9, 10), 
+     substr(Date, 1, 2),  
+     sep = "/"
+    )
+  )|>
   ggplot(aes(x = Date, y = Price)) +
-  geom_point()+
-  scale_x_discrete(breaks=c("20/10","21/10", "22/10"))
-
-
-
+  geom_point() +
+  scale_x_discrete(breaks=c("20/10","21/10", "22/10")) +
+  labs(
+    x = "Date (year/month)",
+    y = "Daily S&P 500 Closing Price (measured in points)",
+    title = "Daily S&P 500 Closing Prices by Month",
+    subtitle = "October 2020 to October 2022"
+  ) +
+  theme_minimal() +
+  theme(
+    plot.title = element_text(hjust = 0.5),
+    plot.subtitle = element_text(hjust = 0.5)
+  )
 ```
 
-We first graphed each day's closing price to determine the trend in closing price over time. We utilized a scatterplot graph to visualize the data for closing price from 10/01/2020 to 10/28/2022. In the graph above, we can see that the closing prices follow a generally positive trend from October 2022 to December 2021 and then a negative trend from January 2022 to October 2022. Each month had a wide range of closing prices that we can observe from the range of the heights of closing price data points each month. Some months have a range of approximately \$250 (i.e. August 2022) and some have a range of approximately \$750 (i.e. February 2021).
+We first graphed each day's closing price to determine the trend in closing price over time. We utilized a scatterplot to visualize the data for closing price from 10/01/2020 to 10/28/2022. In the graph above, we can see that the closing prices for the S&P 500 follow a generally positive trend from October 2020 to December 2021/January 2022, where they peak for the two-year period, and then begin to generally decline through October 2022. Each month had a wide range of closing prices that we can observe from the range of the heights of closing price data points each month. Some months have a range of approximately \$250 (e.g., August 2022) and some have a range of approximately \$750 (e.g., February 2021).
 
 ```{r}
 #| label: gains-and-losses-per-month
+
 sp500_curr|>
   mutate(
     Date = paste(substr(Date, 7, 10), substr(Date, 1, 2),  sep = "/")
-  )|>
-  group_by(Date)|>
+  ) |>
+  group_by(Date) |>
   count(gain) |>
   ggplot(aes(x = Date, y = n, fill = gain)) +
   geom_col(position = "fill") +
-  labs(title = "Proportion of Days with Gains and Losses by Month", 
-       y = "Proportion of days in month", x = "Month (year/month)") +
+  labs(
+    title = "Proportion of Daily Gains/Losses by Month", 
+    subtitle = "October 2020 to October 2022",
+    y = "Proportion of Days in Month", 
+    x = "Date (year/month)",
+    fill = "Daily Gain"
+  ) +
   theme_minimal() +
-  scale_color_viridis_d() +
+  theme(
+    plot.title = element_text(hjust = 0.5),
+    plot.subtitle = element_text(hjust = 0.5)
+  ) +
+  scale_fill_viridis_d() +
   scale_x_discrete(breaks=c("2020/10","2021/10", "2022/10"))
-
 ```
 
-Then we plotted the proportion of daily gains and losses by each month in the SP500. To do this, we first grouped by dates and added a count of the total days in each month recorded. Then we plotted with ggplot and geom_col(), making our x-axis the date/month, our y-axis the proportion of days that gained and lost from its open price to closing price, and filled the bars with said proportion of days that gained and lost from open to closing price. We notice that 7 of the 26 months in our dataset have losses or false gains according to our plot. This means that the other 19 months either had even or higher proportions of days whose closing price was higher than the opening price.
+We plotted the proportion of daily gains and losses by each month in the S&P 500. To do this, we first grouped by dates and added a count of the total days in each month recorded. Then, we plotted with ggplot and geom_col(), making our x-axis the date/month, our y-axis the proportion of days that gained and lost from its open price to closing price, and filled the bars with said proportion of days that gained and lost from open to closing price. We notice that 7 of the 26 months in our dataset have losses (gain = false), according to our plot. This means that, for the other 19 months, the number of days whose closing price was higher than the opening price (daily gain) was at least equal, if not greater than, the number of days whose closing price was lower than the opening price (daily loss).
 
-```{r}
+```{r message = FALSE}
 #| l label: last-first-day-price-difference
-sp500_curr
 
-sp500_curr|>
+sp500_curr |>
   mutate(
     new_date = mdy(Date),
-    Date = paste(substr(Date, 9, 10), substr(Date, 1, 2),  sep = "/"))|>
-  group_by(new_date)|>
-  summarise(mean_dailydiff = mean(daily_diff), mean_price = mean(Price), .groups = "drop") |>
+    Date = paste(substr(Date, 9, 10), substr(Date, 1, 2),  sep = "/")
+  ) |>
+  group_by(new_date) |>
+  summarise(
+    mean_dailydiff = mean(daily_diff), 
+    mean_price = mean(Price), 
+    .groups = "drop"
+  ) |>
   ggplot(aes(x = new_date, y = mean_dailydiff)) +
-  geom_smooth(aes(y = mean_dailydiff), se = FALSE,  colour = "red") +
+  geom_smooth(se = FALSE,  colour = "red") +
   labs(
     x = "Date",
     y = "Average Daily Difference",
     title = "Average Daily Difference by Month"
-  )
+  ) + 
+  theme_minimal() +
+  theme(plot.title = element_text(hjust = 0.5))
 
 
-sp500_curr|>
+sp500_curr |>
   mutate(
     new_date = mdy(Date),
-    Date = paste(substr(Date, 9, 10), substr(Date, 1, 2),  sep = "/"))|>
-  group_by(new_date)|>
-  summarise(mean_dailydiff = mean(daily_diff), mean_price = mean(Price), .groups = "drop") |>
-  ggplot(aes(x = new_date, y = mean_dailydiff)) +
-  geom_smooth(aes(y = mean_price), se= FALSE, colour = "blue") +
+    Date = paste(
+      substr(Date, 9, 10), 
+      substr(Date, 1, 2),  
+      sep = "/"
+    )
+  ) |>
+  group_by(new_date) |>
+  summarise(
+    mean_daily_diff = mean(daily_diff), 
+    mean_price = mean(Price), 
+    .groups = "drop"
+  ) |>
+  ggplot(aes(x = new_date, y = mean_daily_diff)) +
+  geom_smooth(se= FALSE, colour = "blue") +
   labs(
     x = "Date",
     y = "Average Closing Price",
     title = "Average Closing Prices by Month"
-  )
-
+  ) +
+  theme_minimal() +
+  theme(plot.title = element_text(hjust = 0.5))
 ```
 
 Conclusion: Our initial hypothesis of "the stock market will fall as inflation rates rise, but even then there are good times to invest even with problematic circumstances" is partially backed up by the data. For example, in our third visual, when the Average Daily Difference is below 0 near the 2022-01 to 2022-07 timeframe, the Average closing prices are still relatively high compared to earlier ones. Also, in our second visual, we can see that 2022-07 month has one of the highest gain/loss proportions, yet still has a negative average daily difference from our third visual. Our data also answers the original question of "when to be bearish and when to be bullish" as our second visual shows the months in which daily gains or losses are more prevalent.
@@ -308,16 +349,17 @@ Sources:
 
 DATA HUB collected their data from S&P Dow Jones Indices (which, in turn, is collected daily from stock exchanges), and Slickcharts their data directly from the stock exchange. Each observation represents a different company and includes the following variables:
 
-| Variable        | Definition                                                                    |
-|-----------------------|-------------------------------------------------|
-| name            | name of company in S&P 500                                                    |
-| symbol          | ticker symbol used to identify companies on stock exchange                    |
-| weight          | percentage weighting of company in S&P 500                                    |
-| original_price  | price of company's stock at beginning of 2022                                 |
-| current_price   | price of company's stock as of October 2022                                   |
-| ytd_return_num  | company's year-to-date return percentage                                      |
-| sector          | company's industry                                                            |
-| return category | positive if ytd_return_num \> 0 (positive return for the year), else negative |
+| Variable | Definition |
+|----------|------------|
+
+| name \| name of company in S&P 500 \|
+| symbol \| ticker symbol used to identify companies on stock exchange \|
+| weight \| percentage weighting of company in S&P 500 \|
+| original_price \| price of company's stock at beginning of 2022 \|
+| current_price \| price of company's stock as of October 2022 \|
+| ytd_return_num \| company's year-to-date return percentage \|
+| sector \| company's industry \|
+| return category \| positive if ytd_return_num \> 0 (positive return for the year), else negative \|
 
 ```{r message = FALSE}
 #|: loading-current-day-company-and-sector-data
