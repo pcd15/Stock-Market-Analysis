@@ -47,7 +47,7 @@ Sources:
 All of these sites collected these data by retrieving the data published publicly on stock exchanges, except for the federal-funds rate--this data was collected from the World Bank. In addition, each of these sites updates their data monthly/yearly (although they could update it daily, as they are collecting live data). Each observation represents a month in a year (between 1961 and 2020) and includes the following variables:
 
 | Variable            | Definition                                           |
-|---------------------|---------------------------------------------------|
+|----------------------|--------------------------------------------------|
 | year                | year in which observation was recorded               |
 | month               | month in which observation was recorded              |
 | monthly_return      | total stock market's monthly return                  |
@@ -192,9 +192,9 @@ historical_data_decade |>
   )
 ```
 
-For the last part of our historical analysis, we wanted to examine the averages of returns, interest, and inflation by decade. To do so, we created a bar chart for each decade (using geom_col() and facet_wrap()). This graph supports what we concluded after examining the best and worst 10 years of returns: higher returns seem to be common in times of low rates, but it's difficult to determine a relationship between returns and rates when returns are lower. For example, the '60s, '90s, and 2010s all featured high returns (\~10+%) and rates at or below 5%; an outlier decade is the 2000s, whose average return was an abysmal \~1% despite low rates. On the other hand, in decades when rates were high (the '70s and '80s), returns were much more volatile--decent in the '70s (7.5%) yet great in the '80s (15+%).
+For the last part of our historical analysis, we wanted to examine the averages of returns, interest, and inflation by decade. To do so, we created a bar chart for each decade (using geom_col() and facet_wrap()). This graph supports what we concluded after examining the best and worst 10 years of returns: higher returns seem to be common in times of low rates, but it's difficult to determine a relationship between returns and rates when returns are lower. For example, the '60s, '90s, and 2010s all featured high returns (\~10+%) and rates at or below 5%; an outlier decade is the 2000s, whose average return was an abysmal \~1% despite low rates. On the other hand, in decades when rates were high (the '70s and '80s), returns were much more volatile--about average in the '70s (7.5%) yet outstanding in the '80s (15+%).
 
-Conclusion: Our initial hypothesis was partially correct. It seems that high returns in the stock market generally correlate with lower interest and inflation rates, but years with lower returns can't be explained as neatly, at least with the data we're using. A potential confounding variable could be whether our economy was experiencing a recession during that year, as recessions sometimes create environments where returns in the stock market are poor even in times of low rates.
+Conclusion: Our initial hypothesis was partially correct. It seems that higher returns in the stock market generally correlate with lower interest and inflation rates, but years with lower returns can't be explained as neatly, at least with the data we're using. A potential confounding variable could be whether our economy was experiencing a recession during that year, as recessions sometimes create environments where returns in the stock market are poor even in times of low rates.
 
 \newpage
 
@@ -207,7 +207,7 @@ Source:
 Investing.com gets their data from financial-data providers, including stock exchanges and/or directly from market makers (who set stock prices to match supply and demand). The data is collected in real time by monitoring transactions (selling, buying, etc.) executed in the stock market, which correspond to increases/decreases in prices. Each observation represents a different day (between 1 October 2020 and 28 October 2022) and includes the following variables:
 
 | Variable                | Definition                                                        |
-|---------------------|---------------------------------------------------|
+|----------------------|--------------------------------------------------|
 | date                    | day on which observation was recorded                             |
 | price                   | closing daily price for the S&P 500                               |
 | open                    | opening daily price for the S&P 500                               |
@@ -350,7 +350,7 @@ Sources:
 DATA HUB collected their data from S&P Dow Jones Indices (which, in turn, is collected daily from stock exchanges), and Slickcharts their data directly from the stock exchange. Each observation represents a different company and includes the following variables:
 
 | Variable        | Definition                                                                    |
-|----------------|--------------------------------------------------------|
+|------------------|------------------------------------------------------|
 | name            | name of company in S&P 500                                                    |
 | symbol          | ticker symbol used to identify companies on stock exchange                    |
 | weight          | percentage weighting of company in S&P 500                                    |
