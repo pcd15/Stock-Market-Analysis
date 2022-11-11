@@ -226,8 +226,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>All of these sites collected these data by retrieving the data published publicly on stock exchanges, except for the federal-funds rate–this data was collected from the World Bank. In addition, each of these sites updates their data monthly/yearly (although they could update it daily, as they are collecting live data). Each observation represents a month in a year (between 1961 and 2020) and includes the following variables:</p>
 <table class="table">
 <colgroup>
-<col style="width: 30%">
-<col style="width: 69%">
+<col style="width: 31%">
+<col style="width: 68%">
 </colgroup>
 <thead>
 <tr class="header">
@@ -458,8 +458,8 @@ $ decade                  &lt;chr&gt; "'60s", "'60s", "'60s", "'60s", "'60s", "'
 <p>Investing.com gets their data from financial-data providers, including stock exchanges and/or directly from market makers (who set stock prices to match supply and demand). The data is collected in real time by monitoring transactions (selling, buying, etc.) executed in the stock market, which correspond to increases/decreases in prices. Each observation represents a different day (between 1 October 2020 and 28 October 2022) and includes the following variables:</p>
 <table class="table">
 <colgroup>
-<col style="width: 29%">
-<col style="width: 70%">
+<col style="width: 30%">
+<col style="width: 69%">
 </colgroup>
 <thead>
 <tr class="header">
@@ -607,11 +607,11 @@ $ gain                 &lt;lgl&gt; TRUE, FALSE, TRUE, TRUE, TRUE, TRUE, FALSE, F
 <span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
 <span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(new_date) <span class="sc">|&gt;</span></span>
 <span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
-<span id="cb17-12"><a href="#cb17-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">mean_daily_diff =</span> <span class="fu">mean</span>(daily_diff), </span>
+<span id="cb17-12"><a href="#cb17-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">mean_daily_diff =</span> <span class="fu">mean</span>(Price), </span>
 <span id="cb17-13"><a href="#cb17-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">mean_price =</span> <span class="fu">mean</span>(Price), </span>
 <span id="cb17-14"><a href="#cb17-14" aria-hidden="true" tabindex="-1"></a>    <span class="at">.groups =</span> <span class="st">"drop"</span></span>
 <span id="cb17-15"><a href="#cb17-15" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
-<span id="cb17-16"><a href="#cb17-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> new_date, <span class="at">y =</span> mean_daily_diff)) <span class="sc">+</span></span>
+<span id="cb17-16"><a href="#cb17-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> new_date, <span class="at">y =</span> mean_price)) <span class="sc">+</span></span>
 <span id="cb17-17"><a href="#cb17-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">se=</span> <span class="cn">FALSE</span>, <span class="at">colour =</span> <span class="st">"blue"</span>) <span class="sc">+</span></span>
 <span id="cb17-18"><a href="#cb17-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
 <span id="cb17-19"><a href="#cb17-19" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Date"</span>,</span>
@@ -624,6 +624,7 @@ $ gain                 &lt;lgl&gt; TRUE, FALSE, TRUE, TRUE, TRUE, TRUE, FALSE, F
 <p><img src="report_files/figure-html/l%20label-%20last-first-day-price-difference-2.png" class="img-fluid" width="672"></p>
 </div>
 </div>
+<p>We then graphed the average daily change (between opening and closing prices) and closing price for each month. We did this by grouping the data by months then finding the summary mean of the average daily change and closing price for each month. Then we used geom_smooth to plot a line graph to visualizing the trends from 10/01/2020 to 10/28/2022. We observe that the average daily difference between opening and closing prices (plotted in red) increase logarithmically from October 2020 to approximately May 2021, decrease linearly from May 2021 to February 2022, then increase exponentially from February 2022 to October 2022. We observe that the average closing prices increase linearly from October 2020 to approximately November 2021, then decrease linearly from November 2021 to October 2022.&nbsp;</p>
 <p>Conclusion: Our initial hypothesis of “the stock market will fall as inflation rates rise, but even then there are good times to invest even with problematic circumstances” is partially backed up by the data. For example, in our third visual, when the Average Daily Difference is below 0 near the 2022-01 to 2022-07 timeframe, the Average closing prices are still relatively high compared to earlier ones. Also, in our second visual, we can see that 2022-07 month has one of the highest gain/loss proportions, yet still has a negative average daily difference from our third visual. Our data also answers the original question of “when to be bearish and when to be bullish” as our second visual shows the months in which daily gains or losses are more prevalent.</p>
 <div style="page-break-after: always;"></div>
 </section>
@@ -638,8 +639,8 @@ $ gain                 &lt;lgl&gt; TRUE, FALSE, TRUE, TRUE, TRUE, TRUE, FALSE, F
 <p>DATA HUB collected their data from S&amp;P Dow Jones Indices (which, in turn, is collected daily from stock exchanges), and Slickcharts their data directly from the stock exchange. Each observation represents a different company and includes the following variables:</p>
 <table class="table">
 <colgroup>
-<col style="width: 30%">
-<col style="width: 69%">
+<col style="width: 26%">
+<col style="width: 73%">
 </colgroup>
 <thead>
 <tr class="header">
@@ -701,61 +702,87 @@ $ sector          &lt;chr&gt; "Information Technology", "Information Technology"
 $ return_category &lt;chr&gt; "negative", "negative", "negative", "negative", "negat…</code></pre>
 </div>
 </div>
-<p>Our first bar graph will analyze just the total number of stocks in the S&amp;P 500 that saw a decrease, and those that saw an increase.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co">#|: overall-stocks_performance-barchart</span></span>
 <span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>sp500_by_company_and_sector <span class="sc">|&gt;</span></span>
-<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> return_category)) <span class="sc">+</span></span>
-<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>() <span class="sc">+</span></span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> return_category, <span class="at">fill =</span> return_category)) <span class="sc">+</span></span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">show.legend =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
 <span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
 <span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Rising and Decreasing Stock Prices"</span>,</span>
 <span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Change in Price (%)"</span>,</span>
 <span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Number of Companies"</span>,</span>
 <span id="cb20-9"><a href="#cb20-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">fill =</span> <span class="st">"cc"</span></span>
-<span id="cb20-10"><a href="#cb20-10" aria-hidden="true" tabindex="-1"></a>       )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb20-10"><a href="#cb20-10" aria-hidden="true" tabindex="-1"></a>       ) <span class="sc">+</span></span>
+<span id="cb20-11"><a href="#cb20-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb20-12"><a href="#cb20-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_viridis_d</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <p><img src="report_files/figure-html/unnamed-chunk-14-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
+<p>Our first bar graph will analyze just the total number of stocks in the S&amp;P 500 that saw a decrease, and those that saw an increase. We model this by using each stocks year to date return, and classifying it as a decrease if the percentage was negative, and increase if positive. We used geom_bar() in our ggplot() to have two different bars, one for increasing stocks and one for decreasing, and the height of the bar was determined by whether or not that stock increased in price over the course of the year.</p>
 <p>After seeing the how many stocks rose and fell, we now facet the stocks by sector, to see which sectors specifically saw increases and decreases, and how individual stocks within sectors performed.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co">#|: stocks-by_sector_barchart</span></span>
 <span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>sp500_by_company_and_sector <span class="sc">|&gt;</span></span>
-<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> return_category)) <span class="sc">+</span></span>
-<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>() <span class="sc">+</span></span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> return_category, <span class="at">fill =</span> return_category)) <span class="sc">+</span></span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">show.legend=</span><span class="cn">FALSE</span>) <span class="sc">+</span></span>
 <span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>sector) <span class="sc">+</span></span>
 <span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
 <span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Rising and Decreasing Stock Prices"</span>,</span>
 <span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Change in Price (%)"</span>,</span>
 <span id="cb21-9"><a href="#cb21-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Number of Companies"</span>,</span>
 <span id="cb21-10"><a href="#cb21-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">fill =</span> <span class="st">"cc"</span></span>
-<span id="cb21-11"><a href="#cb21-11" aria-hidden="true" tabindex="-1"></a>       )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb21-11"><a href="#cb21-11" aria-hidden="true" tabindex="-1"></a>       ) <span class="sc">+</span></span>
+<span id="cb21-12"><a href="#cb21-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb21-13"><a href="#cb21-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_viridis_d</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <p><img src="report_files/figure-html/unnamed-chunk-15-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
-<p>Finally, for our last graph, we wanted to see exactly what the increase/decrease range was for each sector. So we made boxplots for each sector, with hopes to see who had the highest and lowest median increases, who had the highest and lowest variation, and also who had the highest and lowest maximums and minimums. This information will allow us to understand the most stable sectors, as well as the most unaffected ones.</p>
+<p>Finally, for our last two graphs, we wanted to see exactly what the increase/decrease range was for each sector. So we made box plots for each sector, with hopes to see who had the highest and lowest median increases, who had the highest and lowest variation, and also who had the highest and lowest maximums and minimums. This information will allow us to understand the most stable sectors, as well as the most unaffected ones. On top of that, we classify essential industries as: Consumer Staples, Utilities, and Energy. Then, we look to see if there is a quantifiable difference between which of these two larger groups for sectors performed better.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co">#|: sectors-performance-barchart</span></span>
 <span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>sp500_by_company_and_sector <span class="sc">|&gt;</span></span>
-<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">y =</span> sector, <span class="at">x =</span> ytd_return_num)) <span class="sc">+</span></span>
-<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>() <span class="sc">+</span></span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">y =</span> sector, <span class="at">x =</span> ytd_return_num, <span class="at">fill =</span> sector)) <span class="sc">+</span></span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="at">show.legend =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
 <span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
 <span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">title =</span> <span class="st">"Rising and Decreasing Stock Prices by Sector"</span>,</span>
 <span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a>     <span class="at">x =</span> <span class="st">"% Returns"</span>,</span>
 <span id="cb22-8"><a href="#cb22-8" aria-hidden="true" tabindex="-1"></a>     <span class="at">y =</span> <span class="st">"Sector"</span>,</span>
 <span id="cb22-9"><a href="#cb22-9" aria-hidden="true" tabindex="-1"></a>     <span class="at">fill =</span> <span class="st">"cc"</span></span>
-<span id="cb22-10"><a href="#cb22-10" aria-hidden="true" tabindex="-1"></a>        )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb22-10"><a href="#cb22-10" aria-hidden="true" tabindex="-1"></a>        ) <span class="sc">+</span></span>
+<span id="cb22-11"><a href="#cb22-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb22-12"><a href="#cb22-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_viridis_d</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <p><img src="report_files/figure-html/unnamed-chunk-16-1.png" class="img-fluid" width="672"></p>
+</div>
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>sp500_by_company_and_sector <span class="sc">|&gt;</span></span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">isEssential =</span> <span class="fu">case_when</span>(</span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>      sector <span class="sc">==</span> <span class="st">"Utilities"</span> <span class="sc">|</span> sector <span class="sc">==</span> <span class="st">"Energy"</span> <span class="sc">|</span> sector <span class="sc">==</span> <span class="st">"Consumer Staples"</span> <span class="sc">~</span> <span class="st">"Essential"</span>,</span>
+<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>      <span class="cn">TRUE</span> <span class="sc">~</span> <span class="st">"Nonessential"</span></span>
+<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a>  )<span class="sc">|&gt;</span></span>
+<span id="cb23-8"><a href="#cb23-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">y =</span> ytd_return_num, <span class="at">x =</span> isEssential, <span class="at">fill =</span> isEssential)) <span class="sc">+</span></span>
+<span id="cb23-9"><a href="#cb23-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_violin</span>(<span class="at">show.legend =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
+<span id="cb23-10"><a href="#cb23-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb23-11"><a href="#cb23-11" aria-hidden="true" tabindex="-1"></a>  <span class="at">title =</span> <span class="st">"Essential Industries and their Effects on Change in Stock Price "</span>,</span>
+<span id="cb23-12"><a href="#cb23-12" aria-hidden="true" tabindex="-1"></a>     <span class="at">y =</span> <span class="st">"% Returns"</span>,</span>
+<span id="cb23-13"><a href="#cb23-13" aria-hidden="true" tabindex="-1"></a>     <span class="at">x =</span> <span class="st">"Sector"</span>,</span>
+<span id="cb23-14"><a href="#cb23-14" aria-hidden="true" tabindex="-1"></a>     <span class="at">fill =</span> <span class="st">"cc"</span></span>
+<span id="cb23-15"><a href="#cb23-15" aria-hidden="true" tabindex="-1"></a>        ) <span class="sc">+</span></span>
+<span id="cb23-16"><a href="#cb23-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb23-17"><a href="#cb23-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_viridis_d</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="report_files/figure-html/unnamed-chunk-16-2.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 <p>Now we will analyze the mean return for all the stocks in a given sector to see which sectors performed the best.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>sp500_by_company_and_sector <span class="sc">|&gt;</span></span>
-<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(sector) <span class="sc">|&gt;</span></span>
-<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">sector_perf =</span> <span class="fu">mean</span>(ytd_return_num, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)) <span class="sc">|&gt;</span></span>
-<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(sector_perf))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>sp500_by_company_and_sector <span class="sc">|&gt;</span></span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(sector) <span class="sc">|&gt;</span></span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">sector_perf =</span> <span class="fu">mean</span>(ytd_return_num, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(sector_perf))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 11 × 2
    sector                 sector_perf
@@ -775,11 +802,11 @@ $ return_category &lt;chr&gt; "negative", "negative", "negative", "negative", "n
 </div>
 <p>This next tibble goes a little more in detail to specifically which companies did the best, and which sectors they were a part of.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="co">#|: 10_best_returns</span></span>
-<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>sp500_by_company_and_sector <span class="sc">|&gt;</span></span>
-<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(ytd_return_num)) <span class="sc">|&gt;</span></span>
-<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">slice_head</span>(<span class="at">n =</span> <span class="dv">10</span>) <span class="sc">|&gt;</span></span>
-<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(name, symbol, ytd_return_num, sector)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="co">#|: 10_best_returns</span></span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>sp500_by_company_and_sector <span class="sc">|&gt;</span></span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(ytd_return_num)) <span class="sc">|&gt;</span></span>
+<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">slice_head</span>(<span class="at">n =</span> <span class="dv">10</span>) <span class="sc">|&gt;</span></span>
+<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(name, symbol, ytd_return_num, sector)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 10 × 4
    name                 symbol ytd_return_num sector   
@@ -798,11 +825,11 @@ $ return_category &lt;chr&gt; "negative", "negative", "negative", "negative", "n
 </div>
 <p>And what about the opposite end? Which companies were the most negatively affected, and which sectors were they in?</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="co">#|: 10_worst_returns</span></span>
-<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>sp500_by_company_and_sector <span class="sc">|&gt;</span></span>
-<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(ytd_return_num) <span class="sc">|&gt;</span></span>
-<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">slice_head</span>(<span class="at">n =</span> <span class="dv">10</span>) <span class="sc">|&gt;</span></span>
-<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(name, symbol, ytd_return_num, sector)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="co">#|: 10_worst_returns</span></span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>sp500_by_company_and_sector <span class="sc">|&gt;</span></span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(ytd_return_num) <span class="sc">|&gt;</span></span>
+<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">slice_head</span>(<span class="at">n =</span> <span class="dv">10</span>) <span class="sc">|&gt;</span></span>
+<span id="cb28-5"><a href="#cb28-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(name, symbol, ytd_return_num, sector)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 10 × 4
    name                   symbol ytd_return_num sector                

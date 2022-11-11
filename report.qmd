@@ -47,7 +47,7 @@ Sources:
 All of these sites collected these data by retrieving the data published publicly on stock exchanges, except for the federal-funds rate--this data was collected from the World Bank. In addition, each of these sites updates their data monthly/yearly (although they could update it daily, as they are collecting live data). Each observation represents a month in a year (between 1961 and 2020) and includes the following variables:
 
 | Variable            | Definition                                           |
-|---------------------|---------------------------------------------------|
+|-----------------------|-------------------------------------------------|
 | year                | year in which observation was recorded               |
 | month               | month in which observation was recorded              |
 | monthly_return      | total stock market's monthly return                  |
@@ -207,7 +207,7 @@ Source:
 Investing.com gets their data from financial-data providers, including stock exchanges and/or directly from market makers (who set stock prices to match supply and demand). The data is collected in real time by monitoring transactions (selling, buying, etc.) executed in the stock market, which correspond to increases/decreases in prices. Each observation represents a different day (between 1 October 2020 and 28 October 2022) and includes the following variables:
 
 | Variable                | Definition                                                        |
-|--------------------|----------------------------------------------------|
+|----------------------|--------------------------------------------------|
 | date                    | day on which observation was recorded                             |
 | price                   | closing daily price for the S&P 500                               |
 | open                    | opening daily price for the S&P 500                               |
@@ -352,7 +352,7 @@ Sources:
 DATA HUB collected their data from S&P Dow Jones Indices (which, in turn, is collected daily from stock exchanges), and Slickcharts their data directly from the stock exchange. Each observation represents a different company and includes the following variables:
 
 | Variable        | Definition                                                                    |
-|----------------|--------------------------------------------------------|
+|-------------------|-----------------------------------------------------|
 | name            | name of company in S&P 500                                                    |
 | symbol          | ticker symbol used to identify companies on stock exchange                    |
 | weight          | percentage weighting of company in S&P 500                                    |
@@ -371,50 +371,74 @@ sp500_by_company_and_sector <- read_csv("data/sp500_by_company_and_sector.csv")
 glimpse(sp500_by_company_and_sector)
 ```
 
-Our first bar graph will analyze just the total number of stocks in the S&P 500 that saw a decrease, and those that saw an increase.
-
 ```{r}
 #|: overall-stocks_performance-barchart
 sp500_by_company_and_sector |>
-  ggplot(aes(x = return_category)) +
-  geom_bar() +
+  ggplot(aes(x = return_category, fill = return_category)) +
+  geom_bar(show.legend = FALSE) +
   labs(
     title = "Rising and Decreasing Stock Prices",
     x = "Change in Price (%)",
     y = "Number of Companies",
     fill = "cc"
-       )
+       ) +
+  theme_minimal() +
+  scale_fill_viridis_d()
 ```
+
+Our first bar graph will analyze just the total number of stocks in the S&P 500 that saw a decrease, and those that saw an increase. We model this by using each stocks year to date return, and classifying it as a decrease if the percentage was negative, and increase if positive. We used geom_bar() in our ggplot() to have two different bars, one for increasing stocks and one for decreasing, and the height of the bar was determined by whether or not that stock increased in price over the course of the year.
 
 After seeing the how many stocks rose and fell, we now facet the stocks by sector, to see which sectors specifically saw increases and decreases, and how individual stocks within sectors performed.
 
 ```{r}
 #|: stocks-by_sector_barchart
 sp500_by_company_and_sector |>
-  ggplot(aes(x = return_category)) +
-  geom_bar() +
+  ggplot(aes(x = return_category, fill = return_category)) +
+  geom_bar(show.legend=FALSE) +
   facet_wrap(~sector) +
   labs(
     title = "Rising and Decreasing Stock Prices",
     x = "Change in Price (%)",
     y = "Number of Companies",
     fill = "cc"
-       )
+       ) +
+  theme_minimal() +
+  scale_fill_viridis_d()
 ```
 
-Finally, for our last graph, we wanted to see exactly what the increase/decrease range was for each sector. So we made boxplots for each sector, with hopes to see who had the highest and lowest median increases, who had the highest and lowest variation, and also who had the highest and lowest maximums and minimums. This information will allow us to understand the most stable sectors, as well as the most unaffected ones.
+Finally, for our last two graphs, we wanted to see exactly what the increase/decrease range was for each sector. So we made box plots for each sector, with hopes to see who had the highest and lowest median increases, who had the highest and lowest variation, and also who had the highest and lowest maximums and minimums. This information will allow us to understand the most stable sectors, as well as the most unaffected ones. On top of that, we classify essential industries as: Consumer Staples, Utilities, and Energy. Then, we look to see if there is a quantifiable difference between which of these two larger groups for sectors performed better.
 
 ```{r}
 #|: sectors-performance-barchart
 sp500_by_company_and_sector |>
-  ggplot(aes(y = sector, x = ytd_return_num)) +
-  geom_boxplot() +
+  ggplot(aes(y = sector, x = ytd_return_num, fill = sector)) +
+  geom_boxplot(show.legend = FALSE) +
   labs(
   title = "Rising and Decreasing Stock Prices by Sector",
      x = "% Returns",
      y = "Sector",
      fill = "cc"
-        )
+        ) +
+  theme_minimal() +
+  scale_fill_viridis_d()
+
+sp500_by_company_and_sector |>
+  mutate(
+    isEssential = case_when(
+      sector == "Utilities" | sector == "Energy" | sector == "Consumer Staples" ~ "Essential",
+      TRUE ~ "Nonessential"
+    )
+  )|>
+  ggplot(aes(y = ytd_return_num, x = isEssential, fill = isEssential)) +
+  geom_violin(show.legend = FALSE) +
+  labs(
+  title = "Essential Industries and their Effects on Change in Stock Price ",
+     y = "% Returns",
+     x = "Sector",
+     fill = "cc"
+        ) +
+  theme_minimal() +
+  scale_fill_viridis_d()
 ```
 
 Now we will analyze the mean return for all the stocks in a given sector to see which sectors performed the best.
