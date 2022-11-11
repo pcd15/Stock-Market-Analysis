@@ -47,7 +47,7 @@ Sources:
 All of these sites collected these data by retrieving the data published publicly on stock exchanges, except for the federal-funds rate--this data was collected from the World Bank. In addition, each of these sites updates their data monthly/yearly (although they could update it daily, as they are collecting live data). Each observation represents a month in a year (between 1961 and 2020) and includes the following variables:
 
 | Variable            | Definition                                           |
-|---------------------|------------------------------------------------------|
+|----------------------|--------------------------------------------------|
 | year                | year in which observation was recorded               |
 | month               | month in which observation was recorded              |
 | monthly_return      | total stock market's monthly return                  |
@@ -207,7 +207,7 @@ Source:
 Investing.com gets their data from financial-data providers, including stock exchanges and/or directly from market makers (who set stock prices to match supply and demand). The data is collected in real time by monitoring transactions (selling, buying, etc.) executed in the stock market, which correspond to increases/decreases in prices. Each observation represents a different day (between 1 October 2020 and 28 October 2022) and includes the following variables:
 
 | Variable                | Definition                                                        |
-|-------------------------|-------------------------------------------------------------------|
+|---------------------|---------------------------------------------------|
 | date                    | day on which observation was recorded                             |
 | price                   | closing daily price for the S&P 500                               |
 | open                    | opening daily price for the S&P 500                               |
@@ -349,30 +349,27 @@ Sources:
 
 DATA HUB collected their data from S&P Dow Jones Indices (which, in turn, is collected daily from stock exchanges), and Slickcharts their data directly from the stock exchange. Each observation represents a different company and includes the following variables:
 
-| Variable | Definition |
-|----------|------------|
+| Variable        | Definition                                                                    |
+|----------------------|--------------------------------------------------|
+| name            | name of company in S&P 500                                                    |
+| symbol          | ticker symbol used to identify companies on stock exchange                    |
+| weight          | percentage weighting of company in S&P 500                                    |
+| original_price  | price of company's stock at beginning of 2022                                 |
+| current_price   | price of company's stock as of October 2022                                   |
+| ytd_return_num  | company's year-to-date return percentage                                      |
+| sector          | company's industry                                                            |
+| return category | positive if ytd_return_num \> 0 (positive return for the year), else negative |
 
-| name \| name of company in S&P 500 \|
-| symbol \| ticker symbol used to identify companies on stock exchange \|
-| weight \| percentage weighting of company in S&P 500 \|
-| original_price \| price of company's stock at beginning of 2022 \|
-| current_price \| price of company's stock as of October 2022 \|
-| ytd_return_num \| company's year-to-date return percentage \|
-| sector \| company's industry \|
-| return category \| positive if ytd_return_num \> 0 (positive return for the year), else negative \|
+Contextualization: Because of high inflation rates, and rising interest rates, the stock market has taken a major blow this past year. However, some sectors and stocks have been more negatively effected than others. Industries that are considered more essential tend to be less affected by fluctuations in these rates. So how true is this, and how much are both of these industries affected?
 
 ```{r message = FALSE}
 #|: loading-current-day-company-and-sector-data
 
-sp500_curr_company_and_sector <- read_csv("data/sp500_by_company_and_sector.csv")
-glimpse(sp500_curr_company_and_sector)
-```
-
--   How many stocks rose or fell?
-
-```{r}
 sp500_by_company_and_sector <- read_csv("data/sp500_by_company_and_sector.csv")
+glimpse(sp500_by_company_and_sector)
 ```
+
+Our first bar graph will analyze just the total number of stocks in the S&P 500 that saw a decrease, and those that saw an increase.
 
 ```{r}
 #|: overall-stocks_performance-barchart
@@ -387,7 +384,7 @@ sp500_by_company_and_sector |>
        )
 ```
 
--   How many of stocks rose or decreased in each sector?
+After seeing the how many stocks rose and fell, we now facet the stocks by sector, to see which sectors specifically saw increases and decreases, and how individual stocks within sectors performed.
 
 ```{r}
 #|: stocks-by_sector_barchart
@@ -403,16 +400,11 @@ sp500_by_company_and_sector |>
        )
 ```
 
--   What is the variation in percentage returns for each sector?
+Finally, for our last graph, we wanted to see exactly what the increase/decrease range was for each sector. So we made boxplots for each sector, with hopes to see who had the highest and lowest median increases, who had the highest and lowest variation, and also who had the highest and lowest maximums and minimums. This information will allow us to understand the most stable sectors, as well as the most unaffected ones.
 
 ```{r}
 #|: sectors-performance-barchart
 sp500_by_company_and_sector |>
-  #group_by(sector) |>
-  #summarize(sector_perf = mean(ytd_return_num, na.rm = TRUE)) |>
-  #mutate(sector_ret = case_when(
-  #     sector_perf > 0 ~ "Increased",
-  #     sector_perf <= 0 ~ "Decreased")) |>
   ggplot(aes(y = sector, x = ytd_return_num)) +
   geom_boxplot() +
   labs(
@@ -423,7 +415,7 @@ sp500_by_company_and_sector |>
         )
 ```
 
--   What are the top performing sectors?
+Now we will analyze the mean return for all the stocks in a given sector to see which sectors performed the best.
 
 ```{r}
 sp500_by_company_and_sector |>
@@ -432,7 +424,7 @@ sp500_by_company_and_sector |>
   arrange(desc(sector_perf))
 ```
 
--   What are the top 10 companies with the best returns and what sector are they in?
+This next tibble goes a little more in detail to specifically which companies did the best, and which sectors they were a part of.
 
 ```{r}
 #|: 10_best_returns
@@ -442,7 +434,7 @@ sp500_by_company_and_sector |>
   select(name, symbol, ytd_return_num, sector)
 ```
 
--   What are the top 10 companies with the worst returns and what sector are they in?
+And what about the opposite end? Which companies were the most negatively affected, and which sectors were they in?
 
 ```{r}
 #|: 10_worst_returns
