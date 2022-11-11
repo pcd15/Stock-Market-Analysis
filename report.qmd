@@ -47,7 +47,7 @@ Sources:
 All of these sites collected these data by retrieving the data published publicly on stock exchanges, except for the federal-funds rate--this data was collected from the World Bank. In addition, each of these sites updates their data monthly/yearly (although they could update it daily, as they are collecting live data). Each observation represents a month in a year (between 1961 and 2020) and includes the following variables:
 
 | Variable            | Definition                                           |
-|-----------------------|-------------------------------------------------|
+|------------------------|------------------------------------------------|
 | year                | year in which observation was recorded               |
 | month               | month in which observation was recorded              |
 | monthly_return      | total stock market's monthly return                  |
@@ -207,7 +207,7 @@ Source:
 Investing.com gets their data from financial-data providers, including stock exchanges and/or directly from market makers (who set stock prices to match supply and demand). The data is collected in real time by monitoring transactions (selling, buying, etc.) executed in the stock market, which correspond to increases/decreases in prices. Each observation represents a different day (between 1 October 2020 and 28 October 2022) and includes the following variables:
 
 | Variable                | Definition                                                        |
-|----------------------|--------------------------------------------------|
+|-----------------------|-------------------------------------------------|
 | date                    | day on which observation was recorded                             |
 | price                   | closing daily price for the S&P 500                               |
 | open                    | opening daily price for the S&P 500                               |
@@ -352,7 +352,7 @@ Sources:
 DATA HUB collected their data from S&P Dow Jones Indices (which, in turn, is collected daily from stock exchanges), and Slickcharts their data directly from the stock exchange. Each observation represents a different company and includes the following variables:
 
 | Variable        | Definition                                                                    |
-|-------------------|-----------------------------------------------------|
+|---------------------|---------------------------------------------------|
 | name            | name of company in S&P 500                                                    |
 | symbol          | ticker symbol used to identify companies on stock exchange                    |
 | weight          | percentage weighting of company in S&P 500                                    |
@@ -362,7 +362,7 @@ DATA HUB collected their data from S&P Dow Jones Indices (which, in turn, is col
 | sector          | company's industry                                                            |
 | return category | positive if ytd_return_num \> 0 (positive return for the year), else negative |
 
-Contextualization: Because of high inflation rates, and rising interest rates, the stock market has taken a major blow this past year. However, some sectors and stocks have been more negatively effected than others. Industries that are considered more essential tend to be less affected by fluctuations in these rates. So how true is this, and how much are both of these industries affected?
+Contextualization: Because of high inflation rates, and rising interest rates, the stock market has taken a major blow this past year. However, some sectors and stocks have been more negatively affected than others. Industries that are considered more essential tend to be less affected by fluctuations in these rates. So how true is this, and how much are both of these industries affected?
 
 ```{r message = FALSE}
 #|: loading-current-day-company-and-sector-data
@@ -435,9 +435,9 @@ sp500_by_company_and_sector |>
   scale_fill_viridis_d()
 ```
 
-These results help paint a bigger picture. We can see that energy, utilities, and consumer staples are definitely doing the best from both depictions, and IT and real estate are among the few at the bottom. What if we want to delve deeper into each sector, and examine the maximums and minimums and what values the hover around?
+These results help paint a bigger picture. We can see that energy, utilities, and consumer staples are definitely doing the best from both depictions, and IT and real estate are among the few at the bottom. What if we want to delve deeper into each sector, and examine the maximums and minimums, and what the values hover around?
 
-For out next graph, we get to see exactly what the increase/decrease range was for each sector. So we made box plots for each sector, with hopes to see who had the highest and lowest median increases, who had the highest and lowest variation, and also who had the highest and lowest maximums and minimums. The box plots were made with sectors across the y, and returns along the x. This information will allow us to gain more understanding of the most stable sectors, as well as the most unaffected ones.
+For our next graph, we get to see exactly what the increase/decrease range was for each sector. So we made box plots for each sector, with hopes to see who had the highest and lowest median increases, who had the highest and lowest variation, and also who had the highest and lowest maximums and minimums. The box plots were made with sectors across the y, and returns along the x. This information will allow us to gain more understanding of the most stable sectors, as well as the most unaffected ones.
 
 ```{r}
 #|: sectors-performance-barchart
@@ -454,9 +454,9 @@ sp500_by_company_and_sector |>
   scale_fill_viridis_d()
 ```
 
-From this depiction, we can clearly see that the lowest industries are: Consumer Discretionary, IT, and Consumer Services. The highest are: Energy, Utilities, and Consumer Staples. And health care, along with some of the lower ones, have high variability. So what do there have in common?
+From this depiction, we can clearly see that the lowest industries are: Consumer Discretionary, IT, and Consumer Services. The highest are: Energy, Utilities, and Consumer Staples. Health care, along with some of the lower ones, have high variability. So what do these have in common?
 
-Our final graph takes into account the concept of essential and nonessential industries. We classify essential industries as Consumer Staples, Utilities, and Energy, since consumer staples includes food, utilities has electricity, and energy has the materials we need for electricity and more. We would hypothesize that these essential industries would not be as affected as the nonessential industries, because regardless of how the market is, people need to spend on the things that will keep them alive. We look to see if there is a quantifiable difference between which of these two larger groups for sectors performed better. To do this, a violin plot is made where the category is on the x axis, and returns on the y.
+Our final graph takes into account the concept of essential and nonessential industries. We classify essential industries as Consumer Staples, Utilities, and Energy, since consumer staples includes food, utilities has electricity, and energy has the materials we need for electricity and more. We would hypothesize that these essential industries would not be as affected as the nonessential industries, because regardless of how the market is, people need to spend money on the things that will keep them alive. We look to see if there is a quantifiable difference between which of these two larger groups for sectors performed better. To do this, a violin plot is made where the category is on the x axis, and returns on the y.
 
 ```{r}
 #| label: essential-v-nonessential
@@ -482,4 +482,10 @@ sp500_by_company_and_sector |>
 
 There is a visible difference in the Essential and Nonessential Industries. Essential industries have a higher density of values above zero, and higher maximums. They have lower minimums and more clumped up data around a neutral zone. They lost less money and look as if they are more consistent.
 
-Conclusion:
+Conclusion: Our initial hypothesis states that \"essential industries\": Financials, Energy, Utilities and Consumer Staples, will not be as affected despite the fact that the stock market suffers from high rates as a whole. The data collected substantially supports this hypothesis. Our first bar graph shows that there is a general decrease in stocks (80%), but within that, we see how the decrease is explained by industry and different variations in performance by sector. Our second and third graphs explain these variations, showing how industries such as Consumer Discretionary, IT and Consumer Services account for the majority of the decrease, and industries like Energy, Utilities and Consumer Staples show the most positive numbers. Additionally, there is a lot of variability in each sector, which, by grouping into \"essential\" vs. \"non-essential\" industry, is addressed, and demonstrates how essential industries are generally affected less, as they have a higher density of values above zero, and higher maximums.
+
+\
+
+Overall, our research aims to explore the relationship between interest and inflation rates and the performance of the stock market to showcase beneficial investment decisions in the context of today\'s market and fluctuating economic climates. We hypothesized that the overall stock market would be hurt by high inflation, that there are still certain beneficial times to invest within such problematic circumstances, and that certain sectors of the economy demonstrate to be less affected than others in these circumstances. Overall, our data has supported our three hypotheses to a fair extent, with things like fluctuating economic climates being the main confounding variable here. From the data gathered, higher returns in the stock market generally correlate with lower interest and inflation rates, it can still be beneficial to invest at certain times within problematic circumstances and \"essential\" (survival-focused) industries will generally be affected less regardless of circumstance.
+
+\
