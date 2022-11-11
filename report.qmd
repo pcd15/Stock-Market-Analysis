@@ -371,6 +371,8 @@ sp500_by_company_and_sector <- read_csv("data/sp500_by_company_and_sector.csv")
 glimpse(sp500_by_company_and_sector)
 ```
 
+Our first bar graph will analyze just the total number of stocks in the S&P 500 that saw a decrease, and those that saw an increase. We model this by using each stocks year to date return, and classifying it as a decrease if the percentage was negative, and increase if positive. We used geom_bar() in our ggplot() to have two different bars, one for increasing stocks and one for decreasing, and the height of the bar was determined by whether or not that stock increased in price over the course of the year.
+
 ```{r}
 #|: overall-stocks_performance-barchart
 sp500_by_company_and_sector |>
@@ -386,12 +388,39 @@ sp500_by_company_and_sector |>
   scale_fill_viridis_d()
 ```
 
-Our first bar graph will analyze just the total number of stocks in the S&P 500 that saw a decrease, and those that saw an increase. We model this by using each stocks year to date return, and classifying it as a decrease if the percentage was negative, and increase if positive. We used geom_bar() in our ggplot() to have two different bars, one for increasing stocks and one for decreasing, and the height of the bar was determined by whether or not that stock increased in price over the course of the year.
+From this graph, it can be seen that over 80% of the stocks in the S&P 500 actually fell. But can we dig deeper? Is there something that these stocks have in common?
 
-After seeing the how many stocks rose and fell, we now facet the stocks by sector, to see which sectors specifically saw increases and decreases, and how individual stocks within sectors performed.
+Next, we will observe the best and worst stocks. We will do this by arranging by ascending and descending year to date returns, then displaying the top ten best and worst in a tibble, along with some key identifying factors.
 
 ```{r}
-#|: stocks-by_sector_barchart
+#|: 10_best_returns-and_worst
+ten_best<- sp500_by_company_and_sector |>
+  arrange(desc(ytd_return_num)) |>
+  slice_head(n = 10) |>
+  select(name, symbol, ytd_return_num, sector)
+
+ten_best
+
+ten_worst<- sp500_by_company_and_sector |>
+  arrange(ytd_return_num) |>
+  slice_head(n = 10) |>
+  select(name, symbol, ytd_return_num, sector)
+
+ten_worst
+```
+
+From these two, we can see that a lot of the stocks that have similar performance also share a sector. So which sectors are doing the best? We will view their performance by calculating the mean return of all the stocks in that given sector, and sorting from best to worst. After that, we will create a graph that shows a similar picture to the first graph in this section. It will detail how many stocks increased and decreased, but it will be faceted by sector, so we can dig deeper into this picture.
+
+```{r}
+#|: best_sectors-and-stocks-by_sector_barchart
+
+sector_rank <- sp500_by_company_and_sector |>
+  group_by(sector) |>
+  summarize(sector_perf = mean(ytd_return_num, na.rm = TRUE)) |>
+  arrange(desc(sector_perf))
+
+sector_rank
+
 sp500_by_company_and_sector |>
   ggplot(aes(x = return_category, fill = return_category)) +
   geom_bar(show.legend=FALSE) +
@@ -406,7 +435,9 @@ sp500_by_company_and_sector |>
   scale_fill_viridis_d()
 ```
 
-Finally, for our last two graphs, we wanted to see exactly what the increase/decrease range was for each sector. So we made box plots for each sector, with hopes to see who had the highest and lowest median increases, who had the highest and lowest variation, and also who had the highest and lowest maximums and minimums. This information will allow us to understand the most stable sectors, as well as the most unaffected ones. On top of that, we classify essential industries as: Consumer Staples, Utilities, and Energy. Then, we look to see if there is a quantifiable difference between which of these two larger groups for sectors performed better.
+These results help paint a bigger picture. We can see that energy, utilities, and consumer staples are definitely doing the best from both depictions, and IT and real estate are among the few at the bottom. What if we want to delve deeper into each sector, and examine the maximums and minimums and what values the hover around?
+
+For out next graph, we get to see exactly what the increase/decrease range was for each sector. So we made box plots for each sector, with hopes to see who had the highest and lowest median increases, who had the highest and lowest variation, and also who had the highest and lowest maximums and minimums. The box plots were made with sectors across the y, and returns along the x. This information will allow us to gain more understanding of the most stable sectors, as well as the most unaffected ones.
 
 ```{r}
 #|: sectors-performance-barchart
@@ -421,6 +452,14 @@ sp500_by_company_and_sector |>
         ) +
   theme_minimal() +
   scale_fill_viridis_d()
+```
+
+From this depiction, we can clearly see that the lowest industries are: Consumer Discretionary, IT, and Consumer Services. The highest are: Energy, Utilities, and Consumer Staples. And health care, along with some of the lower ones, have high variability. So what do there have in common?
+
+Our final graph takes into account the concept of essential and nonessential industries. We classify essential industries as Consumer Staples, Utilities, and Energy, since consumer staples includes food, utilities has electricity, and energy has the materials we need for electricity and more. We would hypothesize that these essential industries would not be as affected as the nonessential industries, because regardless of how the market is, people need to spend on the things that will keep them alive. We look to see if there is a quantifiable difference between which of these two larger groups for sectors performed better. To do this, a violin plot is made where the category is on the x axis, and returns on the y.
+
+```{r}
+#| label: essential-v-nonessential
 
 sp500_by_company_and_sector |>
   mutate(
@@ -441,33 +480,6 @@ sp500_by_company_and_sector |>
   scale_fill_viridis_d()
 ```
 
-Now we will analyze the mean return for all the stocks in a given sector to see which sectors performed the best.
-
-```{r}
-sp500_by_company_and_sector |>
-  group_by(sector) |>
-  summarize(sector_perf = mean(ytd_return_num, na.rm = TRUE)) |>
-  arrange(desc(sector_perf))
-```
-
-This next tibble goes a little more in detail to specifically which companies did the best, and which sectors they were a part of.
-
-```{r}
-#|: 10_best_returns
-sp500_by_company_and_sector |>
-  arrange(desc(ytd_return_num)) |>
-  slice_head(n = 10) |>
-  select(name, symbol, ytd_return_num, sector)
-```
-
-And what about the opposite end? Which companies were the most negatively affected, and which sectors were they in?
-
-```{r}
-#|: 10_worst_returns
-sp500_by_company_and_sector |>
-  arrange(ytd_return_num) |>
-  slice_head(n = 10) |>
-  select(name, symbol, ytd_return_num, sector)
-```
+There is a visible difference in the Essential and Nonessential Industries. Essential industries have a higher density of values above zero, and higher maximums. They have lower minimums and more clumped up data around a neutral zone. They lost less money and look as if they are more consistent.
 
 Conclusion:
