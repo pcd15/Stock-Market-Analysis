@@ -47,7 +47,7 @@ Sources:
 All of these sites collected these data by retrieving the data published publicly on stock exchanges, except for the federal-funds rate--this data was collected from the World Bank. In addition, each of these sites updates their data monthly/yearly (although they could update it daily, as they are collecting live data). Each observation represents a month in a year (between 1961 and 2020) and includes the following variables:
 
 | Variable            | Definition                                           |
-|----------------------|--------------------------------------------------|
+|---------------------|---------------------------------------------------|
 | year                | year in which observation was recorded               |
 | month               | month in which observation was recorded              |
 | monthly_return      | total stock market's monthly return                  |
@@ -207,7 +207,7 @@ Source:
 Investing.com gets their data from financial-data providers, including stock exchanges and/or directly from market makers (who set stock prices to match supply and demand). The data is collected in real time by monitoring transactions (selling, buying, etc.) executed in the stock market, which correspond to increases/decreases in prices. Each observation represents a different day (between 1 October 2020 and 28 October 2022) and includes the following variables:
 
 | Variable                | Definition                                                        |
-|---------------------|---------------------------------------------------|
+|--------------------|----------------------------------------------------|
 | date                    | day on which observation was recorded                             |
 | price                   | closing daily price for the S&P 500                               |
 | open                    | opening daily price for the S&P 500                               |
@@ -318,11 +318,11 @@ sp500_curr |>
   ) |>
   group_by(new_date) |>
   summarise(
-    mean_daily_diff = mean(daily_diff), 
+    mean_daily_diff = mean(Price), 
     mean_price = mean(Price), 
     .groups = "drop"
   ) |>
-  ggplot(aes(x = new_date, y = mean_daily_diff)) +
+  ggplot(aes(x = new_date, y = mean_price)) +
   geom_smooth(se= FALSE, colour = "blue") +
   labs(
     x = "Date",
@@ -332,6 +332,8 @@ sp500_curr |>
   theme_minimal() +
   theme(plot.title = element_text(hjust = 0.5))
 ```
+
+We then graphed the average daily change (between opening and closing prices) and closing price for each month. We did this by grouping the data by months then finding the summary mean of the average daily change and closing price for each month. Then we used geom_smooth to plot a line graph to visualizing the trends from 10/01/2020 to 10/28/2022. We observe that the average daily difference between opening and closing prices (plotted in red) increase logarithmically from October 2020 to approximately May 2021, decrease linearly from May 2021 to February 2022, then increase exponentially from February 2022 to October 2022. We observe that the average closing prices increase linearly from October 2020 to approximately November 2021, then decrease linearly from November 2021 to October 2022. 
 
 Conclusion: Our initial hypothesis of "the stock market will fall as inflation rates rise, but even then there are good times to invest even with problematic circumstances" is partially backed up by the data. For example, in our third visual, when the Average Daily Difference is below 0 near the 2022-01 to 2022-07 timeframe, the Average closing prices are still relatively high compared to earlier ones. Also, in our second visual, we can see that 2022-07 month has one of the highest gain/loss proportions, yet still has a negative average daily difference from our third visual. Our data also answers the original question of "when to be bearish and when to be bullish" as our second visual shows the months in which daily gains or losses are more prevalent.
 
@@ -350,7 +352,7 @@ Sources:
 DATA HUB collected their data from S&P Dow Jones Indices (which, in turn, is collected daily from stock exchanges), and Slickcharts their data directly from the stock exchange. Each observation represents a different company and includes the following variables:
 
 | Variable        | Definition                                                                    |
-|----------------------|--------------------------------------------------|
+|----------------|--------------------------------------------------------|
 | name            | name of company in S&P 500                                                    |
 | symbol          | ticker symbol used to identify companies on stock exchange                    |
 | weight          | percentage weighting of company in S&P 500                                    |
