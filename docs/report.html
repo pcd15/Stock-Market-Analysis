@@ -167,10 +167,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
    
   <ul>
   <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction"><strong>Introduction</strong></a></li>
-  <li><a href="#part-1-historical-analysis" id="toc-part-1-historical-analysis" class="nav-link" data-scroll-target="#part-1-historical-analysis">Part 1: Historical Analysis</a></li>
-  <li><a href="#part-2-current-day-analysis" id="toc-part-2-current-day-analysis" class="nav-link" data-scroll-target="#part-2-current-day-analysis">Part 2: Current-day Analysis</a></li>
-  <li><a href="#part-3-companysector-analysis" id="toc-part-3-companysector-analysis" class="nav-link" data-scroll-target="#part-3-companysector-analysis">Part 3: Company/Sector Analysis</a></li>
-  <li><a href="#closing-remarks" id="toc-closing-remarks" class="nav-link" data-scroll-target="#closing-remarks">Closing Remarks</a></li>
+  <li><a href="#part-1-historical-analysis" id="toc-part-1-historical-analysis" class="nav-link" data-scroll-target="#part-1-historical-analysis"><strong>Part 1: Historical Analysis</strong></a></li>
+  <li><a href="#part-2-current-day-analysis" id="toc-part-2-current-day-analysis" class="nav-link" data-scroll-target="#part-2-current-day-analysis"><strong>Part 2: Current-day Analysis</strong></a></li>
+  <li><a href="#part-3-company-and-sector-analysis" id="toc-part-3-company-and-sector-analysis" class="nav-link" data-scroll-target="#part-3-company-and-sector-analysis"><strong>Part 3: Company and Sector Analysis</strong></a></li>
+  <li><a href="#closing-remarks" id="toc-closing-remarks" class="nav-link" data-scroll-target="#closing-remarks"><strong>Closing Remarks</strong></a></li>
   </ul>
 </nav>
     </div>
@@ -214,12 +214,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul>
 <p>For our historical analysis, we’ll utilize a data set that includes yearly averages for the federal funds rate, inflation rate, and the S&amp;P 500’s return percentage from 1961 to 2020 in order to examine trends during this timeframe. For our current-day analysis, we’ll utilize a data set that details the S&amp;P 500’s daily performance over the past two years to compare our historical findings with recent trends. Lastly, we have a data set that includes each company in the S&amp;P 500 index, along with their sector and year-to-date performance, which we’ll use to examine whether certain companies/sectors have performed better as rates have risen throughout this year.</p>
 <p>We believe the overall stock market would be hurt by high inflation and corresponding high interest rates, both because consumers’ discretionary incomes drop and because companies are disincentivized from borrowing, due to the higher costs associated with taking out a loan. We expect to see this relationship in both our historical analysis and our current-day analysis. Conversely, in times of lower rates, we expect market returns to be higher, on average. Though we expect the stock market as a whole to suffer from high rates, we believe certain sectors of the economy could serve as silver linings for investors’ pockets; these industries include: financials, health care, utilities, and consumer staples. We believe these sectors could perform better than the aggregate market because they sell essential goods that consumers must purchase no matter the state of the economy (health care, utilities, and consumer staples). Also, we believe the financials sector will do well because banks are able to charge higher interest rates on their loans (and thus earn greater profits) when interest rates are high.</p>
-<p>Note: We are using the S&amp;P 500 as a model of the performance of the entire market, and we are using the federal-funds rate, the interest rate at which banks loan to other banks, to model the general trend of all interest rates. We believed these are logical assumptions, as the S&amp;P 500 includes the 500 largest US-based companies (and thus covers a large portion of the total market) and the federal-funds rate generally serves as a benchmark for all other interest rates (because it is indirectly influenced by the Federal Reserve’s policies). Also, all of our observations feature the performance of the market (S&amp;P 500) or an individual company in the S&amp;P 500 on a specific day/month/year.</p>
+<p><strong>Note:</strong> We are using the S&amp;P 500 as a model of the performance of the entire market, and we are using the federal-funds rate, the interest rate at which banks loan to other banks, to model the general trend of all interest rates. We believed these are logical assumptions, as the S&amp;P 500 includes the 500 largest US-based companies (and thus covers a large portion of the total market) and the federal-funds rate generally serves as a benchmark for all other interest rates (because it is indirectly influenced by the Federal Reserve’s policies). Also, all of our observations feature the performance of the market (S&amp;P 500) or an individual company in the S&amp;P 500 on a specific day/month/year.</p>
 <div style="page-break-after: always;"></div>
 </section>
 <section id="part-1-historical-analysis" class="level1">
-<h1>Part 1: Historical Analysis</h1>
-<p>Sources:</p>
+<h1><strong>Part 1: Historical Analysis</strong></h1>
+<p><strong>Sources:</strong></p>
 <ul>
 <li><p>Federal Funds Rate and Inflation Rate: Macrotrends (<a href="https://www.macrotrends.net/2015/fed-funds-rate-historical-chart" class="uri">https://www.macrotrends.net/2015/fed-funds-rate-historical-chart</a>)</p></li>
 <li><p>S&amp;P 500 Annual Returns: Slickcharts (https://www.slickcharts.com/sp500/returns)</p></li>
@@ -228,8 +228,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>All of these sites collected these data by retrieving the data published publicly on stock exchanges, except for the federal-funds rate–this data was collected from the World Bank. In addition, each of these sites updates their data monthly/yearly (although they could update it daily, as they are collecting live data). Each observation represents a month in a year (between 1961 and 2020) and includes the following variables:</p>
 <table class="table">
 <colgroup>
-<col style="width: 29%">
-<col style="width: 70%">
+<col style="width: 31%">
+<col style="width: 68%">
 </colgroup>
 <thead>
 <tr class="header">
@@ -288,180 +288,300 @@ $ time_period             &lt;chr&gt; "not so recent", "not so recent", "not so 
 $ decade                  &lt;chr&gt; "'60s", "'60s", "'60s", "'60s", "'60s", "'60s"…</code></pre>
 </div>
 </div>
+<p><strong>Methodology:</strong></p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co">#|: inflation-vs-interest-plot</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Completed with assistance from: https://community.rstudio.com/t/adding-manual-legend-to-ggplot2/41651/5</span></span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>colors <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"Inflation"</span> <span class="ot">=</span> <span class="st">"blue"</span>, <span class="st">"Interest"</span> <span class="ot">=</span> <span class="st">"red"</span>)</span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(historical_data) <span class="sc">+</span></span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">x =</span> year, <span class="at">y =</span> mean_fed_funds_rate, <span class="at">color =</span> <span class="st">"Interest"</span>)) <span class="sc">+</span></span>
-<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">x =</span> year, <span class="at">y =</span> inflation_rate, <span class="at">color =</span> <span class="st">"Inflation"</span>)) <span class="sc">+</span></span>
-<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
-<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
-<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Interest Rates vs. Inflation Rates"</span>,</span>
-<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">subtitle =</span> <span class="st">"1961 - 2020"</span>,</span>
-<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Year"</span>,</span>
-<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Average Annual Rate (%)"</span>,</span>
-<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>    <span class="at">color =</span> <span class="st">"Type"</span></span>
-<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
-<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(</span>
-<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a>    <span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">hjust =</span> <span class="fl">0.5</span>),</span>
-<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a>    <span class="at">plot.subtitle =</span> <span class="fu">element_text</span>(<span class="at">hjust =</span> <span class="fl">0.5</span>),</span>
-<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a>    <span class="at">legend.title =</span> <span class="fu">element_text</span>(<span class="at">hjust =</span> <span class="fl">0.5</span>)</span>
-<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
-<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> colors)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Completed with assistance from: https://community.rstudio.com/t/adding-manual-legend-to-ggplot2/41651/5</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>colors <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"Inflation"</span> <span class="ot">=</span> <span class="st">"blue"</span>, <span class="st">"Interest"</span> <span class="ot">=</span> <span class="st">"red"</span>)</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(historical_data) <span class="sc">+</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">x =</span> year, <span class="at">y =</span> mean_fed_funds_rate, <span class="at">color =</span> <span class="st">"Interest"</span>)) <span class="sc">+</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">x =</span> year, <span class="at">y =</span> inflation_rate, <span class="at">color =</span> <span class="st">"Inflation"</span>)) <span class="sc">+</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Year"</span>,</span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Average Annual Rate (%)"</span>,</span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">color =</span> <span class="st">"Type"</span></span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.title =</span> <span class="fu">element_text</span>(<span class="at">hjust =</span> <span class="fl">0.5</span>)) <span class="sc">+</span></span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> colors)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="report_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid" width="672"></p>
+<div id="fig-inflation-vs-interest" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="report_files/figure-html/fig-inflation-vs-interest-1.png" class="img-fluid figure-img" width="672"></p>
+<p></p><figcaption class="figure-caption">Figure&nbsp;1: Interest rates vs.&nbsp;inflation rates</figcaption><p></p>
+</figure>
 </div>
 </div>
-<p>We first isolated interest and inflation rates to determine the relationship between them. To do so, we utilized a line graph to see their trends across time–more specifically, from 1961 to 2020. As you can see in the graph above, these rates are very closely related (especially prior to 2000), with interest and inflation peaking and dipping at similar times. This trend makes sense, as the Federal Reserve tends to raise the federal-funds (interest) rate when inflation rises, in an attempt to slow the economy down. (This is why the Federal Reserve is raising interest rates now–more on that later.)</p>
+</div>
+<p>We first isolated interest and inflation rates to determine the relationship between them. To do so, we utilized line graphs to visualize their trends across time–more specifically, from 1961 to 2020.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co">#|: interest-inflation-and-market-returns-graph</span></span>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>colors_redux <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"Inflation"</span> <span class="ot">=</span> <span class="st">"blue"</span>, <span class="st">"Interest"</span> <span class="ot">=</span> <span class="st">"red"</span>, <span class="st">"Market Returns"</span> <span class="ot">=</span> <span class="st">"darkgreen"</span>)</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>colors_redux <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"Inflation"</span> <span class="ot">=</span> <span class="st">"blue"</span>, <span class="st">"Interest"</span> <span class="ot">=</span> <span class="st">"red"</span>, <span class="st">"Market Returns"</span> <span class="ot">=</span> <span class="st">"darkgreen"</span>)</span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>historical_data <span class="sc">|&gt;</span></span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span></span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">x =</span> year, <span class="at">y =</span> mean_fed_funds_rate, <span class="at">color =</span> <span class="st">"Interest"</span>)) <span class="sc">+</span></span>
-<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">x =</span> year, <span class="at">y =</span> inflation_rate, <span class="at">color =</span> <span class="st">"Inflation"</span>)) <span class="sc">+</span></span>
-<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">x =</span> year, <span class="at">y =</span> year_to_date_return, <span class="at">color =</span> <span class="st">"Market Returns"</span>)) <span class="sc">+</span></span>
-<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
-<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
-<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Impacts of Interest Rates and Inflation Rates on Market Returns"</span>,</span>
-<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">subtitle =</span> <span class="st">"1961 - 2020"</span>,</span>
-<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Year"</span>,</span>
-<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Average Annual Rate (%)"</span>,</span>
-<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>    <span class="at">color =</span> <span class="st">"Type"</span></span>
-<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
-<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(</span>
-<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a>    <span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">hjust =</span> <span class="fl">0.5</span>),</span>
-<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a>    <span class="at">plot.subtitle =</span> <span class="fu">element_text</span>(<span class="at">hjust =</span> <span class="fl">0.5</span>),</span>
-<span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a>    <span class="at">legend.title =</span> <span class="fu">element_text</span>(<span class="at">hjust =</span> <span class="fl">0.5</span>)</span>
-<span id="cb5-22"><a href="#cb5-22" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
-<span id="cb5-23"><a href="#cb5-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> colors_redux)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>historical_data <span class="sc">|&gt;</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">x =</span> year, <span class="at">y =</span> mean_fed_funds_rate, <span class="at">color =</span> <span class="st">"Interest"</span>)) <span class="sc">+</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">x =</span> year, <span class="at">y =</span> inflation_rate, <span class="at">color =</span> <span class="st">"Inflation"</span>)) <span class="sc">+</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">x =</span> year, <span class="at">y =</span> year_to_date_return, <span class="at">color =</span> <span class="st">"Market Returns"</span>)) <span class="sc">+</span></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Year"</span>,</span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Average Annual Rate (%)"</span>,</span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">color =</span> <span class="st">"Type"</span></span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.title =</span> <span class="fu">element_text</span>(<span class="at">hjust =</span> <span class="fl">0.5</span>)) <span class="sc">+</span></span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> colors_redux)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="report_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid" width="672"></p>
+<div id="fig-inflation-and-interest-vs-returns" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="report_files/figure-html/fig-inflation-and-interest-vs-returns-1.png" class="img-fluid figure-img" width="672"></p>
+<p></p><figcaption class="figure-caption">Figure&nbsp;2: Interest and inflation rates vs.&nbsp;S&amp;P 500 returns</figcaption><p></p>
+</figure>
 </div>
 </div>
-<p>Then, we analyzed the relationship between rates and average yearly returns of the stock market for the same period using another line graph. As depicted in the graph, market returns are extremely volatile and (at least according to this graph) doesn’t seem to depend on either interest or inflation, contrary to our hypothesis.</p>
+</div>
+<p>Then, we analyzed the relationship between rates and average yearly returns of the stock market for the same period using more line graphs.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co">#|: best-ten-years-of-returns</span></span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>historical_data_best <span class="ot">&lt;-</span> historical_data <span class="sc">|&gt;</span> </span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">distinct</span>(year, mean_fed_funds_rate, inflation_rate, year_to_date_return) <span class="sc">|&gt;</span></span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(year_to_date_return)) <span class="sc">|&gt;</span></span>
-<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">slice_head</span>(<span class="at">n =</span> <span class="dv">10</span>) <span class="sc">|&gt;</span> </span>
-<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">relocate</span>(year, year_to_date_return)</span>
-<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>historical_data_best</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 10 × 4
-    year year_to_date_return inflation_rate mean_fed_funds_rate
-   &lt;dbl&gt;               &lt;dbl&gt;          &lt;dbl&gt;               &lt;dbl&gt;
- 1  1995                37.6           2.81                5.83
- 2  1975                37.2           9.14                5.82
- 3  1997                33.4           2.34                5.46
- 4  1980                32.4          13.5                13.4 
- 5  2013                32.4           1.46                0.11
- 6  1985                31.7           3.55                8.1 
- 7  1989                31.7           4.83                9.21
- 8  2019                31.5           1.81                2.16
- 9  1991                30.5           4.24                5.69
-10  2003                28.7           2.27                1.13</code></pre>
-</div>
-</div>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co">#|: worst-ten-years-of-returns</span></span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>historical_data_worst <span class="ot">&lt;-</span> historical_data <span class="sc">|&gt;</span> </span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">distinct</span>(year, mean_fed_funds_rate, inflation_rate, year_to_date_return) <span class="sc">|&gt;</span></span>
-<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(year_to_date_return) <span class="sc">|&gt;</span></span>
-<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">slice_head</span>(<span class="at">n =</span> <span class="dv">10</span>) <span class="sc">|&gt;</span> </span>
-<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">relocate</span>(year, year_to_date_return)</span>
-<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>historical_data_worst</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 10 × 4
-    year year_to_date_return inflation_rate mean_fed_funds_rate
-   &lt;dbl&gt;               &lt;dbl&gt;          &lt;dbl&gt;               &lt;dbl&gt;
- 1  2008              -37              3.84                1.92
- 2  1974              -26.5           11.1                10.5 
- 3  2002              -22.1            1.59                1.67
- 4  1973              -14.7            6.18                8.74
- 5  2001              -11.9            2.83                3.88
- 6  1966              -10.1            3.02                5.11
- 7  2000               -9.1            3.38                6.24
- 8  1962               -8.73           1.20                2.71
- 9  1969               -8.5            5.46                8.21
-10  1977               -7.18           6.50                5.54</code></pre>
-</div>
-</div>
-<p>Next, we determined the best and worst 10 years of performance for the stock market by sorting by year_to_date_return, in order to examine the years individually rather than as a trend across time. Many of the best years feature at least one relatively low rate (&lt;5%), with many having both low interest and inflation rates. Noticeable outliers include 1980, whose rates were both over 13%, and 1975, whose interest rate was almost 6% and inflation 9%. This trend of high returns correlating with lower rates does support our hypothesis. On the other hand, we expected many of the worst years for market returns to have high rates; surprisingly, this was not the case for about half of the worst years. Though some years did support our hypothesis, including 1974, 1973, 1969, and 1977, the others featured surprisingly low rates. We suspect that these unanticipated poor performance of the stock market during times of low rates could possibly be explained by recessions occurring during these years; in recessionary gaps, inflation tends to be lower because the economy has slowed significantly, and interest rates tend to be low as well in an attempt to re-stimulate the economy by encouraging borrowing.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co">#|: creating-df-of-averages-of-returns-and-rates-by-decade</span></span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="co"># excluded 2020 because it's not a whole decade</span></span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>historical_data_decade <span class="ot">&lt;-</span> historical_data <span class="sc">|&gt;</span></span>
-<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(decade <span class="sc">!=</span> <span class="st">"2020"</span>) <span class="sc">|&gt;</span></span>
-<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(decade) <span class="sc">|&gt;</span></span>
-<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(</span>
-<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">mean_return =</span> <span class="fu">mean</span>(year_to_date_return),</span>
-<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">mean_interest =</span> <span class="fu">mean</span>(mean_fed_funds_rate),</span>
-<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">mean_inflation =</span> <span class="fu">mean</span>(inflation_rate)</span>
-<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
-<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(mean_return))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co">#|: visualization-of-rates-by-decade</span></span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>historical_data_decade <span class="sc">|&gt;</span></span>
-<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>( </span>
-<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>    <span class="sc">!</span>decade, </span>
-<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">names_to =</span> <span class="st">"type"</span>,</span>
-<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">values_to =</span> <span class="st">"rate"</span></span>
-<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
-<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
-<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">type =</span> <span class="fu">as.factor</span>(type),</span>
-<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">type =</span> <span class="fu">fct_rev</span>(type)</span>
-<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
-<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> type, <span class="at">y =</span> rate, <span class="at">fill =</span> type)) <span class="sc">+</span></span>
-<span id="cb11-14"><a href="#cb11-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>(<span class="at">color =</span> <span class="st">"black"</span>) <span class="sc">+</span></span>
-<span id="cb11-15"><a href="#cb11-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>decade, <span class="at">ncol =</span> <span class="dv">3</span>) <span class="sc">+</span></span>
-<span id="cb11-16"><a href="#cb11-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
-<span id="cb11-17"><a href="#cb11-17" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Mean Returns and Rates by Decade"</span>,</span>
-<span id="cb11-18"><a href="#cb11-18" aria-hidden="true" tabindex="-1"></a>    <span class="at">subtitle =</span> <span class="st">"1960s - 2010s"</span>,</span>
-<span id="cb11-19"><a href="#cb11-19" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Mean Rate"</span>,</span>
-<span id="cb11-20"><a href="#cb11-20" aria-hidden="true" tabindex="-1"></a>    <span class="at">fill =</span> <span class="st">"Type"</span></span>
-<span id="cb11-21"><a href="#cb11-21" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
-<span id="cb11-22"><a href="#cb11-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_viridis_d</span>() <span class="sc">+</span> </span>
-<span id="cb11-23"><a href="#cb11-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
-<span id="cb11-24"><a href="#cb11-24" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(</span>
-<span id="cb11-25"><a href="#cb11-25" aria-hidden="true" tabindex="-1"></a>    <span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">hjust =</span> <span class="fl">0.5</span>),</span>
-<span id="cb11-26"><a href="#cb11-26" aria-hidden="true" tabindex="-1"></a>    <span class="at">plot.subtitle =</span> <span class="fu">element_text</span>(<span class="at">hjust =</span> <span class="fl">0.5</span>),</span>
-<span id="cb11-27"><a href="#cb11-27" aria-hidden="true" tabindex="-1"></a>    <span class="at">legend.title =</span> <span class="fu">element_text</span>(<span class="at">hjust =</span> <span class="fl">0.5</span>),</span>
-<span id="cb11-28"><a href="#cb11-28" aria-hidden="true" tabindex="-1"></a>    <span class="at">axis.title.x =</span> <span class="fu">element_blank</span>(),</span>
-<span id="cb11-29"><a href="#cb11-29" aria-hidden="true" tabindex="-1"></a>    <span class="at">axis.text.x =</span> <span class="fu">element_blank</span>()</span>
-<span id="cb11-30"><a href="#cb11-30" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>historical_data_best <span class="ot">&lt;-</span> historical_data <span class="sc">|&gt;</span> </span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">distinct</span>(year, mean_fed_funds_rate, inflation_rate, year_to_date_return) <span class="sc">|&gt;</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(year_to_date_return)) <span class="sc">|&gt;</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">slice_head</span>(<span class="at">n =</span> <span class="dv">10</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">relocate</span>(year, year_to_date_return) <span class="sc">|&gt;</span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>  knitr<span class="sc">::</span><span class="fu">kable</span>()</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>historical_data_best</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="report_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid" width="672"></p>
+<div id="tbl-best-ten-years-of-returns" class="anchored">
+<table class="table table-sm table-striped">
+<caption>Table&nbsp;1: Ten years with highest annual S&amp;P 500 returns</caption>
+<thead>
+<tr class="header">
+<th style="text-align: right;">year</th>
+<th style="text-align: right;">year_to_date_return</th>
+<th style="text-align: right;">inflation_rate</th>
+<th style="text-align: right;">mean_fed_funds_rate</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: right;">1995</td>
+<td style="text-align: right;">37.58</td>
+<td style="text-align: right;">2.8054</td>
+<td style="text-align: right;">5.83</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">1975</td>
+<td style="text-align: right;">37.20</td>
+<td style="text-align: right;">9.1431</td>
+<td style="text-align: right;">5.82</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">1997</td>
+<td style="text-align: right;">33.36</td>
+<td style="text-align: right;">2.3377</td>
+<td style="text-align: right;">5.46</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">1980</td>
+<td style="text-align: right;">32.42</td>
+<td style="text-align: right;">13.5492</td>
+<td style="text-align: right;">13.35</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">2013</td>
+<td style="text-align: right;">32.39</td>
+<td style="text-align: right;">1.4648</td>
+<td style="text-align: right;">0.11</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">1985</td>
+<td style="text-align: right;">31.73</td>
+<td style="text-align: right;">3.5456</td>
+<td style="text-align: right;">8.10</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">1989</td>
+<td style="text-align: right;">31.69</td>
+<td style="text-align: right;">4.8270</td>
+<td style="text-align: right;">9.21</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">2019</td>
+<td style="text-align: right;">31.49</td>
+<td style="text-align: right;">1.8122</td>
+<td style="text-align: right;">2.16</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">1991</td>
+<td style="text-align: right;">30.47</td>
+<td style="text-align: right;">4.2350</td>
+<td style="text-align: right;">5.69</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">2003</td>
+<td style="text-align: right;">28.68</td>
+<td style="text-align: right;">2.2701</td>
+<td style="text-align: right;">1.13</td>
+</tr>
+</tbody>
+</table>
 </div>
 </div>
-<p>For the last part of our historical analysis, we wanted to examine the averages of returns, interest, and inflation by decade. To do so, we created a bar chart for each decade (using geom_col() and facet_wrap()). This graph supports what we concluded after examining the best and worst 10 years of returns: higher returns seem to be common in times of low rates, but it’s difficult to determine a relationship between returns and rates when returns are lower. For example, the ’60s, ’90s, and 2010s all featured high returns (~10+%) and rates at or below 5%; an outlier decade is the 2000s, whose average return was an abysmal ~1% despite low rates. On the other hand, in decades when rates were high (the ’70s and ’80s), returns were much more volatile–about average in the ’70s (7.5%) yet outstanding in the ’80s (15+%).</p>
-<p>Conclusion: Our initial hypothesis was partially correct. It seems that higher returns in the stock market generally correlate with lower interest and inflation rates, but years with lower returns can’t be explained as neatly, at least with the data we’re using. A potential confounding variable could be whether our economy was experiencing a recession during that year, as recessions sometimes create environments where returns in the stock market are poor even in times of low rates. Given this, it would be difficult to apply any predictions to our current-day analysis, since the market currently features very low (mostly negative) returns. However, we can still independently conduct the current-day analysis to gain a more in-depth understanding of the relationship between returns and rates.</p>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>historical_data_worst <span class="ot">&lt;-</span> historical_data <span class="sc">|&gt;</span> </span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">distinct</span>(year, mean_fed_funds_rate, inflation_rate, year_to_date_return) <span class="sc">|&gt;</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(year_to_date_return) <span class="sc">|&gt;</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">slice_head</span>(<span class="at">n =</span> <span class="dv">10</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">relocate</span>(year, year_to_date_return) <span class="sc">|&gt;</span> </span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>  knitr<span class="sc">::</span><span class="fu">kable</span>()</span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>historical_data_worst</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div id="tbl-worst-ten-years-of-returns" class="anchored">
+<table class="table table-sm table-striped">
+<caption>Table&nbsp;2: Ten years with lowest annual S&amp;P 500 returns</caption>
+<thead>
+<tr class="header">
+<th style="text-align: right;">year</th>
+<th style="text-align: right;">year_to_date_return</th>
+<th style="text-align: right;">inflation_rate</th>
+<th style="text-align: right;">mean_fed_funds_rate</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: right;">2008</td>
+<td style="text-align: right;">-37.00</td>
+<td style="text-align: right;">3.8391</td>
+<td style="text-align: right;">1.92</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">1974</td>
+<td style="text-align: right;">-26.47</td>
+<td style="text-align: right;">11.0548</td>
+<td style="text-align: right;">10.51</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">2002</td>
+<td style="text-align: right;">-22.10</td>
+<td style="text-align: right;">1.5860</td>
+<td style="text-align: right;">1.67</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">1973</td>
+<td style="text-align: right;">-14.66</td>
+<td style="text-align: right;">6.1778</td>
+<td style="text-align: right;">8.74</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">2001</td>
+<td style="text-align: right;">-11.89</td>
+<td style="text-align: right;">2.8262</td>
+<td style="text-align: right;">3.88</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">1966</td>
+<td style="text-align: right;">-10.06</td>
+<td style="text-align: right;">3.0151</td>
+<td style="text-align: right;">5.11</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">2000</td>
+<td style="text-align: right;">-9.10</td>
+<td style="text-align: right;">3.3769</td>
+<td style="text-align: right;">6.24</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">1962</td>
+<td style="text-align: right;">-8.73</td>
+<td style="text-align: right;">1.1988</td>
+<td style="text-align: right;">2.71</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">1969</td>
+<td style="text-align: right;">-8.50</td>
+<td style="text-align: right;">5.4624</td>
+<td style="text-align: right;">8.21</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">1977</td>
+<td style="text-align: right;">-7.18</td>
+<td style="text-align: right;">6.5017</td>
+<td style="text-align: right;">5.54</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<p>Next, we determined the best and worst 10 years of performance for the stock market by sorting by year_to_date_return and arranging in ascending (worst) and descending (best) order, in order to examine the years individually rather than as a trend across time.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co">#|: creating-df-of-averages-of-returns-and-rates-by-decade</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="co"># excluded 2020 because it's not a whole decade</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>historical_data_decade <span class="ot">&lt;-</span> historical_data <span class="sc">|&gt;</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(decade <span class="sc">!=</span> <span class="st">"2020"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(decade) <span class="sc">|&gt;</span></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(</span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">mean_return =</span> <span class="fu">mean</span>(year_to_date_return),</span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">mean_interest =</span> <span class="fu">mean</span>(mean_fed_funds_rate),</span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">mean_inflation =</span> <span class="fu">mean</span>(inflation_rate)</span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(mean_return))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>historical_data_decade <span class="sc">|&gt;</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>( </span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>    <span class="sc">!</span>decade, </span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">names_to =</span> <span class="st">"type"</span>,</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">values_to =</span> <span class="st">"rate"</span></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">type =</span> <span class="fu">as.factor</span>(type),</span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">type =</span> <span class="fu">fct_rev</span>(type)</span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> type, <span class="at">y =</span> rate, <span class="at">fill =</span> type)) <span class="sc">+</span></span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>(<span class="at">color =</span> <span class="st">"black"</span>) <span class="sc">+</span></span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>decade, <span class="at">ncol =</span> <span class="dv">3</span>) <span class="sc">+</span></span>
+<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Mean Rate"</span>,</span>
+<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a>    <span class="at">fill =</span> <span class="st">"Type"</span></span>
+<span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb9-18"><a href="#cb9-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_viridis_d</span>() <span class="sc">+</span> </span>
+<span id="cb9-19"><a href="#cb9-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb9-20"><a href="#cb9-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(</span>
+<span id="cb9-21"><a href="#cb9-21" aria-hidden="true" tabindex="-1"></a>    <span class="at">legend.title =</span> <span class="fu">element_text</span>(<span class="at">hjust =</span> <span class="fl">0.5</span>),</span>
+<span id="cb9-22"><a href="#cb9-22" aria-hidden="true" tabindex="-1"></a>    <span class="at">axis.title.x =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb9-23"><a href="#cb9-23" aria-hidden="true" tabindex="-1"></a>    <span class="at">axis.text.x =</span> <span class="fu">element_blank</span>()</span>
+<span id="cb9-24"><a href="#cb9-24" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div id="fig-rates-by-decade" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="report_files/figure-html/fig-rates-by-decade-1.png" class="img-fluid figure-img" width="672"></p>
+<p></p><figcaption class="figure-caption">Figure&nbsp;3: Average interest and inflation rates and S&amp;P 500 returns by decade</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+<p>For the last part of our historical analysis, we wanted to examine the averages of returns, interest, and inflation by decade. To do so, we calculated the means for each rate and return by decade and then created a bar chart for each decade using geom_col() and facet_wrap().</p>
+<p><strong>Results:</strong> As you can see in <a href="#fig-inflation-vs-interest">Figure&nbsp;1</a>, inflation and interest rates are very closely related (especially prior to 2000), with interest and inflation peaking and dipping at similar times. This trend makes sense, as the Federal Reserve tends to raise interest rates when inflation rises, in an attempt to slow the economy down. (This is why the Federal Reserve is raising interest rates now–more on that later.) As depicted in <a href="#fig-inflation-and-interest-vs-returns">Figure&nbsp;2</a>, market returns are extremely volatile and (at least according to this graph) don’t seem to depend on either interest or inflation, contrary to our hypothesis.</p>
+<p><a href="#tbl-best-ten-years-of-returns">Table&nbsp;1</a> show that any of the best years feature at least one relatively low rate (&lt;5%), with many having both low interest and inflation rates. Noticeable outliers include 1980, whose rates were both over 13%, and 1975, whose interest rate was almost 6% and inflation 9%. This trend of high returns correlating with lower rates does support our hypothesis. On the other hand, we expected many of the worst years for market returns to have high rates; surprisingly, this was not the case for about half of the worst years, as shown in <a href="#tbl-worst-ten-years-of-returns">Table&nbsp;2</a>. Though some years did support our hypothesis, including 1974, 1973, 1969, and 1977, the others featured surprisingly low rates. We suspect that these unanticipated poor performance of the stock market during times of low rates could possibly be explained by recessions occurring during these years; in recessionary gaps, inflation tends to be lower because the economy has slowed significantly, and interest rates tend to be low as well in an attempt to re-stimulate the economy by encouraging borrowing.</p>
+<p><a href="#fig-rates-by-decade">Figure&nbsp;3</a> supports what we concluded after examining the best and worst 10 years of returns: higher returns seem to be common in times of low rates, but it’s difficult to determine a relationship between returns and rates when returns are lower. For example, the ’60s, ’90s, and 2010s all featured high returns (~10+%) and rates at or below 5%; an outlier decade is the 2000s, whose average return was an abysmal ~1% despite low rates. On the other hand, in decades when rates were high (the ’70s and ’80s), returns were much more volatile–about average in the ’70s (7.5%) yet outstanding in the ’80s (15+%).</p>
+<p><strong>Conclusion:</strong> Our initial hypothesis was partially correct. It seems that higher returns in the stock market generally correlate with lower interest and inflation rates, but years with lower returns can’t be explained as neatly, at least with the data we’re using. A potential confounding variable could be whether our economy was experiencing a recession during that year, as recessions sometimes create environments where returns in the stock market are poor even in times of low rates. Given this, it would be difficult to apply any predictions to our current-day analysis, since the market currently features very low (mostly negative) returns. However, we can still independently conduct the current-day analysis to gain a more in-depth understanding of the relationship between returns and rates.</p>
 <div style="page-break-after: always;"></div>
 </section>
 <section id="part-2-current-day-analysis" class="level1">
-<h1>Part 2: Current-day Analysis</h1>
-<p>Source:</p>
+<h1><strong>Part 2: Current-day Analysis</strong></h1>
+<p><strong>Source:</strong></p>
 <ul>
 <li>Investing.com (https://www.investing.com/indices/us-spx-500-historical-data)</li>
 </ul>
 <p>Investing.com gets their data from financial-data providers, including stock exchanges and/or directly from market makers (who set stock prices to match supply and demand). The data is collected in real time by monitoring transactions (selling, buying, etc.) executed in the stock market, which correspond to increases/decreases in prices. Each observation represents a different day (between 1 October 2020 and 28 October 2022) and includes the following variables:</p>
 <table class="table">
 <colgroup>
-<col style="width: 27%">
-<col style="width: 72%">
+<col style="width: 30%">
+<col style="width: 69%">
 </colgroup>
 <thead>
 <tr class="header">
@@ -496,12 +616,12 @@ $ decade                  &lt;chr&gt; "'60s", "'60s", "'60s", "'60s", "'60s", "'
 </tr>
 </tbody>
 </table>
-<p>Contextualization: We’re analyzing the time period of October 2020 through October 2022. This year, inflation has risen to ~8%, up from &lt;2% in 2020 and &lt;5% in 2021. Interest rates have steadily risen in tandem with this increase in inflation. In an attempt to slow down inflation, Federal Reserve has increased the discount rate (the rate at which banks are charged to borrow from the Federal Reserve) from 0.5% in March 2022 to a current rate of 4%, which is the highest it’s been since the 2008 recession.</p>
+<p><strong>Contextualization:</strong> We’re analyzing the time period of October 2020 through October 2022. This year, inflation has risen to ~8%, up from &lt;2% in 2020 and &lt;5% in 2021. Interest rates have steadily risen in tandem with this increase in inflation. In an attempt to slow down inflation, Federal Reserve has increased the discount rate (the rate at which banks are charged to borrow from the Federal Reserve) from 0.5% in March 2022 to a current rate of 4%, which is the highest it’s been since the 2008 recession.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co">#|: loading-current-day-sp500-data</span></span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>sp500_curr <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"data/sp500_curr_updated.csv"</span>)</span>
-<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(sp500_curr)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co">#|: loading-current-day-sp500-data</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>sp500_curr <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"data/sp500_curr_updated.csv"</span>)</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(sp500_curr)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Rows: 524
 Columns: 9
@@ -516,110 +636,126 @@ $ high_minus_low       &lt;dbl&gt; 97.16, 56.16, 62.08, 63.41, 69.09, 110.47, 79
 $ gain                 &lt;lgl&gt; TRUE, FALSE, TRUE, TRUE, TRUE, TRUE, FALSE, FALSE…</code></pre>
 </div>
 </div>
+<p><strong>Methodology:</strong></p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co">#|: each-day-closing-price</span></span>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>sp500_curr <span class="sc">|&gt;</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a> <span class="fu">mutate</span>(</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>   <span class="at">Date =</span> <span class="fu">paste</span>(</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>     <span class="fu">substr</span>(Date, <span class="dv">9</span>, <span class="dv">10</span>), </span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>     <span class="fu">substr</span>(Date, <span class="dv">1</span>, <span class="dv">2</span>),  </span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>     <span class="at">sep =</span> <span class="st">"/"</span></span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> Date, <span class="at">y =</span> Price)) <span class="sc">+</span></span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_discrete</span>(<span class="at">breaks=</span><span class="fu">c</span>(<span class="st">"20/10"</span>,<span class="st">"21/10"</span>, <span class="st">"22/10"</span>)) <span class="sc">+</span></span>
+<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Date (year/month)"</span>,</span>
+<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Daily S&amp;P 500 Closing Price"</span></span>
+<span id="cb12-15"><a href="#cb12-15" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb12-16"><a href="#cb12-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div id="fig-daily-closing-price" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="report_files/figure-html/fig-daily-closing-price-1.png" class="img-fluid figure-img" width="672"></p>
+<p></p><figcaption class="figure-caption">Figure&nbsp;4: Daily closing prices for S&amp;P 500 index by month</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+<p>We first graphed each day’s closing price to determine the trend in closing price over time. We utilized a scatter plot to visualize the data for closing price from 10/01/2020 to 10/28/2022; each point represents the closing price of the S&amp;P 500 index on a particular day, with days grouped by their respective months and years.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>sp500_curr <span class="sc">|&gt;</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">Date =</span> <span class="fu">paste</span>(<span class="fu">substr</span>(Date, <span class="dv">7</span>, <span class="dv">10</span>), <span class="fu">substr</span>(Date, <span class="dv">1</span>, <span class="dv">2</span>),  <span class="at">sep =</span> <span class="st">"/"</span>)</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(Date) <span class="sc">|&gt;</span></span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(gain) <span class="sc">|&gt;</span></span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> Date, <span class="at">y =</span> n, <span class="at">fill =</span> gain)) <span class="sc">+</span></span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>(<span class="at">position =</span> <span class="st">"fill"</span>, <span class="at">color =</span> <span class="st">"black"</span>) <span class="sc">+</span></span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Proportion of Days in Month"</span>, </span>
+<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Date (year/month)"</span>,</span>
+<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">fill =</span> <span class="st">"Daily Gain"</span></span>
+<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb13-14"><a href="#cb13-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb13-15"><a href="#cb13-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_viridis_d</span>() <span class="sc">+</span></span>
+<span id="cb13-16"><a href="#cb13-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_discrete</span>(<span class="at">breaks=</span><span class="fu">c</span>(<span class="st">"2020/10"</span>,<span class="st">"2021/10"</span>, <span class="st">"2022/10"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div id="fig-prop-gains-and-losses-by-month" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="report_files/figure-html/fig-prop-gains-and-losses-by-month-1.png" class="img-fluid figure-img" width="672"></p>
+<p></p><figcaption class="figure-caption">Figure&nbsp;5: Proportion of daily gains and losses by month</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+<p>We plotted the proportion of daily gains and losses by each month in the S&amp;P 500. To do this, we first grouped by dates and added a count of the total days in each month recorded. Then, we plotted with ggplot and geom_col(), making our x-axis the date/month, our y-axis the proportion of days that gained and lost from its open price to closing price, and filled the bars with said proportion of days that gained and lost from open to closing price.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co">#|: creating-df-with-new-dates-and-means-for-following-graphs</span></span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>sp500_curr <span class="sc">|&gt;</span></span>
-<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a> <span class="fu">mutate</span>(</span>
-<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>   <span class="at">Date =</span> <span class="fu">paste</span>(</span>
-<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>     <span class="fu">substr</span>(Date, <span class="dv">9</span>, <span class="dv">10</span>), </span>
-<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>     <span class="fu">substr</span>(Date, <span class="dv">1</span>, <span class="dv">2</span>),  </span>
-<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>     <span class="at">sep =</span> <span class="st">"/"</span></span>
-<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
-<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> Date, <span class="at">y =</span> Price)) <span class="sc">+</span></span>
-<span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
-<span id="cb14-13"><a href="#cb14-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_discrete</span>(<span class="at">breaks=</span><span class="fu">c</span>(<span class="st">"20/10"</span>,<span class="st">"21/10"</span>, <span class="st">"22/10"</span>)) <span class="sc">+</span></span>
-<span id="cb14-14"><a href="#cb14-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
-<span id="cb14-15"><a href="#cb14-15" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Date (year/month)"</span>,</span>
-<span id="cb14-16"><a href="#cb14-16" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Daily S&amp;P 500 Closing Price"</span>,</span>
-<span id="cb14-17"><a href="#cb14-17" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Daily S&amp;P 500 Closing Prices by Month"</span></span>
-<span id="cb14-18"><a href="#cb14-18" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
-<span id="cb14-19"><a href="#cb14-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
-<span id="cb14-20"><a href="#cb14-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">hjust =</span> <span class="fl">0.5</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<p><img src="report_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid" width="672"></p>
-</div>
-</div>
-<p>We first graphed each day’s closing price to determine the trend in closing price over time. We utilized a scatter plot to visualize the data for closing price from 10/01/2020 to 10/28/2022; each point represents the closing price of the S&amp;P 500 index on a particular day, with days grouped by their respective months and years. In the graph above, we can see that the closing prices for the S&amp;P 500 follow a generally positive trend from October 2020 to December 2021/January 2022, where they peak for the two-year period, and then begin to generally decline through October 2022. Each month had a wide range of closing prices that we can observe from the range of the heights of closing price data points each month. Some months have a range of approximately $250 (e.g., August 2022) and some have a range of approximately $750 (e.g., February 2021). This trend can possibly be explained by the very low rates characteristic of the Covid-19 era–the interest rate during the period prior to February 2022 was at a steady 0.25%. As soon as the Federal Reserve hiked rates in March 2022 to 0.5% (to combat rising inflation that had begun in late 2022), however, daily closing prices began to fall. This supports our hypothesis that rising rates generally correlates with a decrease in stock prices.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>sp500_curr <span class="sc">|&gt;</span></span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
-<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">Date =</span> <span class="fu">paste</span>(<span class="fu">substr</span>(Date, <span class="dv">7</span>, <span class="dv">10</span>), <span class="fu">substr</span>(Date, <span class="dv">1</span>, <span class="dv">2</span>),  <span class="at">sep =</span> <span class="st">"/"</span>)</span>
-<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
-<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(Date) <span class="sc">|&gt;</span></span>
-<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(gain) <span class="sc">|&gt;</span></span>
-<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> Date, <span class="at">y =</span> n, <span class="at">fill =</span> gain)) <span class="sc">+</span></span>
-<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>(<span class="at">position =</span> <span class="st">"fill"</span>, <span class="at">color =</span> <span class="st">"black"</span>) <span class="sc">+</span></span>
-<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
-<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Proportion of Daily Gains/Losses by Month"</span>,</span>
-<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Proportion of Days in Month"</span>, </span>
-<span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Date (year/month)"</span>,</span>
-<span id="cb15-13"><a href="#cb15-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">fill =</span> <span class="st">"Daily Gain"</span></span>
-<span id="cb15-14"><a href="#cb15-14" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
-<span id="cb15-15"><a href="#cb15-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
-<span id="cb15-16"><a href="#cb15-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">hjust =</span> <span class="fl">0.5</span>)) <span class="sc">+</span></span>
-<span id="cb15-17"><a href="#cb15-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_viridis_d</span>() <span class="sc">+</span></span>
-<span id="cb15-18"><a href="#cb15-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_discrete</span>(<span class="at">breaks=</span><span class="fu">c</span>(<span class="st">"2020/10"</span>,<span class="st">"2021/10"</span>, <span class="st">"2022/10"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<p><img src="report_files/figure-html/gains-and-losses-per-month-1.png" class="img-fluid" width="672"></p>
-</div>
-</div>
-<p>We plotted the proportion of daily gains and losses by each month in the S&amp;P 500. To do this, we first grouped by dates and added a count of the total days in each month recorded. Then, we plotted with ggplot and geom_col(), making our x-axis the date/month, our y-axis the proportion of days that gained and lost from its open price to closing price, and filled the bars with said proportion of days that gained and lost from open to closing price. We notice that 7 of the 26 months in our dataset have losses (gain = false), according to our plot. This means that, for the other 19 months, the number of days whose closing price was higher than the opening price (daily gain) was at least equal, if not greater than, the number of days whose closing price was lower than the opening price (daily loss). Also, it seems that the proportion of losses begins to increase beginning in 2022, which would support our conclusion from the previous graph.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co">#|: creating-df-with-new-dates-and-means-for-following-graphs</span></span>
-<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>sp500_curr_updated <span class="ot">&lt;-</span> sp500_curr <span class="sc">|&gt;</span></span>
-<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
-<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">new_date =</span> <span class="fu">mdy</span>(Date),</span>
-<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">Date =</span> <span class="fu">paste</span>(</span>
-<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>      <span class="fu">substr</span>(Date, <span class="dv">9</span>, <span class="dv">10</span>), </span>
-<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a>      <span class="fu">substr</span>(Date, <span class="dv">1</span>, <span class="dv">2</span>),  </span>
-<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a>      <span class="at">sep =</span> <span class="st">"/"</span></span>
-<span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb16-11"><a href="#cb16-11" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
-<span id="cb16-12"><a href="#cb16-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(new_date) <span class="sc">|&gt;</span></span>
-<span id="cb16-13"><a href="#cb16-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
-<span id="cb16-14"><a href="#cb16-14" aria-hidden="true" tabindex="-1"></a>    <span class="at">mean_daily_diff =</span> <span class="fu">mean</span>(daily_diff), </span>
-<span id="cb16-15"><a href="#cb16-15" aria-hidden="true" tabindex="-1"></a>    <span class="at">mean_price =</span> <span class="fu">mean</span>(Price), </span>
-<span id="cb16-16"><a href="#cb16-16" aria-hidden="true" tabindex="-1"></a>    <span class="at">.groups =</span> <span class="st">"drop"</span></span>
-<span id="cb16-17"><a href="#cb16-17" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>sp500_curr_updated <span class="ot">&lt;-</span> sp500_curr <span class="sc">|&gt;</span></span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">new_date =</span> <span class="fu">mdy</span>(Date),</span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">Date =</span> <span class="fu">paste</span>(</span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>      <span class="fu">substr</span>(Date, <span class="dv">9</span>, <span class="dv">10</span>), </span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>      <span class="fu">substr</span>(Date, <span class="dv">1</span>, <span class="dv">2</span>),  </span>
+<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a>      <span class="at">sep =</span> <span class="st">"/"</span></span>
+<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(new_date) <span class="sc">|&gt;</span></span>
+<span id="cb14-13"><a href="#cb14-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
+<span id="cb14-14"><a href="#cb14-14" aria-hidden="true" tabindex="-1"></a>    <span class="at">mean_daily_diff =</span> <span class="fu">mean</span>(daily_diff), </span>
+<span id="cb14-15"><a href="#cb14-15" aria-hidden="true" tabindex="-1"></a>    <span class="at">mean_price =</span> <span class="fu">mean</span>(Price), </span>
+<span id="cb14-16"><a href="#cb14-16" aria-hidden="true" tabindex="-1"></a>    <span class="at">.groups =</span> <span class="st">"drop"</span></span>
+<span id="cb14-17"><a href="#cb14-17" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>sp500_curr_updated <span class="sc">|&gt;</span></span>
-<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> new_date, <span class="at">y =</span> mean_daily_diff)) <span class="sc">+</span></span>
-<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">se =</span> <span class="cn">FALSE</span>,  <span class="at">colour =</span> <span class="st">"red"</span>) <span class="sc">+</span></span>
-<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
-<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Date"</span>,</span>
-<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Average Daily Difference"</span>,</span>
-<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Average Daily Difference by Month"</span></span>
-<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span> </span>
-<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
-<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">hjust =</span> <span class="fl">0.5</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>sp500_curr_updated <span class="sc">|&gt;</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> new_date, <span class="at">y =</span> mean_daily_diff)) <span class="sc">+</span></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">se =</span> <span class="cn">FALSE</span>,  <span class="at">colour =</span> <span class="st">"red"</span>) <span class="sc">+</span></span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Date"</span>,</span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Average Daily Difference"</span></span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span> </span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="report_files/figure-html/l%20label-%20last-first-day-price-difference-1.png" class="img-fluid" width="672"></p>
+<div id="fig-mean-daily-diff-by-month" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="report_files/figure-html/fig-mean-daily-diff-by-month-1.png" class="img-fluid figure-img" width="672"></p>
+<p></p><figcaption class="figure-caption">Figure&nbsp;6: Monthly average of S&amp;P 500 index’s daily difference</figcaption><p></p>
+</figure>
 </div>
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>sp500_curr_updated <span class="sc">|&gt;</span></span>
-<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> new_date, <span class="at">y =</span> mean_price)) <span class="sc">+</span></span>
-<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">se=</span> <span class="cn">FALSE</span>, <span class="at">colour =</span> <span class="st">"blue"</span>) <span class="sc">+</span></span>
-<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
-<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Date"</span>,</span>
-<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Average Closing Price"</span>,</span>
-<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Average Closing Prices by Month"</span></span>
-<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
-<span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
-<span id="cb18-10"><a href="#cb18-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">hjust =</span> <span class="fl">0.5</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>sp500_curr_updated <span class="sc">|&gt;</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> new_date, <span class="at">y =</span> mean_price)) <span class="sc">+</span></span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">se=</span> <span class="cn">FALSE</span>, <span class="at">colour =</span> <span class="st">"blue"</span>) <span class="sc">+</span></span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Date"</span>,</span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Average Closing Price"</span></span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="report_files/figure-html/l%20label-%20last-first-day-price-difference-2.png" class="img-fluid" width="672"></p>
+<div id="fig-mean-price-by-month" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="report_files/figure-html/fig-mean-price-by-month-1.png" class="img-fluid figure-img" width="672"></p>
+<p></p><figcaption class="figure-caption">Figure&nbsp;7: Monthly average of S&amp;P 500 index’s daily price</figcaption><p></p>
+</figure>
 </div>
 </div>
-<p>We then graphed the average daily change (between opening and closing prices) and closing price for each month. We did this by grouping the data by months then finding the summary mean of the average daily change and closing price for each month. Then, we used geom_smooth to plot a line graph to visualizing the trends from 10/01/2020 to 10/28/2022. We observe that the average daily difference between opening and closing prices (plotted in red) increase logarithmically from October 2020 to approximately May 2021, decrease linearly from May 2021 to February 2022, then increase exponentially from February 2022 to October 2022. The daily difference represents the volatility of the market–as you can see, the absolute value of the daily difference has almost doubled since the beginning of the year, shooting up from 3 to 5. This increase in volatility supports our previous findings that it can sometimes be more difficult to determine a correlation between rates and returns when returns are low. We observe that the average closing prices increase linearly from October 2020 to approximately November 2021, then decrease linearly from November 2021 to October 2022. This graph also shows a peak in stock prices around the beginning of 2022 (before interest-rate hikes), which supports our hypothesis.</p>
-<p>Conclusion: Our initial hypothesis that market returns will fall as rates rise (and vice versa) is partially backed up by the data. For example, in our third visual, when the average daily difference is below 0 near the 2022-01 to 2022-07 time frame, average closing prices are still relatively high compared to earlier ones. Also, in our second visual, we can see that 2022-07 month has one of the highest gain/loss proportions, yet still has a negative average daily difference from our third visual. Our data also answers the original question of when to be “bearish” (negative investment outlook) and when to be “bullish” (positive outlook), as our second visual shows the months in which daily gains or losses are more prevalent. As concluded in the previous section, returns generally seem to be high when rates are low; contrary to our previous conclusion, low returns also seem to correspond with high returns, implying a negative relationship between the two variables for both high and low returns (before we concluded that we could only establish a relationship between returns and rates when returns were high).</p>
+</div>
+<p>We then graphed the average daily change (between opening and closing prices) and closing price for each month. We did this by grouping the data by months then finding the summary mean of the average daily change and closing price for each month. Then, we used geom_smooth to plot a line graph to visualizing the trends from 10/01/2020 to 10/28/2022.</p>
+<p><strong>Results:</strong> In <a href="#fig-daily-closing-price">Figure&nbsp;4</a>, we can see that the closing prices for the S&amp;P 500 follow a generally positive trend from October 2020 to December 2021/January 2022, where they peak for the two-year period, and then begin to generally decline through October 2022. Each month had a wide range of closing prices that we can observe from the range of the heights of closing price data points each month. Some months have a range of approximately $250 (e.g., August 2022) and some have a range of approximately $750 (e.g., February 2021). This trend can possibly be explained by the very low rates characteristic of the Covid-19 era–the interest rate during the period prior to February 2022 was at a steady 0.25%. As soon as the Federal Reserve hiked rates in March 2022 to 0.5% (to combat rising inflation that had begun in late 2022), however, daily closing prices began to fall. This supports our hypothesis that rising rates generally correlates with a decrease in stock prices.</p>
+<p>According to <a href="#fig-prop-gains-and-losses-by-month">Figure&nbsp;5</a>, we notice that 7 of the 26 months in our data set have losses (gain = false). This means that, for the other 19 months, the number of days whose closing price was higher than the opening price (daily gain) was at least equal, if not greater than, the number of days whose closing price was lower than the opening price (daily loss). Also, it seems that the proportion of losses begins to increase beginning in 2022, which would support our conclusion from the previous graph.</p>
+<p>We observe that the average daily difference between opening and closing prices as depicted in <a href="#fig-mean-daily-diff-by-month">Figure&nbsp;6</a> increases logarithmically from October 2020 to approximately May 2021, decrease linearly from May 2021 to February 2022, then increase exponentially from February 2022 to October 2022. The daily difference represents the volatility of the market–as you can see, the absolute value of the daily difference has almost doubled since the beginning of the year, shooting up from 3 to 5. This increase in volatility supports our previous findings that it can sometimes be more difficult to determine a correlation between rates and returns when returns are low. In <a href="#fig-mean-price-by-month">Figure&nbsp;7</a>, we observe that the average closing prices increase linearly from October 2020 to approximately November 2021, then decrease linearly from November 2021 to October 2022. This graph also shows a peak in stock prices around the beginning of 2022 (before interest-rate hikes), which supports our hypothesis.</p>
+<p><strong>Conclusion:</strong> Our initial hypothesis that market returns will fall as rates rise (and vice versa) is partially backed up by the data. For example, in <a href="#fig-mean-daily-diff-by-month">Figure&nbsp;6</a>, when the average daily difference is below 0 near the 2022-01 to 2022-07 time frame, average closing prices are still relatively high compared to earlier ones. Also, in <a href="#fig-prop-gains-and-losses-by-month">Figure&nbsp;5</a>, we can see that 2022-07 month has one of the highest gain/loss proportions, yet still has a negative average daily difference from <a href="#fig-mean-daily-diff-by-month">Figure&nbsp;6</a>. Our data also answers the original question of when to be “bearish” (negative investment outlook) and when to be “bullish” (positive outlook), as <a href="#fig-prop-gains-and-losses-by-month">Figure&nbsp;5</a> shows the months in which daily gains or losses are more prevalent. As concluded in the previous section, returns generally seem to be high when rates are low; contrary to our previous conclusion, low returns also seem to correspond with high returns, implying a negative relationship between the two variables for both high and low returns (before we concluded that we could only establish a relationship between returns and rates when returns were high).</p>
 <div style="page-break-after: always;"></div>
 </section>
-<section id="part-3-companysector-analysis" class="level1">
-<h1>Part 3: Company/Sector Analysis</h1>
-<p>Sources:</p>
+<section id="part-3-company-and-sector-analysis" class="level1">
+<h1><strong>Part 3: Company and Sector Analysis</strong></h1>
+<p><strong>Sources:</strong></p>
 <ul>
 <li><p>Name, Symbol, and Sector: DATA HUB (https://datahub.io/core/s-and-p-500-companies-financials#resource-constituents)</p></li>
 <li><p>Weights (scraped): Slickcharts (<a href="https://www.slickcharts.com/sp500" class="uri">https://www.slickcharts.com/sp500</a>)</p></li>
@@ -628,8 +764,8 @@ $ gain                 &lt;lgl&gt; TRUE, FALSE, TRUE, TRUE, TRUE, TRUE, FALSE, F
 <p>DATA HUB collected their data from S&amp;P Dow Jones Indices (which, in turn, is collected daily from stock exchanges), and Slickcharts their data directly from the stock exchange. Each observation represents a different company and includes the following variables:</p>
 <table class="table">
 <colgroup>
-<col style="width: 22%">
-<col style="width: 77%">
+<col style="width: 27%">
+<col style="width: 72%">
 </colgroup>
 <thead>
 <tr class="header">
@@ -672,12 +808,12 @@ $ gain                 &lt;lgl&gt; TRUE, FALSE, TRUE, TRUE, TRUE, TRUE, FALSE, F
 </tr>
 </tbody>
 </table>
-<p>Contextualization: Because of high inflation rates, and rising interest rates, the stock market has taken a major blow this past year. However, some sectors and stocks have been more negatively affected than others. We believe that industries that are considered more essential tend to be less affected by fluctuations in these rates. So how true is this, and how much are both of these industries affected? In this section, we’re analyzing data from the beginning of 2022 to the end of October.</p>
+<p><strong>Contextualization:</strong> Because of high inflation rates, and rising interest rates, the stock market has taken a major blow this past year. However, some sectors and stocks have been more negatively affected than others. We believe that industries that are considered more essential tend to be less affected by fluctuations in these rates. So how true is this, and how much are both of these industries affected? In this section, we’re analyzing data from the beginning of 2022 to the end of October.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co">#|: loading-current-day-company-and-sector-data</span></span>
-<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>sp500_by_company_and_sector <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"data/sp500_by_company_and_sector.csv"</span>)</span>
-<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(sp500_by_company_and_sector)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co">#|: loading-current-day-company-and-sector-data</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>sp500_by_company_and_sector <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"data/sp500_by_company_and_sector.csv"</span>)</span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(sp500_by_company_and_sector)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Rows: 503
 Columns: 8
@@ -691,206 +827,382 @@ $ sector          &lt;chr&gt; "Information Technology", "Information Technology"
 $ return_category &lt;chr&gt; "negative", "negative", "negative", "negative", "negat…</code></pre>
 </div>
 </div>
+<p><strong>Methodology:</strong></p>
 <p>Our first bar graph will analyze just the total number of stocks in the S&amp;P 500 that saw a decrease, and those that saw an increase. We model this by using each stocks year to date return, and classifying it as a decrease if the percentage was negative, and increase if positive. We used geom_bar() in our ggplot() to have two different bars, one for increasing stocks and one for decreasing, and the height of the bar was determined by whether or not that stock increased in price over the course of the year.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co">#|: overall-stocks_performance-barchart</span></span>
-<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>sp500_by_company_and_sector <span class="sc">|&gt;</span></span>
-<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span></span>
-<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="fu">aes</span>(<span class="at">x =</span> return_category, <span class="at">fill =</span> return_category), <span class="at">color =</span> <span class="st">"black"</span>) <span class="sc">+</span></span>
-<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
-<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Rising and Decreasing Stock Prices"</span>,</span>
-<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Yearly Change in Price"</span>,</span>
-<span id="cb21-9"><a href="#cb21-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Number of Companies"</span></span>
-<span id="cb21-10"><a href="#cb21-10" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
-<span id="cb21-11"><a href="#cb21-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
-<span id="cb21-12"><a href="#cb21-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(</span>
-<span id="cb21-13"><a href="#cb21-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">hjust =</span> <span class="fl">0.5</span>),</span>
-<span id="cb21-14"><a href="#cb21-14" aria-hidden="true" tabindex="-1"></a>    <span class="at">legend.position =</span> <span class="st">"none"</span></span>
-<span id="cb21-15"><a href="#cb21-15" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
-<span id="cb21-16"><a href="#cb21-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_viridis_d</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>sp500_by_company_and_sector <span class="sc">|&gt;</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="fu">aes</span>(<span class="at">x =</span> return_category, <span class="at">fill =</span> return_category), <span class="at">color =</span> <span class="st">"black"</span>) <span class="sc">+</span></span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Yearly Change in Price"</span>,</span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Number of Companies"</span></span>
+<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"none"</span>) <span class="sc">+</span></span>
+<span id="cb19-10"><a href="#cb19-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_viridis_d</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="report_files/figure-html/unnamed-chunk-15-1.png" class="img-fluid" width="672"></p>
+<div id="fig-overall-performance-of-sp500-by-return-type" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="report_files/figure-html/fig-overall-performance-of-sp500-by-return-type-1.png" class="img-fluid figure-img" width="672"></p>
+<p></p><figcaption class="figure-caption">Figure&nbsp;8: Number of S&amp;P 500 companies by year-to-date return type</figcaption><p></p>
+</figure>
 </div>
 </div>
-<p>From this graph, it can be seen that over 80% of the stocks in the S&amp;P 500 actually fell, which reflects our previous findings. But can we dig deeper? Is there something that these stocks have in common?</p>
-<p>Next, we will observe the best and worst stocks. We will do this by arranging by ascending and descending year to date returns, then displaying the top ten best and worst in a tibble, along with some key identifying factors.</p>
+</div>
+<p>Next, we will observe the best- and worst-performing stocks. We will do this by arranging by arranging year-to-date returns in ascending and descending order, then displaying the top ten best and worst in a tibble, along with some key identifying factors.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co">#|: 10_best_returns-and_worst</span></span>
-<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>ten_best <span class="ot">&lt;-</span> sp500_by_company_and_sector <span class="sc">|&gt;</span></span>
-<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(ytd_return_num)) <span class="sc">|&gt;</span></span>
-<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">slice_head</span>(<span class="at">n =</span> <span class="dv">10</span>) <span class="sc">|&gt;</span></span>
-<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(name, symbol, ytd_return_num, sector)</span>
-<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-8"><a href="#cb22-8" aria-hidden="true" tabindex="-1"></a>ten_best</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 10 × 4
-   name                 symbol ytd_return_num sector   
-   &lt;chr&gt;                &lt;chr&gt;           &lt;dbl&gt; &lt;chr&gt;    
- 1 Occidental Petroleum OXY             134.  Energy   
- 2 Constellation Energy CEG             132.  Utilities
- 3 EQT                  EQT              91.7 Utilities
- 4 Hess Corporation     HES              70.0 Energy   
- 5 Marathon Petroleum   MPC              69.0 Energy   
- 6 ConocoPhillips       COP              69.0 Energy   
- 7 Marathon Oil         MRO              67.8 Energy   
- 8 ExxonMobil           XOM              64.7 Energy   
- 9 Devon Energy         DVN              58.4 Energy   
-10 Valero Energy        VLO              56.7 Energy   </code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>ten_worst <span class="ot">&lt;-</span> sp500_by_company_and_sector <span class="sc">|&gt;</span></span>
-<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(ytd_return_num) <span class="sc">|&gt;</span></span>
-<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">slice_head</span>(<span class="at">n =</span> <span class="dv">10</span>) <span class="sc">|&gt;</span></span>
-<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(name, symbol, ytd_return_num, sector)</span>
-<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a>ten_worst</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 10 × 4
-   name                   symbol ytd_return_num sector                
-   &lt;chr&gt;                  &lt;chr&gt;           &lt;dbl&gt; &lt;chr&gt;                 
- 1 Align Technology       ALGN            -68.0 Health Care           
- 2 Match Group            MTCH            -65.2 Communication Services
- 3 Meta Platforms         META            -60.5 Communication Services
- 4 Netflix                NFLX            -60.0 Communication Services
- 5 Carnival Corporation   CCL             -59.8 Consumer Discretionary
- 6 Advanced Micro Devices AMD             -59.8 Information Technology
- 7 VF Corporation         VFC             -59.5 Consumer Discretionary
- 8 Nvidia                 NVDA            -59.3 Information Technology
- 9 Stanley Black &amp; Decker SWK             -59   Industrials           
-10 Caesars Entertainment  CZR             -58.4 Consumer Discretionary</code></pre>
-</div>
-</div>
-<p>From these two, we can see that a lot of the stocks that have similar performance also share a sector–the top high-performing stocks exclusively belong to companies in the energy and utility sectors, while consumer staples, communication services, and information technology seem to be the hardest-hit sectors of the low-performing stocks. But in order to determine which sectors did better, we need to delve deeper into our data. We will view their performance by calculating the mean return of all the stocks in that given sector, and sorting from best to worst. After that, we will create a graph that shows a similar picture to the first graph in this section–it will detail how many stocks increased and decreased, but it will be faceted by sector, so we can dig deeper into this picture.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="co">#|: best_sectors-and-stocks-by_sector_barchart</span></span>
-<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>sector_rank <span class="ot">&lt;-</span> sp500_by_company_and_sector <span class="sc">|&gt;</span></span>
-<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(sector) <span class="sc">|&gt;</span></span>
-<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(</span>
-<span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">mean_sector_return =</span> <span class="fu">mean</span>(ytd_return_num, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb26-7"><a href="#cb26-7" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
-<span id="cb26-8"><a href="#cb26-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(mean_sector_return))</span>
-<span id="cb26-9"><a href="#cb26-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-10"><a href="#cb26-10" aria-hidden="true" tabindex="-1"></a>sector_rank</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 11 × 2
-   sector                 mean_sector_return
-   &lt;chr&gt;                               &lt;dbl&gt;
- 1 Energy                             45.2  
- 2 Utilities                          -0.623
- 3 Consumer Staples                   -5.39 
- 4 Financials                        -15.4  
- 5 Health Care                       -16.3  
- 6 Industrials                       -16.8  
- 7 Materials                         -17.6  
- 8 Communication Services            -28.0  
- 9 Real Estate                       -28.3  
-10 Consumer Discretionary            -28.4  
-11 Information Technology            -29.6  </code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>sp500_by_company_and_sector <span class="sc">|&gt;</span></span>
-<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
-<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">sector =</span> <span class="fu">fct_relevel</span>(</span>
-<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a>      sector, </span>
-<span id="cb28-5"><a href="#cb28-5" aria-hidden="true" tabindex="-1"></a>      <span class="st">"Energy"</span>,</span>
-<span id="cb28-6"><a href="#cb28-6" aria-hidden="true" tabindex="-1"></a>      <span class="st">"Consumer Staples"</span>,</span>
-<span id="cb28-7"><a href="#cb28-7" aria-hidden="true" tabindex="-1"></a>      <span class="st">"Health Care"</span>,</span>
-<span id="cb28-8"><a href="#cb28-8" aria-hidden="true" tabindex="-1"></a>      <span class="st">"Industrials"</span>,</span>
-<span id="cb28-9"><a href="#cb28-9" aria-hidden="true" tabindex="-1"></a>      <span class="st">"Financials"</span>,</span>
-<span id="cb28-10"><a href="#cb28-10" aria-hidden="true" tabindex="-1"></a>      <span class="st">"Materials"</span>,</span>
-<span id="cb28-11"><a href="#cb28-11" aria-hidden="true" tabindex="-1"></a>      <span class="st">"Utilities"</span>,</span>
-<span id="cb28-12"><a href="#cb28-12" aria-hidden="true" tabindex="-1"></a>      <span class="st">"Communication Services"</span>,</span>
-<span id="cb28-13"><a href="#cb28-13" aria-hidden="true" tabindex="-1"></a>      <span class="st">"Consumer Discretionary"</span>,</span>
-<span id="cb28-14"><a href="#cb28-14" aria-hidden="true" tabindex="-1"></a>      <span class="st">"Real Estate"</span>,</span>
-<span id="cb28-15"><a href="#cb28-15" aria-hidden="true" tabindex="-1"></a>      <span class="st">"Information Technology"</span></span>
-<span id="cb28-16"><a href="#cb28-16" aria-hidden="true" tabindex="-1"></a>    ),</span>
-<span id="cb28-17"><a href="#cb28-17" aria-hidden="true" tabindex="-1"></a>    <span class="at">sector =</span> <span class="fu">fct_rev</span>(sector)</span>
-<span id="cb28-18"><a href="#cb28-18" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
-<span id="cb28-19"><a href="#cb28-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span></span>
-<span id="cb28-20"><a href="#cb28-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="fu">aes</span>(<span class="at">y =</span> sector, <span class="at">fill =</span> return_category), <span class="at">position =</span> <span class="st">"fill"</span>, <span class="at">color =</span> <span class="st">"black"</span>) <span class="sc">+</span></span>
-<span id="cb28-21"><a href="#cb28-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
-<span id="cb28-22"><a href="#cb28-22" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Rising and Decreasing Stock Prices By Sector"</span>,</span>
-<span id="cb28-23"><a href="#cb28-23" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Proportions"</span>,</span>
-<span id="cb28-24"><a href="#cb28-24" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Sectors"</span>,</span>
-<span id="cb28-25"><a href="#cb28-25" aria-hidden="true" tabindex="-1"></a>    <span class="at">fill =</span> <span class="st">"Type of Return"</span></span>
-<span id="cb28-26"><a href="#cb28-26" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
-<span id="cb28-27"><a href="#cb28-27" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
-<span id="cb28-28"><a href="#cb28-28" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">hjust =</span> <span class="fl">0.5</span>)) <span class="sc">+</span></span>
-<span id="cb28-29"><a href="#cb28-29" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_viridis_d</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>sp500_by_company_and_sector <span class="sc">|&gt;</span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(ytd_return_num)) <span class="sc">|&gt;</span></span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">slice_head</span>(<span class="at">n =</span> <span class="dv">10</span>) <span class="sc">|&gt;</span></span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(name, symbol, ytd_return_num, sector) <span class="sc">|&gt;</span> </span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>  knitr<span class="sc">::</span><span class="fu">kable</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="report_files/figure-html/unnamed-chunk-17-1.png" class="img-fluid" width="672"></p>
+<div id="tbl-ten-companies-with-highest-returns" class="anchored">
+<table class="table table-sm table-striped">
+<caption>Table&nbsp;3: Ten companies with highest year-to-date returns</caption>
+<thead>
+<tr class="header">
+<th style="text-align: left;">name</th>
+<th style="text-align: left;">symbol</th>
+<th style="text-align: right;">ytd_return_num</th>
+<th style="text-align: left;">sector</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Occidental Petroleum</td>
+<td style="text-align: left;">OXY</td>
+<td style="text-align: right;">133.80</td>
+<td style="text-align: left;">Energy</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Constellation Energy</td>
+<td style="text-align: left;">CEG</td>
+<td style="text-align: right;">132.37</td>
+<td style="text-align: left;">Utilities</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">EQT</td>
+<td style="text-align: left;">EQT</td>
+<td style="text-align: right;">91.70</td>
+<td style="text-align: left;">Utilities</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Hess Corporation</td>
+<td style="text-align: left;">HES</td>
+<td style="text-align: right;">70.01</td>
+<td style="text-align: left;">Energy</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Marathon Petroleum</td>
+<td style="text-align: left;">MPC</td>
+<td style="text-align: right;">69.03</td>
+<td style="text-align: left;">Energy</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">ConocoPhillips</td>
+<td style="text-align: left;">COP</td>
+<td style="text-align: right;">68.95</td>
+<td style="text-align: left;">Energy</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Marathon Oil</td>
+<td style="text-align: left;">MRO</td>
+<td style="text-align: right;">67.84</td>
+<td style="text-align: left;">Energy</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">ExxonMobil</td>
+<td style="text-align: left;">XOM</td>
+<td style="text-align: right;">64.73</td>
+<td style="text-align: left;">Energy</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Devon Energy</td>
+<td style="text-align: left;">DVN</td>
+<td style="text-align: right;">58.39</td>
+<td style="text-align: left;">Energy</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Valero Energy</td>
+<td style="text-align: left;">VLO</td>
+<td style="text-align: right;">56.70</td>
+<td style="text-align: left;">Energy</td>
+</tr>
+</tbody>
+</table>
 </div>
 </div>
-<p>These results help paint a bigger picture. We can see that energy and consumer staples are definitely doing the best from both depictions (as we believed would be the case in our hypothesis), and IT and real estate are among the few at the bottom. It’s also worth noting that energy is both the only sector with a positive average return for the year and the only sector in which a majority of the companies’ stocks have increased in price. But what if we want to delve deeper into each sector, and examine the maximums and minimums, as well as what the values hover around?</p>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>sp500_by_company_and_sector <span class="sc">|&gt;</span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(ytd_return_num) <span class="sc">|&gt;</span></span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">slice_head</span>(<span class="at">n =</span> <span class="dv">10</span>) <span class="sc">|&gt;</span></span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(name, symbol, ytd_return_num, sector) <span class="sc">|&gt;</span></span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>  knitr<span class="sc">::</span><span class="fu">kable</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div id="tbl-ten-companies-with-lowest-returns" class="anchored">
+<table class="table table-sm table-striped">
+<caption>Table&nbsp;4: Ten companies with lowest year-to-date returns</caption>
+<colgroup>
+<col style="width: 33%">
+<col style="width: 10%">
+<col style="width: 22%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">name</th>
+<th style="text-align: left;">symbol</th>
+<th style="text-align: right;">ytd_return_num</th>
+<th style="text-align: left;">sector</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Align Technology</td>
+<td style="text-align: left;">ALGN</td>
+<td style="text-align: right;">-68.05</td>
+<td style="text-align: left;">Health Care</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Match Group</td>
+<td style="text-align: left;">MTCH</td>
+<td style="text-align: right;">-65.23</td>
+<td style="text-align: left;">Communication Services</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Meta Platforms</td>
+<td style="text-align: left;">META</td>
+<td style="text-align: right;">-60.52</td>
+<td style="text-align: left;">Communication Services</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Netflix</td>
+<td style="text-align: left;">NFLX</td>
+<td style="text-align: right;">-60.02</td>
+<td style="text-align: left;">Communication Services</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Carnival Corporation</td>
+<td style="text-align: left;">CCL</td>
+<td style="text-align: right;">-59.84</td>
+<td style="text-align: left;">Consumer Discretionary</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Advanced Micro Devices</td>
+<td style="text-align: left;">AMD</td>
+<td style="text-align: right;">-59.75</td>
+<td style="text-align: left;">Information Technology</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">VF Corporation</td>
+<td style="text-align: left;">VFC</td>
+<td style="text-align: right;">-59.49</td>
+<td style="text-align: left;">Consumer Discretionary</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Nvidia</td>
+<td style="text-align: left;">NVDA</td>
+<td style="text-align: right;">-59.31</td>
+<td style="text-align: left;">Information Technology</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Stanley Black &amp; Decker</td>
+<td style="text-align: left;">SWK</td>
+<td style="text-align: right;">-59.00</td>
+<td style="text-align: left;">Industrials</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Caesars Entertainment</td>
+<td style="text-align: left;">CZR</td>
+<td style="text-align: right;">-58.45</td>
+<td style="text-align: left;">Consumer Discretionary</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<p>But in order to determine which sectors did better, we need to delve deeper into our data. We will view their performance by calculating the mean return of all the stocks in that given sector, and sorting from best to worst. After that, we will create a graph that shows a similar picture to the first graph in this section–it will detail how many stocks increased and decreased, but it will be faceted by sector, so we can dig deeper into this picture.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>sp500_by_company_and_sector <span class="sc">|&gt;</span></span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(sector) <span class="sc">|&gt;</span></span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(</span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">mean_sector_return =</span> <span class="fu">mean</span>(ytd_return_num, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(mean_sector_return)) <span class="sc">|&gt;</span></span>
+<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a>  knitr<span class="sc">::</span><span class="fu">kable</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div id="tbl-average-return-by-sector" class="anchored">
+<table class="table table-sm table-striped">
+<caption>Table&nbsp;5: Average S&amp;P 500 returns by sector</caption>
+<thead>
+<tr class="header">
+<th style="text-align: left;">sector</th>
+<th style="text-align: right;">mean_sector_return</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Energy</td>
+<td style="text-align: right;">45.2336364</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Utilities</td>
+<td style="text-align: right;">-0.6229032</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Consumer Staples</td>
+<td style="text-align: right;">-5.3921212</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Financials</td>
+<td style="text-align: right;">-15.3948438</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Health Care</td>
+<td style="text-align: right;">-16.3417187</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Industrials</td>
+<td style="text-align: right;">-16.7719444</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Materials</td>
+<td style="text-align: right;">-17.6206667</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Communication Services</td>
+<td style="text-align: right;">-27.9603704</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Real Estate</td>
+<td style="text-align: right;">-28.2646875</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Consumer Discretionary</td>
+<td style="text-align: right;">-28.3594643</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Information Technology</td>
+<td style="text-align: right;">-29.6359722</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>sp500_by_company_and_sector <span class="sc">|&gt;</span></span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">sector =</span> <span class="fu">fct_relevel</span>(</span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>      sector, </span>
+<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>      <span class="st">"Energy"</span>,</span>
+<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a>      <span class="st">"Consumer Staples"</span>,</span>
+<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a>      <span class="st">"Health Care"</span>,</span>
+<span id="cb23-8"><a href="#cb23-8" aria-hidden="true" tabindex="-1"></a>      <span class="st">"Industrials"</span>,</span>
+<span id="cb23-9"><a href="#cb23-9" aria-hidden="true" tabindex="-1"></a>      <span class="st">"Financials"</span>,</span>
+<span id="cb23-10"><a href="#cb23-10" aria-hidden="true" tabindex="-1"></a>      <span class="st">"Materials"</span>,</span>
+<span id="cb23-11"><a href="#cb23-11" aria-hidden="true" tabindex="-1"></a>      <span class="st">"Utilities"</span>,</span>
+<span id="cb23-12"><a href="#cb23-12" aria-hidden="true" tabindex="-1"></a>      <span class="st">"Communication Services"</span>,</span>
+<span id="cb23-13"><a href="#cb23-13" aria-hidden="true" tabindex="-1"></a>      <span class="st">"Consumer Discretionary"</span>,</span>
+<span id="cb23-14"><a href="#cb23-14" aria-hidden="true" tabindex="-1"></a>      <span class="st">"Real Estate"</span>,</span>
+<span id="cb23-15"><a href="#cb23-15" aria-hidden="true" tabindex="-1"></a>      <span class="st">"Information Technology"</span></span>
+<span id="cb23-16"><a href="#cb23-16" aria-hidden="true" tabindex="-1"></a>    ),</span>
+<span id="cb23-17"><a href="#cb23-17" aria-hidden="true" tabindex="-1"></a>    <span class="at">sector =</span> <span class="fu">fct_rev</span>(sector)</span>
+<span id="cb23-18"><a href="#cb23-18" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb23-19"><a href="#cb23-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb23-20"><a href="#cb23-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="fu">aes</span>(<span class="at">y =</span> sector, <span class="at">fill =</span> return_category), <span class="at">position =</span> <span class="st">"fill"</span>, <span class="at">color =</span> <span class="st">"black"</span>) <span class="sc">+</span></span>
+<span id="cb23-21"><a href="#cb23-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb23-22"><a href="#cb23-22" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Proportions"</span>,</span>
+<span id="cb23-23"><a href="#cb23-23" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Sectors"</span>,</span>
+<span id="cb23-24"><a href="#cb23-24" aria-hidden="true" tabindex="-1"></a>    <span class="at">fill =</span> <span class="st">"Type of Return"</span></span>
+<span id="cb23-25"><a href="#cb23-25" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb23-26"><a href="#cb23-26" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb23-27"><a href="#cb23-27" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_viridis_d</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div id="fig-proportion-of-return-types-by-sector" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="report_files/figure-html/fig-proportion-of-return-types-by-sector-1.png" class="img-fluid figure-img" width="672"></p>
+<p></p><figcaption class="figure-caption">Figure&nbsp;9: Proportion of return types of S&amp;P 500 companies by sector</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
 <p>For our next graph, we get to see exactly what the increase/decrease range was for each sector. So we made box plots for each sector, with hopes to see who had the highest and lowest median increases, who had the highest and lowest variation, and also who had the highest and lowest maximums and minimums. The box plots were made with sectors across the y, and returns along the x. This information will allow us to gain more understanding of the most stable sectors, as well as the most unaffected ones.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="co">#|: sectors-performance-boxplots</span></span>
-<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>sp500_by_company_and_sector <span class="sc">|&gt;</span></span>
-<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
-<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">sector =</span> <span class="fu">fct_relevel</span>(</span>
-<span id="cb29-6"><a href="#cb29-6" aria-hidden="true" tabindex="-1"></a>      sector, </span>
-<span id="cb29-7"><a href="#cb29-7" aria-hidden="true" tabindex="-1"></a>      <span class="st">"Energy"</span>,</span>
-<span id="cb29-8"><a href="#cb29-8" aria-hidden="true" tabindex="-1"></a>      <span class="st">"Consumer Staples"</span>,</span>
-<span id="cb29-9"><a href="#cb29-9" aria-hidden="true" tabindex="-1"></a>      <span class="st">"Utilities"</span>,</span>
-<span id="cb29-10"><a href="#cb29-10" aria-hidden="true" tabindex="-1"></a>      <span class="st">"Financials"</span>,</span>
-<span id="cb29-11"><a href="#cb29-11" aria-hidden="true" tabindex="-1"></a>      <span class="st">"Industrials"</span>,</span>
-<span id="cb29-12"><a href="#cb29-12" aria-hidden="true" tabindex="-1"></a>      <span class="st">"Health Care"</span>,</span>
-<span id="cb29-13"><a href="#cb29-13" aria-hidden="true" tabindex="-1"></a>      <span class="st">"Materials"</span>,</span>
-<span id="cb29-14"><a href="#cb29-14" aria-hidden="true" tabindex="-1"></a>      <span class="st">"Information Technology"</span>,</span>
-<span id="cb29-15"><a href="#cb29-15" aria-hidden="true" tabindex="-1"></a>      <span class="st">"Communication Services"</span>,</span>
-<span id="cb29-16"><a href="#cb29-16" aria-hidden="true" tabindex="-1"></a>      <span class="st">"Consumer Discretionary"</span>,</span>
-<span id="cb29-17"><a href="#cb29-17" aria-hidden="true" tabindex="-1"></a>      <span class="st">"Real Estate"</span></span>
-<span id="cb29-18"><a href="#cb29-18" aria-hidden="true" tabindex="-1"></a>    ),</span>
-<span id="cb29-19"><a href="#cb29-19" aria-hidden="true" tabindex="-1"></a>    <span class="at">sector =</span> <span class="fu">fct_rev</span>(sector)</span>
-<span id="cb29-20"><a href="#cb29-20" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
-<span id="cb29-21"><a href="#cb29-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> ytd_return_num, <span class="at">y =</span> sector, <span class="at">fill =</span> sector)) <span class="sc">+</span></span>
-<span id="cb29-22"><a href="#cb29-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="at">show.legend =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
-<span id="cb29-23"><a href="#cb29-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
-<span id="cb29-24"><a href="#cb29-24" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Rising and Decreasing Stock Prices by Sector"</span>,</span>
-<span id="cb29-25"><a href="#cb29-25" aria-hidden="true" tabindex="-1"></a>     <span class="at">x =</span> <span class="st">"YTD Return %"</span>,</span>
-<span id="cb29-26"><a href="#cb29-26" aria-hidden="true" tabindex="-1"></a>     <span class="at">y =</span> <span class="st">"Sector"</span>,</span>
-<span id="cb29-27"><a href="#cb29-27" aria-hidden="true" tabindex="-1"></a>     <span class="at">fill =</span> <span class="st">"cc"</span></span>
-<span id="cb29-28"><a href="#cb29-28" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
-<span id="cb29-29"><a href="#cb29-29" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span> </span>
-<span id="cb29-30"><a href="#cb29-30" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">hjust =</span> <span class="fl">0.5</span>)) <span class="sc">+</span></span>
-<span id="cb29-31"><a href="#cb29-31" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_viridis_d</span>() </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>sp500_by_company_and_sector <span class="sc">|&gt;</span></span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">sector =</span> <span class="fu">fct_relevel</span>(</span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>      sector, </span>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a>      <span class="st">"Energy"</span>,</span>
+<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a>      <span class="st">"Consumer Staples"</span>,</span>
+<span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a>      <span class="st">"Utilities"</span>,</span>
+<span id="cb24-8"><a href="#cb24-8" aria-hidden="true" tabindex="-1"></a>      <span class="st">"Financials"</span>,</span>
+<span id="cb24-9"><a href="#cb24-9" aria-hidden="true" tabindex="-1"></a>      <span class="st">"Industrials"</span>,</span>
+<span id="cb24-10"><a href="#cb24-10" aria-hidden="true" tabindex="-1"></a>      <span class="st">"Health Care"</span>,</span>
+<span id="cb24-11"><a href="#cb24-11" aria-hidden="true" tabindex="-1"></a>      <span class="st">"Materials"</span>,</span>
+<span id="cb24-12"><a href="#cb24-12" aria-hidden="true" tabindex="-1"></a>      <span class="st">"Information Technology"</span>,</span>
+<span id="cb24-13"><a href="#cb24-13" aria-hidden="true" tabindex="-1"></a>      <span class="st">"Communication Services"</span>,</span>
+<span id="cb24-14"><a href="#cb24-14" aria-hidden="true" tabindex="-1"></a>      <span class="st">"Consumer Discretionary"</span>,</span>
+<span id="cb24-15"><a href="#cb24-15" aria-hidden="true" tabindex="-1"></a>      <span class="st">"Real Estate"</span></span>
+<span id="cb24-16"><a href="#cb24-16" aria-hidden="true" tabindex="-1"></a>    ),</span>
+<span id="cb24-17"><a href="#cb24-17" aria-hidden="true" tabindex="-1"></a>    <span class="at">sector =</span> <span class="fu">fct_rev</span>(sector)</span>
+<span id="cb24-18"><a href="#cb24-18" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb24-19"><a href="#cb24-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> ytd_return_num, <span class="at">y =</span> sector, <span class="at">fill =</span> sector)) <span class="sc">+</span></span>
+<span id="cb24-20"><a href="#cb24-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="at">show.legend =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
+<span id="cb24-21"><a href="#cb24-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb24-22"><a href="#cb24-22" aria-hidden="true" tabindex="-1"></a>     <span class="at">x =</span> <span class="st">"YTD Return %"</span>,</span>
+<span id="cb24-23"><a href="#cb24-23" aria-hidden="true" tabindex="-1"></a>     <span class="at">y =</span> <span class="st">"Sector"</span>,</span>
+<span id="cb24-24"><a href="#cb24-24" aria-hidden="true" tabindex="-1"></a>     <span class="at">fill =</span> <span class="st">"cc"</span></span>
+<span id="cb24-25"><a href="#cb24-25" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb24-26"><a href="#cb24-26" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span> </span>
+<span id="cb24-27"><a href="#cb24-27" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_viridis_d</span>() </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="report_files/figure-html/unnamed-chunk-18-1.png" class="img-fluid" width="672"></p>
+<div id="fig-sector-performance" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="report_files/figure-html/fig-sector-performance-1.png" class="img-fluid figure-img" width="672"></p>
+<p></p><figcaption class="figure-caption">Figure&nbsp;10: Year-to-date performance of S&amp;P 500 across sectors</figcaption><p></p>
+</figure>
 </div>
 </div>
-<p>From this depiction, we can clearly see that the lowest industries are: Consumer Discretionary, IT, and Consumer Services. The highest are: Energy, Utilities, and Consumer Staples. Health care, along with some of the lower ones, have high variability. So what do these have in common?</p>
-<p>Our final graph takes into account the concept of essential and nonessential industries. We classify essential industries as Consumer Staples, Utilities, and Energy, since consumer staples includes food, utilities has electricity, and energy has the materials we need for electricity and more. We would hypothesize that these essential industries would not be as affected as the nonessential industries, because regardless of how the market is, people need to spend money on the things that will keep them alive. We look to see if there is a quantifiable difference between which of these two larger groups for sectors performed better. To do this, a violin plot is made where the category is on the x axis, and returns on the y.</p>
+</div>
+<p>Our final graph takes into account the concept of essential and nonessential industries. We classify essential industries as Consumer Staples, Utilities, and Energy, since consumer staples includes food, utilities has electricity, and energy has the materials we need for electricity and more. We would hypothesize that these essential industries would not be as affected as the nonessential industries, because regardless of how the market is, people need to spend money on the things that will keep them alive. We look to see if there is a quantifiable difference between which of these two larger groups for sectors performed better. To do this, a violin plot is made where the category is on the x axis, and returns are on the y axis.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>sp500_by_company_and_sector <span class="sc">|&gt;</span></span>
-<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
-<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">isEssential =</span> <span class="fu">case_when</span>(</span>
-<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a>      sector <span class="sc">==</span> <span class="st">"Utilities"</span> <span class="sc">|</span> sector <span class="sc">==</span> <span class="st">"Energy"</span> <span class="sc">|</span> sector <span class="sc">==</span> <span class="st">"Consumer Staples"</span> <span class="sc">~</span> <span class="st">"Essential"</span>,</span>
-<span id="cb30-5"><a href="#cb30-5" aria-hidden="true" tabindex="-1"></a>      <span class="cn">TRUE</span> <span class="sc">~</span> <span class="st">"Nonessential"</span></span>
-<span id="cb30-6"><a href="#cb30-6" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb30-7"><a href="#cb30-7" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
-<span id="cb30-8"><a href="#cb30-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">y =</span> ytd_return_num, <span class="at">x =</span> isEssential, <span class="at">fill =</span> isEssential)) <span class="sc">+</span></span>
-<span id="cb30-9"><a href="#cb30-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_violin</span>(<span class="at">show.legend =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
-<span id="cb30-10"><a href="#cb30-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
-<span id="cb30-11"><a href="#cb30-11" aria-hidden="true" tabindex="-1"></a>     <span class="at">title =</span> <span class="st">"Effects of Sector Type on Stock Prices"</span>,</span>
-<span id="cb30-12"><a href="#cb30-12" aria-hidden="true" tabindex="-1"></a>     <span class="at">y =</span> <span class="st">"YTD Return %"</span>,</span>
-<span id="cb30-13"><a href="#cb30-13" aria-hidden="true" tabindex="-1"></a>     <span class="at">x =</span> <span class="st">"Type of Sector"</span>,</span>
-<span id="cb30-14"><a href="#cb30-14" aria-hidden="true" tabindex="-1"></a>     <span class="at">fill =</span> <span class="st">"cc"</span></span>
-<span id="cb30-15"><a href="#cb30-15" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
-<span id="cb30-16"><a href="#cb30-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
-<span id="cb30-17"><a href="#cb30-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">hjust =</span> <span class="fl">0.5</span>)) <span class="sc">+</span></span>
-<span id="cb30-18"><a href="#cb30-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_viridis_d</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>sp500_by_company_and_sector <span class="sc">|&gt;</span></span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">isEssential =</span> <span class="fu">case_when</span>(</span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>      sector <span class="sc">==</span> <span class="st">"Utilities"</span> <span class="sc">|</span> sector <span class="sc">==</span> <span class="st">"Energy"</span> <span class="sc">|</span> sector <span class="sc">==</span> <span class="st">"Consumer Staples"</span> <span class="sc">~</span> <span class="st">"Essential"</span>,</span>
+<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a>      <span class="cn">TRUE</span> <span class="sc">~</span> <span class="st">"Nonessential"</span></span>
+<span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb25-7"><a href="#cb25-7" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb25-8"><a href="#cb25-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">y =</span> ytd_return_num, <span class="at">x =</span> isEssential, <span class="at">fill =</span> isEssential)) <span class="sc">+</span></span>
+<span id="cb25-9"><a href="#cb25-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_violin</span>(<span class="at">show.legend =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
+<span id="cb25-10"><a href="#cb25-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb25-11"><a href="#cb25-11" aria-hidden="true" tabindex="-1"></a>     <span class="at">y =</span> <span class="st">"YTD Return %"</span>,</span>
+<span id="cb25-12"><a href="#cb25-12" aria-hidden="true" tabindex="-1"></a>     <span class="at">x =</span> <span class="st">"Type of Sector"</span>,</span>
+<span id="cb25-13"><a href="#cb25-13" aria-hidden="true" tabindex="-1"></a>     <span class="at">fill =</span> <span class="st">"cc"</span></span>
+<span id="cb25-14"><a href="#cb25-14" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb25-15"><a href="#cb25-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb25-16"><a href="#cb25-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_viridis_d</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="report_files/figure-html/essential-v-nonessential-1.png" class="img-fluid" width="672"></p>
+<div id="fig-essential-vs-nonessential-industries" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="report_files/figure-html/fig-essential-vs-nonessential-industries-1.png" class="img-fluid figure-img" width="672"></p>
+<p></p><figcaption class="figure-caption">Figure&nbsp;11: Return distribution of S&amp;P 500 companies by industry type</figcaption><p></p>
+</figure>
 </div>
 </div>
-<p>There is a visible difference in the essential and non-essential industries. Essential industries have a higher density of values above zero and feature higher maximums and lower minimums, as well as more clumped up data around a neutral zone. Essential companies’ stocks lost less of their value and look as if they are more consistent.</p>
-<p>Conclusion: Our initial hypothesis states that “essential industries”-Financials, Energy, Utilities and Consumer Staples–will not be as affected, despite the fact that the stock market suffers from high rates as a whole. The data collected substantially supports this hypothesis. Our first bar graph shows that there is a general decrease in stocks (80%), but within that, we see how the decrease is explained by industry and different variations in performance by sector. Our second and third graphs explain these variations, showing how industries such as Consumer Discretionary, IT and Consumer Services account for the majority of the decrease, and industries like Energy, Utilities and Consumer Staples show the most positive numbers. Additionally, there is a lot of variability in each sector, which, by grouping into “essential” vs.&nbsp;“non-essential” industry, is addressed, and demonstrates how essential industries are generally affected less, as they have a higher density of values above zero, as well as higher maximums.</p>
+</div>
+<p><strong>Results:</strong> From <a href="#fig-overall-performance-of-sp500-by-return-type">Figure&nbsp;8</a>, it can be seen that over 80% of the stocks in the S&amp;P 500 actually fell, which reflects our previous findings. In <a href="#tbl-ten-companies-with-highest-returns">Table&nbsp;3</a> and <a href="#tbl-ten-companies-with-lowest-returns">Table&nbsp;4</a>, we can see that a lot of the stocks that have similar performance also share a sector–the top high-performing stocks exclusively belong to companies in the energy and utility sectors, while consumer staples, communication services, and information technology seem to be the hardest-hit sectors of the low-performing stocks.</p>
+<p><a href="#tbl-average-return-by-sector">Table&nbsp;5</a> and <a href="#fig-proportion-of-return-types-by-sector">Figure&nbsp;9</a> help paint a bigger picture. We can see that energy and consumer staples are definitely doing the best from both depictions (as we believed would be the case in our hypothesis), and IT and real estate are among the few at the bottom. It’s also worth noting that energy is both the only sector with a positive average return for the year and the only sector in which a majority of the companies’ stocks have increased in price.</p>
+<p>Using <a href="#fig-sector-performance">Figure&nbsp;10</a>, we can clearly see that the lowest industries are: Consumer Discretionary, IT, and Consumer Services. The highest are: Energy, Utilities, and Consumer Staples. Health care, along with some of the lower ones, have high variability. As evidenced in <a href="#fig-essential-vs-nonessential-industries">Figure&nbsp;11</a>, there is a visible difference in the essential and non-essential industries. Essential industries have a higher density of values above zero and feature higher maximums and lower minimums, as well as more clumped up data around a neutral zone. Essential companies’ stocks lost less of their value and look as if they are more consistent.</p>
+<p><strong>Conclusion:</strong> Our initial hypothesis states that “essential industries”-Financials, Energy, Utilities and Consumer Staples–will not be as affected, despite the fact that the stock market suffers from high rates as a whole. The data collected substantially supports this hypothesis. Our first bar graph shows that there is a general decrease in stocks (80%), but within that, we see how the decrease is explained by industry and different variations in performance by sector. Our second and third graphs explain these variations, showing how industries such as Consumer Discretionary, IT and Consumer Services account for the majority of the decrease, and industries like Energy, Utilities and Consumer Staples show the most positive numbers. Additionally, there is a lot of variability in each sector, which, by grouping into “essential” vs.&nbsp;“non-essential” industry, is addressed, and demonstrates how essential industries are generally affected less, as they have a higher density of values above zero, as well as higher maximums.</p>
 </section>
 <section id="closing-remarks" class="level1">
-<h1>Closing Remarks</h1>
-<p>Overall, our research aimed to explore the relationship between interest and inflation rates and the performance of the stock market to showcase beneficial investment decisions in the context of today’s market and fluctuating economic climates. We hypothesized that the overall stock market would be hurt by high inflation/interest rates and that certain sectors of the economy demonstrate to be less affected than others in these circumstances. Overall, our data has supported our hypotheses to a fair extent: from the data gathered, we can conclude that higher returns in the stock market generally occur in times of lower interest and inflation rates, and essential (survival-focused) industries will perform better relative to other sectors when the rest of the market is suffering. However, our analyses were somewhat limited by confounding variables, including volatile economic climates and recessionary pressures; e.g., it can be difficult to determine when stock market will feature lower returns, as shown in our historical analysis.</p>
+<h1><strong>Closing Remarks</strong></h1>
+<p>Our research aimed to explore the relationship between interest and inflation rates and the performance of the stock market to showcase beneficial investment decisions in the context of today’s market and fluctuating economic climates. We hypothesized that the overall stock market would be hurt by high inflation/interest rates and that certain sectors of the economy demonstrate to be less affected than others in these circumstances. Overall, our data has supported our hypotheses to a fair extent: from the data gathered, we can conclude that higher returns in the stock market generally occur in times of lower interest and inflation rates, and essential (survival-focused) industries will perform better relative to other sectors when the rest of the market is suffering. However, our analyses were somewhat limited by confounding variables, including volatile economic climates and recessionary pressures; e.g., it can be difficult to determine when stock market will feature lower returns, as shown in our historical analysis.</p>
 <p><br>
 </p>
 
