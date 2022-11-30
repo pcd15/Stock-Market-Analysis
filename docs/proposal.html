@@ -398,7 +398,7 @@ $ `Change %` &lt;chr&gt; "2.46%", "-0.61%", "-0.74%", "1.63%", "1.19%", "2.37%",
 <span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">daily_diff =</span> Price <span class="sc">-</span> Open,</span>
 <span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">high_minus_low =</span> High <span class="sc">-</span> Low,</span>
 <span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">daily_percent_change =</span> ((Price <span class="sc">-</span> Open) <span class="sc">/</span> Open) <span class="sc">*</span> <span class="dv">100</span>,</span>
-<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">gain =</span> daily_diff <span class="sc">&gt;</span> <span class="dv">0</span></span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">gain =</span> <span class="fu">if_else</span>(daily_diff <span class="sc">&gt;</span> <span class="dv">0</span>, <span class="st">"gain"</span>, <span class="st">"loss"</span>)</span>
 <span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>) <span class="sc">|&gt;</span></span>
 <span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(Date, Price, Open, High, Low, daily_percent_change, daily_diff, high_minus_low, gain)</span>
 <span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a></span>
@@ -414,7 +414,7 @@ $ Low                  &lt;dbl&gt; 3808.26, 3803.79, 3824.07, 3799.44, 3741.65, 
 $ daily_percent_change &lt;dbl&gt; 2.4368084, -0.7142690, 0.1210151, 1.5704946, 0.93…
 $ daily_diff           &lt;dbl&gt; 92.80, -27.39, 4.63, 59.67, 35.33, 95.65, -23.27,…
 $ high_minus_low       &lt;dbl&gt; 97.16, 56.16, 62.08, 63.41, 69.09, 110.47, 79.56,…
-$ gain                 &lt;lgl&gt; TRUE, FALSE, TRUE, TRUE, TRUE, TRUE, FALSE, FALSE…</code></pre>
+$ gain                 &lt;chr&gt; "gain", "loss", "gain", "gain", "gain", "gain", "…</code></pre>
 </div>
 </div>
 </section>
@@ -483,7 +483,7 @@ $ Sector &lt;chr&gt; "Industrials", "Industrials", "Health Care", "Health Care",
 <span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">ytd_return_num =</span> <span class="fu">as.numeric</span>(ytd_return_num),</span>
 <span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">current_price =</span> <span class="fu">str_trim</span>(current_price),</span>
 <span id="cb23-8"><a href="#cb23-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">current_price =</span> <span class="fu">as.numeric</span>(current_price),</span>
-<span id="cb23-9"><a href="#cb23-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">return_category =</span> <span class="fu">if_else</span>(ytd_return_num <span class="sc">&gt;</span> <span class="dv">0</span>, <span class="st">"positive"</span>, <span class="st">"negative"</span>),</span>
+<span id="cb23-9"><a href="#cb23-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">return_category =</span> <span class="fu">if_else</span>(ytd_return_num <span class="sc">&gt;</span> <span class="dv">0</span>, <span class="st">"gain"</span>, <span class="st">"loss"</span>),</span>
 <span id="cb23-10"><a href="#cb23-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">ytd_factor =</span>  (ytd_return_num <span class="sc">+</span> <span class="dv">100</span>) <span class="sc">/</span> <span class="dv">100</span>,</span>
 <span id="cb23-11"><a href="#cb23-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">original_price =</span> current_price <span class="sc">/</span> ytd_factor, </span>
 <span id="cb23-12"><a href="#cb23-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">name =</span> <span class="fu">case_when</span>(</span>
@@ -553,7 +553,7 @@ $ original_price  &lt;dbl&gt; 177.88758, 333.04188, 164.96633, 143.61075, 342.80
 $ current_price   &lt;dbl&gt; 144.00, 236.16, 115.13, 99.91, 214.29, 100.60, 278.50,…
 $ ytd_return_num  &lt;dbl&gt; -19.05, -29.09, -30.21, -30.43, -37.49, -29.92, -5.80,…
 $ sector          &lt;chr&gt; "Information Technology", "Information Technology", "C…
-$ return_category &lt;chr&gt; "negative", "negative", "negative", "negative", "negat…</code></pre>
+$ return_category &lt;chr&gt; "loss", "loss", "loss", "loss", "loss", "loss", "loss"…</code></pre>
 </div>
 </div>
 <div class="cell">

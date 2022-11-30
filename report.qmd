@@ -49,7 +49,7 @@ We believe the overall stock market would be hurt by high inflation and correspo
 All of these sites collected these data by retrieving the data published publicly on stock exchanges, except for the federal-funds rate--this data was collected from the World Bank. In addition, each of these sites updates their data monthly/yearly (although they could update it daily, as they are collecting live data). Each observation represents a month in a year (between 1961 and 2020) and includes the following variables:
 
 | Variable            | Definition                                           |
-|---------------------|---------------------------------------------------|
+|---------------------|------------------------------------------------------|
 | year                | year in which observation was recorded               |
 | month               | month in which observation was recorded              |
 | monthly_return      | total stock market's monthly return                  |
@@ -189,7 +189,7 @@ historical_data_decade |>
 
 For the last part of our historical analysis, we wanted to examine the averages of returns, interest, and inflation by decade. To do so, we calculated the means for each rate and return by decade and then created a bar chart for each decade using geom_col() and facet_wrap().
 
-**Results:** As you can see in @fig-inflation-vs-interest, inflation and interest rates are very closely related (especially prior to 2000), with interest and inflation peaking and dipping at similar times. This trend makes sense, as the Federal Reserve tends to raise interest rates when inflation rises, in an attempt to slow the economy down. (This is why the Federal Reserve is raising interest rates now--more on that later.) As depicted in @fig-inflation-and-interest-vs-returns, market returns are extremely volatile and (at least according to this graph) don't seem to depend on either interest or inflation, contrary to our hypothesis.
+**Results:** As you can see in @fig-inflation-vs-interest, inflation and interest rates are very closely related (especially prior to 2000), with interest and inflation peaking and dipping at similar times. This trend makes sense, as the Federal Reserve tends to raise interest rates when inflation rises, in an attempt to slow the economy down. (This is why the Federal Reserve is raising interest rates now--more on that later.) As depicted in @fig-inflation-and-interest-vs-returns, market returns are extremely volatile and (at least according to this graph) don't seem to depend on either interest or inflation, contrary to our hypothesis. Note that we also created several linear models predicting S&P 500 returns from interest and/or inflation rates, but we didn't include our results because the highest R-squared for any model was only 0.026; thus, these models weren't very helpful to our analysis, aside from the fact that they also supported the idea that market returns for our data seem to be independent of interest and inflation rates.
 
 @tbl-best-ten-years-of-returns show that almost all of the best years for S&P 500 returns feature either a low interest or inflation rate (\<5%), with many having both low interest and inflation rates. Noticeable outliers include 1980, whose rates were both over 13%, and 1975, whose interest rate was almost 6% and inflation 9%. This trend of high returns correlating with lower rates does support our hypothesis. On the other hand, we expected many of the worst years for market returns to have high rates; surprisingly, this was not the case for about half of the worst years, as shown in @tbl-worst-ten-years-of-returns. Though some years did support our hypothesis, including 1974, 1973, 1969, and 1977, the others featured surprisingly low rates. We suspect that these unanticipated poor performance of the stock market during times of low rates could possibly be explained by recessions occurring during these years; in recessionary gaps, inflation tends to be lower because the economy has slowed significantly, and interest rates tend to be low as well in an attempt to re-stimulate the economy by encouraging borrowing.
 
@@ -207,14 +207,14 @@ For the last part of our historical analysis, we wanted to examine the averages 
 
 Investing.com gets their data from financial-data providers, including stock exchanges and/or directly from market makers (who set stock prices to match supply and demand). The data is collected in real time by monitoring transactions (selling, buying, etc.) executed in the stock market, which correspond to increases/decreases in prices. Each observation represents a different day (between 1 October 2020 and 28 October 2022) and includes the following variables:
 
-| Variable                | Definition                                                        |
-|--------------------|----------------------------------------------------|
-| date                    | day on which observation was recorded                             |
-| price                   | closing daily price for the S&P 500                               |
-| open                    | opening daily price for the S&P 500                               |
-| daily_percentage_change | daily percentage difference between opening and closing prices    |
-| daily_diff              | daily numerical difference between opening and closing prices     |
-| gain                    | TRUE if daily_diff \> 0 (positive return for the day), else FALSE |
+| Variable                | Definition                                                           |
+|-------------------------|----------------------------------------------------------------------|
+| date                    | day on which observation was recorded                                |
+| price                   | closing daily price for the S&P 500                                  |
+| open                    | opening daily price for the S&P 500                                  |
+| daily_percentage_change | daily percentage difference between opening and closing prices       |
+| daily_diff              | daily numerical difference between opening and closing prices        |
+| gain                    | "gain" if daily_diff \> 0 (positive return for the day), else "loss" |
 
 **Contextualization:** We're analyzing the time period of October 2020 through October 2022. This year, inflation has risen to \~8%, up from \<2% in 2020 and \<5% in 2021. Interest rates have steadily risen in tandem with this increase in inflation. In an attempt to slow down inflation, Federal Reserve has increased the discount rate (the rate at which banks are charged to borrow from the Federal Reserve) from 0.5% in March 2022 to a current rate of 4%, which is the highest it's been since the 2008 recession.
 
@@ -239,8 +239,13 @@ sp500_curr |>
      sep = "/"
     )
   ) |>
-  ggplot(aes(x = Date, y = Price)) +
-  geom_point() +
+  group_by(Date) |>
+  mutate(
+    median_price = median(Price)
+  ) |>
+  ggplot() +
+  geom_point(aes(x = Date, y = Price)) +
+  geom_point(aes(x = Date, y = median_price), color = "red") + 
   scale_x_discrete(breaks=c("20/10","21/10", "22/10")) +
   labs(
     x = "Date (year/month)",
@@ -325,7 +330,7 @@ sp500_curr_updated |>
 
 We then graphed the average daily change (between opening and closing prices) and closing price for each month. We did this by grouping the data by months then finding the summary mean of the average daily change and closing price for each month. Then, we used geom_smooth to plot a line graph to visualizing the trends from 10/01/2020 to 10/28/2022.
 
-**Results:** In @fig-daily-closing-price, we can see that the closing prices for the S&P 500 follow a generally positive trend from October 2020 to December 2021/January 2022, where they peak for the two-year period, and then begin to generally decline through October 2022. Each month had a wide range of closing prices that we can observe from the range of the heights of closing price data points each month. Some months have a range of approximately \$250 (e.g., August 2022) and some have a range of approximately \$750 (e.g., February 2021). This trend can possibly be explained by the very low rates characteristic of the Covid-19 era--the interest rate during the period prior to February 2022 was at a steady 0.25%. As soon as the Federal Reserve hiked rates in March 2022 to 0.5% (to combat rising inflation that had begun in late 2022), however, daily closing prices began to fall. This supports our hypothesis that rising rates generally correlates with a decrease in stock prices.
+**Results:** In @fig-daily-closing-price, we can see that the median monthly closing prices for the S&P 500 follow a generally positive trend from October 2020 to December 2021/January 2022, where they peak for the two-year period, and then begin to generally decline through October 2022. Each month had a wide range of closing prices that we can observe from the range of the heights of closing price data points each month. Some months have a range of approximately \$250 (e.g., August 2022), while others have a range of approximately \$750 (e.g., February 2021). This trend can possibly be explained by the very low rates characteristic of the Covid-19 era--the interest rate during the period prior to February 2022 was at a steady 0.25%. As soon as the Federal Reserve hiked rates in March 2022 to 0.5% (to combat rising inflation that had begun in late 2022), however, daily closing prices began to fall. This supports our hypothesis that rising rates generally correlates with a decrease in stock prices.
 
 According to @fig-prop-gains-and-losses-by-month, we notice that 7 of the 26 months in our data set have losses (gain = false). This means that, for the other 19 months, the number of days whose closing price was higher than the opening price (daily gain) was at least equal, if not greater than, the number of days whose closing price was lower than the opening price (daily loss). Also, it seems that the proportion of losses begins to increase beginning in 2022, which would support our conclusion from the previous graph.
 
@@ -347,16 +352,16 @@ We observe that the average daily difference between opening and closing prices 
 
 DATA HUB collected their data from S&P Dow Jones Indices (which, in turn, is collected daily from stock exchanges), and Slickcharts their data directly from the stock exchange. Each observation represents a different company and includes the following variables:
 
-| Variable        | Definition                                                                    |
-|----------------|--------------------------------------------------------|
-| name            | name of company in S&P 500                                                    |
-| symbol          | ticker symbol used to identify companies on stock exchange                    |
-| weight          | percentage weighting of company in S&P 500                                    |
-| original_price  | price of company's stock at beginning of 2022                                 |
-| current_price   | price of company's stock as of October 2022                                   |
-| ytd_return_num  | company's year-to-date return percentage                                      |
-| sector          | company's industry                                                            |
-| return category | positive if ytd_return_num \> 0 (positive return for the year), else negative |
+| Variable        | Definition                                                                |
+|-----------------|---------------------------------------------------------------------------|
+| name            | name of company in S&P 500                                                |
+| symbol          | ticker symbol used to identify companies on stock exchange                |
+| weight          | percentage weighting of company in S&P 500                                |
+| original_price  | price of company's stock at beginning of 2022                             |
+| current_price   | price of company's stock as of October 2022                               |
+| ytd_return_num  | company's year-to-date return percentage                                  |
+| sector          | company's industry                                                        |
+| return category | "gain" if ytd_return_num \> 0 (positive return for the year), else "loss" |
 
 **Contextualization:** Because of high inflation rates, and rising interest rates, the stock market has taken a major blow this past year. However, some sectors and stocks have been more negatively affected than others. We believe that industries that are considered more essential tend to be less affected by fluctuations in these rates. So how true is this, and how much are both of these categories affected? In this section, we're analyzing data from the beginning of 2022 to the end of October.
 
@@ -528,6 +533,6 @@ Using @fig-sector-performance, we can clearly see that the lowest industries are
 
 # **Closing Remarks**
 
-Our research aimed to explore the relationship between interest and inflation rates and the performance of the stock market to showcase beneficial investment decisions in the context of today's market and fluctuating economic climates. We hypothesized that the overall stock market would be hurt by high inflation/interest rates and that certain sectors of the economy demonstrate to be less affected than others in these circumstances. Overall, our data has supported our hypotheses to a fair extent: from the data gathered, we can conclude that higher returns in the stock market generally occur in times of lower interest and inflation rates, and essential (survival-focused) industries will perform better relative to other sectors when the rest of the market is suffering. However, our analyses were somewhat limited by confounding variables, including volatile economic climates and recessionary pressures; e.g., it can be difficult to determine when stock market will feature lower returns, as shown in our historical analysis.
+Our research aimed to explore the relationship between interest and inflation rates and the performance of the stock market to showcase beneficial investment decisions in the context of today's market and fluctuating economic climates. We hypothesized that the overall stock market would be hurt by high inflation/interest rates and that certain sectors of the economy would be less affected than others in these circumstances. Overall, our data has supported our hypotheses to a fair extent. From our historical and current-day analyses, we can conclude that higher returns in the stock market generally occur in times of lower interest and inflation rates; through our evaluation of sector return differences, we conclude that essential (survival-focused) industries will perform better relative to other sectors when the rest of the market is suffering. However, our analyses were somewhat limited by confounding variables, including volatile economic climates and recessionary pressures; e.g., it can be difficult to determine when stock market will feature lower returns, as shown in our historical analysis.
 
 \
