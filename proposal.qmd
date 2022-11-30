@@ -143,7 +143,7 @@ mutate(
 	daily_diff = Price - Open,
 	high_minus_low = High - Low,
   daily_percent_change = ((Price - Open) / Open) * 100,
-	gain = daily_diff > 0
+	gain = if_else(daily_diff > 0, "gain", "loss")
 ) |>
   select(Date, Price, Open, High, Low, daily_percent_change, daily_diff, high_minus_low, gain)
 
@@ -202,7 +202,7 @@ sp500_by_company_and_sector <- sp500_by_company_and_sector |>
     ytd_return_num = as.numeric(ytd_return_num),
     current_price = str_trim(current_price),
     current_price = as.numeric(current_price),
-    return_category = if_else(ytd_return_num > 0, "positive", "negative"),
+    return_category = if_else(ytd_return_num > 0, "gain", "loss"),
     ytd_factor =  (ytd_return_num + 100) / 100,
     original_price = current_price / ytd_factor, 
     name = case_when(

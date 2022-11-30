@@ -49,7 +49,7 @@ We believe the overall stock market would be hurt by high inflation and correspo
 All of these sites collected these data by retrieving the data published publicly on stock exchanges, except for the federal-funds rate--this data was collected from the World Bank. In addition, each of these sites updates their data monthly/yearly (although they could update it daily, as they are collecting live data). Each observation represents a month in a year (between 1961 and 2020) and includes the following variables:
 
 | Variable            | Definition                                           |
-|-----------------------|-------------------------------------------------|
+|---------------------|---------------------------------------------------|
 | year                | year in which observation was recorded               |
 | month               | month in which observation was recorded              |
 | monthly_return      | total stock market's monthly return                  |
@@ -89,7 +89,7 @@ ggplot(historical_data) +
 
 We first isolated interest and inflation rates to determine the relationship between them. To do so, we utilized line graphs to visualize their trends across time--more specifically, from 1961 to 2020.
 
-```{r}
+```{r warning = FALSE}
 #| label: fig-inflation-and-interest-vs-returns
 #| fig-cap: "Interest and inflation rates vs. S&P 500 returns"
 
@@ -191,7 +191,7 @@ For the last part of our historical analysis, we wanted to examine the averages 
 
 **Results:** As you can see in @fig-inflation-vs-interest, inflation and interest rates are very closely related (especially prior to 2000), with interest and inflation peaking and dipping at similar times. This trend makes sense, as the Federal Reserve tends to raise interest rates when inflation rises, in an attempt to slow the economy down. (This is why the Federal Reserve is raising interest rates now--more on that later.) As depicted in @fig-inflation-and-interest-vs-returns, market returns are extremely volatile and (at least according to this graph) don't seem to depend on either interest or inflation, contrary to our hypothesis.
 
-@tbl-best-ten-years-of-returns show that any of the best years feature at least one relatively low rate (\<5%), with many having both low interest and inflation rates. Noticeable outliers include 1980, whose rates were both over 13%, and 1975, whose interest rate was almost 6% and inflation 9%. This trend of high returns correlating with lower rates does support our hypothesis. On the other hand, we expected many of the worst years for market returns to have high rates; surprisingly, this was not the case for about half of the worst years, as shown in @tbl-worst-ten-years-of-returns. Though some years did support our hypothesis, including 1974, 1973, 1969, and 1977, the others featured surprisingly low rates. We suspect that these unanticipated poor performance of the stock market during times of low rates could possibly be explained by recessions occurring during these years; in recessionary gaps, inflation tends to be lower because the economy has slowed significantly, and interest rates tend to be low as well in an attempt to re-stimulate the economy by encouraging borrowing.
+@tbl-best-ten-years-of-returns show that almost all of the best years for S&P 500 returns feature either a low interest or inflation rate (\<5%), with many having both low interest and inflation rates. Noticeable outliers include 1980, whose rates were both over 13%, and 1975, whose interest rate was almost 6% and inflation 9%. This trend of high returns correlating with lower rates does support our hypothesis. On the other hand, we expected many of the worst years for market returns to have high rates; surprisingly, this was not the case for about half of the worst years, as shown in @tbl-worst-ten-years-of-returns. Though some years did support our hypothesis, including 1974, 1973, 1969, and 1977, the others featured surprisingly low rates. We suspect that these unanticipated poor performance of the stock market during times of low rates could possibly be explained by recessions occurring during these years; in recessionary gaps, inflation tends to be lower because the economy has slowed significantly, and interest rates tend to be low as well in an attempt to re-stimulate the economy by encouraging borrowing.
 
 @fig-rates-by-decade supports what we concluded after examining the best and worst 10 years of returns: higher returns seem to be common in times of low rates, but it's difficult to determine a relationship between returns and rates when returns are lower. For example, the '60s, '90s, and 2010s all featured high returns (\~10+%) and rates at or below 5%; an outlier decade is the 2000s, whose average return was an abysmal \~1% despite low rates. On the other hand, in decades when rates were high (the '70s and '80s), returns were much more volatile--about average in the '70s (7.5%) yet outstanding in the '80s (15+%).
 
@@ -208,7 +208,7 @@ For the last part of our historical analysis, we wanted to examine the averages 
 Investing.com gets their data from financial-data providers, including stock exchanges and/or directly from market makers (who set stock prices to match supply and demand). The data is collected in real time by monitoring transactions (selling, buying, etc.) executed in the stock market, which correspond to increases/decreases in prices. Each observation represents a different day (between 1 October 2020 and 28 October 2022) and includes the following variables:
 
 | Variable                | Definition                                                        |
-|----------------------|-------------------------------------------------|
+|--------------------|----------------------------------------------------|
 | date                    | day on which observation was recorded                             |
 | price                   | closing daily price for the S&P 500                               |
 | open                    | opening daily price for the S&P 500                               |
@@ -304,7 +304,7 @@ sp500_curr_updated |>
   geom_smooth(se = FALSE,  colour = "red") +
   labs(
     x = "Date",
-    y = "Average Daily Difference"
+    y = "Mean Daily Difference (Opening - Closing price)"
   ) + 
   theme_minimal()
 ```
@@ -331,7 +331,7 @@ According to @fig-prop-gains-and-losses-by-month, we notice that 7 of the 26 mon
 
 We observe that the average daily difference between opening and closing prices as depicted in @fig-mean-daily-diff-by-month increases logarithmically from October 2020 to approximately May 2021, decrease linearly from May 2021 to February 2022, then increase exponentially from February 2022 to October 2022. The daily difference represents the volatility of the market--as you can see, the absolute value of the daily difference has almost doubled since the beginning of the year, shooting up from 3 to 5. This increase in volatility supports our previous findings that it can sometimes be more difficult to determine a correlation between rates and returns when returns are low. In @fig-mean-price-by-month, we observe that the average closing prices increase linearly from October 2020 to approximately November 2021, then decrease linearly from November 2021 to October 2022. This graph also shows a peak in stock prices around the beginning of 2022 (before interest-rate hikes), which supports our hypothesis.
 
-**Conclusion:** Our initial hypothesis that market returns will fall as rates rise (and vice versa) is partially backed up by the data. For example, in @fig-mean-daily-diff-by-month, when the average daily difference is below 0 near the 2022-01 to 2022-07 time frame, average closing prices are still relatively high compared to earlier ones. Also, in @fig-prop-gains-and-losses-by-month, we can see that 2022-07 month has one of the highest gain/loss proportions, yet still has a negative average daily difference from @fig-mean-daily-diff-by-month. Our data also answers the original question of when to be "bearish" (negative investment outlook) and when to be "bullish" (positive outlook), as @fig-prop-gains-and-losses-by-month shows the months in which daily gains or losses are more prevalent. As concluded in the previous section, returns generally seem to be high when rates are low; contrary to our previous conclusion, low returns also seem to correspond with high returns, implying a negative relationship between the two variables for both high and low returns (before we concluded that we could only establish a relationship between returns and rates when returns were high).
+**Conclusion:** Our initial hypothesis that market returns will fall as rates rise (and vice versa) is partially backed up by the data. For example, in @fig-mean-daily-diff-by-month, when the average daily difference is below 0 near the 2022-01 to 2022-07 time frame, average closing prices are still relatively high compared to earlier ones. Also, in @fig-prop-gains-and-losses-by-month, we can see that 2022-07 month has one of the highest gain/loss proportions, yet still has a negative average daily difference from @fig-mean-daily-diff-by-month. Our data also answers the original question of when to be "bearish" (negative investment outlook) and when to be "bullish" (positive outlook), as @fig-prop-gains-and-losses-by-month shows the months in which daily gains or losses are more prevalent. As concluded in the previous section, returns generally seem to be high when rates are low; contrary to our previous conclusion, low returns also seem to correspond with high rates, implying a negative relationship between the two variables for both high and low returns (earlier we concluded that we could only establish a relationship between returns and rates when returns were high).
 
 \newpage
 
@@ -348,7 +348,7 @@ We observe that the average daily difference between opening and closing prices 
 DATA HUB collected their data from S&P Dow Jones Indices (which, in turn, is collected daily from stock exchanges), and Slickcharts their data directly from the stock exchange. Each observation represents a different company and includes the following variables:
 
 | Variable        | Definition                                                                    |
-|--------------------|----------------------------------------------------|
+|----------------|--------------------------------------------------------|
 | name            | name of company in S&P 500                                                    |
 | symbol          | ticker symbol used to identify companies on stock exchange                    |
 | weight          | percentage weighting of company in S&P 500                                    |
@@ -358,7 +358,7 @@ DATA HUB collected their data from S&P Dow Jones Indices (which, in turn, is col
 | sector          | company's industry                                                            |
 | return category | positive if ytd_return_num \> 0 (positive return for the year), else negative |
 
-**Contextualization:** Because of high inflation rates, and rising interest rates, the stock market has taken a major blow this past year. However, some sectors and stocks have been more negatively affected than others. We believe that industries that are considered more essential tend to be less affected by fluctuations in these rates. So how true is this, and how much are both of these industries affected? In this section, we're analyzing data from the beginning of 2022 to the end of October.
+**Contextualization:** Because of high inflation rates, and rising interest rates, the stock market has taken a major blow this past year. However, some sectors and stocks have been more negatively affected than others. We believe that industries that are considered more essential tend to be less affected by fluctuations in these rates. So how true is this, and how much are both of these categories affected? In this section, we're analyzing data from the beginning of 2022 to the end of October.
 
 ```{r message = FALSE}
 #|: loading-current-day-company-and-sector-data
@@ -494,7 +494,7 @@ sp500_by_company_and_sector |>
   scale_fill_viridis_d() 
 ```
 
-Our final graph takes into account the concept of essential and nonessential industries. We classify essential industries as Consumer Staples, Utilities, and Energy, since consumer staples includes food, utilities has electricity, and energy has the materials we need for electricity and more. We would hypothesize that these essential industries would not be as affected as the nonessential industries, because regardless of how the market is, people need to spend money on the things that will keep them alive. We look to see if there is a quantifiable difference between which of these two larger groups for sectors performed better. To do this, a violin plot is made where the category is on the x axis, and returns are on the y axis.
+Our final graph takes into account the concept of essential and nonessential categories. We classify essential industries as Consumer Staples, Utilities, and Energy, since consumer staples includes food, utilities has electricity, and energy has the materials we need for electricity and more. We would hypothesize that the essential category of industries would not be as affected as the nonessential category, because regardless of how the market is, people need to spend money on the things that will keep them alive. We look to see if there is a quantifiable difference between which of these two larger groups for sectors performed better. To do this, a violin plot is made where the category is on the x axis, and returns are on the y axis.
 
 ```{r}
 #| label: fig-essential-vs-nonessential-industries
