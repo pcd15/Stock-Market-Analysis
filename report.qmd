@@ -4,7 +4,7 @@ subtitle: "Report"
 format: html
 editor: visual
 execute:
-  echo: true
+  echo: false
 ---
 
 ```{r message = FALSE}
@@ -49,7 +49,7 @@ We believe the overall stock market would be hurt by high inflation and correspo
 All of these sites collected these data by retrieving the data published publicly on stock exchanges, except for the federal-funds rate--this data was collected from the World Bank. In addition, each of these sites updates their data monthly/yearly (although they could update it daily, as they are collecting live data). Each observation represents a month in a year (between 1961 and 2020) and includes the following variables:
 
 | Variable            | Definition                                           |
-|---------------------|------------------------------------------------------|
+|---------------------|---------------------------------------------------|
 | year                | year in which observation was recorded               |
 | month               | month in which observation was recorded              |
 | monthly_return      | total stock market's monthly return                  |
@@ -62,7 +62,6 @@ All of these sites collected these data by retrieving the data published publicl
 #|: loading-historical-data
 
 historical_data <- read_csv("data/historical_data.csv")
-glimpse(historical_data)
 ```
 
 **Methodology:**
@@ -208,7 +207,7 @@ For the last part of our historical analysis, we wanted to examine the averages 
 Investing.com gets their data from financial-data providers, including stock exchanges and/or directly from market makers (who set stock prices to match supply and demand). The data is collected in real time by monitoring transactions (selling, buying, etc.) executed in the stock market, which correspond to increases/decreases in prices. Each observation represents a different day (between 1 October 2020 and 28 October 2022) and includes the following variables:
 
 | Variable                | Definition                                                           |
-|-------------------------|----------------------------------------------------------------------|
+|--------------------|----------------------------------------------------|
 | date                    | day on which observation was recorded                                |
 | price                   | closing daily price for the S&P 500                                  |
 | open                    | opening daily price for the S&P 500                                  |
@@ -222,7 +221,6 @@ Investing.com gets their data from financial-data providers, including stock exc
 #|: loading-current-day-sp500-data
 
 sp500_curr <- read_csv("data/sp500_curr_updated.csv")
-glimpse(sp500_curr)
 ```
 
 **Methodology:**
@@ -353,7 +351,7 @@ We observe that the average daily difference between opening and closing prices 
 DATA HUB collected their data from S&P Dow Jones Indices (which, in turn, is collected daily from stock exchanges), and Slickcharts their data directly from the stock exchange. Each observation represents a different company and includes the following variables:
 
 | Variable        | Definition                                                                |
-|-----------------|---------------------------------------------------------------------------|
+|----------------|-------------------------------------------------------|
 | name            | name of company in S&P 500                                                |
 | symbol          | ticker symbol used to identify companies on stock exchange                |
 | weight          | percentage weighting of company in S&P 500                                |
@@ -369,7 +367,6 @@ DATA HUB collected their data from S&P Dow Jones Indices (which, in turn, is col
 #|: loading-current-day-company-and-sector-data
 
 sp500_by_company_and_sector <- read_csv("data/sp500_by_company_and_sector.csv")
-glimpse(sp500_by_company_and_sector)
 ```
 
 **Methodology:**
