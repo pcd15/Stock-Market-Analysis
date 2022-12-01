@@ -22,11 +22,9 @@ library(dplyr)
 
 We want to explore the relationship between interest and inflation rates and the performance of the stock market. In doing so, we hope to determine economic characteristics in which it's beneficial to invest in the stock market, as well as if/when certain companies or sectors perform better in different economic climates. Therefore, we are interested in answering the following questions:
 
--   How have these rates (inflation and interest) historically impacted the returns of the stock market?
+-   How have these rates (inflation and interest) historically impacted the returns of the stock market? How closely has the current performance of the market (the past two years) followed these historical trends?
 
--   How closely has the current performance of the market (the past two years) followed these historical trends?
-
--   And finally, does the current high-rate economic climate disproportionately affect some companies/sectors more than others? If so, why?
+-   And does the current high-rate economic climate disproportionately affect some companies/sectors more than others? If so, why?
 
 For our historical analysis, we'll utilize a data set that includes yearly averages for the federal funds rate, inflation rate, and the S&P 500's return percentage from 1961 to 2020 in order to examine trends during this timeframe. For our current-day analysis, we'll utilize a data set that details the S&P 500's daily performance over the past two years to compare our historical findings with recent trends. Lastly, we have a data set that includes each company in the S&P 500 index, along with their sector and year-to-date performance, which we'll use to examine whether certain companies/sectors have performed better as rates have risen throughout this year.
 
@@ -36,9 +34,11 @@ We believe the overall stock market would be hurt by high inflation and correspo
 
 \newpage
 
-# **Part 1: Historical Analysis**
+## **Part 1: Historical vs. Current Analysis**
 
-**Sources:**
+We decided to look at the S&P 500's Historical Performance in relation to inflation and interest rates, and compare that to data from recent years.
+
+**Sources for Historical Data:**
 
 -   Federal Funds Rate and Inflation Rate: Macrotrends (<https://www.macrotrends.net/2015/fed-funds-rate-historical-chart>)
 
@@ -49,7 +49,7 @@ We believe the overall stock market would be hurt by high inflation and correspo
 All of these sites collected these data by retrieving the data published publicly on stock exchanges, except for the federal-funds rate--this data was collected from the World Bank. In addition, each of these sites updates their data monthly/yearly (although they could update it daily, as they are collecting live data). Each observation represents a month in a year (between 1961 and 2020) and includes the following variables:
 
 | Variable            | Definition                                           |
-|---------------------|---------------------------------------------------|
+|-----------------------|------------------------------------------------|
 | year                | year in which observation was recorded               |
 | month               | month in which observation was recorded              |
 | monthly_return      | total stock market's monthly return                  |
@@ -64,18 +64,17 @@ All of these sites collected these data by retrieving the data published publicl
 historical_data <- read_csv("data/historical_data.csv")
 ```
 
-**Methodology:**
+```{r warning = FALSE}
+#| label: fig-inflation-and-interest-vs-returns-eda
+#| fig-cap: "Interest and inflation rates vs. S&P 500 returns"
 
-```{r}
-#| label: fig-inflation-vs-interest
-#| fig-cap: "Interest rates vs. inflation rates"
-# Completed with assistance from: https://community.rstudio.com/t/adding-manual-legend-to-ggplot2/41651/5
+colors_redux <- c("Inflation" = "blue", "Interest" = "red", "Market Returns" = "darkgreen")
 
-colors <- c("Inflation" = "blue", "Interest" = "red")
-
-ggplot(historical_data) +
+historical_data |>
+  ggplot() +
   geom_line(aes(x = year, y = mean_fed_funds_rate, color = "Interest")) +
   geom_line(aes(x = year, y = inflation_rate, color = "Inflation")) +
+  geom_line(aes(x = year, y = year_to_date_return, color = "Market Returns")) +
   theme_minimal() +
   labs(
     x = "Year",
@@ -83,10 +82,90 @@ ggplot(historical_data) +
     color = "Type"
   ) +
   theme(legend.title = element_text(hjust = 0.5)) +
-  scale_color_manual(values = colors)
+  scale_color_manual(values = colors_redux)
 ```
 
-We first isolated interest and inflation rates to determine the relationship between them. To do so, we utilized line graphs to visualize their trends across time--more specifically, from 1961 to 2020.
+Here, we can get an overview of something the old data shows - how stock prices fluctuate with changes in interest and inflation.
+
+**Contextualization for Current Data:** We\'re analyzing the time period of October 2020 through October 2022. This year, inflation has risen to \~8%, up from \<2% in 2020 and \<5% in 2021. Interest rates have steadily risen in tandem with this increase in inflation. In an attempt to slow down inflation, Federal Reserve has increased the discount rate (the rate at which banks are charged to borrow from the Federal Reserve) from 0.5% in March 2022 to a current rate of 4%, which is the highest it\'s been since the 2008 recession.
+
+**Source for Current Data:**
+
+-   Investing.com (https://www.investing.com/indices/us-spx-500-historical-data)
+
+Investing.com gets their data from financial-data providers, including stock exchanges and/or directly from market makers (who set stock prices to match supply and demand). The data is collected in real time by monitoring transactions (selling, buying, etc.) executed in the stock market, which correspond to increases/decreases in prices. Each observation represents a different day (between 1 October 2020 and 28 October 2022) and includes the following variables:
+
+| Variable                | Definition                                                           |
+|-----------------------|-------------------------------------------------|
+| date                    | day on which observation was recorded                                |
+| price                   | closing daily price for the S&P 500                                  |
+| open                    | opening daily price for the S&P 500                                  |
+| daily_percentage_change | daily percentage difference between opening and closing prices       |
+| daily_diff              | daily numerical difference between opening and closing prices        |
+| gain                    | "gain" if daily_diff \> 0 (positive return for the day), else "loss" |
+
+## Part 2: **Company and Sector Analysis**
+
+**Contextualization:** Because of high inflation rates, and rising interest rates, the stock market has taken a major blow this past year. However, some sectors and stocks have been more negatively affected than others. We believe that industries that are considered more essential tend to be less affected by fluctuations in these rates. So how true is this, and how much are both of these categories affected? In this section, we're analyzing data from the beginning of 2022 to the end of October.
+
+**Sources:**
+
+-   Name, Symbol, and Sector: DATA HUB (https://datahub.io/core/s-and-p-500-companies-financials#resource-constituents)
+
+-   Weights (scraped): Slickcharts (<https://www.slickcharts.com/sp500>)
+
+-   Prices and Returns (scraped): Slickcharts (<https://www.slickcharts.com/sp500/performance>)
+
+DATA HUB collected their data from S&P Dow Jones Indices (which, in turn, is collected daily from stock exchanges), and Slickcharts their data directly from the stock exchange. Each observation represents a different company and includes the following variables:
+
+| Variable        | Definition                                                                |
+|--------------------|----------------------------------------------------|
+| name            | name of company in S&P 500                                                |
+| symbol          | ticker symbol used to identify companies on stock exchange                |
+| weight          | percentage weighting of company in S&P 500                                |
+| original_price  | price of company's stock at beginning of 2022                             |
+| current_price   | price of company's stock as of October 2022                               |
+| ytd_return_num  | company's year-to-date return percentage                                  |
+| sector          | company's industry                                                        |
+| return category | "gain" if ytd_return_num \> 0 (positive return for the year), else "loss" |
+
+```{r message = FALSE}
+#|: loading-current-day-company-and-sector-data
+
+sp500_by_company_and_sector <- read_csv("data/sp500_by_company_and_sector.csv")
+```
+
+```{r}
+#| label: fig-overall-performance-of-sp500-by-return-type-eda
+#| fig-cap: "Number of S&P 500 companies by year-to-date return type"
+
+sp500_by_company_and_sector |>
+  ggplot() +
+  geom_bar(aes(x = return_category, fill = return_category), color = "black") +
+  labs(
+    x = "Yearly Change in Price",
+    y = "Number of Companies"
+  ) +
+  theme_minimal() +
+  theme(legend.position = "none") +
+  scale_fill_viridis_d()
+```
+
+To get a glimpse of what we are looking at, our first bar graph shows the total number of stocks in the S&P 500 that saw a decrease, and those that saw an increase.
+
+# Methodology:
+
+## Part 1:
+
+## Part 2:
+
+# Results:
+
+# Discussion:
+
+PT1:
+
+**Methodology:**
 
 ```{r warning = FALSE}
 #| label: fig-inflation-and-interest-vs-returns
@@ -198,7 +277,7 @@ For the last part of our historical analysis, we wanted to examine the averages 
 
 \newpage
 
-# **Part 2: Current-day Analysis**
+## **Part 2: Current-day Analysis**
 
 **Source:**
 
@@ -207,7 +286,7 @@ For the last part of our historical analysis, we wanted to examine the averages 
 Investing.com gets their data from financial-data providers, including stock exchanges and/or directly from market makers (who set stock prices to match supply and demand). The data is collected in real time by monitoring transactions (selling, buying, etc.) executed in the stock market, which correspond to increases/decreases in prices. Each observation represents a different day (between 1 October 2020 and 28 October 2022) and includes the following variables:
 
 | Variable                | Definition                                                           |
-|--------------------|----------------------------------------------------|
+|-----------------------|-------------------------------------------------|
 | date                    | day on which observation was recorded                                |
 | price                   | closing daily price for the S&P 500                                  |
 | open                    | opening daily price for the S&P 500                                  |
@@ -338,7 +417,7 @@ We observe that the average daily difference between opening and closing prices 
 
 \newpage
 
-# **Part 3: Company and Sector Analysis**
+## **Part 3: Company and Sector Analysis**
 
 **Sources:**
 
@@ -351,7 +430,7 @@ We observe that the average daily difference between opening and closing prices 
 DATA HUB collected their data from S&P Dow Jones Indices (which, in turn, is collected daily from stock exchanges), and Slickcharts their data directly from the stock exchange. Each observation represents a different company and includes the following variables:
 
 | Variable        | Definition                                                                |
-|----------------|-------------------------------------------------------|
+|--------------------|----------------------------------------------------|
 | name            | name of company in S&P 500                                                |
 | symbol          | ticker symbol used to identify companies on stock exchange                |
 | weight          | percentage weighting of company in S&P 500                                |
