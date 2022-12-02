@@ -6,12 +6,12 @@ editor: visual
 
 This project was developed by **Git Real** for [STA 199: Introduction to Data Science](https://sta199-f22-1.github.io/) at Duke University. The team is comprised of the following team members.
 
--   Uma: Undeclared Sophomore
+-   Hannah: Freshman in CS
 
 -   Paul: Freshman in CS
 
--   Hannah: Freshman in CS
-
 -   Ryan: Freshman in CS
+
+-   Uma: Undeclared Sophomore
 
 -   Zaid: Sophomore in CS
