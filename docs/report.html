@@ -349,17 +349,17 @@ ul.task-list li input[type="checkbox"] {
 <section id="part-1" class="level2">
 <h2 class="anchored" data-anchor-id="part-1">Part 1:</h2>
 <p>Then, we analyzed the relationship between rates and average yearly returns of the stock market for the same period using more line graphs.</p>
-<div class="cell">
-<div class="cell-output-display">
-<div id="tbl-best-ten-years-of-returns" class="anchored">
+<div class="cell quarto-layout-panel">
+<div class="quarto-layout-row quarto-layout-valign-top">
+<div id="tbl-best-and-worst-ten-years-of-returns-1" class="quarto-layout-cell anchored" style="flex-basis: 50.0%;justify-content: center;">
 <table class="table table-sm table-striped">
 <caption>Table&nbsp;1: Ten years with highest annual S&amp;P 500 returns</caption>
 <thead>
 <tr class="header">
 <th style="text-align: right;">year</th>
-<th style="text-align: right;">year_to_date_return</th>
+<th style="text-align: right;">ytd_ret</th>
 <th style="text-align: right;">inflation_rate</th>
-<th style="text-align: right;">mean_fed_funds_rate</th>
+<th style="text-align: right;">mean_funds_rt</th>
 </tr>
 </thead>
 <tbody>
@@ -426,19 +426,15 @@ ul.task-list li input[type="checkbox"] {
 </tbody>
 </table>
 </div>
-</div>
-</div>
-<div class="cell">
-<div class="cell-output-display">
-<div id="tbl-worst-ten-years-of-returns" class="anchored">
+<div id="tbl-best-and-worst-ten-years-of-returns-2" class="quarto-layout-cell anchored" style="flex-basis: 50.0%;justify-content: center;">
 <table class="table table-sm table-striped">
 <caption>Table&nbsp;2: Ten years with lowest annual S&amp;P 500 returns</caption>
 <thead>
 <tr class="header">
 <th style="text-align: right;">year</th>
-<th style="text-align: right;">year_to_date_return</th>
+<th style="text-align: right;">ytd_ret</th>
 <th style="text-align: right;">inflation_rate</th>
-<th style="text-align: right;">mean_fed_funds_rate</th>
+<th style="text-align: right;">mean_funds_rt</th>
 </tr>
 </thead>
 <tbody>
@@ -507,6 +503,7 @@ ul.task-list li input[type="checkbox"] {
 </div>
 </div>
 </div>
+<p><code>{# {r warning = FALSE} # #| label: tbl-worst-ten-years-of-returns # #| tbl-cap: "Ten years with lowest annual S&amp;P 500 returns" #  # historical_data_worst &lt;- historical_data |&gt;  #   distinct(year, mean_fed_funds_rate, inflation_rate, year_to_date_return) |&gt; #   arrange(year_to_date_return) |&gt; #   slice_head(n = 10) |&gt;  #   relocate(year, year_to_date_return) |&gt;  #   knitr::kable() #  # historical_data_worst</code></p>
 <p>Next, we determined the best and worst 10 years of performance for the stock market by sorting by year_to_date_return and arranging in ascending (worst) and descending (best) order, in order to examine the years individually rather than as a trend across time.</p>
 <div class="cell">
 
@@ -548,41 +545,42 @@ ul.task-list li input[type="checkbox"] {
 <div class="cell">
 
 </div>
-<div class="cell">
-<div class="cell-output-display">
-<div id="fig-mean-daily-diff-by-month" class="quarto-figure quarto-figure-center anchored">
+<div class="cell quarto-layout-panel">
+<div class="quarto-layout-row quarto-layout-valign-top">
+<div class="cell-output-display quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<div id="fig-mean-daily-diff-and-mean-price-by-month-1" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure">
-<p><img src="report_files/figure-html/fig-mean-daily-diff-by-month-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="report_files/figure-html/fig-mean-daily-diff-and-mean-price-by-month-1.png" class="img-fluid figure-img" width="672"></p>
 <p></p><figcaption class="figure-caption">Figure&nbsp;6: Monthly average of S&amp;P 500 index’s daily difference</figcaption><p></p>
 </figure>
 </div>
 </div>
-</div>
-<div class="cell">
-<div class="cell-output-display">
-<div id="fig-mean-price-by-month" class="quarto-figure quarto-figure-center anchored">
+<div class="cell-output-display quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<div id="fig-mean-daily-diff-and-mean-price-by-month-2" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure">
-<p><img src="report_files/figure-html/fig-mean-price-by-month-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="report_files/figure-html/fig-mean-daily-diff-and-mean-price-by-month-2.png" class="img-fluid figure-img" width="672"></p>
 <p></p><figcaption class="figure-caption">Figure&nbsp;7: Monthly average of S&amp;P 500 index’s daily price</figcaption><p></p>
 </figure>
 </div>
 </div>
 </div>
+</div>
+<p><code>{# {r message = FALSE} # #| label: fig-mean-price-by-month # #| fig-cap: "Monthly average of S&amp;P 500 index's daily price" #  # sp500_curr_updated |&gt; #   ggplot(aes(x = new_date, y = mean_price)) + #   geom_smooth(se= FALSE, colour = "blue") + #   labs( #     x = "Date", #     y = "Average Closing Price" #   ) + #   theme_minimal()</code></p>
 <p>We then graphed the average daily change (between opening and closing prices) and closing price for each month. We did this by grouping the data by months then finding the summary mean of the average daily change and closing price for each month. Then, we used geom_smooth to plot a line graph to visualizing the trends from 10/01/2020 to 10/28/2022.</p>
 </section>
 <section id="part-2-by-sector-analysis" class="level2">
 <h2 class="anchored" data-anchor-id="part-2-by-sector-analysis">Part 2: By Sector Analysis</h2>
-<p>Next, we will observe the best- and worst-performing stocks. We will do this by arranging by arranging year-to-date returns in ascending and descending order, then displaying the top ten best and worst in a tibble, along with some key identifying factors.</p>
-<div class="cell">
-<div class="cell-output-display">
-<div id="tbl-ten-companies-with-highest-returns" class="anchored">
+<p>Next, we will observe the best and worst performing stocks. We will do this by arranging by arranging year-to-date returns in ascending and descending order, then displaying the top five best and worst in a tibble, along with some key identifying factors.</p>
+<div class="cell quarto-layout-panel">
+<div class="quarto-layout-row quarto-layout-valign-top">
+<div id="tbl-five-companies-with-highest-and-lowest-returns-1" class="quarto-layout-cell anchored" style="flex-basis: 50.0%;justify-content: center;">
 <table class="table table-sm table-striped">
-<caption>Table&nbsp;3: Ten companies with highest year-to-date returns</caption>
+<caption>Table&nbsp;3: Five companies with highest year-to-date returns</caption>
 <thead>
 <tr class="header">
 <th style="text-align: left;">name</th>
 <th style="text-align: left;">symbol</th>
-<th style="text-align: right;">ytd_return_num</th>
+<th style="text-align: right;">ytd_ret</th>
 <th style="text-align: left;">sector</th>
 </tr>
 </thead>
@@ -617,57 +615,17 @@ ul.task-list li input[type="checkbox"] {
 <td style="text-align: right;">69.03</td>
 <td style="text-align: left;">Energy</td>
 </tr>
-<tr class="even">
-<td style="text-align: left;">ConocoPhillips</td>
-<td style="text-align: left;">COP</td>
-<td style="text-align: right;">68.95</td>
-<td style="text-align: left;">Energy</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Marathon Oil</td>
-<td style="text-align: left;">MRO</td>
-<td style="text-align: right;">67.84</td>
-<td style="text-align: left;">Energy</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">ExxonMobil</td>
-<td style="text-align: left;">XOM</td>
-<td style="text-align: right;">64.73</td>
-<td style="text-align: left;">Energy</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Devon Energy</td>
-<td style="text-align: left;">DVN</td>
-<td style="text-align: right;">58.39</td>
-<td style="text-align: left;">Energy</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Valero Energy</td>
-<td style="text-align: left;">VLO</td>
-<td style="text-align: right;">56.70</td>
-<td style="text-align: left;">Energy</td>
-</tr>
 </tbody>
 </table>
 </div>
-</div>
-</div>
-<div class="cell">
-<div class="cell-output-display">
-<div id="tbl-ten-companies-with-lowest-returns" class="anchored">
+<div id="tbl-five-companies-with-highest-and-lowest-returns-2" class="quarto-layout-cell anchored" style="flex-basis: 50.0%;justify-content: center;">
 <table class="table table-sm table-striped">
-<caption>Table&nbsp;4: Ten companies with lowest year-to-date returns</caption>
-<colgroup>
-<col style="width: 33%">
-<col style="width: 10%">
-<col style="width: 22%">
-<col style="width: 33%">
-</colgroup>
+<caption>Table&nbsp;4: Five companies with lowest year-to-date returns</caption>
 <thead>
 <tr class="header">
 <th style="text-align: left;">name</th>
 <th style="text-align: left;">symbol</th>
-<th style="text-align: right;">ytd_return_num</th>
+<th style="text-align: right;">ytd_ret</th>
 <th style="text-align: left;">sector</th>
 </tr>
 </thead>
@@ -702,45 +660,16 @@ ul.task-list li input[type="checkbox"] {
 <td style="text-align: right;">-59.84</td>
 <td style="text-align: left;">Consumer Discretionary</td>
 </tr>
-<tr class="even">
-<td style="text-align: left;">Advanced Micro Devices</td>
-<td style="text-align: left;">AMD</td>
-<td style="text-align: right;">-59.75</td>
-<td style="text-align: left;">Information Technology</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">VF Corporation</td>
-<td style="text-align: left;">VFC</td>
-<td style="text-align: right;">-59.49</td>
-<td style="text-align: left;">Consumer Discretionary</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Nvidia</td>
-<td style="text-align: left;">NVDA</td>
-<td style="text-align: right;">-59.31</td>
-<td style="text-align: left;">Information Technology</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Stanley Black &amp; Decker</td>
-<td style="text-align: left;">SWK</td>
-<td style="text-align: right;">-59.00</td>
-<td style="text-align: left;">Industrials</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Caesars Entertainment</td>
-<td style="text-align: left;">CZR</td>
-<td style="text-align: right;">-58.45</td>
-<td style="text-align: left;">Consumer Discretionary</td>
-</tr>
 </tbody>
 </table>
 </div>
 </div>
 </div>
+<p><code>{# {r} # #| label: tbl-five-companies-with-lowest-returns # #| tbl-cap: "Five companies with lowest year-to-date returns" #  # sp500_by_company_and_sector |&gt; #   arrange(ytd_return_num) |&gt; #   slice_head(n = 10) |&gt; #   select(name, symbol, ytd_return_num, sector) |&gt; #   knitr::kable()</code></p>
 <p>But in order to determine which sectors did better, we need to delve deeper into our data. We will view their performance by calculating the mean return of all the stocks in that given sector, and sorting from best to worst. After that, we will create a graph that shows a similar picture to the first graph in this section–it will detail how many stocks increased and decreased, but it will be faceted by sector, so we can dig deeper into this picture.</p>
 <div class="cell">
 <div class="cell-output-display">
-<div id="tbl-average-return-by-sector" class="anchored">
+<div id="tbl--return-by-sector" class="anchored">
 <table class="table table-sm table-striped">
 <caption>Table&nbsp;5: Average S&amp;P 500 returns by sector</caption>
 <thead>
@@ -837,15 +766,15 @@ ul.task-list li input[type="checkbox"] {
 <h1>Results:</h1>
 <p>pt1:</p>
 <p>As you can see in <strong>?@fig-inflation-vs-interest</strong>, inflation and interest rates are very closely related (especially prior to 2000), with interest and inflation peaking and dipping at similar times. This trend makes sense, as the Federal Reserve tends to raise interest rates when inflation rises, in an attempt to slow the economy down. (This is why the Federal Reserve is raising interest rates now–more on that later.) As depicted in <strong>?@fig-inflation-and-interest-vs-returns</strong>, market returns are extremely volatile and (at least according to this graph) don’t seem to depend on either interest or inflation, contrary to our hypothesis. Note that we also created several linear models predicting S&amp;P 500 returns from interest and/or inflation rates, but we didn’t include our results because the highest R-squared for any model was only 0.026; thus, these models weren’t very helpful to our analysis, aside from the fact that they also supported the idea that market returns for our data seem to be independent of interest and inflation rates.</p>
-<p><a href="#tbl-best-ten-years-of-returns">Table&nbsp;1</a> show that almost all of the best years for S&amp;P 500 returns feature either a low interest or inflation rate (&lt;5%), with many having both low interest and inflation rates. Noticeable outliers include 1980, whose rates were both over 13%, and 1975, whose interest rate was almost 6% and inflation 9%. This trend of high returns correlating with lower rates does support our hypothesis. On the other hand, we expected many of the worst years for market returns to have high rates; surprisingly, this was not the case for about half of the worst years, as shown in <a href="#tbl-worst-ten-years-of-returns">Table&nbsp;2</a>. Though some years did support our hypothesis, including 1974, 1973, 1969, and 1977, the others featured surprisingly low rates. We suspect that these unanticipated poor performance of the stock market during times of low rates could possibly be explained by recessions occurring during these years; in recessionary gaps, inflation tends to be lower because the economy has slowed significantly, and interest rates tend to be low as well in an attempt to re-stimulate the economy by encouraging borrowing.</p>
+<p><strong>?@tbl-best-ten-years-of-returns</strong> show that almost all of the best years for S&amp;P 500 returns feature either a low interest or inflation rate (&lt;5%), with many having both low interest and inflation rates. Noticeable outliers include 1980, whose rates were both over 13%, and 1975, whose interest rate was almost 6% and inflation 9%. This trend of high returns correlating with lower rates does support our hypothesis. On the other hand, we expected many of the worst years for market returns to have high rates; surprisingly, this was not the case for about half of the worst years, as shown in <strong>?@tbl-worst-ten-years-of-returns</strong>. Though some years did support our hypothesis, including 1974, 1973, 1969, and 1977, the others featured surprisingly low rates. We suspect that these unanticipated poor performance of the stock market during times of low rates could possibly be explained by recessions occurring during these years; in recessionary gaps, inflation tends to be lower because the economy has slowed significantly, and interest rates tend to be low as well in an attempt to re-stimulate the economy by encouraging borrowing.</p>
 <p><a href="#fig-rates-by-decade">Figure&nbsp;3</a> supports what we concluded after examining the best and worst 10 years of returns: higher returns seem to be common in times of low rates, but it’s difficult to determine a relationship between returns and rates when returns are lower. For example, the ’60s, ’90s, and 2010s all featured high returns (~10+%) and rates at or below 5%; an outlier decade is the 2000s, whose average return was an abysmal ~1% despite low rates. On the other hand, in decades when rates were high (the ’70s and ’80s), returns were much more volatile–about average in the ’70s (7.5%) yet outstanding in the ’80s (15+%).</p>
 <p>pt2:</p>
 <p><strong>Results:</strong> In <a href="#fig-daily-closing-price">Figure&nbsp;4</a>, we can see that the median monthly closing prices for the S&amp;P 500 follow a generally positive trend from October 2020 to December 2021/January 2022, where they peak for the two-year period, and then begin to generally decline through October 2022. Each month had a wide range of closing prices that we can observe from the range of the heights of closing price data points each month. Some months have a range of approximately $250 (e.g., August 2022), while others have a range of approximately $750 (e.g., February 2021). This trend can possibly be explained by the very low rates characteristic of the Covid-19 era–the interest rate during the period prior to February 2022 was at a steady 0.25%. As soon as the Federal Reserve hiked rates in March 2022 to 0.5% (to combat rising inflation that had begun in late 2022), however, daily closing prices began to fall. This supports our hypothesis that rising rates generally correlates with a decrease in stock prices.</p>
 <p>According to <a href="#fig-prop-gains-and-losses-by-month">Figure&nbsp;5</a>, we notice that 7 of the 26 months in our data set have losses (gain = false). This means that, for the other 19 months, the number of days whose closing price was higher than the opening price (daily gain) was at least equal, if not greater than, the number of days whose closing price was lower than the opening price (daily loss). Also, it seems that the proportion of losses begins to increase beginning in 2022, which would support our conclusion from the previous graph.</p>
-<p>We observe that the average daily difference between opening and closing prices as depicted in <a href="#fig-mean-daily-diff-by-month">Figure&nbsp;6</a> increases logarithmically from October 2020 to approximately May 2021, decrease linearly from May 2021 to February 2022, then increase exponentially from February 2022 to October 2022. The daily difference represents the volatility of the market–as you can see, the absolute value of the daily difference has almost doubled since the beginning of the year, shooting up from 3 to 5. This increase in volatility supports our previous findings that it can sometimes be more difficult to determine a correlation between rates and returns when returns are low. In <a href="#fig-mean-price-by-month">Figure&nbsp;7</a>, we observe that the average closing prices increase linearly from October 2020 to approximately November 2021, then decrease linearly from November 2021 to October 2022. This graph also shows a peak in stock prices around the beginning of 2022 (before interest-rate hikes), which supports our hypothesis.</p>
+<p>We observe that the average daily difference between opening and closing prices as depicted in <strong>?@fig-mean-daily-diff-by-month</strong> increases logarithmically from October 2020 to approximately May 2021, decrease linearly from May 2021 to February 2022, then increase exponentially from February 2022 to October 2022. The daily difference represents the volatility of the market–as you can see, the absolute value of the daily difference has almost doubled since the beginning of the year, shooting up from 3 to 5. This increase in volatility supports our previous findings that it can sometimes be more difficult to determine a correlation between rates and returns when returns are low. In <strong>?@fig-mean-price-by-month</strong>, we observe that the average closing prices increase linearly from October 2020 to approximately November 2021, then decrease linearly from November 2021 to October 2022. This graph also shows a peak in stock prices around the beginning of 2022 (before interest-rate hikes), which supports our hypothesis.</p>
 <p>pt3:</p>
-<p><strong>Results:</strong> From <strong>?@fig-overall-performance-of-sp500-by-return-type</strong>, it can be seen that over 80% of the stocks in the S&amp;P 500 actually fell, which reflects our previous findings. In <a href="#tbl-ten-companies-with-highest-returns">Table&nbsp;3</a> and <a href="#tbl-ten-companies-with-lowest-returns">Table&nbsp;4</a>, we can see that a lot of the stocks that have similar performance also share a sector–the top high-performing stocks exclusively belong to companies in the energy and utility sectors, while consumer staples, communication services, and information technology seem to be the hardest-hit sectors of the low-performing stocks.</p>
-<p><a href="#tbl-average-return-by-sector">Table&nbsp;5</a> and <a href="#fig-proportion-of-return-types-by-sector">Figure&nbsp;8</a> help paint a bigger picture. We can see that energy and consumer staples are definitely doing the best from both depictions (as we believed would be the case in our hypothesis), and IT and real estate are among the few at the bottom. It’s also worth noting that energy is both the only sector with a positive average return for the year and the only sector in which a majority of the companies’ stocks have increased in price.</p>
+<p><strong>Results:</strong> From <strong>?@fig-overall-performance-of-sp500-by-return-type</strong>, it can be seen that over 80% of the stocks in the S&amp;P 500 actually fell, which reflects our previous findings. In <strong>?@tbl-ten-companies-with-highest-returns</strong> and <strong>?@tbl-ten-companies-with-lowest-returns</strong>, we can see that a lot of the stocks that have similar performance also share a sector–the top high-performing stocks exclusively belong to companies in the energy and utility sectors, while consumer staples, communication services, and information technology seem to be the hardest-hit sectors of the low-performing stocks.</p>
+<p><strong>?@tbl-average-return-by-sector</strong> and <a href="#fig-proportion-of-return-types-by-sector">Figure&nbsp;8</a> help paint a bigger picture. We can see that energy and consumer staples are definitely doing the best from both depictions (as we believed would be the case in our hypothesis), and IT and real estate are among the few at the bottom. It’s also worth noting that energy is both the only sector with a positive average return for the year and the only sector in which a majority of the companies’ stocks have increased in price.</p>
 <p>Using <a href="#fig-sector-performance">Figure&nbsp;9</a>, we can clearly see that the lowest industries are: Consumer Discretionary, IT, and Consumer Services. The highest are: Energy, Utilities, and Consumer Staples. Health care, along with some of the lower ones, have high variability. As evidenced in <a href="#fig-essential-vs-nonessential-industries">Figure&nbsp;10</a>, there is a visible difference in the essential and non-essential industries. Essential industries have a higher density of values above zero and feature higher maximums and lower minimums, as well as more clumped up data around a neutral zone. Essential companies’ stocks lost less of their value and look as if they are more consistent.</p>
 </section>
 <section id="discussion" class="level1">
@@ -853,7 +782,7 @@ ul.task-list li input[type="checkbox"] {
 <p>conc1:</p>
 <p><strong>Conclusion:</strong> Our initial hypothesis was partially correct. It seems that higher returns in the stock market generally correlate with lower interest and inflation rates, but years with lower returns can’t be explained as neatly, at least with the data we’re using. A potential confounding variable could be whether our economy was experiencing a recession during that year, as recessions sometimes create environments where returns in the stock market are poor even in times of low rates. Given this, it would be difficult to apply any predictions to our current-day analysis, since the market currently features very low (mostly negative) returns. However, we can still independently conduct the current-day analysis to gain a more in-depth understanding of the relationship between returns and rates.</p>
 <p>pt2:</p>
-<p><strong>Conclusion:</strong> Our initial hypothesis that market returns will fall as rates rise (and vice versa) is partially backed up by the data. For example, in <a href="#fig-mean-daily-diff-by-month">Figure&nbsp;6</a>, when the average daily difference is below 0 near the 2022-01 to 2022-07 time frame, average closing prices are still relatively high compared to earlier ones. Also, in <a href="#fig-prop-gains-and-losses-by-month">Figure&nbsp;5</a>, we can see that 2022-07 month has one of the highest gain/loss proportions, yet still has a negative average daily difference from <a href="#fig-mean-daily-diff-by-month">Figure&nbsp;6</a>. Our data also answers the original question of when to be “bearish” (negative investment outlook) and when to be “bullish” (positive outlook), as <a href="#fig-prop-gains-and-losses-by-month">Figure&nbsp;5</a> shows the months in which daily gains or losses are more prevalent. As concluded in the previous section, returns generally seem to be high when rates are low; contrary to our previous conclusion, low returns also seem to correspond with high rates, implying a negative relationship between the two variables for both high and low returns (earlier we concluded that we could only establish a relationship between returns and rates when returns were high).</p>
+<p><strong>Conclusion:</strong> Our initial hypothesis that market returns will fall as rates rise (and vice versa) is partially backed up by the data. For example, in <strong>?@fig-mean-daily-diff-by-month</strong>, when the average daily difference is below 0 near the 2022-01 to 2022-07 time frame, average closing prices are still relatively high compared to earlier ones. Also, in <a href="#fig-prop-gains-and-losses-by-month">Figure&nbsp;5</a>, we can see that 2022-07 month has one of the highest gain/loss proportions, yet still has a negative average daily difference from <strong>?@fig-mean-daily-diff-by-month</strong>. Our data also answers the original question of when to be “bearish” (negative investment outlook) and when to be “bullish” (positive outlook), as <a href="#fig-prop-gains-and-losses-by-month">Figure&nbsp;5</a> shows the months in which daily gains or losses are more prevalent. As concluded in the previous section, returns generally seem to be high when rates are low; contrary to our previous conclusion, low returns also seem to correspond with high rates, implying a negative relationship between the two variables for both high and low returns (earlier we concluded that we could only establish a relationship between returns and rates when returns were high).</p>
 <p>pt3:</p>
 <p><strong>Conclusion:</strong> Our initial hypothesis states that “essential industries”-Financials, Energy, Utilities and Consumer Staples–will not be as affected, despite the fact that the stock market suffers from high rates as a whole. The data collected substantially supports this hypothesis. Our first bar graph shows that there is a general decrease in stocks (80%), but within that, we see how the decrease is explained by industry and different variations in performance by sector. Our second and third graphs explain these variations, showing how industries such as Consumer Discretionary, IT and Consumer Services account for the majority of the decrease, and industries like Energy, Utilities and Consumer Staples show the most positive numbers. Additionally, there is a lot of variability in each sector, which, by grouping into “essential” vs.&nbsp;“non-essential” industry, is addressed, and demonstrates how essential industries are generally affected less, as they have a higher density of values above zero, as well as higher maximums.</p>
 <p>overarching:</p>
@@ -1048,7 +977,7 @@ ul.task-list li input[type="checkbox"] {
 </div>
 <p>For the last part of our historical analysis, we wanted to examine the averages of returns, interest, and inflation by decade. To do so, we calculated the means for each rate and return by decade and then created a bar chart for each decade using geom_col() and facet_wrap().</p>
 <p><strong>Results:</strong> As you can see in <strong>?@fig-inflation-vs-interest</strong>, inflation and interest rates are very closely related (especially prior to 2000), with interest and inflation peaking and dipping at similar times. This trend makes sense, as the Federal Reserve tends to raise interest rates when inflation rises, in an attempt to slow the economy down. (This is why the Federal Reserve is raising interest rates now–more on that later.) As depicted in <strong>?@fig-inflation-and-interest-vs-returns</strong>, market returns are extremely volatile and (at least according to this graph) don’t seem to depend on either interest or inflation, contrary to our hypothesis. Note that we also created several linear models predicting S&amp;P 500 returns from interest and/or inflation rates, but we didn’t include our results because the highest R-squared for any model was only 0.026; thus, these models weren’t very helpful to our analysis, aside from the fact that they also supported the idea that market returns for our data seem to be independent of interest and inflation rates.</p>
-<p><a href="#tbl-best-ten-years-of-returns">Table&nbsp;1</a> show that almost all of the best years for S&amp;P 500 returns feature either a low interest or inflation rate (&lt;5%), with many having both low interest and inflation rates. Noticeable outliers include 1980, whose rates were both over 13%, and 1975, whose interest rate was almost 6% and inflation 9%. This trend of high returns correlating with lower rates does support our hypothesis. On the other hand, we expected many of the worst years for market returns to have high rates; surprisingly, this was not the case for about half of the worst years, as shown in <a href="#tbl-worst-ten-years-of-returns">Table&nbsp;2</a>. Though some years did support our hypothesis, including 1974, 1973, 1969, and 1977, the others featured surprisingly low rates. We suspect that these unanticipated poor performance of the stock market during times of low rates could possibly be explained by recessions occurring during these years; in recessionary gaps, inflation tends to be lower because the economy has slowed significantly, and interest rates tend to be low as well in an attempt to re-stimulate the economy by encouraging borrowing.</p>
+<p><strong>?@tbl-best-ten-years-of-returns</strong> show that almost all of the best years for S&amp;P 500 returns feature either a low interest or inflation rate (&lt;5%), with many having both low interest and inflation rates. Noticeable outliers include 1980, whose rates were both over 13%, and 1975, whose interest rate was almost 6% and inflation 9%. This trend of high returns correlating with lower rates does support our hypothesis. On the other hand, we expected many of the worst years for market returns to have high rates; surprisingly, this was not the case for about half of the worst years, as shown in <strong>?@tbl-worst-ten-years-of-returns</strong>. Though some years did support our hypothesis, including 1974, 1973, 1969, and 1977, the others featured surprisingly low rates. We suspect that these unanticipated poor performance of the stock market during times of low rates could possibly be explained by recessions occurring during these years; in recessionary gaps, inflation tends to be lower because the economy has slowed significantly, and interest rates tend to be low as well in an attempt to re-stimulate the economy by encouraging borrowing.</p>
 <p><a href="#fig-rates-by-decade">Figure&nbsp;3</a> supports what we concluded after examining the best and worst 10 years of returns: higher returns seem to be common in times of low rates, but it’s difficult to determine a relationship between returns and rates when returns are lower. For example, the ’60s, ’90s, and 2010s all featured high returns (~10+%) and rates at or below 5%; an outlier decade is the 2000s, whose average return was an abysmal ~1% despite low rates. On the other hand, in decades when rates were high (the ’70s and ’80s), returns were much more volatile–about average in the ’70s (7.5%) yet outstanding in the ’80s (15+%).</p>
 <p><strong>Conclusion:</strong> Our initial hypothesis was partially correct. It seems that higher returns in the stock market generally correlate with lower interest and inflation rates, but years with lower returns can’t be explained as neatly, at least with the data we’re using. A potential confounding variable could be whether our economy was experiencing a recession during that year, as recessions sometimes create environments where returns in the stock market are poor even in times of low rates. Given this, it would be difficult to apply any predictions to our current-day analysis, since the market currently features very low (mostly negative) returns. However, we can still independently conduct the current-day analysis to gain a more in-depth understanding of the relationship between returns and rates.</p>
 <div style="page-break-after: always;"></div>
@@ -1150,8 +1079,8 @@ ul.task-list li input[type="checkbox"] {
 <p>We then graphed the average daily change (between opening and closing prices) and closing price for each month. We did this by grouping the data by months then finding the summary mean of the average daily change and closing price for each month. Then, we used geom_smooth to plot a line graph to visualizing the trends from 10/01/2020 to 10/28/2022.</p>
 <p><strong>Results:</strong> In <a href="#fig-daily-closing-price">Figure&nbsp;4</a>, we can see that the median monthly closing prices for the S&amp;P 500 follow a generally positive trend from October 2020 to December 2021/January 2022, where they peak for the two-year period, and then begin to generally decline through October 2022. Each month had a wide range of closing prices that we can observe from the range of the heights of closing price data points each month. Some months have a range of approximately $250 (e.g., August 2022), while others have a range of approximately $750 (e.g., February 2021). This trend can possibly be explained by the very low rates characteristic of the Covid-19 era–the interest rate during the period prior to February 2022 was at a steady 0.25%. As soon as the Federal Reserve hiked rates in March 2022 to 0.5% (to combat rising inflation that had begun in late 2022), however, daily closing prices began to fall. This supports our hypothesis that rising rates generally correlates with a decrease in stock prices.</p>
 <p>According to <a href="#fig-prop-gains-and-losses-by-month">Figure&nbsp;5</a>, we notice that 7 of the 26 months in our data set have losses (gain = false). This means that, for the other 19 months, the number of days whose closing price was higher than the opening price (daily gain) was at least equal, if not greater than, the number of days whose closing price was lower than the opening price (daily loss). Also, it seems that the proportion of losses begins to increase beginning in 2022, which would support our conclusion from the previous graph.</p>
-<p>We observe that the average daily difference between opening and closing prices as depicted in <a href="#fig-mean-daily-diff-by-month">Figure&nbsp;6</a> increases logarithmically from October 2020 to approximately May 2021, decrease linearly from May 2021 to February 2022, then increase exponentially from February 2022 to October 2022. The daily difference represents the volatility of the market–as you can see, the absolute value of the daily difference has almost doubled since the beginning of the year, shooting up from 3 to 5. This increase in volatility supports our previous findings that it can sometimes be more difficult to determine a correlation between rates and returns when returns are low. In <a href="#fig-mean-price-by-month">Figure&nbsp;7</a>, we observe that the average closing prices increase linearly from October 2020 to approximately November 2021, then decrease linearly from November 2021 to October 2022. This graph also shows a peak in stock prices around the beginning of 2022 (before interest-rate hikes), which supports our hypothesis.</p>
-<p><strong>Conclusion:</strong> Our initial hypothesis that market returns will fall as rates rise (and vice versa) is partially backed up by the data. For example, in <a href="#fig-mean-daily-diff-by-month">Figure&nbsp;6</a>, when the average daily difference is below 0 near the 2022-01 to 2022-07 time frame, average closing prices are still relatively high compared to earlier ones. Also, in <a href="#fig-prop-gains-and-losses-by-month">Figure&nbsp;5</a>, we can see that 2022-07 month has one of the highest gain/loss proportions, yet still has a negative average daily difference from <a href="#fig-mean-daily-diff-by-month">Figure&nbsp;6</a>. Our data also answers the original question of when to be “bearish” (negative investment outlook) and when to be “bullish” (positive outlook), as <a href="#fig-prop-gains-and-losses-by-month">Figure&nbsp;5</a> shows the months in which daily gains or losses are more prevalent. As concluded in the previous section, returns generally seem to be high when rates are low; contrary to our previous conclusion, low returns also seem to correspond with high rates, implying a negative relationship between the two variables for both high and low returns (earlier we concluded that we could only establish a relationship between returns and rates when returns were high).</p>
+<p>We observe that the average daily difference between opening and closing prices as depicted in <strong>?@fig-mean-daily-diff-by-month</strong> increases logarithmically from October 2020 to approximately May 2021, decrease linearly from May 2021 to February 2022, then increase exponentially from February 2022 to October 2022. The daily difference represents the volatility of the market–as you can see, the absolute value of the daily difference has almost doubled since the beginning of the year, shooting up from 3 to 5. This increase in volatility supports our previous findings that it can sometimes be more difficult to determine a correlation between rates and returns when returns are low. In <strong>?@fig-mean-price-by-month</strong>, we observe that the average closing prices increase linearly from October 2020 to approximately November 2021, then decrease linearly from November 2021 to October 2022. This graph also shows a peak in stock prices around the beginning of 2022 (before interest-rate hikes), which supports our hypothesis.</p>
+<p><strong>Conclusion:</strong> Our initial hypothesis that market returns will fall as rates rise (and vice versa) is partially backed up by the data. For example, in <strong>?@fig-mean-daily-diff-by-month</strong>, when the average daily difference is below 0 near the 2022-01 to 2022-07 time frame, average closing prices are still relatively high compared to earlier ones. Also, in <a href="#fig-prop-gains-and-losses-by-month">Figure&nbsp;5</a>, we can see that 2022-07 month has one of the highest gain/loss proportions, yet still has a negative average daily difference from <strong>?@fig-mean-daily-diff-by-month</strong>. Our data also answers the original question of when to be “bearish” (negative investment outlook) and when to be “bullish” (positive outlook), as <a href="#fig-prop-gains-and-losses-by-month">Figure&nbsp;5</a> shows the months in which daily gains or losses are more prevalent. As concluded in the previous section, returns generally seem to be high when rates are low; contrary to our previous conclusion, low returns also seem to correspond with high rates, implying a negative relationship between the two variables for both high and low returns (earlier we concluded that we could only establish a relationship between returns and rates when returns were high).</p>
 <div style="page-break-after: always;"></div>
 </section>
 <section id="part-3-company-and-sector-analysis" class="level2">
@@ -1484,8 +1413,8 @@ ul.task-list li input[type="checkbox"] {
 </div>
 </div>
 </div>
-<p><strong>Results:</strong> From <strong>?@fig-overall-performance-of-sp500-by-return-type</strong>, it can be seen that over 80% of the stocks in the S&amp;P 500 actually fell, which reflects our previous findings. In <a href="#tbl-ten-companies-with-highest-returns">Table&nbsp;3</a> and <a href="#tbl-ten-companies-with-lowest-returns">Table&nbsp;4</a>, we can see that a lot of the stocks that have similar performance also share a sector–the top high-performing stocks exclusively belong to companies in the energy and utility sectors, while consumer staples, communication services, and information technology seem to be the hardest-hit sectors of the low-performing stocks.</p>
-<p><a href="#tbl-average-return-by-sector">Table&nbsp;5</a> and <a href="#fig-proportion-of-return-types-by-sector">Figure&nbsp;8</a> help paint a bigger picture. We can see that energy and consumer staples are definitely doing the best from both depictions (as we believed would be the case in our hypothesis), and IT and real estate are among the few at the bottom. It’s also worth noting that energy is both the only sector with a positive average return for the year and the only sector in which a majority of the companies’ stocks have increased in price.</p>
+<p><strong>Results:</strong> From <strong>?@fig-overall-performance-of-sp500-by-return-type</strong>, it can be seen that over 80% of the stocks in the S&amp;P 500 actually fell, which reflects our previous findings. In <strong>?@tbl-ten-companies-with-highest-returns</strong> and <strong>?@tbl-ten-companies-with-lowest-returns</strong>, we can see that a lot of the stocks that have similar performance also share a sector–the top high-performing stocks exclusively belong to companies in the energy and utility sectors, while consumer staples, communication services, and information technology seem to be the hardest-hit sectors of the low-performing stocks.</p>
+<p><strong>?@tbl-average-return-by-sector</strong> and <a href="#fig-proportion-of-return-types-by-sector">Figure&nbsp;8</a> help paint a bigger picture. We can see that energy and consumer staples are definitely doing the best from both depictions (as we believed would be the case in our hypothesis), and IT and real estate are among the few at the bottom. It’s also worth noting that energy is both the only sector with a positive average return for the year and the only sector in which a majority of the companies’ stocks have increased in price.</p>
 <p>Using <a href="#fig-sector-performance">Figure&nbsp;9</a>, we can clearly see that the lowest industries are: Consumer Discretionary, IT, and Consumer Services. The highest are: Energy, Utilities, and Consumer Staples. Health care, along with some of the lower ones, have high variability. As evidenced in <a href="#fig-essential-vs-nonessential-industries">Figure&nbsp;10</a>, there is a visible difference in the essential and non-essential industries. Essential industries have a higher density of values above zero and feature higher maximums and lower minimums, as well as more clumped up data around a neutral zone. Essential companies’ stocks lost less of their value and look as if they are more consistent.</p>
 <p><strong>Conclusion:</strong> Our initial hypothesis states that “essential industries”-Financials, Energy, Utilities and Consumer Staples–will not be as affected, despite the fact that the stock market suffers from high rates as a whole. The data collected substantially supports this hypothesis. Our first bar graph shows that there is a general decrease in stocks (80%), but within that, we see how the decrease is explained by industry and different variations in performance by sector. Our second and third graphs explain these variations, showing how industries such as Consumer Discretionary, IT and Consumer Services account for the majority of the decrease, and industries like Energy, Utilities and Consumer Staples show the most positive numbers. Additionally, there is a lot of variability in each sector, which, by grouping into “essential” vs.&nbsp;“non-essential” industry, is addressed, and demonstrates how essential industries are generally affected less, as they have a higher density of values above zero, as well as higher maximums.</p>
 </section>

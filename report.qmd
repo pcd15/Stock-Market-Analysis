@@ -166,31 +166,45 @@ To get a glimpse of what we are looking at, our first bar graph shows the total 
 Then, we analyzed the relationship between rates and average yearly returns of the stock market for the same period using more line graphs.
 
 ```{r}
-#| label: tbl-best-ten-years-of-returns
-#| tbl-cap: "Ten years with highest annual S&P 500 returns"
+#| label: tbl-best-and-worst-ten-years-of-returns
+#| tbl-cap: ["Ten years with highest annual S&P 500 returns", "Ten years with lowest annual S&P 500 returns"]
+#| layout-ncol: 2
 
 historical_data_best <- historical_data |> 
-  distinct(year, mean_fed_funds_rate, inflation_rate, year_to_date_return) |>
-  arrange(desc(year_to_date_return)) |>
+  rename(mean_funds_rt = mean_fed_funds_rate,
+         ytd_ret = year_to_date_return) |>
+  distinct(year, mean_funds_rt, inflation_rate, ytd_ret) |>
+  arrange(desc(ytd_ret)) |>
   slice_head(n = 10) |> 
-  relocate(year, year_to_date_return) |>
+  relocate(year, ytd_ret) |>
   knitr::kable()
 
 historical_data_best
-```
-
-```{r warning = FALSE}
-#| label: tbl-worst-ten-years-of-returns
-#| tbl-cap: "Ten years with lowest annual S&P 500 returns"
 
 historical_data_worst <- historical_data |> 
-  distinct(year, mean_fed_funds_rate, inflation_rate, year_to_date_return) |>
-  arrange(year_to_date_return) |>
+    rename(mean_funds_rt = mean_fed_funds_rate,
+         ytd_ret = year_to_date_return) |>
+  distinct(year, mean_funds_rt, inflation_rate, ytd_ret) |>
+  arrange(ytd_ret) |>
   slice_head(n = 10) |> 
-  relocate(year, year_to_date_return) |> 
+  relocate(year, ytd_ret) |> 
   knitr::kable()
 
 historical_data_worst
+```
+
+```{# {r warning = FALSE}
+# #| label: tbl-worst-ten-years-of-returns
+# #| tbl-cap: "Ten years with lowest annual S&P 500 returns"
+# 
+# historical_data_worst <- historical_data |> 
+#   distinct(year, mean_fed_funds_rate, inflation_rate, year_to_date_return) |>
+#   arrange(year_to_date_return) |>
+#   slice_head(n = 10) |> 
+#   relocate(year, year_to_date_return) |> 
+#   knitr::kable()
+# 
+# historical_data_worst
 ```
 
 Next, we determined the best and worst 10 years of performance for the stock market by sorting by year_to_date_return and arranging in ascending (worst) and descending (best) order, in order to examine the years individually rather than as a trend across time.
@@ -318,8 +332,9 @@ sp500_curr_updated <- sp500_curr |>
 ```
 
 ```{r message = FALSE}
-#| label: fig-mean-daily-diff-by-month
-#| fig-cap: "Monthly average of S&P 500 index's daily difference"
+#| label: fig-mean-daily-diff-and-mean-price-by-month
+#| fig-cap: ["Monthly average of S&P 500 index's daily difference", "Monthly average of S&P 500 index's daily price"]
+#| layout-ncol: 2
 
 sp500_curr_updated |>
   ggplot(aes(x = new_date, y = mean_daily_diff)) +
@@ -329,11 +344,6 @@ sp500_curr_updated |>
     y = "Mean Daily Difference (Opening - Closing price)"
   ) + 
   theme_minimal()
-```
-
-```{r message = FALSE}
-#| label: fig-mean-price-by-month
-#| fig-cap: "Monthly average of S&P 500 index's daily price"
 
 sp500_curr_updated |>
   ggplot(aes(x = new_date, y = mean_price)) +
@@ -345,38 +355,61 @@ sp500_curr_updated |>
   theme_minimal()
 ```
 
+```{# {r message = FALSE}
+# #| label: fig-mean-price-by-month
+# #| fig-cap: "Monthly average of S&P 500 index's daily price"
+# 
+# sp500_curr_updated |>
+#   ggplot(aes(x = new_date, y = mean_price)) +
+#   geom_smooth(se= FALSE, colour = "blue") +
+#   labs(
+#     x = "Date",
+#     y = "Average Closing Price"
+#   ) +
+#   theme_minimal()
+```
+
 We then graphed the average daily change (between opening and closing prices) and closing price for each month. We did this by grouping the data by months then finding the summary mean of the average daily change and closing price for each month. Then, we used geom_smooth to plot a line graph to visualizing the trends from 10/01/2020 to 10/28/2022.
 
 ## Part 2: By Sector Analysis
 
-Next, we will observe the best- and worst-performing stocks. We will do this by arranging by arranging year-to-date returns in ascending and descending order, then displaying the top ten best and worst in a tibble, along with some key identifying factors.
+Next, we will observe the best and worst performing stocks. We will do this by arranging by arranging year-to-date returns in ascending and descending order, then displaying the top five best and worst in a tibble, along with some key identifying factors.
 
 ```{r}
-#| label: tbl-ten-companies-with-highest-returns
-#| tbl-cap: "Ten companies with highest year-to-date returns"
+#| label: tbl-five-companies-with-highest-and-lowest-returns
+#| tbl-cap: ["Five companies with highest year-to-date returns", Five companies with lowest year-to-date returns]
+#| layout-ncol: 2
 
 sp500_by_company_and_sector |>
-  arrange(desc(ytd_return_num)) |>
-  slice_head(n = 10) |>
-  select(name, symbol, ytd_return_num, sector) |> 
+  rename(ytd_ret = ytd_return_num) |>
+  arrange(desc(ytd_ret)) |>
+  slice_head(n = 5) |>
+  select(name, symbol, ytd_ret, sector) |> 
+  knitr::kable()
+
+sp500_by_company_and_sector |>
+  rename(ytd_ret = ytd_return_num) |>
+  arrange(ytd_ret) |>
+  slice_head(n = 5) |>
+  select(name, symbol, ytd_ret, sector) |>
   knitr::kable()
 ```
 
-```{r}
-#| label: tbl-ten-companies-with-lowest-returns
-#| tbl-cap: "Ten companies with lowest year-to-date returns"
-
-sp500_by_company_and_sector |>
-  arrange(ytd_return_num) |>
-  slice_head(n = 10) |>
-  select(name, symbol, ytd_return_num, sector) |>
-  knitr::kable()
+```{# {r}
+# #| label: tbl-five-companies-with-lowest-returns
+# #| tbl-cap: "Five companies with lowest year-to-date returns"
+# 
+# sp500_by_company_and_sector |>
+#   arrange(ytd_return_num) |>
+#   slice_head(n = 10) |>
+#   select(name, symbol, ytd_return_num, sector) |>
+#   knitr::kable()
 ```
 
 But in order to determine which sectors did better, we need to delve deeper into our data. We will view their performance by calculating the mean return of all the stocks in that given sector, and sorting from best to worst. After that, we will create a graph that shows a similar picture to the first graph in this section--it will detail how many stocks increased and decreased, but it will be faceted by sector, so we can dig deeper into this picture.
 
 ```{r}
-#| label: tbl-average-return-by-sector
+#| label: tbl--return-by-sector
 #| tbl-cap: "Average S&P 500 returns by sector"
 
 sp500_by_company_and_sector |>
@@ -386,6 +419,7 @@ sp500_by_company_and_sector |>
   ) |>
   arrange(desc(mean_sector_return)) |>
   knitr::kable()
+
 ```
 
 ```{r}
