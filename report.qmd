@@ -28,13 +28,11 @@ We want to explore the relationship between interest and inflation rates and the
 
 For our historical analysis, we'll utilize a data set that includes yearly averages for the federal funds rate, inflation rate, and the S&P 500's return percentage from 1961 to 2020 in order to examine trends during this time frame. For our current-day analysis, we'll utilize a data set that details the S&P 500's daily performance over the past two years to compare our historical findings with recent trends. Lastly, we have a data set that includes each company in the S&P 500 index, along with their sector and year-to-date performance, which we'll use to examine whether certain companies/sectors have performed better as rates have risen throughout this year.
 
-We believe the overall stock market would be hurt by high inflation and corresponding high interest rates, both because consumers' discretionary incomes drop and because companies are disincentivized from borrowing, due to the higher costs associated with taking out a loan. We expect to see this relationship in our historical analysis and our current-day analysis. Conversely, in times of lower rates, we expect market returns to be higher, on average. Though we expect the stock market as a whole to suffer from high rates, we believe certain sectors of the economy could serve as silver linings for investors' pockets; these industries include: financials, health care, utilities, and consumer staples. We believe these sectors could perform better than the aggregate market because they sell essential goods that consumers must purchase no matter the state of the economy (health care, utilities, and consumer staples). Also, we believe the financials sector will do well because banks are able to charge higher interest rates on their loans (and thus earn greater profits) when interest rates are high.
+We believe the overall stock market would be hurt by high inflation and corresponding high interest rates, both because consumers' discretionary incomes drop and because companies are disincentivized from borrowing, due to the higher costs associated with taking out a loan. We expect to see this relationship in our historical analysis and our current-day analysis. Conversely, in times of lower rates, we expect market returns to be higher, on average. Though we expect the stock market as a whole to suffer from high rates, we believe certain sectors of the economy could serve as silver linings for investors' pockets; these industries include: energy, health care, utilities, and consumer staples. We believe these sectors could perform better than the aggregate market because they sell essential goods that consumers must purchase no matter the state of the economy.
 
 **Note:** We are using the S&P 500 as a model of the performance of the entire market, and we are using the federal-funds rate, the interest rate at which banks loan to other banks, to model the general trend of all interest rates. We believed these are logical assumptions, as the S&P 500 includes the 500 largest US-based companies (and thus covers a large portion of the total market) and the federal-funds rate generally serves as a benchmark for all other interest rates (because it is indirectly influenced by the Federal Reserve's policies). Also, all of our observations feature the performance of the market (S&P 500) or an individual company in the S&P 500 on a specific day/month/year.
 
-## Part 1: Historical vs. Current Analysis
-
-We decided to look at the S&P 500's Historical Performance in relation to inflation and interest rates, and compare that to data from recent years.
+## Part 1: Historical vs. Current-day Analysis
 
 **Sources for Historical Data:**
 
@@ -47,7 +45,7 @@ We decided to look at the S&P 500's Historical Performance in relation to inflat
 All of these sites collected these data by retrieving the data published publicly on stock exchanges, except for the federal-funds rate--this data was collected from the World Bank. In addition, each of these sites updates their data monthly/yearly (although they could update it daily, as they are collecting live data). Each observation represents a month in a year (between 1961 and 2020) and includes the following variables:
 
 | Variable            | Definition                                                             |
-|------------------|------------------------------------------------------|
+|--------------------|----------------------------------------------------|
 | year                | year in which observation was recorded                                 |
 | month               | month in which observation was recorded                                |
 | monthly_return      | total stock market's monthly return                                    |
@@ -56,7 +54,9 @@ All of these sites collected these data by retrieving the data published publicl
 | inflation_rate      | mean annual inflation rate                                             |
 | decade              | represents decade in which observation was made                        |
 | rate_type           | "low" if both inflation_rate and mean_fed_funds_rate \< 5, else "high" |
-| return_type         | "gain" if year_to_date_return \> 0, else "loss                         |
+| return_type         | "gain" if year_to_date_return \> 0, else "loss"                        |
+
+We created our historical data set by joining the data we obtained from the three sources mentioned above by year, leaving us with a data frame that includes the mean federal funds rate and mean inflation rate, as well as the S&P 500's annual returns, for each year from 1961 to 2020. Due to the formatting of the files, we occasionally had to split variables into two separate columns (e.g., year and mean_fed_funds_rate) and/or remove the first several rows for each data set before joining our data sets to create our data frame to be used in our analysis.
 
 ```{r message = FALSE}
 #|: loading-historical-data
@@ -65,7 +65,7 @@ historical_data <- read_csv("data/historical_data.csv")
 ```
 
 ```{r warning = FALSE, message = FALSE}
-#| label: fig-inflation-and-interest-vs-returns
+#| label: fig-inflation-vs-interest-vs-returns
 #| fig-cap: "Interest and inflation rates vs. S&P 500 returns"
 
 colors_redux <- c("Inflation" = "blue", "Interest" = "red", "Market Returns" = "darkgreen")
@@ -86,9 +86,37 @@ historical_data |>
   scale_color_viridis_d(option = "turbo")
 ```
 
-Here, we can get an overview of something the old data shows - how stock prices fluctuate with changes in interest and inflation.
+Using line graphs, we visualized relationship between interest/inflation rates and average yearly returns of the stock market from 1961 to 2020.
 
-**Contextualization for Current Data:** We're analyzing the time period of October 2020 through October 2022. This year, inflation has risen to \~8%, up from \<2% in 2020 and \<5% in 2021. Interest rates have steadily risen in tandem with this increase in inflation. In an attempt to slow down inflation, Federal Reserve has increased the discount rate (the rate at which banks are charged to borrow from the Federal Reserve) from 0.5% in March 2022 to a current rate of 4%, which is the highest it's been since the 2008 recession.
+```{r}
+#| label: tbl-best-and-worst-ten-years-of-returns
+#| tbl-cap: ["Ten years with highest annual S&P 500 returns", "Ten years with lowest annual S&P 500 returns"]
+#| layout-ncol: 2
+
+historical_data_best <- historical_data |> 
+  rename(mean_funds_rt = mean_fed_funds_rate,
+         ytd_ret = year_to_date_return) |>
+  distinct(year, mean_funds_rt, inflation_rate, ytd_ret) |>
+  arrange(desc(ytd_ret)) |>
+  slice_head(n = 10) |> 
+  relocate(year, ytd_ret) |>
+  knitr::kable()
+
+historical_data_best
+
+historical_data_worst <- historical_data |> 
+    rename(mean_funds_rt = mean_fed_funds_rate,
+         ytd_ret = year_to_date_return) |>
+  distinct(year, mean_funds_rt, inflation_rate, ytd_ret) |>
+  arrange(ytd_ret) |>
+  slice_head(n = 10) |> 
+  relocate(year, ytd_ret) |> 
+  knitr::kable()
+
+historical_data_worst
+```
+
+Next, we determined the best and worst 10 years of performance for the stock market by sorting by year_to_date_return and arranging in ascending (worst) and descending (best) order, in order to examine the years individually rather than as a trend across time.
 
 **Source for Current Data:**
 
@@ -96,14 +124,15 @@ Here, we can get an overview of something the old data shows - how stock prices 
 
 Investing.com gets their data from financial-data providers, including stock exchanges and/or directly from market makers (who set stock prices to match supply and demand). The data is collected in real time by monitoring transactions (selling, buying, etc.) executed in the stock market, which correspond to increases/decreases in prices. Each observation represents a different day (between 1 October 2020 and 28 October 2022) and includes the following variables:
 
-| Variable                | Definition                                                           |
+| Variable   | Definition                                                           |
 |--------------------|----------------------------------------------------|
-| date                    | day on which observation was recorded                                |
-| price                   | closing daily price for the S&P 500                                  |
-| open                    | opening daily price for the S&P 500                                  |
-| daily_percentage_change | daily percentage difference between opening and closing prices       |
-| daily_diff              | daily numerical difference between opening and closing prices        |
-| gain                    | "gain" if daily_diff \> 0 (positive return for the day), else "loss" |
+| date       | day on which observation was recorded                                |
+| price      | closing daily price for the S&P 500                                  |
+| open       | opening daily price for the S&P 500                                  |
+| daily_diff | represents daily change in price: price - open                       |
+| gain       | "gain" if daily_diff \> 0 (positive return for the day), else "loss" |
+
+To create our current-day data frame, we pulled data from Investing.com. Then, we created daily_diff to measure the daily change in stock price; using daily_diff, we were then able to create another variable gain, which takes on the "gain" if daily_diff \> 0 and "loss" otherwise.
 
 ```{r message = FALSE}
 #|: loading-current-day-sp500-data-old
@@ -111,41 +140,9 @@ Investing.com gets their data from financial-data providers, including stock exc
 sp500_curr <- read_csv("data/sp500_curr_updated.csv")
 ```
 
-```{r message = FALSE}
-#| label: fig-daily-closing-price
-#| fig-cap: "Daily closing prices for S&P 500 index by month"
-
-sp500_curr |>
- mutate(
-   Date = paste(
-     substr(Date, 9, 10), 
-     substr(Date, 1, 2),  
-     sep = "/"
-    )
-  ) |>
-  group_by(Date) |>
-  mutate(
-    median_price = median(Price),
-    min_price = min(Price),
-    max_price = max(Price)
-  ) |>
-  ggplot(aes(x = Date, y = median_price)) +
-  geom_line(group = 1, color = "red") +
-  geom_point() + 
-  geom_errorbar(aes(ymin = min_price, ymax = max_price), width = 0.2) +
-  scale_x_discrete(breaks=c("20/10","21/10", "22/10")) +
-  labs(
-    x = "Date (year/month)",
-    y = "Daily S&P 500 Closing Price"
-  ) +
-  theme_minimal()
-```
-
-We first graphed each day's closing price to determine the trend in closing price over time. We utilized a scatter plot to visualize the data for closing price from 10/01/2020 to 10/28/2022; each point represents the closing price of the S&P 500 index on a particular day, with days grouped by their respective months and years.
-
 ## Part 2: Company and Sector Analysis
 
-**Contextualization:** Because of high inflation rates, and rising interest rates, the stock market has taken a major blow this past year. However, some sectors and stocks have been more negatively affected than others. We believe that industries that are considered more essential tend to be less affected by fluctuations in these rates. So how true is this, and how much are both of these categories affected? In this section, we're analyzing data from the beginning of 2022 to the end of October.
+Because of high inflation rates, and rising interest rates, the stock market has taken a major blow this past year. However, some sectors and stocks have been more negatively affected than others. We believe that industries that are considered more essential tend to be less affected by fluctuations in these rates. So how true is this, and how much are both of these categories affected? In this section, we're analyzing data from the beginning of 2022 to the end of October.
 
 **Sources:**
 
@@ -158,7 +155,7 @@ We first graphed each day's closing price to determine the trend in closing pric
 DATA HUB collected their data from S&P Dow Jones Indices (which, in turn, is collected daily from stock exchanges), and Slickcharts their data directly from the stock exchange. Each observation represents a different company and includes the following variables:
 
 | Variable        | Definition                                                                |
-|----------------|-------------------------------------------------------|
+|-------------------|-----------------------------------------------------|
 | name            | name of company in S&P 500                                                |
 | symbol          | ticker symbol used to identify companies on stock exchange                |
 | weight          | percentage weighting of company in S&P 500                                |
@@ -168,6 +165,8 @@ DATA HUB collected their data from S&P Dow Jones Indices (which, in turn, is col
 | sector          | company's industry                                                        |
 | return category | "gain" if ytd_return_num \> 0 (positive return for the year), else "loss" |
 
+To create the data frame we're using for our sector analysis, we first scraped the weights and prices/returns from two separate webpages on Slickcharts. To combine these two data sets, we joined them by symbol, which is the ticker symbol used to identify each company on the stock market. Originally, the year-to-date return percentage was expressed as a character followed by the % symbol; to make our data easier to analyze, we removed the % sign and then converted the character to a double and stored the result in ytd_return_num. We then created return category to determine whether a company's stock had increased in value this year, using the ytd_return_num variable we created. Finally, we had to update/add the symbols for several companies, either because their ticker symbol was updated or because they'd only recently been added to the S&P 500 index; we looked up the correct symbols for these companies on Investing.com (used previously to create the data frame for our current-day analysis).
+
 ```{r message = FALSE}
 #|: loading-current-day-company-and-sector-data
 
@@ -175,7 +174,7 @@ sp500_by_company_and_sector <- read_csv("data/sp500_by_company_and_sector.csv")
 ```
 
 ```{r}
-#| label: fig-overall-performance-of-sp500-by-return-type-eda
+#| label: fig-overall-performance-of-sp500-by-return-type
 #| fig-cap: "Number of S&P 500 companies by year-to-date return type"
 
 sp500_by_company_and_sector |> 
@@ -219,39 +218,9 @@ This graph takes into account the concept of essential and nonessential categori
 
 # Methodology:
 
+We decided to use inferential statistics and further exploratory data analysis for both parts of our analyses. We felt it was more applicable to use for our research than modeling, as we had tried to create several linear models predicting S&P 500 returns from interest and/or inflation rates (for part 1), as well as predicting year-to-date returns from sectors (for part 2), but we didn't include our results because the R-squared values for all these models were very low; thus, these models weren't very helpful to our analysis, so we instead focused on using graphs, tables, and hypothesis tests to conduct our research.
+
 ## Part 1:
-
-Then, we analyzed the relationship between rates and average yearly returns of the stock market for the same period using more line graphs.
-
-```{r}
-#| label: tbl-best-and-worst-ten-years-of-returns
-#| tbl-cap: ["Ten years with highest annual S&P 500 returns", "Ten years with lowest annual S&P 500 returns"]
-#| layout-ncol: 2
-
-historical_data_best <- historical_data |> 
-  rename(mean_funds_rt = mean_fed_funds_rate,
-         ytd_ret = year_to_date_return) |>
-  distinct(year, mean_funds_rt, inflation_rate, ytd_ret) |>
-  arrange(desc(ytd_ret)) |>
-  slice_head(n = 10) |> 
-  relocate(year, ytd_ret) |>
-  knitr::kable()
-
-historical_data_best
-
-historical_data_worst <- historical_data |> 
-    rename(mean_funds_rt = mean_fed_funds_rate,
-         ytd_ret = year_to_date_return) |>
-  distinct(year, mean_funds_rt, inflation_rate, ytd_ret) |>
-  arrange(ytd_ret) |>
-  slice_head(n = 10) |> 
-  relocate(year, ytd_ret) |> 
-  knitr::kable()
-
-historical_data_worst
-```
-
-Next, we determined the best and worst 10 years of performance for the stock market by sorting by year_to_date_return and arranging in ascending (worst) and descending (best) order, in order to examine the years individually rather than as a trend across time.
 
 ```{r}
 #|: prop-gains-by-rate-type
@@ -276,6 +245,8 @@ where $p_1$ is the proportion of companies who had positive annual returns in lo
 ```{r warning = FALSE}
 #|: hypothesis-test-for-prop-returns-by-rate-type
 
+set.seed(1)
+
 null_dist <- historical_data_by_rate_type |>
   specify(return_type ~ rate_type, success = "gain") |>
   hypothesize(null = "independence") |>
@@ -290,26 +261,43 @@ p_value <- null_dist |>
   get_p_value(obs_stat = point_estimate, direction = "right")
 ```
 
-After conducting our hypothesis test with a 5% significance level, we found our p-value to be 0.0002. Since the p-value is less than our significance level, we reject the null hypothesis in favor of the alternative hypothesis. The data provide convincing evidence that the mean year-to-date return for companies in essential industries is greater than that of companies in nonessential industries.
+After conducting our hypothesis test with a 5% significance level, we found our p-value to be 0.0002. Since the p-value is less than our significance level, we reject the null hypothesis in favor of the alternative hypothesis. The data provide convincing evidence that the proportion of companies who had positive annual returns in low-rate years is greater than the proportion of companies who had positive annual returns in high-rate years.
 
-```{r}
-#|: creating-df-of-averages-of-returns-and-rates-by-decade
-# excluded 2020 because it's not a whole decade
+```{r message = FALSE}
+#| label: fig-daily-closing-price
+#| fig-cap: "Daily closing prices for S&P 500 index by month"
 
-historical_data_decade <- historical_data |>
-  filter(decade != "2020") |>
-  group_by(decade) |>
-  summarize(
-    mean_return = mean(year_to_date_return),
-    mean_interest = mean(mean_fed_funds_rate),
-    mean_inflation = mean(inflation_rate)
+sp500_curr |>
+ mutate(
+   Date = paste(
+     substr(Date, 9, 10), 
+     substr(Date, 1, 2),  
+     sep = "/"
+    )
   ) |>
-  arrange(desc(mean_return))
+  group_by(Date) |>
+  mutate(
+    median_price = median(Price),
+    min_price = min(Price),
+    max_price = max(Price)
+  ) |>
+  ggplot(aes(x = Date, y = median_price)) +
+  geom_line(group = 1, color = "red") +
+  geom_point() + 
+  geom_errorbar(aes(ymin = min_price, ymax = max_price), width = 0.2) +
+  scale_x_discrete(breaks=c("20/10","21/10", "22/10")) +
+  labs(
+    x = "Date (year/month)",
+    y = "Daily S&P 500 Closing Price"
+  ) +
+  theme_minimal()
 ```
 
-## Part 2: By Sector Analysis
+We first graphed each day's closing price to determine the trend in closing price over time. We utilized a scatter plot to visualize the data for closing price from 10/01/2020 to 10/28/2022; each point represents the median monthly closing price of the S&P 500 index, with each error bar extending down to the minimum daily closing price for the month and up to the maximum daily closing price for the month.
 
-Next, we will observe the best and worst performing stocks. We will do this by arranging by arranging year-to-date returns in ascending and descending order, then displaying the top five best and worst in a tibble, along with some key identifying factors.
+We're analyzing the time period of October 2020 through October 2022. This year, inflation has risen to \~8%, up from \<2% in 2020 and \<5% in 2021. Interest rates have steadily risen in tandem with this increase in inflation. In an attempt to slow down inflation, Federal Reserve has increased the discount rate (the rate at which banks are charged to borrow from the Federal Reserve) from 0.5% in March 2022 to a current rate of 4%, which is the highest it's been since the 2008 recession.
+
+## Part 2: Company and Sector Analysis
 
 ```{r}
 #| label: tbl-five-companies-with-highest-and-lowest-returns
@@ -391,6 +379,8 @@ where $\mu_1$ is the mean year-to-date return for companies in essential sectors
 ```{r warning = FALSE}
 #|: hypothesis-test-for-ess-vs-noness-sectors
 
+set.seed(2)
+
 null_dist2 <- sp500_by_company_and_sector_ess |>
   specify(ytd_return_num ~ isEssential) |>
   hypothesize(null = "independence") |>
@@ -409,35 +399,37 @@ After conducting our hypothesis test with a 5% significance level, we found our 
 
 # Results:
 
-pt1:
+## Part 1: Historical and Current-day Analysis
 
-As you can see in @fig-inflation-vs-interest-vs-returns, inflation and interest rates are very closely related (especially prior to 2000), with interest and inflation peaking and dipping at similar times. This trend makes sense, as the Federal Reserve tends to raise interest rates when inflation rises, in an attempt to slow the economy down. (This is why the Federal Reserve is raising interest rates now.) @fig-inflation-and-interest-vs-returns also shows that market returns are extremely volatile and (at least according to this graph) don't seem to depend on either interest or inflation, contrary to our hypothesis. 
+As you can see in @fig-inflation-vs-interest-vs-returns, inflation and interest rates are very closely related (especially prior to 2000), with interest and inflation peaking and dipping at similar times. This trend makes sense, as the Federal Reserve tends to raise interest rates when inflation rises, in an attempt to slow the economy down. (This is why the Federal Reserve is raising interest rates now.) @fig-inflation-vs-interest-vs-returns also shows that market returns are extremely volatile and (at least according to this graph) don't seem to depend on either interest or inflation, contrary to our hypothesis. 
 
-@tbl-best-ten-years-of-returns show that almost all of the best years for S&P 500 returns feature either a low interest or inflation rate (\<5%), with many having both low interest and inflation rates. Noticeable outliers include 1980, whose rates were both over 13%, and 1975, whose interest rate was almost 6% and inflation 9%. This trend of high returns correlating with lower rates does support our hypothesis. On the other hand, we expected many of the worst years for market returns to have high rates; surprisingly, this was not the case for about half of the worst years, as shown in @tbl-worst-ten-years-of-returns. Though some years did support our hypothesis, including 1974, 1973, 1969, and 1977, the others featured surprisingly low rates. We suspect that these unanticipated poor performance of the stock market during times of low rates could possibly be explained by recessions occurring during these years; in recessionary gaps, inflation tends to be lower because the economy has slowed significantly, and interest rates tend to be low as well in an attempt to re-stimulate the economy by encouraging borrowing.
+Table 1 shows that almost all of the best years for S&P 500 returns feature either a low interest or inflation rate (\<5%), with many having both low interest and inflation rates. Noticeable outliers include 1980, whose rates were both over 13%, and 1975, whose interest rate was almost 6% and inflation 9%. This trend of high returns correlating with lower rates does support our hypothesis. On the other hand, we expected many of the worst years for market returns to have high rates; surprisingly, this was not the case for about half of the worst years, as shown in Table 2. Though some years did support our hypothesis, including 1974, 1973, 1969, and 1977, the others featured surprisingly low rates. We suspect that these unanticipated poor performance of the stock market during times of low rates could possibly be explained by recessions occurring during these years; in recessionary gaps, inflation tends to be lower because the economy has slowed significantly, and interest rates tend to be low as well in an attempt to re-stimulate the economy by encouraging borrowing.
 
 In @fig-daily-closing-price, we can see that the median monthly closing prices for the S&P 500 follow a generally positive trend from October 2020 to December 2021/January 2022, where they peak for the two-year period, and then begin to generally decline through October 2022. Each month had a wide range of closing prices that we can observe from the range of the heights of closing price data points each month. Some months have a range of approximately \$250 (e.g., August 2022), while others have a range of approximately \$750 (e.g., February 2021). This trend can possibly be explained by the very low rates characteristic of the Covid-19 era--the interest rate during the period prior to February 2022 was at a steady 0.25%. As soon as the Federal Reserve hiked rates in March 2022 to 0.5% (to combat rising inflation that had begun in late 2022), however, daily closing prices began to fall. This reflects our findings in our historical analysis and supports our hypothesis that rising rates generally correlate with a decrease in stock prices.
 
-pt2:
+## Part 2: Company and Sector Analysis
 
-From @fig-overall-performance-of-sp500-by-return-type, it can be seen that over 80% of the companies in the S&P 500 have featured falling stock prices over the past year. In @tbl-ten-companies-with-highest-returns and @tbl-ten-companies-with-lowest-returns, we can see that a lot of the stocks that have similar performance also share a sector--the top high-performing stocks exclusively belong to companies in the energy and utility sectors, while consumer staples, communication services, and information technology seem to be the hardest-hit sectors of the low-performing stocks.
+From @fig-overall-performance-of-sp500-by-return-type, it can be seen that over 80% of the companies in the S&P 500 have featured falling stock prices over the past year. In Table 3, we can see that a lot of the stocks that have similar performance also share a sector--the top high-performing stocks exclusively belong to companies in the energy and utility sectors, while consumer staples, communication services, and information technology seem to be the hardest-hit sectors of the low-performing stocks, as shown in Table 4.
 
 Using @fig-sector-performance, we can clearly see that the lowest industries are: Consumer Discretionary, IT, and Consumer Services. The highest are: Energy, Utilities, and Consumer Staples. Health care, along with some of the lower ones, have high variability. As evidenced in @fig-essential-vs-nonessential-industries, there is a visible difference in the essential and non-essential industries. Essential industries have a higher density of values above zero and feature higher maximums and lower minimums, as well as more clumped up data around a neutral zone. Essential companies' stocks lost less of their value and look as if they are more consistent.
 
 # Discussion:
 
-conc1:
+## Part 1:
 
-**Conclusion:** Our initial hypothesis was partially correct. It seems that higher returns in the stock market generally correlate with lower interest and inflation rates, but years with lower returns can't be explained as neatly, at least with the data we're using. A potential confounding variable could be whether our economy was experiencing a recession during that year, as recessions sometimes create environments where returns in the stock market are poor even in times of low rates. Given this, it was difficult to apply any predictions to our current-day analysis, since the market currently features very low (mostly negative) returns. However, our findings in the current-day analysis also support our initial hypothesis that the performance of the stock market would be hurt by higher interest and inflation rates; as @fig-daily-closing-price depicts, the daily closing price of the S&P 500 has fallen significantly over the past year following the rapid increase in inflation and interest rates.
+Our initial hypothesis was partially correct. It seems that higher returns in the stock market generally correlate with lower interest and inflation rates, but years with lower returns can't be explained as neatly, at least with the data we're using. A potential confounding variable could be whether our economy was experiencing a recession during that year, as recessions sometimes create environments where returns in the stock market are poor even in times of low rates. Given this, it was difficult to apply any predictions to our current-day analysis, since the market currently features very low (mostly negative) returns. However, our findings in the current-day analysis also support our initial hypothesis that the performance of the stock market would be hurt by higher interest and inflation rates; as @fig-daily-closing-price depicts, the daily closing price of the S&P 500 has fallen significantly over the past year following the rapid increase in inflation and interest rates.
 
-conc2:
+## Part 2: Company and Sector Analysis
 
-**Conclusion:** Our initial hypothesis states that "essential industries\"--Financials, Energy, Utilities and Consumer Staples--will not be as affected, despite the fact that the stock market suffers from high rates as a whole. The data collected substantially supports this hypothesis. @fig-overall-performance-of-sp500-by-return-type shows that there is a general decrease in stock prices (80%), but within that, we see how the decrease is explained by the variation in performance by sector. @fig-sector-performance explains these variations, showing how industries such as Consumer Discretionary, IT, Real Estate, and Consumer Services are some of the worst-performing sectors, while Energy is by far the highest performing (it\'s the only sector with a positive median year-to-date return), followed by Consumer Staples, Utilities, and Financials. Additionally, there is a lot of variability in each sector, which, by grouping into "essential" vs. "non-essential" industry, is addressed, and demonstrates how essential industries are generally affected less, as they have a higher density of values above zero, as well as higher maximums.
+Our initial hypothesis states that "essential industries"--Energy, Utilities and Consumer Staples--will not be as affected, despite the fact that the stock market suffers from high rates as a whole. The data collected substantially supports this hypothesis. @fig-overall-performance-of-sp500-by-return-type shows that there is a general decrease in stock prices (80%), but within that, we see how the decrease is explained by the variation in performance by sector. @fig-sector-performance explains these variations, showing how industries such as Consumer Discretionary, IT, Real Estate, and Consumer Services are some of the worst-performing sectors, while Energy is by far the highest performing (it's the only sector with a positive median year-to-date return), followed by Consumer Staples, Utilities, and Financials. Additionally, there is a lot of variability in each sector, which, by grouping into"essential" vs. "non-essential" industry, is addressed, and demonstrates how essential industries are generally affected less, as they have a higher density of values above zero, as well as higher maximums.
 
-overarching:
+## Overarching: 
 
 Our research aimed to explore the relationship between interest and inflation rates and the performance of the stock market to showcase beneficial investment decisions in the context of today's market and fluctuating economic climates. We hypothesized that the overall stock market would be hurt by high inflation/interest rates and that certain sectors of the economy would be less affected than others in these circumstances. Overall, our data has supported our hypotheses to a fair extent. From our historical and current-day analyses, we can conclude that higher returns in the stock market generally occur in times of lower interest and inflation rates; through our evaluation of sector return differences, we conclude that essential (survival-focused) industries will perform better relative to other sectors when the rest of the market is suffering. However, our analyses were somewhat limited by confounding variables, including volatile economic climates and recessionary pressures; e.g., it can be difficult to determine when stock market will feature lower returns, as shown in our historical analysis.
 
 # Appendix
+
+The following is a visualization of our p-value and null distribution for our hypothesis test on whether the proportion of companies who had positive annual returns in low-rate years was greater than the proportion of companies who had positive annual returns in high-rate years.
 
 ```{r warning = FALSE}
 #|: hypo-test1-vis
@@ -448,6 +440,8 @@ null_dist |>
   theme_minimal() +
   theme(plot.title = element_text(hjust = 0.5))
 ```
+
+The following is a visualization of our p-value and null distribution for our hypothesis test on whether companies belonging to essential sectors have seen better year-to-date returns than companies belonging to nonessential sectors.
 
 ```{r warning = FALSE}
 #|: hypo-test2-vis
