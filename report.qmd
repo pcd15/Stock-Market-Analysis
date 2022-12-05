@@ -45,7 +45,7 @@ We believe the overall stock market would be hurt by high inflation and correspo
 All of these sites collected these data by retrieving the data published publicly on stock exchanges, except for the federal-funds rate--this data was collected from the World Bank. In addition, each of these sites updates their data monthly/yearly (although they could update it daily, as they are collecting live data). Each observation represents a month in a year (between 1961 and 2020) and includes the following variables:
 
 | Variable            | Definition                                                             |
-|--------------------|----------------------------------------------------|
+|---------------------|------------------------------------------------------------------------|
 | year                | year in which observation was recorded                                 |
 | month               | month in which observation was recorded                                |
 | monthly_return      | total stock market's monthly return                                    |
@@ -125,7 +125,7 @@ Next, we determined the best and worst 10 years of performance for the stock mar
 Investing.com gets their data from financial-data providers, including stock exchanges and/or directly from market makers (who set stock prices to match supply and demand). The data is collected in real time by monitoring transactions (selling, buying, etc.) executed in the stock market, which correspond to increases/decreases in prices. Each observation represents a different day (between 1 October 2020 and 28 October 2022) and includes the following variables:
 
 | Variable   | Definition                                                           |
-|--------------------|----------------------------------------------------|
+|------------|----------------------------------------------------------------------|
 | date       | day on which observation was recorded                                |
 | price      | closing daily price for the S&P 500                                  |
 | open       | opening daily price for the S&P 500                                  |
@@ -155,7 +155,7 @@ Because of high inflation rates, and rising interest rates, the stock market has
 DATA HUB collected their data from S&P Dow Jones Indices (which, in turn, is collected daily from stock exchanges), and Slickcharts their data directly from the stock exchange. Each observation represents a different company and includes the following variables:
 
 | Variable        | Definition                                                                |
-|-------------------|-----------------------------------------------------|
+|-----------------|---------------------------------------------------------------------------|
 | name            | name of company in S&P 500                                                |
 | symbol          | ticker symbol used to identify companies on stock exchange                |
 | weight          | percentage weighting of company in S&P 500                                |
@@ -423,7 +423,7 @@ Our initial hypothesis was partially correct. It seems that higher returns in th
 
 Our initial hypothesis states that "essential industries"--Energy, Utilities and Consumer Staples--will not be as affected, despite the fact that the stock market suffers from high rates as a whole. The data collected substantially supports this hypothesis. @fig-overall-performance-of-sp500-by-return-type shows that there is a general decrease in stock prices (80%), but within that, we see how the decrease is explained by the variation in performance by sector. @fig-sector-performance explains these variations, showing how industries such as Consumer Discretionary, IT, Real Estate, and Consumer Services are some of the worst-performing sectors, while Energy is by far the highest performing (it's the only sector with a positive median year-to-date return), followed by Consumer Staples, Utilities, and Financials. Additionally, there is a lot of variability in each sector, which, by grouping into"essential" vs. "non-essential" industry, is addressed, and demonstrates how essential industries are generally affected less, as they have a higher density of values above zero, as well as higher maximums.
 
-## Overarching: 
+## Overarching:
 
 Our research aimed to explore the relationship between interest and inflation rates and the performance of the stock market to showcase beneficial investment decisions in the context of today's market and fluctuating economic climates. We hypothesized that the overall stock market would be hurt by high inflation/interest rates and that certain sectors of the economy would be less affected than others in these circumstances. Overall, our data has supported our hypotheses to a fair extent. From our historical and current-day analyses, we can conclude that higher returns in the stock market generally occur in times of lower interest and inflation rates; through our evaluation of sector return differences, we conclude that essential (survival-focused) industries will perform better relative to other sectors when the rest of the market is suffering. However, our analyses were somewhat limited by confounding variables, including volatile economic climates and recessionary pressures; e.g., it can be difficult to determine when stock market will feature lower returns, as shown in our historical analysis.
 
