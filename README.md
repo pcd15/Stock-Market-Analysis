@@ -1,4 +1,6 @@
 # Stock-market Analysis
+## In collaboration with Mine Çetinkaya-Rundel, Hannah Choi, Ryan Cheng, Uma Soler, and Zaid Musqit
+
 
 ### To view the website: 
 1. Clone the repository using the SSH link.
