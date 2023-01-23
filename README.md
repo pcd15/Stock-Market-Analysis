@@ -7,4 +7,4 @@
 3. Navigate to the docs folder, click on index.html, and select "View in Web Browser."
 
 ### Disclosure: 
-This
+This project was conducted in STA 199 (Intro to Data Science) @ Duke University in Fall 2022 under the supervision of Mine Çetinkaya-Rundel.
