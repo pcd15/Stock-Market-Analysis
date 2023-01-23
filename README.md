@@ -1,5 +1,5 @@
 # Stock-market Analysis
-###### Intro to Data Science @ Duke University | In collaboration with Mine Çetinkaya-Rundel, Hannah Choi, Ryan Chen, Uma Soler-Roig, and Zaid Musqit
+##### Intro to Data Science @ Duke University | In collaboration with Mine Çetinkaya-Rundel, Hannah Choi, Ryan Chen, Uma Soler-Roig, and Zaid Musqit
 
 
 ### To view the website: 
