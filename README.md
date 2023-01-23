@@ -1,6 +1,5 @@
 # Stock-market Analysis
-###### STA 199: Intro to Data Science @ Duke University, Fall 2022
-###### In collaboration with Mine Çetinkaya-Rundel, Hannah Choi, Ryan Chen, Uma Soler-Roig, and Zaid Musqit
+###### STA 199: Intro to Data Science @ Duke University | In collaboration with Mine Çetinkaya-Rundel, Hannah Choi, Ryan Chen, Uma Soler-Roig, and Zaid Musqit
 
 
 ### To view the website: 
