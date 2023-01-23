@@ -1,5 +1,6 @@
 # Stock-market Analysis
 ### In collaboration with Mine Çetinkaya-Rundel, Hannah Choi, Ryan Chen, Uma Soler-Roig, and Zaid Musqit
+### Intro to Data Science (STA 199) @ Duke University, Fall 2022
 
 
 ### To view the website: 
