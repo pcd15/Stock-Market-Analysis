@@ -6,7 +6,7 @@ The Federal Reserve works to maintain stable economic growth (as measured by the
 
 ### To View Website: 
 1. Clone the repository using the SSH link.
-2. Open in RStudio by creating a new project and pasting the copied link.
+2. Paste the link in RStudio.
 3. Navigate to the docs folder, click on index.html, and select "View in Web Browser."
 
 ### Disclosure: 
