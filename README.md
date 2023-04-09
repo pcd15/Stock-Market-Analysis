@@ -1,4 +1,4 @@
-# Stock-market Analysis
+# Stock-Market Analysis
 ###### Intro to Data Science @ Duke University | In collaboration with Mine Çetinkaya-Rundel, Hannah Choi, Ryan Chen, Uma Soler-Roig, and Zaid Musqit
 
 ### Abstract:
